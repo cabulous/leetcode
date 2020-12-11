@@ -31,3 +31,15 @@ class Solution:
                 nums[j] = nums[i]
                 j += 1
         return j
+
+
+# https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/discuss/27976/3-6-easy-lines-C%2B%2B-Java-Python-Ruby
+class Solution:
+    def removeDuplicates(self, nums: [int]) -> int:
+        max_duplicates = 2
+        i = 0
+        for n in nums:
+            if i < 2 or n > nums[i - 2]:
+               nums[i] = n
+               i += 1
+        return i
