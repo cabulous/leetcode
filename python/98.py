@@ -16,6 +16,7 @@ class Solution:
             if node.val <= lo or node.val >= hi:
                 return False
             return bst(node.left, lo, node.val) and bst(node.right, node.val, hi)
+
         return bst(root)
 
 
@@ -27,14 +28,13 @@ class Solution:
 
         stack = [(root, -math.inf, math.inf)]
         while stack:
-            root, lo, hi = stack.pop()
-            if not root:
+            node, lo, hi = stack.pop()
+            if not node:
                 continue
-            val = root.val
-            if val >= lo or val >= hi:
+            if node.val <= lo or node.val >= hi:
                 return False
-            stack.append((root.right, val, hi))
-            stack.append((root.left, lo, val))
+            stack.append((node.left, lo, node.val))
+            stack.append((node.right, node.val, hi))
         return True
 
 
