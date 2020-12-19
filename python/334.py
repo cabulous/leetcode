@@ -4,19 +4,19 @@ import bisect
 # generalization
 class Solution:
     def increasingTriplet(self, nums: [int]) -> bool:
-        k = 3
-
-        if k == 0:
-            return True
-
-        inc = [float('inf')] * (k - 1)
-
-        for n in nums:
-            i = bisect.bisect_left(inc, n)
-            if i >= k - 1:
+        def increasing_k_nums(k):
+            if k == 0:
                 return True
-            inc[i] = n
-        return False
+            inc = [float('inf')] * (k - 1)
+            for n in nums:
+                i = bisect.bisect_left(inc, n)
+                if i >= k - 1:
+                    return True
+                inc[i] = n
+            return False
+
+        return increasing_k_nums(3)
+
 
 class Solution:
     def increasingTriplet(self, nums: [int]) -> bool:
