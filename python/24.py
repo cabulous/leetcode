@@ -16,6 +16,9 @@ class Solution:
 # Iterative
 class Solution:
     def swapPairs(self, head):
+        if not head or not head.next:
+            return head
+
         sentinel = ListNode(-1)
         sentinel.next = head
         prev = sentinel

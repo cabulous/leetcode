@@ -40,6 +40,9 @@ class Solution:
 
 # inorder
 class Solution:
+    def __init__(self):
+        self.prev = -math.inf
+
     def isValidBST(self, root) -> bool:
         def inorder(node):
             if not node:
@@ -51,5 +54,4 @@ class Solution:
             self.prev = node.val
             return inorder(node.right)
 
-        self.prev = -math.inf
         return inorder(root)
