@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/decodeAtIndex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/longestValidParentheses.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../python/32.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/146.java" beforeDir="false" afterPath="$PROJECT_DIR$/LRUCache146.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nextGreaterElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/nextGreaterElement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +56,8 @@
       <workItem from="1607875635138" duration="10000" />
       <workItem from="1608566875861" duration="179000" />
       <workItem from="1608567077215" duration="1358000" />
+      <workItem from="1608737739540" duration="1565000" />
+      <workItem from="1608823196820" duration="40000" />
     </task>
     <servers />
   </component>
