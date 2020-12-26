@@ -4,7 +4,7 @@ import bisect
 # generalization
 class Solution:
     def increasingTriplet(self, nums: [int]) -> bool:
-        def increasing_k_nums(k):
+        def increasing_k_nums(k: int) -> bool:
             if k == 0:
                 return True
             inc = [float('inf')] * (k - 1)

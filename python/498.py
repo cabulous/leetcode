@@ -5,25 +5,23 @@ class Solution:
             return []
 
         n, m = len(matrix), len(matrix[0])
-        result = []
+        res = []
         intermediate = []
 
         for d in range(n + m - 1):
             intermediate.clear()
             r = 0 if d < m else d - m + 1
             c = d if d < m else m - 1
-
             while r < n and c >= 0:
                 intermediate.append(matrix[r][c])
                 r += 1
                 c -= 1
-
             if d % 2 == 0:
-                result.extend(intermediate[::-1])
+                res.extend(intermediate[::-1])
             else:
-                result.extend(intermediate)
+                res.extend(intermediate)
 
-        return result
+        return res
 
 
 class Solution:
@@ -44,4 +42,3 @@ class Solution:
                 [ans.append(x) for x in entry[1]]
 
         return ans
-
