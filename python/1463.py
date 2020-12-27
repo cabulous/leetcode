@@ -11,7 +11,7 @@ class Solution:
         m, n = len(grid), len(grid[0])
 
         @lru_cache(None)
-        def dp(row, col1, col2):
+        def dfs(row, col1, col2):
             if col1 < 0 or col1 >= n or col2 < 0 or col2 >= n:
                 return -math.inf
             result = 0
@@ -20,13 +20,13 @@ class Solution:
                 result += grid[row][col2]
             if row != m - 1:
                 result += max(
-                    dp(row + 1, new_col1, new_col2)
-                    for new_col1 in [col1, col1 + 1, col1 - 1]
-                    for new_col2 in [col2, col2 + 1, col2 - 1]
+                    dfs(row + 1, new_col1, new_col2)
+                    for new_col1 in [col1 - 1, col1, col1 + 1]
+                    for new_col2 in [col2 - 1, col2, col2 + 1]
                 )
             return result
 
-        return dp(0, 0, n - 1)
+        return dfs(0, 0, n - 1)
 
 
 # dp
@@ -48,8 +48,8 @@ class Solution:
                     if row != m - 1:
                         result += max(
                             dp[row + 1][new_col1][new_col2]
-                            for new_col1 in [col1, col1 + 1, col1 - 1]
-                            for new_col2 in [col2, col2 + 1, col2 - 1]
+                            for new_col1 in [col1 - 1, col1, col1 + 1]
+                            for new_col2 in [col2 - 1, col2, col2 + 1]
                             if 0 <= new_col1 < n and 0 <= new_col2 < n
                         )
                     dp[row][col1][col2] = result

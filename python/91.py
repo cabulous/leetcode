@@ -12,7 +12,7 @@ class Solution:
             return 1
         if index in self.memo:
             return self.memo[index]
-        ans = self.helper(index + 1, s) + (self.helper(index + 2, s) if (int(s[index: index + 2]) <= 26) else 0)
+        ans = self.helper(index + 1, s) + (self.helper(index + 2, s) if (int(s[index:index + 2]) <= 26) else 0)
         self.memo[index] = ans
         return ans
 
