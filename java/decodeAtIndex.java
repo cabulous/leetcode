@@ -3,7 +3,7 @@ class Solution {
         long size = 0;
         int n = S.length();
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             char c = S.charAt(i);
             if (Character.isDigit(c)) {
                 size *= c - '0';
@@ -12,7 +12,7 @@ class Solution {
             }
         }
 
-        for (int i = n - 1; i >= 0; --i) {
+        for (int i = n - 1; i >= 0; i--) {
             K %= size;
             char c = S.charAt(i);
             if (K == 0 && Character.isLetter(c)) {
