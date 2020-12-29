@@ -7,8 +7,7 @@ class Solution:
             if node:
                 path ^= (1 << node.val)
                 if not node.left and not node.right:
-                    if path & (path - 1) == 0:
-                        count += 1
+                    count += 1 if path & (path - 1) == 0 else 0
                 else:
                     stack.append((node.left, path))
                     stack.append((node.right, path))
