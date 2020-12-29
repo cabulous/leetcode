@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/minJumps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,13 +16,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectId" id="1lbpR05UGYMhywYoWvtsVUwoEcj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -58,7 +48,7 @@
       <workItem from="1608567077215" duration="1358000" />
       <workItem from="1608737739540" duration="1565000" />
       <workItem from="1608823196820" duration="40000" />
-      <workItem from="1609169133504" duration="936000" />
+      <workItem from="1609169133504" duration="1507000" />
     </task>
     <servers />
   </component>
