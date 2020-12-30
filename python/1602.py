@@ -8,6 +8,7 @@ class Solution:
             return None
 
         next_level = deque([root])
+
         while next_level:
             curr_level = next_level
             next_level = deque()
@@ -43,3 +44,5 @@ class Solution:
             else:
                 if queue:
                     queue.append(None)
+
+        return None
