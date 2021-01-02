@@ -4,15 +4,15 @@ class Solution:
         if not matrix or not matrix[0]:
             return []
 
-        n, m = len(matrix), len(matrix[0])
+        m, n = len(matrix), len(matrix[0])
         res = []
         intermediate = []
 
         for d in range(n + m - 1):
             intermediate.clear()
-            r = 0 if d < m else d - m + 1
-            c = d if d < m else m - 1
-            while r < n and c >= 0:
+            r = 0 if d < n else d - n + 1
+            c = d if d < n else n - 1
+            while r < m and c >= 0:
                 intermediate.append(matrix[r][c])
                 r += 1
                 c -= 1
