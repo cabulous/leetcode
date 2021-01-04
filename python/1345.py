@@ -12,13 +12,13 @@ class Solution:
             else:
                 graph[arr[i]] = [i]
 
-        curs = [0]
+        cur = [0]
         visited = {0}
         step = 0
 
-        while curs:
+        while cur:
             nex = []
-            for node in curs:
+            for node in cur:
                 if node == n - 1:
                     return step
                 for child in graph[arr[node]]:
@@ -30,7 +30,7 @@ class Solution:
                     if 0 <= child < n and child not in visited:
                         visited.add(child)
                         nex.append(child)
-            curs = nex
+            cur = nex
             step += 1
 
         return -1
@@ -50,16 +50,16 @@ class Solution:
             else:
                 graph[arr[i]] = [i]
 
-        curs = [0]
+        cur = [0]
         other = [n - 1]
         visited = {0, n - 1}
         step = 0
 
-        while curs:
-            if len(curs) > len(other):
-                curs, other = other, curs
+        while cur:
+            if len(cur) > len(other):
+                cur, other = other, cur
             nex = []
-            for node in curs:
+            for node in cur:
                 for child in graph[arr[node]]:
                     if child in other:
                         return step + 1
@@ -73,7 +73,7 @@ class Solution:
                     if 0 <= child < n and child not in visited:
                         visited.add(child)
                         nex.append(child)
-            curs = nex
+            cur = nex
             step += 1
 
         return -1
