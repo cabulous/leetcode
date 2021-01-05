@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lengthOfLongestSubstringKDistinct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pseudoPalindromicPaths.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solveNQueens.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../python/51.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python/1345.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python/1345.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +55,7 @@
       <workItem from="1608823196820" duration="40000" />
       <workItem from="1609169133504" duration="1507000" />
       <workItem from="1609341350056" duration="1218000" />
+      <workItem from="1609774117566" duration="961000" />
     </task>
     <servers />
   </component>

@@ -18,7 +18,6 @@ class Solution:
         return l2
 
 
-
 # iteration
 class Solution:
     def mergeTwoLists(self, l1, l2):
