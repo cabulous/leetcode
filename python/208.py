@@ -22,7 +22,7 @@ class Trie:
 
     def search(self, word: str) -> bool:
         t = self.search_prefix(word)
-        if t is None:
+        if not t:
             return False
         return self.WORD_END in t
 
