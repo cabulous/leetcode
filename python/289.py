@@ -1,6 +1,26 @@
 import collections
 
 
+# infinite
+class Solution:
+    def infinite(self, live):
+        ctr = collections.Counter((I, J)
+                                  for i, j in live
+                                  for I in range(i - 1, i + 2)
+                                  for J in range(j - 1, j + 2)
+                                  if I != i or J != j)
+        return {ij
+                for ij in ctr
+                if ctr[ij] == 3 or ctr[ij] == 2 and ij in live}
+
+    def gameOfLife(self, board: [[int]]) -> None:
+        live = {(i, j) for i, row in enumerate(board) for j, live in enumerate(row) if live}
+        live = self.infinite(live)
+        for i, row in enumerate(board):
+            for j in range(len(row)):
+                row[j] = int((i, j) in live)
+
+
 class Solution:
     def gameOfLife(self, board: [[int]]) -> None:
         neighbors = [(0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1)]
@@ -11,8 +31,7 @@ class Solution:
             for col in range(cols):
                 live_neighbors = 0
                 for n in neighbors:
-                    r = row + n[0]
-                    c = col + n[1]
+                    r, c = row + n[0], col + n[1]
                     if 0 <= r < rows and 0 <= c < cols and copy_board[r][c] == 1:
                         live_neighbors += 1
                 if copy_board[row][col] == 1 and (live_neighbors < 2 or live_neighbors > 3):
@@ -31,8 +50,7 @@ class Solution:
             for col in range(cols):
                 live_neighbors = 0
                 for n in neighbors:
-                    r = row + n[0]
-                    c = col + n[1]
+                    r, c = row + n[0], col + n[1]
                     if 0 <= r < rows and 0 <= c < cols and abs(board[r][c]) == 1:
                         live_neighbors += 1
                 if board[row][col] == 1 and (live_neighbors < 2 or live_neighbors > 3):
@@ -46,24 +64,3 @@ class Solution:
                     board[row][col] = 1
                 else:
                     board[row][col] = 0
-
-
-# infinite
-class Solution:
-    def infinite(self, live):
-        ctr = collections.Counter(
-            (I, J)
-            for i, j in live
-            for I in range(i - 1, i + 2)
-            for J in range(j - 1, j + 2)
-            if I != i or J != j
-        )
-        return {ij
-                for ij in ctr if ctr[ij] == 3 or ctr[ij] == 2 and ij in live}
-
-    def gameOfLife(self, board: [[int]]) -> None:
-        live = {(i, j) for i, row in enumerate(board) for j, live in enumerate(row) if live}
-        live = self.infinite(live)
-        for i, row in enumerate(board):
-            for j in range(len(row)):
-                row[j] = int((i, j) in live)
