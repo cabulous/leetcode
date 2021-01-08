@@ -3,7 +3,7 @@ class Solution:
         total = 0
         while n != 0:
             total += 1
-            n &= n - 1
+            n &= (n - 1)
         return total
 
 
@@ -15,5 +15,4 @@ class Solution:
             if n & mask != 0:
                 total += 1
             mask <<= 1
-
         return total
