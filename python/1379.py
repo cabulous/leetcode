@@ -22,7 +22,6 @@ class Solution:
                 inorder(o.right, c.right)
 
         inorder(original, cloned)
-
         return ans
 
 
