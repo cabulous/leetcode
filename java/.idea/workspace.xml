@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/addTwoNumbers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../python/2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python/547.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python/547.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deleteDuplicates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python/82.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python/82.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +65,7 @@
       <workItem from="1609946326131" duration="26000" />
       <workItem from="1610032504792" duration="11000" />
       <workItem from="1610467377593" duration="244000" />
+      <workItem from="1610550487449" duration="145000" />
     </task>
     <servers />
   </component>
