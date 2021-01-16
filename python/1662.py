@@ -14,4 +14,3 @@ class Solution:
         if index <= (list2_len - 1):
             return False
         return True
-
