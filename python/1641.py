@@ -1,4 +1,5 @@
-# math
+# math - Combination
+# https://en.wikipedia.org/wiki/Combination
 class Solution:
     def countVowelStrings(self, n: int) -> int:
         return (n + 4) * (n + 3) * (n + 2) * (n + 1) // 24
@@ -11,7 +12,7 @@ class Solution:
         seen = {}
 
         def dp(n, k):
-            if k == 1 or n == 1:
+            if n == 1 or k == 1:
                 return k
             if (n, k) in seen:
                 return seen[n, k]
