@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/maxCoins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mostCompetitive.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +67,7 @@
       <workItem from="1610550487449" duration="145000" />
       <workItem from="1611070092392" duration="260000" />
       <workItem from="1611243755318" duration="403000" />
+      <workItem from="1611245014997" duration="302000" />
     </task>
     <servers />
   </component>
