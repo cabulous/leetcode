@@ -67,7 +67,7 @@ class Solution:
         queue = deque(nestedList)
         depth = 1
         total = 0
-        while len(queue) > 0:
+        while queue:
             for i in range(len(queue)):
                 nested = queue.pop()
                 if nested.isInteger():
