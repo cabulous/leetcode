@@ -15,16 +15,12 @@ class Solution:
     def fourSumCount(self, A: [int], B: [int], C: [int], D: [int]) -> int:
         m = {}
 
-        def n_sum_count(lists):
-            add_to_hash(lists, 0, 0)
-            return count_complements(lists, len(lists) // 2, 0)
-
-        def add_to_hash(lists, i, sum):
+        def add_to_hash(lists, i, total):
             if i == len(lists) // 2:
-                m[sum] = m.get(sum, 0) + 1
+                m[total] = m.get(total, 0) + 1
             else:
                 for num in lists[i]:
-                    add_to_hash(lists, i + 1, sum + num)
+                    add_to_hash(lists, i + 1, total + num)
 
         def count_complements(lists, i, complement):
             if i == len(lists):
@@ -33,5 +29,9 @@ class Solution:
             for num in lists[i]:
                 count += count_complements(lists, i + 1, complement - num)
             return count
+
+        def n_sum_count(lists):
+            add_to_hash(lists, 0, 0)
+            return count_complements(lists, len(lists) // 2, 0)
 
         return n_sum_count([A, B, C, D])

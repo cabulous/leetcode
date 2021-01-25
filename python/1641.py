@@ -30,4 +30,4 @@ class Solution:
         for i in range(1, n + 1):
             for k in range(1, 6):
                 dp[k] += dp[k - 1]
-        return dp[5]
+        return dp[-1]
