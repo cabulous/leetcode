@@ -1,5 +1,6 @@
 from typing import List
 
+
 # bit
 class Solution:
     def kLengthApart(self, nums: List[int], k: int) -> bool:
@@ -9,12 +10,12 @@ class Solution:
         if x == 0 or k == 0:
             return True
         while x & 1 == 0:
-            x = x >> 1
+            x >>= 1
         while x != 1:
-            x = x >> 1
+            x >>= 1
             count = 0
             while x & 1 == 0:
-                x = x >> 1
+                x >>= 1
                 count += 1
             if count < k:
                 return False
