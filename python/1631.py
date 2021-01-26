@@ -6,14 +6,13 @@ from typing import List
 # bfs
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
-        row = len(heights)
-        col = len(heights[0])
+        row, col = len(heights), len(heights[0])
 
         def can_reach_destination(mid):
             visited = [[False] * col for _ in range(row)]
             queue = [(0, 0)]
             while queue:
-                x, y = queue.pop(0)
+                x, y = queue.pop()
                 if x == row - 1 and y == col - 1:
                     return True
                 visited[x][y] = True
@@ -25,12 +24,11 @@ class Solution:
                             visited[nx][ny] = True
                             queue.append((nx, ny))
 
-        left = 0
-        right = 10000000
-        while left < right:
+        left, right = 0, 10000000
+        while left <= right:
             mid = left + (right - left) // 2
             if can_reach_destination(mid):
-                right = mid
+                right = mid - 1
             else:
                 left = mid + 1
         return left
