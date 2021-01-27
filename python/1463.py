@@ -54,4 +54,4 @@ class Solution:
                         )
                     dp[row][col1][col2] = result
 
-        return dp[0][0][n - 1]
+        return dp[0][0][-1]
