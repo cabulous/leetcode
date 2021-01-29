@@ -2,6 +2,10 @@
 class Solution:
     def smallestRangeII(self, A: [int], K: int) -> int:
         A.sort()
+        if A[-1] - A[0] >= 4 * K:
+            return A[-1] - A[0] - 2 * K
+        if A[-1] - A[0] <= K:
+            return A[-1] - A[0]
         res = A[-1] - A[0]
         for i in range(len(A) - 1):
             big = max(A[-1], A[i] + 2 * K)
@@ -10,7 +14,7 @@ class Solution:
         return res
 
 
-# imporve
+# improve
 class Solution:
     def smallestRangeII(self, A: [int], K: int) -> int:
         ma, mi = max(A), min(A)

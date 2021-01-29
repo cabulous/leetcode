@@ -17,4 +17,4 @@ class Solution:
     def getSmallestString(self, n: int, k: int) -> str:
         z, r = divmod(k - n - 1, 25)
         a = n - z - 1
-        return 'a' * a + chr(r + 1 + ord('a')) + 'z' * z
+        return 'a' * a + chr(ord('a') + r + 1) + 'z' * z
