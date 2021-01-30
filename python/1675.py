@@ -20,11 +20,11 @@ class Solution:
         min_deviation = inf
 
         while evens:
-            curr_value = -heapq.heappop(evens)
-            min_deviation = min(min_deviation, curr_value - minimum)
-            if curr_value % 2 == 0:
-                minimum = min(minimum, curr_value // 2)
-                heapq.heappush(evens, -curr_value // 2)
+            maximum = -heapq.heappop(evens)
+            min_deviation = min(min_deviation, maximum - minimum)
+            if maximum % 2 == 0:
+                minimum = min(minimum, maximum // 2)
+                heapq.heappush(evens, -maximum // 2)
             else:
                 break
 
