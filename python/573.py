@@ -1,4 +1,3 @@
-import math
 from typing import List
 
 
@@ -9,4 +8,4 @@ class Solution:
             return abs(p[0] - q[0]) + abs(p[1] - q[1])
 
         s = sum(2 * distance(tree, nut) for nut in nuts)
-        return min(s + distance(squirrel, nut) - distance(nut, tree) for nut in nuts)
+        return min(s + distance(squirrel, nut) - distance(tree, nut) for nut in nuts)
