@@ -1,5 +1,4 @@
 import heapq
-import math
 from typing import List
 
 
@@ -39,21 +38,21 @@ class Solution:
 # https://leetcode.com/problems/path-with-minimum-effort/discuss/909017/JavaPython-Dijikstra-Clean-and-Concise-O(MNlogMN)
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
-        m, n = len(heights), len(heights[0])
-        dist = [[float('inf')] * n for _ in range(m)]
+        max_row, max_col = len(heights), len(heights[0])
+        dist = [[float('inf')] * max_col for _ in range(max_row)]
         min_heap = [(0, 0, 0)]
         direction = [0, 1, 0, -1, 0]
         while min_heap:
             distance, r, c = heapq.heappop(min_heap)
             if distance > dist[r][c]:
                 continue
-            if r == m - 1 and c == n - 1:
+            if r == max_row - 1 and c == max_col - 1:
                 return distance
             for i in range(4):
                 nr, nc = r + direction[i], c + direction[i + 1]
-                if 0 <= nr < m and 0 <= nc < n:
+                if 0 <= nr < max_row and 0 <= nc < max_col:
                     new_distance = max(distance, abs(heights[nr][nc] - heights[r][c]))
-                    if dist[nr][nc] > new_distance:
+                    if new_distance < dist[nr][nc]:
                         dist[nr][nc] = new_distance
                         heapq.heappush(min_heap, (dist[nr][nc], nr, nc))
         return 0
