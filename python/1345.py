@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 # bfs
 class Solution:
     def minJumps(self, arr: [int]) -> int:
@@ -5,12 +8,9 @@ class Solution:
         if n <= 1:
             return 0
 
-        graph = {}
+        graph = defaultdict(list)
         for i in range(n):
-            if arr[i] in graph:
-                graph[arr[i]].append(i)
-            else:
-                graph[arr[i]] = [i]
+            graph[arr[i]].append(i)
 
         cur = [0]
         visited = {0}
@@ -43,12 +43,9 @@ class Solution:
         if n <= 1:
             return 0
 
-        graph = {}
+        graph = defaultdict(list)
         for i in range(n):
-            if arr[i] in graph:
-                graph[arr[i]].append(i)
-            else:
-                graph[arr[i]] = [i]
+            graph[arr[i]].append(i)
 
         cur = [0]
         other = [n - 1]
