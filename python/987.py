@@ -18,13 +18,13 @@ class Solution:
         while queue:
             new = []
             d = defaultdict(list)
-            for node, s in queue:
-                d[s].append(node.val)
+            for node, order in queue:
+                d[order].append(node.val)
                 if node.left:
-                    new.append((node.left, s - 1))
+                    new.append((node.left, order - 1))
                 if node.right:
-                    new.append((node.right, s + 1))
-            for i in d:
-                g[i].extend(sorted(d[i]))
+                    new.append((node.right, order + 1))
+            for order in d:
+                g[order].extend(sorted(d[order]))
             queue = new
-        return [g[i] for i in sorted(g)]
+        return [g[order] for order in sorted(g)]
