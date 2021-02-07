@@ -5,12 +5,12 @@ from typing import List
 class Solution:
     def shortestToChar(self, s: str, c: str) -> List[int]:
         n = len(s)
-        res = [0 if char == c else n for char in s]
+        ans = [0 if x == c else n for x in s]
         for i in range(1, n):
-            res[i] = min(res[i], res[i - 1] + 1)
+            ans[i] = min(ans[i], ans[i - 1] + 1)
         for i in range(n - 2, -1, -1):
-            res[i] = min(res[i], res[i + 1] + 1)
-        return res
+            ans[i] = min(ans[i], ans[i + 1] + 1)
+        return ans
 
 
 class Solution:
