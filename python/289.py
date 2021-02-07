@@ -4,14 +4,18 @@ import collections
 # infinite
 class Solution:
     def infinite(self, live):
-        ctr = collections.Counter((I, J)
-                                  for i, j in live
-                                  for I in range(i - 1, i + 2)
-                                  for J in range(j - 1, j + 2)
-                                  if I != i or J != j)
-        return {ij
-                for ij in ctr
-                if ctr[ij] == 3 or ctr[ij] == 2 and ij in live}
+        ctr = collections.Counter(
+            (I, J)
+            for i, j in live
+            for I in range(i - 1, i + 2)
+            for J in range(j - 1, j + 2)
+            if J != j or I != i
+        )
+        return {
+            ij
+            for ij in ctr
+            if ctr[ij] == 3 or (ctr[ij] == 2 and ij in live)
+        }
 
     def gameOfLife(self, board: [[int]]) -> None:
         live = {(i, j) for i, row in enumerate(board) for j, live in enumerate(row) if live}
