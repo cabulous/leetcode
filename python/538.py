@@ -12,7 +12,7 @@ class Solution:
         self.total = 0
 
     def convertBST(self, root: TreeNode) -> TreeNode:
-        if root is not None:
+        if root:
             self.convertBST(root.right)
             self.total += root.val
             root.val = self.total
