@@ -29,22 +29,22 @@ class Solution:
         self.visited = {}
 
     def get_cloned_node(self, node):
-        if node:
-            if node in self.visited:
-                return self.visited[node]
-            self.visited[node] = Node(node.val, None, None)
+        if not node:
+            return None
+        if node in self.visited:
             return self.visited[node]
-        return None
+        self.visited[node] = Node(node.val, None, None)
+        return self.visited[node]
 
     def copyRandomList(self, head: 'Node') -> 'Node':
         if not head:
             return None
         old_node = head
-        new_node = Node(old_node.val, None, None)
+        new_node = Node(head.val, None, None)
         self.visited[old_node] = new_node
         while old_node:
-            new_node.random = self.get_cloned_node(old_node.random)
             new_node.next = self.get_cloned_node(old_node.next)
+            new_node.random = self.get_cloned_node(old_node.random)
             old_node = old_node.next
             new_node = new_node.next
         return self.visited[head]
