@@ -75,9 +75,7 @@ class Solution:
                     right = mid
             return left
 
-        strengths = []
-        for i, row in enumerate(mat):
-            strengths.append((binary_search(row), i))
+        strengths = [(binary_search(row), i) for i, row in enumerate(mat)]
         strengths.sort()
         return [i for _, i in strengths[:k]]
 

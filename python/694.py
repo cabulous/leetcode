@@ -12,7 +12,7 @@ class Solution:
         def dfs(row, col, direction):
             if row < 0 or row >= row_max or col < 0 or col >= col_max:
                 return
-            if (row, col) in seen or not grid[row][col]:
+            if (row, col) in seen or grid[row][col] == 0:
                 return
             seen.add((row, col))
             path_signature.append(direction)
