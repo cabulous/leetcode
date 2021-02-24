@@ -9,7 +9,7 @@ class Solution:
         row_max, col_max = len(matrix), len(matrix[0])
         r, c = row_max - 1, 0
 
-        while c < col_max and r >= 0:
+        while r >= 0 and c < col_max:
             if matrix[r][c] > target:
                 r -= 1
             elif matrix[r][c] < target:
