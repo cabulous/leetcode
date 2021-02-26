@@ -28,11 +28,11 @@ class Solution:
         if l > r:
             return 0
 
-        temp_min, temp_max = find_local_min_max(l, r + 1)
+        mini, maxi = find_local_min_max(l, r + 1)
 
-        while l > 0 and temp_min < nums[l - 1]:
+        while l > 0 and mini < nums[l - 1]:
             l -= 1
-        while r < n - 1 and temp_max > nums[r + 1]:
+        while r < n - 1 and maxi > nums[r + 1]:
             r += 1
 
         return r - l + 1
