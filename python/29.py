@@ -16,14 +16,18 @@ class Solution:
             negatives -= 1
             divisor = -divisor
 
-        quotient = 0
-        while divisor >= dividend:
-            power_of_two = -1
-            value = divisor
-            while value >= HALF_MIN_INT and value + value >= dividend:
-                value += value
-                power_of_two += power_of_two
-            quotient += power_of_two
-            dividend -= value
+        highest_double = divisor
+        highest_power_of_two = -1
+        while highest_double >= HALF_MIN_INT and dividend <= highest_double + highest_double:
+            highest_power_of_two += highest_power_of_two
+            highest_double += highest_double
 
-        return -quotient if negatives != 1 else quotient
+        quotient = 0
+        while dividend <= divisor:
+            if dividend <= highest_double:
+                quotient += highest_power_of_two
+                dividend -= highest_double
+            highest_power_of_two >>= 1
+            highest_double >>= 1
+
+        return quotient if negatives == 1 else -quotient
