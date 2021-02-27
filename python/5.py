@@ -1,13 +1,14 @@
 # https://leetcode.com/problems/longest-palindromic-substring/discuss/2954/Python-easy-to-understand-solution-with-comments-(from-middle-to-two-ends).
 class Solution:
     def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+
         def helper(l, r):
             while l >= 0 and r < n and s[l] == s[r]:
                 l -= 1
                 r += 1
             return s[l + 1:r]
 
-        n = len(s)
         res = ""
         for i in range(n):
             res = max(helper(i, i), helper(i, i + 1), res, key=len)
