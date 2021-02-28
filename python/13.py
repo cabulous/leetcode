@@ -39,8 +39,9 @@ class Solution:
 
         total = 0
         i = 0
-        while i < len(s):
-            if i < len(s) - 1 and s[i:i + 2] in values:
+        n = len(s)
+        while i < n:
+            if i < n - 1 and s[i:i + 2] in values:
                 total += values[s[i:i + 2]]
                 i += 2
             else:
