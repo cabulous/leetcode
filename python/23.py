@@ -14,7 +14,7 @@ class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
         k = len(lists)
         q = PriorityQueue(maxsize=k)
-        sentinel = curr = ListNode(0)
+        sentinel = curr = ListNode()
         for i, node in enumerate(lists):
             if node:
                 q.put((node.val, i, node))
