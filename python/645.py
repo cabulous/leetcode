@@ -1,5 +1,6 @@
 from typing import List
 
+
 # https://leetcode.com/problems/set-mismatch/discuss/105558/Oneliner-Python
 class Solution:
     def findErrorNums(self, nums: List[int]) -> List[int]:

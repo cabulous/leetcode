@@ -20,7 +20,6 @@ class Solution:
                     if 0 <= nx < max_row and 0 <= ny < max_col and not visited[nx][ny]:
                         curr_diff = abs(heights[nx][ny] - heights[x][y])
                         if curr_diff <= mid:
-                            visited[nx][ny] = True
                             queue.append((nx, ny))
             return False
 
@@ -54,5 +53,5 @@ class Solution:
                     new_distance = max(distance, abs(heights[nr][nc] - heights[r][c]))
                     if new_distance < dist[nr][nc]:
                         dist[nr][nc] = new_distance
-                        heapq.heappush(min_heap, (dist[nr][nc], nr, nc))
+                        heapq.heappush(min_heap, (new_distance, nr, nc))
         return 0
