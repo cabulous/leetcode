@@ -4,6 +4,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 # two pointer
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
