@@ -8,10 +8,10 @@ class FreqStack:
         self.group = defaultdict(list)
         self.max_freq = 0
 
-    def push(self, x: int) -> None:
-        self.freq[x] += 1
-        self.max_freq = max(self.max_freq, self.freq[x])
-        self.group[self.freq[x]].append(x)
+    def push(self, val: int) -> None:
+        self.freq[val] += 1
+        self.group[self.freq[val]].append(val)
+        self.max_freq = max(self.max_freq, self.freq[val])
 
     def pop(self) -> int:
         x = self.group[self.max_freq].pop()
