@@ -1,4 +1,5 @@
 from typing import List
+from collections import defaultdict
 
 
 # Definition for a binary tree node.
@@ -23,16 +24,14 @@ class Solution:
 # https://leetcode.com/problems/average-of-levels-in-binary-tree/discuss/105108/Python-Straightforward-with-Explanation
 class Solution:
     def averageOfLevels(self, root: TreeNode) -> List[float]:
-        info = []
+        d = defaultdict(list)
 
         def dfs(node, depth):
             if node:
-                if len(info) <= depth:
-                    info.append([0, 0])
-                info[depth][0] += node.val
-                info[depth][1] += 1
+                d[depth].append(node.val)
                 dfs(node.left, depth + 1)
                 dfs(node.right, depth + 1)
 
         dfs(root, 0)
-        return [s / float(c) for s, c in info]
+
+        return [sum(d[level]) / len(d[level]) for level in sorted(d)]
