@@ -12,7 +12,7 @@ class Solution:
         sentinel = TreeNode(v, root)
         level = [sentinel]
         for _ in range(d - 1):
-            level = [kid for node in level for kid in (node.left, node.right) if kid]
+            level = [kid for node in level for kid in [node.left, node.right] if kid]
         for node in level:
             node.left, node.left.left = TreeNode(v), node.left
             node.right, node.right.right = TreeNode(v), node.right
