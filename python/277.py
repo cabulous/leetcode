@@ -1,8 +1,10 @@
+from functools import lru_cache
+
+
 # The knows API is already defined for you.
 # return a bool, whether a knows b
-# def knows(a: int, b: int) -> bool:
-
-from functools import lru_cache
+def knows(a: int, b: int) -> bool:
+    pass
 
 
 # https://leetcode.com/problems/find-the-celebrity/discuss/71228/JavaPython-O(n)-calls-O(1)-space-easy-to-understand-solution

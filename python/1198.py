@@ -5,6 +5,9 @@ from collections import Counter
 # https://leetcode.com/problems/find-smallest-common-element-in-all-rows/discuss/390392/Python-Binary-Search
 class Solution:
     def smallestCommonElement(self, mat: List[List[int]]) -> int:
+        if not mat or not mat[0]:
+            return -1
+
         for target in mat[0]:
             flag = True
             for row in mat[1:]:
@@ -13,6 +16,7 @@ class Solution:
                     break
             if flag:
                 return target
+
         return -1
 
     def binary_search(self, arr, target):
