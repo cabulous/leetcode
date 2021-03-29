@@ -1,6 +1,14 @@
 from typing import List
 
 
+# Sort the list and check if it's still the same number in the list.
+# https://leetcode.com/problems/shortest-unsorted-continuous-subarray/discuss/103052/Python-Sort-Solutions
+class Solution:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        is_same = [a == b for a, b in zip(nums, sorted(nums))]
+        return 0 if all(is_same) else len(nums) - is_same.index(False) - is_same[::-1].index(False)
+
+
 # O(N), O(1)
 # https://leetcode.com/problems/shortest-unsorted-continuous-subarray/discuss/103067/Python-O(N)-with-O(1)-space-complexity.-No-sorting
 class Solution:
@@ -36,11 +44,3 @@ class Solution:
             r += 1
 
         return r - l + 1
-
-
-# Sort the list and check if it's still the same number in the list.
-# https://leetcode.com/problems/shortest-unsorted-continuous-subarray/discuss/103052/Python-Sort-Solutions
-class Solution:
-    def findUnsortedSubarray(self, nums: List[int]) -> int:
-        is_same = [a == b for a, b in zip(nums, sorted(nums))]
-        return 0 if all(is_same) else len(nums) - is_same.index(False) - is_same[::-1].index(False)
