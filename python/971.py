@@ -19,7 +19,7 @@ class Solution:
             node = stack.pop()
             if not node:
                 continue
-            if node and node.val != voyage[i]:
+            if node.val != voyage[i]:
                 return [-1]
             i += 1
             if node.right and node.right.val == voyage[i]:
