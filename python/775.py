@@ -4,7 +4,7 @@ from typing import List
 # linear scan
 class Solution:
     def isIdealPermutation(self, A: List[int]) -> bool:
-        return all(abs(i - x) for i, x in enumerate(A))
+        return all(abs(i - x) <= 1 for i, x in enumerate(A))
 
 
 # Remember Minimum
