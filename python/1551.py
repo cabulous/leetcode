@@ -1,7 +1,7 @@
 # Math
 class Solution:
     def minOperations(self, n: int) -> int:
-        return n ** 2 // 4 if n % 2 == 0 else (n ** 2 - 1) // 4
+        return n ** 2 // 4 if n & 1 == 0 else (n ** 2 - 1) // 4
 
 
 # Brute Force
