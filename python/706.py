@@ -4,8 +4,7 @@ class MyHashMap:
         self.data = [Node() for _ in range(1000)]
 
     def hashcode(self, key):
-        size = len(self.data)
-        return key % size
+        return key % len(self.data)
 
     def put(self, key: int, value: int) -> None:
         hashcode = self.hashcode(key)
