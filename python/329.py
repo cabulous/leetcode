@@ -14,10 +14,10 @@ class Solution:
             if not dp[i][j]:
                 val = matrix[i][j]
                 dp[i][j] = 1 + max(
-                    dfs(i + 1, j) if i < m - 1 and val > matrix[i + 1][j] else 0,
-                    dfs(i - 1, j) if i and val > matrix[i - 1][j] else 0,
-                    dfs(i, j + 1) if j < n - 1 and val > matrix[i][j + 1] else 0,
-                    dfs(i, j - 1) if j and val > matrix[i][j - 1] else 0,
+                    dfs(i + 1, j) if i < m - 1 and val < matrix[i + 1][j] else 0,
+                    dfs(i - 1, j) if i and val < matrix[i - 1][j] else 0,
+                    dfs(i, j + 1) if j < n - 1 and val < matrix[i][j + 1] else 0,
+                    dfs(i, j - 1) if j and val < matrix[i][j - 1] else 0,
                 )
             return dp[i][j]
 
