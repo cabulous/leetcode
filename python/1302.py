@@ -23,16 +23,19 @@ class Solution:
 # Iterative DFS Preorder Traversal
 class Solution:
     def deepestLeavesSum(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+
         deepest_sum = depth = 0
         stack = [(root, 0)]
 
         while stack:
             node, curr_depth = stack.pop()
             if not node.left and not node.right:
-                if depth < curr_depth:
+                if curr_depth > depth:
                     deepest_sum = node.val
                     depth = curr_depth
-                elif depth == curr_depth:
+                elif curr_depth == depth:
                     deepest_sum += node.val
             else:
                 if node.left:
