@@ -18,9 +18,9 @@ class NestedIterator:
             else:
                 yield from self.int_generator(nested.getList())
 
-    def next(self) -> int:
+    def next(self) -> int or None:
         if not self.hasNext():
-            return -1
+            return None
         next_integer, self.peeked = self.peeked, None
         return next_integer
 
