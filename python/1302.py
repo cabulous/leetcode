@@ -26,7 +26,8 @@ class Solution:
         if not root:
             return 0
 
-        deepest_sum = depth = 0
+        deepest_sum = 0
+        depth = 0
         stack = [(root, 0)]
 
         while stack:
