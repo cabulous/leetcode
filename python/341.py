@@ -21,8 +21,8 @@ class NestedIterator:
     def next(self) -> int or None:
         if not self.hasNext():
             return None
-        next_integer, self.peeked = self.peeked, None
-        return next_integer
+        nested_int, self.peeked = self.peeked, None
+        return nested_int
 
     def hasNext(self) -> bool:
         if self.peeked is not None:
@@ -32,6 +32,24 @@ class NestedIterator:
             return True
         except:
             return False
+
+
+# Stack
+class NestedIterator:
+    def __init__(self, nestedList: [NestedInteger]):
+        self.stack = list(reversed(nestedList))
+
+    def next(self) -> int:
+        self.make_stack_top_an_integer()
+        return self.stack.pop().getInteger()
+
+    def hasNext(self) -> bool:
+        self.make_stack_top_an_integer()
+        return len(self.stack) > 0
+
+    def make_stack_top_an_integer(self):
+        while self.stack and not self.stack[-1].isInteger():
+            self.stack.extend(reversed(self.stack.pop().getList()))
 
 
 # https://leetcode.com/problems/flatten-nested-list-iterator/discuss/80146/Real-iterator-in-Python-Java-C%2B%2B
@@ -58,52 +76,6 @@ class NestedIterator:
                 s[-1][1] += 1
                 s.append([x.getList(), 0])
         return False
-
-
-# Two Stacks
-class NestedIterator:
-    def __init__(self, nestedList: [NestedInteger]):
-        self.stack = [[nestedList, 0]]
-
-    def make_stack_top_an_integer(self):
-        while self.stack:
-            curr_list, curr_index = self.stack[-1]
-            if len(curr_list) == curr_index:
-                self.stack.pop()
-                continue
-            if curr_list[curr_index].isInteger():
-                break
-            new_list = curr_list[curr_index].getList()
-            self.stack[-1][1] += 1
-            self.stack.append([new_list, 0])
-
-    def next(self) -> int:
-        self.make_stack_top_an_integer()
-        curr_list, curr_index = self.stack[-1]
-        self.stack[-1][1] += 1
-        return curr_list[curr_index].getInteger()
-
-    def hasNext(self) -> bool:
-        self.make_stack_top_an_integer()
-        return len(self.stack) > 0
-
-
-# Stack
-class NestedIterator:
-    def __init__(self, nestedList: [NestedInteger]):
-        self.stack = list(reversed(nestedList))
-
-    def next(self) -> int:
-        self.make_stack_top_an_integer()
-        return self.stack.pop().getInteger()
-
-    def hasNext(self) -> bool:
-        self.make_stack_top_an_integer()
-        return len(self.stack) > 0
-
-    def make_stack_top_an_integer(self):
-        while self.stack and not self.stack[-1].isInteger():
-            self.stack.extend(reversed(self.stack.pop().getList()))
 
 
 # Make a Flat List with Recursion
