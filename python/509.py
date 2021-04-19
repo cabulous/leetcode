@@ -8,6 +8,8 @@ class Solution:
         def helper(n):
             if n <= 1:
                 return n
+            if n == 2:
+                return 1
             if m[n]:
                 return m[n]
             m[n] = helper(n - 1) + helper(n - 2)
