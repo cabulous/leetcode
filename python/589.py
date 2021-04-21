@@ -25,7 +25,6 @@ class Solution:
                     dfs(child)
 
         dfs(root)
-
         return res
 
 
@@ -37,8 +36,8 @@ class Solution:
 
         stack, res = [root], []
         while stack:
-            root = stack.pop()
-            res.append(root.val)
-            stack.extend(root.children[::-1])
+            node = stack.pop()
+            res.append(node.val)
+            stack.extend(node.children[::-1])
 
         return res
