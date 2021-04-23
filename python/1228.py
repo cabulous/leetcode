@@ -13,7 +13,7 @@ class Solution:
         lo, hi = 0, n
         while lo < hi:
             mi = lo + (hi - lo) // 2
-            if arr[mi] == arr[0] + mi * diff:
+            if arr[mi] == arr[0] + diff * mi:
                 lo = mi + 1
             else:
                 hi = mi
