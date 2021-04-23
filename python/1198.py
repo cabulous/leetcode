@@ -24,15 +24,15 @@ class Solution:
             return False
         if arr and arr[-1] < target:
             return False
-        l, r = 0, len(arr) - 1
-        while l <= r:
-            m = l + (r - l) // 2
-            if arr[m] == target:
+        lo, hi = 0, len(arr)
+        while lo <= hi:
+            mi = lo + (hi - lo) // 2
+            if arr[mi] == target:
                 return True
-            if arr[m] < target:
-                l = m + 1
+            if arr[mi] < target:
+                lo = mi + 1
             else:
-                r = m - 1
+                hi = mi - 1
         return False
 
 
