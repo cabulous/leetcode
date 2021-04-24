@@ -16,13 +16,13 @@ class Solution:
 
         res = []
 
-        def dfs(node):
+        def dfs(node: Node):
             if not node:
                 return
             res.append(node.val)
             if node.children:
-                for child in node.children:
-                    dfs(child)
+                for kid in node.children:
+                    dfs(kid)
 
         dfs(root)
         return res
