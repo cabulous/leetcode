@@ -44,9 +44,8 @@ class Solution:
         sorted_climbs = []
         for i in range(len(heights) - 1):
             climb = heights[i + 1] - heights[i]
-            if climb < 0:
-                continue
-            sorted_climbs.append([climb, i + 1])
+            if climb > 0:
+                sorted_climbs.append([climb, i + 1])
         sorted_climbs.sort()
 
         lo, hi = 0, len(heights) - 1
@@ -56,8 +55,7 @@ class Solution:
                 lo = mi
             else:
                 hi = mi - 1
-
-        return lo
+        return hi
 
     def is_reachable(self, building_index, climbs, bricks, ladders):
         for climb_entry in climbs:
