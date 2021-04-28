@@ -6,7 +6,7 @@ from typing import List
 # O(n) space
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if not obstacleGrid:
+        if not obstacleGrid or obstacleGrid[0][0] == 1:
             return 0
 
         r, c = len(obstacleGrid), len(obstacleGrid[0])
@@ -18,7 +18,7 @@ class Solution:
         for i in range(1, r):
             cur[0] *= (1 - obstacleGrid[i][0])
             for j in range(1, c):
-                cur[j] = (cur[j - 1] + cur[j]) * (1 - obstacleGrid[i][j])
+                cur[j] = (cur[j] + cur[j - 1]) * (1 - obstacleGrid[i][j])
 
         return cur[-1]
 
@@ -26,7 +26,7 @@ class Solution:
 # O(m*n) space
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if not obstacleGrid:
+        if not obstacleGrid or obstacleGrid[0][0] == 1:
             return 0
 
         r, c = len(obstacleGrid), len(obstacleGrid[0])
@@ -39,6 +39,6 @@ class Solution:
             dp[0][i] = dp[0][i - 1] * (1 - obstacleGrid[0][i])
         for i in range(1, r):
             for j in range(1, c):
-                dp[i][j] = (dp[i][j - 1] + dp[i - 1][j]) * (1 - obstacleGrid[i][j])
+                dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]) * (1 - obstacleGrid[i][j])
 
         return dp[-1][-1]
