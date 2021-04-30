@@ -58,10 +58,8 @@ class Solution:
         return hi
 
     def is_reachable(self, building_index, climbs, bricks, ladders):
-        for climb_entry in climbs:
-            climb = climb_entry[0]
-            index = climb_entry[1]
-            if index > building_index:
+        for climb, idx in climbs:
+            if idx > building_index:
                 continue
             if climb <= bricks:
                 bricks -= climb
