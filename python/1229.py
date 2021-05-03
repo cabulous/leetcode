@@ -25,8 +25,7 @@ class Solution:
         while pt1 < len(slots1) and pt2 < len(slots2):
             start1, end1 = slots1[pt1]
             start2, end2 = slots2[pt2]
-            left = max(start1, start2)
-            right = min(end1, end2)
+            left, right = max(start1, start2), min(end1, end2)
             if right - left >= duration:
                 return [left, left + duration]
             if end1 < end2:

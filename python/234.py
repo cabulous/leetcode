@@ -28,9 +28,11 @@ class Solution:
         res = True
         first_position = head
         second_position = second_half_start
+
         while res and second_position:
             if first_position.val != second_position.val:
                 res = False
+                break
             first_position = first_position.next
             second_position = second_position.next
 
@@ -38,11 +40,10 @@ class Solution:
         return res
 
     def end_of_first_half(self, head):
-        fast = head
-        slow = head
+        slow = fast = head
         while fast.next and fast.next.next:
-            fast = fast.next.next
             slow = slow.next
+            fast = fast.next.next
         return slow
 
     def reverse_list(self, head):
