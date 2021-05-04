@@ -12,6 +12,6 @@ class Solution:
             for x in range(m, -1, -1):
                 for y in range(n, -1, -1):
                     if x >= z and y >= o:
-                        dp[x][y] = max(1 + dp[x - z][y - o], dp[x][y])
+                        dp[x][y] = max(dp[x][y], 1 + dp[x - z][y - o])
 
         return dp[m][n]
