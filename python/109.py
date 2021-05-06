@@ -16,6 +16,9 @@ class TreeNode:
 # Inorder Simulation
 class Solution:
     def sortedListToBST(self, head: ListNode) -> TreeNode:
+        if not head:
+            return None
+
         size = self.find_size(head)
 
         def convert(lo, hi):
@@ -33,10 +36,9 @@ class Solution:
         return convert(0, size - 1)
 
     def find_size(self, head):
-        cur = head
         cnt = 0
-        while cur:
-            cur = cur.next
+        while head:
+            head = head.next
             cnt += 1
         return cnt
 
@@ -44,6 +46,9 @@ class Solution:
 # Recursion + Conversion to Array
 class Solution:
     def sortedListToBST(self, head: ListNode) -> TreeNode:
+        if not head:
+            return None
+
         values = self.map_list_to_values(head)
 
         def convert_list_to_bst(lo, hi):
