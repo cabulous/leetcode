@@ -1,6 +1,12 @@
 from threading import Lock
 
 
+class Node:
+    def __init__(self, value, next_node=None):
+        self.value = value
+        self.next = next_node
+
+
 # Singly-Linked List
 class MyCircularQueue:
 
@@ -45,12 +51,6 @@ class MyCircularQueue:
 
     def isFull(self) -> bool:
         return self.count == self.capacity
-
-
-class Node:
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next = next_node
 
 
 # array + Thread-Safe
