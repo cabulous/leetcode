@@ -51,18 +51,18 @@ class Solution:
 
         values = self.map_list_to_values(head)
 
-        def convert_list_to_bst(lo, hi):
+        def convert(lo, hi):
             if lo > hi:
                 return None
             mi = lo + (hi - lo) // 2
             node = TreeNode(values[mi])
             if lo == hi:
                 return node
-            node.left = convert_list_to_bst(lo, mi - 1)
-            node.right = convert_list_to_bst(mi + 1, hi)
+            node.left = convert(lo, mi - 1)
+            node.right = convert(mi + 1, hi)
             return node
 
-        return convert_list_to_bst(0, len(values) - 1)
+        return convert(0, len(values) - 1)
 
     def map_list_to_values(self, head):
         values = []
@@ -77,15 +77,19 @@ class Solution:
     def sortedListToBST(self, head: ListNode) -> TreeNode:
         if not head:
             return None
-        mid = self.find_middle(head)
+
+        mid = self.find_mid(head)
         node = TreeNode(mid.val)
+
         if head == mid:
             return node
+
         node.left = self.sortedListToBST(head)
         node.right = self.sortedListToBST(mid.next)
+
         return node
 
-    def find_middle(self, head):
+    def find_mid(self, head):
         prev = None
         slow = fast = head
         while fast and fast.next:
