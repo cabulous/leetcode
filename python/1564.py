@@ -6,12 +6,13 @@ class Solution:
     def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
         i = 0
         cnt = 0
+        n = len(boxes)
         boxes.sort(reverse=True)
 
         for room in warehouse:
-            while i < len(boxes) and boxes[i] > room:
+            while i < n and boxes[i] > room:
                 i += 1
-            if i == len(boxes):
+            if i == n:
                 return cnt
             cnt += 1
             i += 1
