@@ -7,18 +7,18 @@ class Solution:
         if not matrix or not matrix[0]:
             return 0
 
-        m, n = len(matrix), len(matrix[0])
-        dp = [[0] * n for _ in range(m)]
+        max_row, max_col = len(matrix), len(matrix[0])
+        dp = [[0] * max_col for _ in range(max_row)]
 
-        def dfs(i, j):
-            if not dp[i][j]:
-                val = matrix[i][j]
-                dp[i][j] = 1 + max(
-                    dfs(i + 1, j) if i < m - 1 and matrix[i + 1][j] > val else 0,
-                    dfs(i - 1, j) if i and matrix[i - 1][j] > val else 0,
-                    dfs(i, j + 1) if j < n - 1 and matrix[i][j + 1] > val else 0,
-                    dfs(i, j - 1) if j and matrix[i][j - 1] > val else 0,
+        def dfs(row, col):
+            if not dp[row][col]:
+                val = matrix[row][col]
+                dp[row][col] = 1 + max(
+                    dfs(row + 1, col) if row < max_row - 1 and matrix[row + 1][col] > val else 0,
+                    dfs(row - 1, col) if row > 0 and matrix[row - 1][col] > val else 0,
+                    dfs(row, col + 1) if col < max_col - 1 and matrix[row][col + 1] > val else 0,
+                    dfs(row, col - 1) if col > 0 and matrix[row][col - 1] > val else 0,
                 )
-            return dp[i][j]
+            return dp[row][col]
 
-        return max(dfs(x, y) for x in range(m) for y in range(n))
+        return max(dfs(row, col) for col in range(max_col) for row in range(max_row))

@@ -10,12 +10,12 @@ class Solution:
         boxes.sort(reverse=True)
 
         for room in warehouse:
-            while i < n and boxes[i] > room:
+            while i < n and room < boxes[i]:
                 i += 1
             if i == n:
                 return cnt
-            cnt += 1
             i += 1
+            cnt += 1
 
         return cnt
 
