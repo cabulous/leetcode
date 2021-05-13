@@ -8,7 +8,7 @@ class Solution:
         s = s[1:-1]
 
         def find(s):
-            if not s or len(s) > 1 and s[0] == s[-1] == '0':
+            if not s or (len(s) > 1 and s[0] == s[-1] == '0'):
                 return []
             if s[-1] == '0':
                 return [s]
