@@ -11,18 +11,18 @@ class NestedIterator:
         self.generator = self.int_generator(nestedList)
         self.peeked = None
 
-    def int_generator(self, nested_list) -> "Generator[int]":
-        for nested in nested_list:
+    def int_generator(self, list):
+        for nested in list:
             if nested.isInteger():
                 yield nested.getInteger()
             else:
                 yield from self.int_generator(nested.getList())
 
-    def next(self) -> int or None:
+    def next(self) -> int:
         if not self.hasNext():
             return None
-        nested_int, self.peeked = self.peeked, None
-        return nested_int
+        self.peeked, res = None, self.peeked
+        return res
 
     def hasNext(self) -> bool:
         if self.peeked is not None:
@@ -84,14 +84,14 @@ class NestedIterator:
         self.integers = []
         self.position = -1
 
-        def flatten_list(nested_list):
-            for nested_int in nested_list:
-                if nested_int.isInteger():
-                    self.integers.append(nested_int)
-                else:
-                    flatten_list(nested_int.getList())
+        self.flatten_list(nestedList)
 
-        flatten_list(nestedList)
+    def flatten_list(self, list):
+        for nested in list:
+            if nested.isInteger():
+                self.integers.append(nested)
+            else:
+                self.flatten_list(nested.getList())
 
     def next(self) -> int:
         self.position += 1
