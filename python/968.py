@@ -19,7 +19,9 @@ class Solution:
             if l == 0 or r == 0:
                 res += 1
                 return 1
-            return 2 if l == 1 or r == 1 else 0
+            if l == 1 or r == 1:
+                return 2
+            return 0
 
         return (dfs(root) == 0) + res
 
