@@ -10,9 +10,8 @@ class Solution:
                 return n
             if n == 2:
                 return 1
-            if m[n]:
-                return m[n]
-            m[n] = helper(n - 1) + helper(n - 2)
+            if not m[n]:
+                m[n] = helper(n - 1) + helper(n - 2)
             return m[n]
 
         return helper(n)
@@ -27,8 +26,7 @@ class Solution:
             return 1
 
         curr = 0
-        prev1 = 1
-        prev2 = 1
+        prev1 = prev2 = 1
 
         for i in range(3, n + 1):
             curr = prev1 + prev2
