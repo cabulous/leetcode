@@ -25,6 +25,25 @@ class Solution:
         self.prev = root
 
 
+# Iterative
+class Solution:
+    def flatten(self, root: TreeNode) -> None:
+        if not root:
+            return None
+
+        node = root
+
+        while node:
+            if node.left:
+                right_most = node.left
+                while right_most.right:
+                    right_most = right_most.right
+                right_most.right = node.right
+                node.right = node.left
+                node.left = None
+            node = node.right
+
+
 # dfs
 class Solution:
     def flatten(self, root: TreeNode) -> None:
@@ -74,22 +93,3 @@ class Solution:
                     right = tail.right
                 if right:
                     stack.append((right, start))
-
-
-# Iterative
-class Solution:
-    def flatten(self, root: TreeNode) -> None:
-        if not root:
-            return None
-
-        node = root
-
-        while node:
-            if node.left:
-                right_most = node.left
-                while right_most.right:
-                    right_most = right_most.right
-                right_most.right = node.right
-                node.right = node.left
-                node.left = None
-            node = node.right

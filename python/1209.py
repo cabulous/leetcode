@@ -9,4 +9,4 @@ class Solution:
                     stack.pop()
             else:
                 stack.append([c, 1])
-        return ''.join(c * k for c, k in stack)
+        return ''.join(c * n for c, n in stack)
