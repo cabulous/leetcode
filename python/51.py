@@ -1,18 +1,21 @@
+from typing import List
+
+
 class Solution:
     def __init__(self):
         self.n = 0
-        self.output = []
+        self.solution = []
 
     def dfs(self, queens, xy_sum, xy_dif):
-        p = len(queens)
-        if p == self.n:
-            self.output.append(queens)
+        row = len(queens)
+        if row == self.n:
+            self.solution.append(queens)
             return
-        for q in range(self.n):
-            if q not in queens and p + q not in xy_sum and p - q not in xy_dif:
-                self.dfs(queens + [q], xy_sum + [p + q], xy_dif + [p - q])
+        for col in range(self.n):
+            if col not in queens and row + col not in xy_sum and row - col not in xy_dif:
+                self.dfs(queens + [col], xy_sum + [row + col], xy_dif + [row - col])
 
-    def solveNQueens(self, n: int) -> [[str]]:
+    def solveNQueens(self, n: int) -> List[List[str]]:
         self.n = n
         self.dfs([], [], [])
-        return [['.' * i + 'Q' + '.' * (n - i - 1) for i in sol] for sol in self.output]
+        return [['.' * i + 'Q' + '.' * (n - i - 1) for i in sol] for sol in self.solution]
