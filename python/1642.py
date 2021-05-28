@@ -55,7 +55,8 @@ class Solution:
                 lo = mi
             else:
                 hi = mi - 1
-        return hi
+
+        return lo
 
     def is_reachable(self, building_index, climbs, bricks, ladders):
         for climb, idx in climbs:
@@ -63,7 +64,7 @@ class Solution:
                 continue
             if climb <= bricks:
                 bricks -= climb
-            elif ladders >= 1:
+            elif ladders > 0:
                 ladders -= 1
             else:
                 return False
