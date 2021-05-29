@@ -60,18 +60,18 @@ class Solution:
 class Solution:
     def __init__(self):
         self.n = 0
-        self.output = []
+        self.solutions = []
 
     def dfs(self, queens, xy_sum, xy_dif):
-        p = len(queens)
-        if p == self.n:
-            self.output.append(queens)
+        row = len(queens)
+        if row == self.n:
+            self.solutions.append(queens)
             return
-        for q in range(self.n):
-            if q not in queens and p + q not in xy_sum and p - q not in xy_dif:
-                self.dfs(queens + [q], xy_sum + [p + q], xy_dif + [p - q])
+        for col in range(self.n):
+            if col not in queens and row + col not in xy_sum and row - col not in xy_dif:
+                self.dfs(queens + [col], xy_sum + [row + col], xy_dif + [row - col])
 
     def totalNQueens(self, n: int) -> int:
         self.n = n
         self.dfs([], [], [])
-        return len(self.output)
+        return len(self.solutions)
