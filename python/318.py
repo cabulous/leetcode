@@ -6,7 +6,7 @@ from collections import defaultdict
 class Solution:
     def maxProduct(self, words: List[str]) -> int:
         hashmap = defaultdict(int)
-        bit_number = lambda ch: ord(ch) - ord('a')
+        bit_number = lambda x: ord(x) - ord('a')
 
         for word in words:
             bitmask = 0

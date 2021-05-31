@@ -36,6 +36,7 @@ class Solution:
             return lo
 
         lo = search(target)
+
         return [lo, search(target + 1) - 1] if target in nums[lo:lo + 1] else [-1, -1]
 
 
