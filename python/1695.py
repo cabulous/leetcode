@@ -5,7 +5,7 @@ from typing import List
 class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
         seen = dict()
-        ans = curr_sum = 0
+        res = curr_sum = 0
         left = 0
         for right, num in enumerate(nums):
             if num in seen:
@@ -16,8 +16,8 @@ class Solution:
                     left += 1
             seen[num] = right
             curr_sum += num
-            ans = max(ans, curr_sum)
-        return ans
+            res = max(res, curr_sum)
+        return res
 
 
 # https://leetcode.com/problems/maximum-erasure-value/discuss/1235950/Python-sliding-window-solution-explained
