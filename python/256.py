@@ -1,12 +1,11 @@
 import copy
-from functools import lru_cache
+from functools import lru_cache, reduce
 from typing import List
 
 
 # memoization
 class Solution:
     def __init__(self):
-        self.memo = {}
         self.costs = []
 
     def minCost(self, costs: List[List[int]]) -> int:
@@ -19,9 +18,6 @@ class Solution:
 
     @lru_cache(maxsize=None)
     def paint_cost(self, house_idx, color):
-        if (house_idx, color) in self.memo:
-            return self.memo[(house_idx, color)]
-
         total_cost = self.costs[house_idx][color]
 
         if house_idx == len(self.costs) - 1:
@@ -32,8 +28,6 @@ class Solution:
             total_cost += min(self.paint_cost(house_idx + 1, 0), self.paint_cost(house_idx + 1, 2))
         elif color == 2:
             total_cost += min(self.paint_cost(house_idx + 1, 0), self.paint_cost(house_idx + 1, 1))
-
-        self.memo[(house_idx, color)] = total_cost
 
         return total_cost
 
@@ -67,3 +61,18 @@ class Solution:
             prev_row = curr_row
 
         return min(prev_row)
+
+
+# https://leetcode.com/problems/paint-house/discuss/68209/1%2B-lines-Ruby-Python
+class Solution:
+    def minCost(self, costs: List[List[int]]) -> int:
+        if not costs:
+            return 0
+
+        cols = len(costs[0])
+        prev = [0] * cols
+
+        for curr in costs:
+            prev = [curr[i] + min(prev[:i] + prev[i + 1:]) for i in range(cols)]
+
+        return min(prev)
