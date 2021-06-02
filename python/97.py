@@ -3,7 +3,7 @@ class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         s1_len, s2_len, s3_len = len(s1), len(s2), len(s3)
 
-        if s3_len != (s1_len + s2_len):
+        if s1_len + s2_len != s3_len:
             return False
 
         dp = [[True] * (s2_len + 1) for _ in range(s1_len + 1)]
@@ -24,7 +24,7 @@ class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         s1_len, s2_len, s3_len = len(s1), len(s2), len(s3)
 
-        if s3_len != (s1_len + s2_len):
+        if s1_len + s2_len != s3_len:
             return False
 
         dp = [True] * (s2_len + 1)
@@ -48,7 +48,7 @@ class Solution:
             return False
 
         stack = [(0, 0)]
-        visited = {0, 0}
+        visited = {(0, 0)}
 
         while stack:
             pt1, pt2 = stack.pop()
