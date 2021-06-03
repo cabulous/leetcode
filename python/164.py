@@ -4,11 +4,13 @@ from typing import List
 # https://leetcode.com/problems/maximum-gap/discuss/50650/Python-bucket-sort-from-official-solution
 class Solution:
     def maximumGap(self, nums: List[int]) -> int:
-        if len(nums) < 2 or max(nums) == min(nums):
+        nums_len = len(nums)
+        max_num, min_num = max(nums), min(nums)
+
+        if nums_len < 2 or max_num == min_num:
             return 0
 
-        max_num, min_num = max(nums), min(nums)
-        size = (max_num - min_num) // (len(nums) - 1) or 1
+        size = (max_num - min_num) // (nums_len - 1) or 1
         buckets = [[None, None] for _ in range((max_num - min_num) // size + 1)]
 
         for n in nums:
