@@ -64,9 +64,9 @@ class Solution:
                 trie.suggestion.pop()
 
     def search(self, search_word, root):
-        ans = []
-        for char in search_word:
+        res = []
+        for c in search_word:
             if root:
-                root = root.sub.get(char)
-            ans.append(root.suggestion if root else [])
-        return ans
+                root = root.sub.get(c)
+            res.append(root.suggestion if root else [])
+        return res
