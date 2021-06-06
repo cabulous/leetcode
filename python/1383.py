@@ -7,7 +7,7 @@ class Solution:
         modulo = 10 ** 9 + 7
 
         candidates = zip(efficiency, speed)
-        candidates = sorted(candidates, key=lambda t: t[0], reverse=True)
+        candidates = sorted(candidates, key=lambda x: x[0], reverse=True)
 
         speed_heap = []
         speed_sum = 0
@@ -17,6 +17,6 @@ class Solution:
                 speed_sum -= heapq.heappop(speed_heap)
             heapq.heappush(speed_heap, curr_speed)
             speed_sum += curr_speed
-            perf = max(perf, speed_sum * curr_efficiency)
+            perf = max(perf, curr_efficiency * speed_sum)
 
         return perf % modulo
