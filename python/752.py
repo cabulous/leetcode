@@ -17,14 +17,14 @@ class Solution:
         seen = {'0000'}
 
         while queue:
-            node, depth = queue.popleft()
+            node, steps = queue.popleft()
             if node == target:
-                return depth
+                return steps
             if node in dead:
                 continue
             for nei in neighbors(node):
                 if nei not in seen:
                     seen.add(nei)
-                    queue.append((nei, depth + 1))
+                    queue.append((nei, steps + 1))
 
         return -1
