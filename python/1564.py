@@ -4,13 +4,13 @@ from typing import List
 # Add Largest Possible Boxes from Left to Right
 class Solution:
     def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
-        i = 0
-        cnt = 0
         n = len(boxes)
         boxes.sort(reverse=True)
+        i = 0
+        cnt = 0
 
         for room in warehouse:
-            while i < n and room < boxes[i]:
+            while i < n and boxes[i] > room:
                 i += 1
             if i == n:
                 return cnt

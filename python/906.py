@@ -5,8 +5,8 @@ import math
 class Solution:
     def superpalindromesInRange(self, left: str, right: str) -> int:
         l, r = int(left), int(right)
-        sqrtl, sqrtr = int(math.sqrt(l)), int(math.sqrt(r))
-        n1, n2 = len(str(sqrtl)), len(str(sqrtr))
+        sqrt_l, sqrt_r = int(math.sqrt(l)), int(math.sqrt(r))
+        n1, n2 = len(str(sqrt_l)), len(str(sqrt_r))
 
         n1 = n1 // 2 if n1 & 1 == 0 else n1 // 2 + 1
         n2 = n2 // 2 if n2 & 1 == 0 else n2 // 2 + 1
