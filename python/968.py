@@ -11,15 +11,15 @@ class Solution:
     def minCameraCover(self, root: TreeNode) -> int:
         res = 0
 
-        def dfs(root):
+        def dfs(node):
             nonlocal res
-            if not root:
+            if not node:
                 return 2
-            l, r = dfs(root.left), dfs(root.right)
-            if l == 0 or r == 0:
+            left, right = dfs(node.left), dfs(node.right)
+            if left == 0 or right == 0:
                 res += 1
                 return 1
-            if l == 1 or r == 1:
+            if left == 1 or right == 1:
                 return 2
             return 0
 
