@@ -6,11 +6,11 @@ class Solution:
         if n <= 2:
             return 0
 
-        numbers = {}
+        non_prime_nums = {}
 
-        for p in range(2, int(math.sqrt(n)) + 1):
-            if p not in numbers:
-                for multiple in range(p * p, n, p):
-                    numbers[multiple] = 1
+        for num in range(2, int(math.sqrt(n)) + 1):
+            if num not in non_prime_nums:
+                for multiple in range(num * num, n, num):
+                    non_prime_nums[multiple] = 1
 
-        return n - len(numbers) - 2
+        return n - len(non_prime_nums) - 2
