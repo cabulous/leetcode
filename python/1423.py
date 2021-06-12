@@ -8,7 +8,7 @@ class Solution:
         curr = sum(cardPoints[:k])
         res = curr
         for i in range(1, k + 1):
-            curr += cardPoints[-i] - cardPoints[k - i]
+            curr += (cardPoints[-i] - cardPoints[k - i])
             res = max(res, curr)
         return res
 
