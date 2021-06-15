@@ -17,6 +17,7 @@ class Solution:
     def flatten(self, root: TreeNode) -> None:
         if not root:
             return None
+
         self.flatten(root.right)
         self.flatten(root.left)
 
