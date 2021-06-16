@@ -5,7 +5,7 @@ from functools import lru_cache
 # dfs
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
-        @lru_cache(maxsize=None)
+        @lru_cache(None)
         def dfs(x, y):
             if x + y == 0:
                 return 0

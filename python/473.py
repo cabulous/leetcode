@@ -9,21 +9,21 @@ class Solution:
             return False
 
         basket, rem = divmod(sum(matchsticks), 4)
-        if rem or max(matchsticks) > basket:
+        if rem:
             return False
 
-        matchsticks.sort(reverse=True)
-        sides = [0 for _ in range(4)]
+        sticks = sorted(matchsticks, reverse=True)
+        sides = [0, 0, 0, 0]
 
         def dfs(index):
-            if index == len(matchsticks):
+            if index == len(sticks):
                 return sides[0] == sides[1] == sides[2] == basket
             for i in range(4):
-                if sides[i] + matchsticks[index] <= basket:
-                    sides[i] += matchsticks[index]
+                if sides[i] + sticks[index] <= basket:
+                    sides[i] += sticks[index]
                     if dfs(index + 1):
                         return True
-                    sides[i] -= matchsticks[index]
+                    sides[i] -= sticks[index]
             return False
 
         return dfs(0)

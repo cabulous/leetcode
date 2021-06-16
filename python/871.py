@@ -9,19 +9,19 @@ class Solution:
         stations.append([target, float('inf')])
         tank = startFuel
         prev_location = 0
-        steps = 0
+        res = 0
 
         for location, capacity in stations:
-            tank -= (location - prev_location)
+            tank -= location - prev_location
             while pq and tank < 0:
                 tank += -heapq.heappop(pq)
-                steps += 1
+                res += 1
             if tank < 0:
                 return -1
             heapq.heappush(pq, -capacity)
             prev_location = location
 
-        return steps
+        return res
 
 
 # dp

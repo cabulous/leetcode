@@ -23,6 +23,7 @@ class Solution:
         return seen_digit
 
 
+# Deterministic Finite Automaton
 class Solution:
     def isNumber(self, s: str) -> bool:
         dfa = [
