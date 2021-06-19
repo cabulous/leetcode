@@ -34,7 +34,7 @@ class NumArray:
     def update_val(self, node, index, val):
         if node.start == node.end:
             node.total = val
-            return val
+            return
 
         mid = node.start + (node.end - node.start) // 2
 
@@ -45,10 +45,8 @@ class NumArray:
 
         node.total = node.left.total + node.right.total
 
-        return node.total
-
     def update(self, index: int, val: int) -> None:
-        return self.update_val(self.root, index, val)
+        self.update_val(self.root, index, val)
 
     def range_sum(self, node, left, right):
         if node.start == left and node.end == right:
