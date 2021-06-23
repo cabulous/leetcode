@@ -1,11 +1,11 @@
 # https://leetcode.com/problems/design-tic-tac-toe/discuss/343824/Python-O(1)-time-O(n)-space.-Detailed-explanation
 class TicTacToe:
     def __init__(self, n: int):
+        self.n = n
         self.row = [0] * n
         self.col = [0] * n
         self.diag1 = 0
         self.diag2 = 0
-        self.n = n
 
     def move(self, row: int, col: int, player: int) -> int:
         self.row[row] += 1 if player == 1 else -1
