@@ -17,13 +17,13 @@ class Solution:
         for i in range(left - 1):
             prev = prev.next
 
-        tail = None
+        reverse = None
         cur = prev.next
 
         for i in range(right - left + 1):
-            cur.next, tail, cur = tail, cur, cur.next
+            cur.next, reverse, cur = reverse, cur, cur.next
 
         prev.next.next = cur
-        prev.next = tail
+        prev.next = reverse
 
         return sentinel.next
