@@ -9,19 +9,18 @@ class Solution:
 
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         for u, v in edges:
-            seen = set()
-            if u in self.graph and v in self.graph and self.dfs(u, v, seen):
+            if u in self.graph and v in self.graph and self.reachable(u, v, set()):
                 return [u, v]
             self.graph[u].append(v)
             self.graph[v].append(u)
 
-    def dfs(self, source, target, seen):
+    def reachable(self, source, target, seen):
         if source in seen:
             return False
         if source == target:
             return True
         seen.add(source)
-        return any(self.dfs(nei, target, seen) for nei in self.graph[source])
+        return any(self.reachable(nei, target, seen) for nei in self.graph[source])
 
 
 # union-find
@@ -31,22 +30,23 @@ class Solution:
         self.parent = []
 
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        self.parent = [0] * (len(edges) + 1)
+        self.parent = [i for i in range(len(edges) + 1)]
 
         for u, v in edges:
             if not self.union(u, v):
                 return [u, v]
 
     def find(self, x):
-        if self.parent[x] == 0:
-            return x
-        self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
+        root = self.parent[x]
+        if root == x:
+            return root
+        root = self.find(self.parent[root])
+        return root
 
     def union(self, x, y):
         rootx = self.find(x)
         rooty = self.find(y)
         if rootx == rooty:
             return False
-        self.parent[rootx] = rooty
+        self.parent[rooty] = rootx
         return True

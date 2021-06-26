@@ -8,17 +8,17 @@ class Solution:
         graph = defaultdict(list)
         seen = set()
 
-        for v, w in edges:
-            graph[v].append(w)
+        for u, v in edges:
+            graph[u].append(v)
 
-        def dfs(curr_node):
-            seen.add(curr_node)
-            for next_node in graph[curr_node]:
-                if next_node == curr_node or next_node in seen:
+        def dfs(node):
+            seen.add(node)
+            for nei in graph[node]:
+                if nei == node or nei in seen:
                     return False
-                if not dfs(next_node):
+                if not dfs(nei):
                     return False
-            seen.discard(curr_node)
-            return len(graph[curr_node]) != 0 or curr_node == destination
+            seen.discard(node)
+            return len(graph[node]) != 0 or node == destination
 
         return dfs(source)
