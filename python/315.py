@@ -34,8 +34,8 @@ class Solution:
         res = []
 
         for num in reversed(nums):
-            smaller_counter = self.query(num + offset, tree)
-            res.append(smaller_counter)
+            smaller_count = self.query(num + offset, tree)
+            res.append(smaller_count)
             self.update(num + offset, 1, tree, size)
 
         return list(reversed(res))
@@ -58,7 +58,7 @@ class Solution:
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
         offset = 10 ** 4
-        size = 2 * 10 ** 4 + 1
+        size = 2 * offset + 1
         tree = [0] * (2 * size)
         res = []
 
