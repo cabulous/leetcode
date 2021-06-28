@@ -15,6 +15,7 @@ class Solution:
             hashmap[bitmask] = max(hashmap[bitmask], len(word))
 
         max_val = 0
+
         for x in hashmap:
             for y in hashmap:
                 if x & y == 0:
