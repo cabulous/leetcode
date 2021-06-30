@@ -29,7 +29,7 @@ class Solution:
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
         offset = 10 ** 4
-        size = 2 * 10 ** 4 + 2
+        size = offset * 2 + 2
         tree = [0] * size
         res = []
 
