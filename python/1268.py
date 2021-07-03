@@ -8,11 +8,10 @@ class Solution:
         products.sort()
         res = []
         prefix = ''
-        i = 0
         for c in searchWord:
             prefix += c
-            i = bisect.bisect_left(products, prefix, i)
-            res.append([w for w in products[i:i + 3] if w.startswith(prefix)])
+            idx = bisect.bisect_left(products, prefix)
+            res.append([w for w in products[idx:idx + 3] if w.startswith(prefix)])
         return res
 
 
@@ -23,8 +22,8 @@ class Solution:
         prefix = ''
         for c in searchWord:
             prefix += c
-            i = self.binary_search(products, prefix)
-            res.append([w for w in products[i:i + 3] if w.startswith(prefix)])
+            idx = self.binary_search(products, prefix)
+            res.append([w for w in products[idx:idx + 3] if w.startswith(prefix)])
         return res
 
     def binary_search(self, array, target):
@@ -41,32 +40,35 @@ class Solution:
 # https://leetcode.com/problems/search-suggestions-system/discuss/436151/JavaPython-3-Simple-Trie-and-Binary-Search-codes-w-comment-and-brief-analysis.
 class Trie:
     def __init__(self):
-        self.sub = {}
+        self.next = {}
         self.suggestion = []
 
 
 class Solution:
+    def __init__(self):
+        self.root = Trie()
+
     def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
-        root = Trie()
         for product in sorted(products):
-            self.insert(product, root)
-        return self.search(searchWord, root)
+            self.insert(product)
+        return self.search(searchWord)
 
-    def insert(self, product, root):
-        trie = root
-        for char in product:
-            if char not in trie.sub:
-                trie.sub[char] = Trie()
-            trie = trie.sub[char]
-            trie.suggestion.append(product)
-            trie.suggestion.sort()
-            if len(trie.suggestion) > 3:
-                trie.suggestion.pop()
+    def insert(self, word):
+        node = self.root
+        for c in word:
+            if c not in node.next:
+                node.next[c] = Trie()
+            node = node.next[c]
+            node.suggestion.append(word)
+            node.suggestion.sort()
+            if len(node.suggestion) > 3:
+                node.suggestion.pop()
 
-    def search(self, search_word, root):
-        res = []
-        for c in search_word:
-            if root:
-                root = root.sub.get(c)
-            res.append(root.suggestion if root else [])
-        return res
+    def search(self, word):
+        node = self.root
+        ans = []
+        for c in word:
+            if node:
+                node = node.next.get(c)
+            ans.append(node.suggestion if node else [])
+        return ans

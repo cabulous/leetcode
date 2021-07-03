@@ -4,11 +4,10 @@ from typing import List
 # dfs
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        if not grid or not grid[0]:
-            return 0
+        assert len(grid) > 0 and len(grid[0]) > 0
 
-        seen = set()
         max_row, max_col = len(grid), len(grid[0])
+        seen = set()
 
         def dfs(row, col):
             if row < 0 or row >= max_row or col < 0 or col >= max_col:

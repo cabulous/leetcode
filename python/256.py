@@ -1,5 +1,5 @@
 import copy
-from functools import lru_cache, reduce
+from functools import lru_cache
 from typing import List
 
 
@@ -11,15 +11,12 @@ class Solution:
     def minCost(self, costs: List[List[int]]) -> int:
         if not costs:
             return 0
-
         self.costs = costs
-
         return min(self.paint_cost(0, 0), self.paint_cost(0, 1), self.paint_cost(0, 2))
 
-    @lru_cache(maxsize=None)
+    @lru_cache(2000)
     def paint_cost(self, house_idx, color):
         cost = self.costs[house_idx][color]
-
         if house_idx == len(self.costs) - 1:
             pass
         elif color == 0:
@@ -28,7 +25,6 @@ class Solution:
             cost += min(self.paint_cost(house_idx + 1, 0), self.paint_cost(house_idx + 1, 2))
         elif color == 2:
             cost += min(self.paint_cost(house_idx + 1, 0), self.paint_cost(house_idx + 1, 1))
-
         return cost
 
 
