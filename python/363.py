@@ -7,8 +7,7 @@ class Solution:
     def maxSumSubmatrix(self, matrix: List[List[int]], k: int) -> int:
         assert len(matrix) > 0 and len(matrix[0]) > 0
 
-        max_row = len(matrix)
-        max_col = len(matrix[0])
+        max_row, max_col = len(matrix), len(matrix[0])
         ans = float('-inf')
 
         for i in range(max_col):
@@ -23,7 +22,7 @@ class Solution:
                     if 0 <= idx < len(cur_list):
                         ans = max(ans, row_sum - cur_list[idx])
                     if ans == k:
-                        return ans
+                        return k
                     bisect.insort(cur_list, row_sum)
 
         return ans
