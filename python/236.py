@@ -7,22 +7,20 @@ class TreeNode:
 
 class Solution:
     def __init__(self):
-        self.res = None
+        self.ans = None
 
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         self.recurse_tree(root, p, q)
-        return self.res
+        return self.ans
 
     def recurse_tree(self, curr_node, p, q):
         if not curr_node:
             return False
-
-        left = self.recurse_tree(curr_node.left, p, q)
-        right = self.recurse_tree(curr_node.right, p, q)
+        left, right = self.recurse_tree(curr_node.left, p, q), self.recurse_tree(curr_node.right, p, q)
         mid = curr_node == p or curr_node == q
 
-        if mid + left + right >= 2:
-            self.res = curr_node
+        if left + right + mid >= 2:
+            self.ans = curr_node
 
         return mid or left or right
 
