@@ -6,8 +6,8 @@ class Solution:
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         if len(mat) * len(mat[0]) != r * c:
             return mat
-        values = iter(val for row in mat for val in row)
-        return [[next(values) for _ in range(c)] for _ in range(r)]
+        value = iter(val for row in mat for val in row)
+        return [[next(value) for _ in range(c)] for _ in range(r)]
 
 
 class Solution:
