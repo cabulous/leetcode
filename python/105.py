@@ -33,20 +33,3 @@ class Solution:
             return root
 
         return array_to_tree(0, len(preorder) - 1)
-
-
-# https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34543/Simple-O(n)-without-map
-class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-        def build(stop):
-            if inorder and inorder[-1] != stop:
-                root = TreeNode(preorder.pop())
-                root.left = build(root.val)
-                inorder.pop()
-                root.right = build(stop)
-                return root
-
-        preorder.reverse()
-        inorder.reverse()
-
-        return build(None)

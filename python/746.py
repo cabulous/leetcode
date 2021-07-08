@@ -16,19 +16,19 @@ class Solution:
 # bottom-up
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        curr = prev = 0
+        prev = curr = 0
         for i in range(2, len(cost) + 1):
-            curr, prev = min(curr + cost[i - 1], prev + cost[i - 2]), curr
+            prev, curr = curr, min(curr + cost[i - 1], prev + cost[i - 2])
         return curr
 
 
 # dp top-down
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        @lru_cache(None)
-        def min_cost(n):
+        @lru_cache(2000)
+        def helper(n):
             if n <= 1:
                 return 0
-            return min(cost[n - 1] + min_cost(n - 1), cost[n - 2] + min_cost(n - 2))
+            return min(helper(n - 1) + cost[n - 1], helper(n - 2) + cost[n - 2])
 
-        return min_cost(len(cost))
+        return helper(len(cost))

@@ -15,14 +15,13 @@ class Solution:
             if [row, col] == destination:
                 return dist
             for dr, dc in directions:
-                new_dist, new_row, new_col = dist, row, col
-                while 0 <= new_row + dr < max_row and 0 <= new_col + dc < max_col and maze[new_row + dr][
-                    new_col + dc] == 0:
-                    new_row += dr
-                    new_col += dc
-                    new_dist += 1
-                if (new_row, new_col) not in stopped or new_dist < stopped[(new_row, new_col)]:
-                    stopped[(new_row, new_col)] = new_dist
-                    heapq.heappush(queue, (new_dist, new_row, new_col))
+                nd, nr, nc = dist, row, col
+                while 0 <= nr + dr < max_row and 0 <= nc + dc < max_col and maze[nr + dr][nc + dc] == 0:
+                    nr += dr
+                    nc += dc
+                    nd += 1
+                if (nr, nc) not in stopped or nd < stopped[(nr, nc)]:
+                    stopped[(nr, nc)] = nd
+                    heapq.heappush(queue, (nd, nr, nc))
 
         return -1
