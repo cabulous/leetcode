@@ -1,7 +1,7 @@
-# DP
 import bisect
 
 
+# DP
 class Solution:
     def lengthOfLIS(self, nums):
         dp = [1] * len(nums)
