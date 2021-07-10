@@ -23,7 +23,8 @@ class MyCalendar:
         self.root = None
 
     def book(self, start: int, end: int) -> bool:
+        node = Node(start, end)
         if not self.root:
-            self.root = Node(start, end)
+            self.root = node
             return True
-        return self.root.insert(Node(start, end))
+        return self.root.insert(node)

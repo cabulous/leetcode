@@ -7,18 +7,17 @@ from typing import List
 class Solution:
     def stoneGameVII(self, stones: List[int]) -> int:
         pre_sum = [0] + list(accumulate(stones))
-
-        def score(i, j):
-            return pre_sum[j + 1] - pre_sum[i]
-
         n = len(stones)
         dp = [[0] * n for _ in range(n)]
 
-        for i in range(n - 1, -1, -1):
+        for i in reversed(range(n)):
             for j in range(i + 1, n):
-                dp[i][j] = max(score(i + 1, j) - dp[i + 1][j], score(i, j - 1) - dp[i][j - 1])
+                dp[i][j] = max(self.score(pre_sum, i + 1, j) - dp[i + 1][j], self.score(pre_sum, i, j - 1) - dp[i][j - 1])
 
         return dp[0][-1]
+
+    def score(self, pre_sum, start, end):
+        return pre_sum[end + 1] - pre_sum[start]
 
 
 # https://leetcode.com/problems/stone-game-vii/discuss/1264544/Python-O(n*n)-dp-solution-how-to-avoid-TLE-explained
