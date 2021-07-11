@@ -7,9 +7,10 @@ class Solution:
                '21': 1, '22': 1, '23': 1, '24': 1, '25': 1, '26': 1, '*0': 2, '*1': 2, '*2': 2, '*3': 2, '*4': 2,
                '*5': 2, '*6': 2, '*7': 1, '*8': 1, '*9': 1, '1*': 9, '2*': 6, '**': 15}
 
-        dp = 1, one.get(s[0], 0)
+        prev = 1
+        curr = one.get(s[0], 0)
 
         for i in range(1, len(s)):
-            dp = dp[1], (one.get(s[i], 0) * dp[1] + two.get(s[i - 1:i + 1], 0) * dp[0]) % mod
+            prev, curr = curr, (one.get(s[i], 0) * curr + two.get(s[i - 1:i + 1], 0) * prev) % mod
 
-        return dp[-1]
+        return curr
