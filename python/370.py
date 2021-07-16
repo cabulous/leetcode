@@ -6,6 +6,7 @@ from itertools import accumulate
 class Solution:
     def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
         res = [0] * length
+
         for start, end, inc in updates:
             res[start] += inc
             if end + 1 <= length - 1:
