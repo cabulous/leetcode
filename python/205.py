@@ -1,9 +1,3 @@
-# https://leetcode.com/problems/isomorphic-strings/discuss/57838/1-line-in-Python
-class Solution:
-    def isIsomorphic(self, s: str, t: str) -> bool:
-        return len(set(zip(s, t))) == len(set(s)) == len(set(t))
-
-
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         mapping_s_t = {}
@@ -17,3 +11,9 @@ class Solution:
                 return False
 
         return True
+
+
+# https://leetcode.com/problems/isomorphic-strings/discuss/57838/1-line-in-Python
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return len(set(zip(s, t))) == len(set(s)) == len(set(t))

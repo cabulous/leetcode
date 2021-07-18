@@ -26,14 +26,14 @@ class Solution:
         if not (arr[i1:j1 + 1] == arr[i2:j2 + 1] == arr[i3:j3 + 1]):
             return [-1, -1]
 
-        zero1 = i2 - j1 - 1
-        zero2 = i3 - j2 - 1
-        zero3 = len(arr) - j3 - 1
+        zeros1 = i2 - j1 - 1
+        zeros2 = i3 - j2 - 1
+        zeros3 = len(arr) - j3 - 1
 
-        if zero1 < zero3 or zero2 < zero3:
+        if zeros1 < zeros3 or zeros2 < zeros3:
             return [-1, -1]
 
-        j1 += zero3
-        j2 += zero3
+        j1 += zeros3
+        j2 += zeros3
 
         return [j1, j2 + 1]
