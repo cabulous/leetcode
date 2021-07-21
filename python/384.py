@@ -15,7 +15,7 @@ class Solution:
     def shuffle(self) -> List[int]:
         for i in range(len(self.array)):
             swap_idx = random.randrange(i, len(self.array))
-            self.array[i], self.array[swap_idx] = self.array[swap_idx], self.array[i]
+            self.array[swap_idx], self.array[i] = self.array[i], self.array[swap_idx]
         return self.array
 
 
