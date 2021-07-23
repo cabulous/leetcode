@@ -16,7 +16,7 @@ class Solution:
         min_num = nums[-1]
         for i in reversed(range(n)):
             min_num = min(min_num, nums[i])
-            min_right[i] = min(min_num, nums[i])
+            min_right[i] = min_num
 
         for i in range(1, n):
             if max_left[i - 1] <= min_right[i]:
