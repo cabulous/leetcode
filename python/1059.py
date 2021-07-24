@@ -11,14 +11,14 @@ class Solution:
         for u, v in edges:
             graph[u].append(v)
 
-        def dfs(node):
+        def reachable(node):
             seen.add(node)
             for nei in graph[node]:
                 if nei == node or nei in seen:
                     return False
-                if not dfs(nei):
+                if not reachable(nei):
                     return False
             seen.discard(node)
             return len(graph[node]) != 0 or node == destination
 
-        return dfs(source)
+        return reachable(source)
