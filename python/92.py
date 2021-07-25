@@ -12,18 +12,17 @@ class Solution:
 
         sentinel = ListNode(0)
         sentinel.next = head
-        prev = sentinel
+        tail = sentinel
 
-        for i in range(left - 1):
-            prev = prev.next
+        for _ in range(left - 1):
+            tail = tail.next
 
-        reverse = None
-        cur = prev.next
+        pre, cur = None, tail.next
 
-        for i in range(right - left + 1):
-            cur.next, reverse, cur = reverse, cur, cur.next
+        for _ in range(right - left + 1):
+            cur.next, cur, pre = pre, cur.next, cur
 
-        prev.next.next = cur
-        prev.next = reverse
+        tail.next.next = cur
+        tail.next = pre
 
         return sentinel.next
