@@ -31,7 +31,6 @@ class Solution:
 
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         self.parent = [i for i in range(len(edges) + 1)]
-
         for u, v in edges:
             if not self.union(u, v):
                 return [u, v]
@@ -40,8 +39,7 @@ class Solution:
         root = self.parent[x]
         if root == x:
             return root
-        root = self.find(self.parent[root])
-        return root
+        return self.find(self.parent[root])
 
     def union(self, x, y):
         rootx = self.find(x)
