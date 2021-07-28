@@ -2,6 +2,16 @@ from itertools import accumulate
 from typing import List
 
 
+# https://leetcode.com/problems/partition-array-into-disjoint-intervals/discuss/1354458/Python-Two-accumulates-explained
+class Solution:
+    def partitionDisjoint(self, nums: List[int]) -> int:
+        max_left = list(accumulate(nums, max))
+        min_right = list(accumulate(nums[::-1], min))[::-1]
+        for i in range(1, len(nums)):
+            if max_left[i - 1] <= min_right[i]:
+                return i
+
+
 class Solution:
     def partitionDisjoint(self, nums: List[int]) -> int:
         n = len(nums)
@@ -20,14 +30,4 @@ class Solution:
 
         for i in range(1, n):
             if max_left[i - 1] <= min_right[i]:
-                return i
-
-
-# https://leetcode.com/problems/partition-array-into-disjoint-intervals/discuss/1354458/Python-Two-accumulates-explained
-class Solution:
-    def partitionDisjoint(self, nums: List[int]) -> int:
-        t1 = list(accumulate(nums, max))
-        t2 = list(accumulate(nums[::-1], min))[::-1]
-        for i in range(1, len(nums)):
-            if t1[i - 1] <= t2[i]:
                 return i
