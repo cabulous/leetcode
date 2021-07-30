@@ -10,17 +10,18 @@ class Solution:
         self.ans = None
 
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        self.recurse_tree(root, p, q)
+        self.find(root, p, q)
         return self.ans
 
-    def recurse_tree(self, curr_node, p, q):
-        if not curr_node:
+    def find(self, node, p, q):
+        if not node:
             return False
-        left, right = self.recurse_tree(curr_node.left, p, q), self.recurse_tree(curr_node.right, p, q)
-        mid = curr_node == p or curr_node == q
 
-        if left + right + mid >= 2:
-            self.ans = curr_node
+        left, right = self.find(node.left, p, q), self.find(node.right, p, q)
+        mid = node == p or node == q
+
+        if mid + left + right >= 2:
+            self.ans = node
 
         return mid or left or right
 
