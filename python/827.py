@@ -13,12 +13,12 @@ class Solution:
                     yield nx, ny
 
         def dfs(x, y, index):
-            res = 0
+            area_sum = 0
             grid[x][y] = index
             for i, j in move(x, y):
                 if grid[i][j] == 1:
-                    res += dfs(i, j, index)
-            return res + 1
+                    area_sum += dfs(i, j, index)
+            return area_sum + 1
 
         index = 2
         areas = {0: 0}
@@ -32,7 +32,7 @@ class Solution:
         for x in range(n):
             for y in range(n):
                 if grid[x][y] == 0:
-                    possible = set(grid[i][j] for i, j in move(x, y))
-                    res = max(res, sum(areas[index] for index in possible) + 1)
+                    possible_index = set(grid[i][j] for i, j in move(x, y))
+                    res = max(res, sum(areas[index] for index in possible_index) + 1)
 
         return res
