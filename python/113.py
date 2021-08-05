@@ -16,19 +16,19 @@ class Solution:
         self.dfs(root, targetSum, [], res)
         return res
 
-    def dfs(self, node, remaining_sum, cur_path, res):
+    def dfs(self, node, remaining_sum, path, res):
         if not node:
             return
 
-        cur_path.append(node.val)
+        path.append(node.val)
 
         if not node.left and not node.right and remaining_sum == node.val:
-            res.append(list(cur_path))
+            res.append(list(path))
         else:
-            self.dfs(node.left, remaining_sum - node.val, cur_path, res)
-            self.dfs(node.right, remaining_sum - node.val, cur_path, res)
+            self.dfs(node.left, remaining_sum - node.val, path, res)
+            self.dfs(node.right, remaining_sum - node.val, path, res)
 
-        cur_path.pop()
+        path.pop()
 
 
 # https://leetcode.com/problems/path-sum-ii/discuss/36829/Python-solutions-(Recursively-BFS%2Bqueue-DFS%2Bstack)
@@ -42,12 +42,12 @@ class Solution:
         queue = deque([(root, root.val, [root.val])])
 
         while queue:
-            node, cur_sum, cur_path = queue.popleft()
+            node, cur_sum, path = queue.popleft()
             if not node.left and not node.right and cur_sum == targetSum:
-                res.append(cur_path)
+                res.append(path)
             if node.left:
-                queue.append((node.left, cur_sum + node.left.val, cur_path + [node.left.val]))
+                queue.append((node.left, cur_sum + node.left.val, path + [node.left.val]))
             if node.right:
-                queue.append((node.right, cur_sum + node.right.val, cur_path + [node.right.val]))
+                queue.append((node.right, cur_sum + node.right.val, path + [node.right.val]))
 
         return res
