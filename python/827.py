@@ -7,7 +7,7 @@ class Solution:
         n = len(grid)
 
         def move(x, y):
-            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            for dx, dy in ((1, 0), (0, 1), (-1, 0), (0, -1)):
                 nx, ny = x + dx, y + dy
                 if 0 <= nx < n and 0 <= ny < n:
                     yield nx, ny
