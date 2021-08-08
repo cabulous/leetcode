@@ -8,9 +8,9 @@ class Solution:
             if s[:i] == s[:i][::-1] and s[i:] == s[i:][::-1]:
                 return 1
 
-        cut = [-1] + [x for x in range(len(s))]
+        cut = [-1] + [i for i in range(len(s))]
 
-        for i in range(2 * len(s) - 1):
+        for i in range(len(s) * 2 - 1):
             left = i // 2
             right = i - left
             while left >= 0 and right < len(s) and s[left] == s[right]:
