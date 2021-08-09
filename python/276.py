@@ -40,7 +40,7 @@ class Solution:
         one_post_back = k * k
 
         for i in range(3, n + 1):
-            curr = (k - 1) * (one_post_back + two_posts_back)
-            two_posts_back, one_post_back = one_post_back, curr
+            cur = (k - 1) * (one_post_back + two_posts_back)
+            two_posts_back, one_post_back = one_post_back, cur
 
         return one_post_back
