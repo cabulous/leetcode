@@ -14,7 +14,7 @@ class Solution:
             return 0
 
         self.costs = costs
-        self.k = len(self.costs[0])
+        self.k = len(costs[0])
         cost = math.inf
 
         for color in range(self.k):

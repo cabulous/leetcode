@@ -12,7 +12,7 @@ class Solution:
         required = len(dict_t)
         formed = 0
         left, right = 0, 0
-        ans = math.inf, left, right
+        ans = math.inf, 0, 0
 
         while right < len(s):
             char = s[right]
@@ -20,8 +20,8 @@ class Solution:
             if char in dict_t and window_counts[char] == dict_t[char]:
                 formed += 1
             while left <= right and formed == required:
-                if right - left - 1 < ans[0]:
-                    ans = (right - left - 1, left, right)
+                if right - left + 1 < ans[0]:
+                    ans = ((right - left + 1), left, right)
                 char = s[left]
                 window_counts[char] -= 1
                 if char in dict_t and window_counts[char] < dict_t[char]:
