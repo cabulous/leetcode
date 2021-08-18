@@ -18,9 +18,9 @@ class Solution:
             if node.val >= max_so_far:
                 res += 1
             if node.left:
-                stack.append((node.left, max(max_so_far, node.val)))
+                stack.append((node.left, max(node.val, max_so_far)))
             if node.right:
-                stack.append((node.right, max(max_so_far, node.val)))
+                stack.append((node.right, max(node.val, max_so_far)))
 
         return res
 
