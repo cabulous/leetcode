@@ -1,5 +1,5 @@
 import math
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 class Solution:
@@ -8,7 +8,7 @@ class Solution:
             return ''
 
         dict_t = Counter(t)
-        window_counts = {}
+        window_counts = defaultdict(int)
         required = len(dict_t)
         formed = 0
         left, right = 0, 0
@@ -16,12 +16,12 @@ class Solution:
 
         while right < len(s):
             char = s[right]
-            window_counts[char] = window_counts.get(char, 0) + 1
+            window_counts[char] += 1
             if char in dict_t and window_counts[char] == dict_t[char]:
                 formed += 1
             while left <= right and formed == required:
                 if right - left + 1 < ans[0]:
-                    ans = ((right - left + 1), left, right)
+                    ans = right - left + 1, left, right
                 char = s[left]
                 window_counts[char] -= 1
                 if char in dict_t and window_counts[char] < dict_t[char]:
