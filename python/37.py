@@ -2,57 +2,69 @@ from collections import defaultdict
 
 
 class Solution:
+    def __init__(self):
+        self.board = []
+        self.n = 0
+        self.rows = []
+        self.cols = []
+        self.boxes = []
+        self.resolved = False
+
     def solveSudoku(self, board: [[str]]) -> None:
         if not board or not board[0]:
             return None
 
-        rows = [defaultdict(int) for _ in range(9)]
-        cols = [defaultdict(int) for _ in range(9)]
-        boxes = [defaultdict(int) for _ in range(9)]
-        idx = lambda row, col: (row // 3) * 3 + col // 3
-        n = len(board)
-        sudoku_solved = False
+        self.board = board
+        self.rows = [defaultdict(int) for _ in range(9)]
+        self.cols = [defaultdict(int) for _ in range(9)]
+        self.boxes = [defaultdict(int) for _ in range(9)]
+        self.n = len(board)
 
-        def could_place(d, row, col):
-            return d not in rows[row] and d not in cols[col] and d not in boxes[idx(row, col)]
+        for row in range(9):
+            for col in range(9):
+                if board[row][col] != '.':
+                    digit = int(self.board[row][col])
+                    self.place_number(digit, row, col)
 
-        def place_number(d, row, col):
-            rows[row][d] += 1
-            cols[col][d] += 1
-            boxes[idx(row, col)][d] += 1
-            board[row][col] = str(d)
+        self.backtrack()
 
-        def remove_number(d, row, col):
-            del rows[row][d]
-            del cols[col][d]
-            del boxes[idx(row, col)][d]
-            board[row][col] = '.'
+    def could_place(self, digit, row, col):
+        box_idx = self.get_box_index(row, col)
+        return digit not in self.rows[row] and digit not in self.cols[col] and digit not in self.boxes[box_idx]
 
-        def place_next_numbers(row, col):
-            if row == n - 1 and col == n - 1:
-                nonlocal sudoku_solved
-                sudoku_solved = True
+    def place_number(self, digit, row, col):
+        box_idx = self.get_box_index(row, col)
+        self.boxes[box_idx][digit] += 1
+        self.rows[row][digit] += 1
+        self.cols[col][digit] += 1
+        self.board[row][col] = str(digit)
+
+    def remove_number(self, digit, row, col):
+        box_idx = self.get_box_index(row, col)
+        del self.boxes[box_idx][digit]
+        del self.rows[row][digit]
+        del self.cols[col][digit]
+        self.board[row][col] = '.'
+
+    def place_next_numbers(self, row, col):
+        if row == self.n - 1 and col == self.n - 1:
+            self.resolved = True
+        else:
+            if col == self.n - 1:
+                self.backtrack(row + 1, 0)
             else:
-                if col == n - 1:
-                    backtrack(row + 1, 0)
-                else:
-                    backtrack(row, col + 1)
+                self.backtrack(row, col + 1)
 
-        def backtrack(row=0, col=0):
-            if board[row][col] == '.':
-                for d in range(1, 10):
-                    if could_place(d, row, col):
-                        place_number(d, row, col)
-                        place_next_numbers(row, col)
-                        if not sudoku_solved:
-                            remove_number(d, row, col)
-            else:
-                place_next_numbers(row, col)
+    def backtrack(self, row=0, col=0):
+        if self.board[row][col] == '.':
+            for digit in range(1, 10):
+                if self.could_place(digit, row, col):
+                    self.place_number(digit, row, col)
+                    self.place_next_numbers(row, col)
+                    if not self.resolved:
+                        self.remove_number(digit, row, col)
+        else:
+            self.place_next_numbers(row, col)
 
-        for i in range(9):
-            for j in range(9):
-                if board[i][j] != '.':
-                    d = int(board[i][j])
-                    place_number(d, i, j)
-
-        backtrack()
+    def get_box_index(self, row, col):
+        return (row // 3) * 3 + col // 3
