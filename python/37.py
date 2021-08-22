@@ -15,33 +15,33 @@ class Solution:
             return None
 
         self.board = board
+        self.n = len(board)
         self.rows = [defaultdict(int) for _ in range(9)]
         self.cols = [defaultdict(int) for _ in range(9)]
         self.boxes = [defaultdict(int) for _ in range(9)]
-        self.n = len(board)
 
         for row in range(9):
             for col in range(9):
                 if board[row][col] != '.':
-                    digit = int(self.board[row][col])
+                    digit = int(board[row][col])
                     self.place_number(digit, row, col)
 
         self.backtrack()
 
     def could_place(self, digit, row, col):
-        box_idx = self.get_box_index(row, col)
-        return digit not in self.rows[row] and digit not in self.cols[col] and digit not in self.boxes[box_idx]
+        box_index = self.get_box_index(row, col)
+        return digit not in self.rows[row] and digit not in self.cols[col] and digit not in self.boxes[box_index]
 
     def place_number(self, digit, row, col):
-        box_idx = self.get_box_index(row, col)
-        self.boxes[box_idx][digit] += 1
+        box_index = self.get_box_index(row, col)
+        self.boxes[box_index][digit] += 1
         self.rows[row][digit] += 1
         self.cols[col][digit] += 1
         self.board[row][col] = str(digit)
 
     def remove_number(self, digit, row, col):
-        box_idx = self.get_box_index(row, col)
-        del self.boxes[box_idx][digit]
+        box_index = self.get_box_index(row, col)
+        del self.boxes[box_index][digit]
         del self.rows[row][digit]
         del self.cols[col][digit]
         self.board[row][col] = '.'
