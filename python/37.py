@@ -5,9 +5,9 @@ class Solution:
     def __init__(self):
         self.board = []
         self.n = 0
-        self.rows = []
-        self.cols = []
-        self.boxes = []
+        self.rows = [defaultdict(int) for _ in range(9)]
+        self.cols = [defaultdict(int) for _ in range(9)]
+        self.boxes = [defaultdict(int) for _ in range(9)]
         self.resolved = False
 
     def solveSudoku(self, board: [[str]]) -> None:
@@ -16,9 +16,6 @@ class Solution:
 
         self.board = board
         self.n = len(board)
-        self.rows = [defaultdict(int) for _ in range(9)]
-        self.cols = [defaultdict(int) for _ in range(9)]
-        self.boxes = [defaultdict(int) for _ in range(9)]
 
         for row in range(9):
             for col in range(9):
