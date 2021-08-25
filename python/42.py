@@ -13,7 +13,8 @@ class Solution:
         res = 0
 
         while left < right:
-            left_max, right_max = max(left_max, height[left]), max(right_max, height[right])
+            left_max = max(left_max, height[left])
+            right_max = max(right_max, height[right])
             if left_max <= right_max:
                 res += left_max - height[left]
                 left += 1
