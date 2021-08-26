@@ -33,6 +33,6 @@ class Solution:
             for y in range(n):
                 if grid[x][y] == 0:
                     possible_index = set(grid[i][j] for i, j in move(x, y))
-                    res = max(res, sum(areas[index] for index in possible_index) + 1)
+                    res = max(res, 1 + sum(areas[index] for index in possible_index))
 
         return res
