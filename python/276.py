@@ -3,7 +3,7 @@ from functools import lru_cache
 
 class Solution:
     def numWays(self, n: int, k: int) -> int:
-        @lru_cache(2000)
+        @lru_cache(None)
         def total_ways(i):
             if i == 1:
                 return k
@@ -42,7 +42,6 @@ class Solution:
         one_post_back = k * k
 
         for i in range(3, n + 1):
-            cur = (k - 1) * (two_posts_back + one_post_back)
-            two_posts_back, one_post_back = one_post_back, cur
+            two_posts_back, one_post_back = one_post_back, (k - 1) * (one_post_back + two_posts_back)
 
         return one_post_back
