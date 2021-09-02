@@ -14,6 +14,9 @@ class Solution:
         self.res = 0
 
     def maximumAverageSubtree(self, root: Optional[TreeNode]) -> float:
+        if not root:
+            return 0
+
         self.helper(root)
         return self.res
 
@@ -21,12 +24,11 @@ class Solution:
         if not sub_root:
             return [0, 0.0]
 
-        node_count_left, tree_sum_left = self.helper(sub_root.left)
-        node_count_right, tree_sum_right = self.helper(sub_root.right)
+        left_node_count, left_sum = self.helper(sub_root.left)
+        right_node_count, right_sum = self.helper(sub_root.right)
 
-        node_count = node_count_left + node_count_right + 1
-        tree_sum = tree_sum_left + sub_root.val + tree_sum_right
+        total_node_count = left_node_count + right_node_count + 1
+        total_sum = left_sum + sub_root.val + right_sum
+        self.res = max(self.res, total_sum / total_node_count)
 
-        self.res = max(self.res, tree_sum / node_count)
-
-        return [node_count, tree_sum]
+        return [total_node_count, total_sum]
