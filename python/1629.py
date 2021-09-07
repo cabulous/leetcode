@@ -7,10 +7,10 @@ class Solution:
         key, duration = keysPressed[0], releaseTimes[0]
 
         for i in range(1, len(keysPressed)):
-            time = releaseTimes[i] - releaseTimes[i - 1]
-            if time > duration or (time == duration and keysPressed[i] > key):
+            next_duration = releaseTimes[i] - releaseTimes[i - 1]
+            if next_duration > duration or (next_duration == duration and keysPressed[i] > key):
                 key = keysPressed[i]
-                duration = time
+                duration = next_duration
 
         return key
 
