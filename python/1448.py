@@ -27,18 +27,18 @@ class Solution:
 
 
 class Solution:
+    def __init__(self):
+        self.res = 0
+
     def goodNodes(self, root: TreeNode) -> int:
-        res = 0
+        self.dfs(root, -math.inf)
+        return self.res
 
-        def dfs(node, max_so_far):
-            nonlocal res
-            if node.val >= max_so_far:
-                res += 1
-            if node.left:
-                dfs(node.left, max(max_so_far, node.val))
-            if node.right:
-                dfs(node.right, max(max_so_far, node.val))
-
-        dfs(root, -math.inf)
-
-        return res
+    def dfs(self, node, max_so_far):
+        if node.val >= max_so_far:
+            self.res += 1
+        max_so_far = max(max_so_far, node.val)
+        if node.left:
+            self.dfs(node.left, max_so_far)
+        if node.right:
+            self.dfs(node.right, max_so_far)
