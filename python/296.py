@@ -10,16 +10,16 @@ class Solution:
 
     def min_dist_1d(self, vec: List[int]) -> int:
         i, j = -1, len(vec)
-        dist = left_sum = right_sum = 0
+        dist = left_dist = right_dist = 0
 
         while i != j:
-            if left_sum < right_sum:
-                dist += left_sum
+            if left_dist < right_dist:
+                dist += left_dist
                 i += 1
-                left_sum += vec[i]
+                left_dist += vec[i]
             else:
-                dist += right_sum
+                dist += right_dist
                 j -= 1
-                right_sum += vec[j]
+                right_dist += vec[j]
 
         return dist
