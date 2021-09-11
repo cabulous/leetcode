@@ -17,33 +17,33 @@ class Solution:
         self.board = board
         self.n = len(board)
 
-        for row in range(9):
-            for col in range(9):
-                if board[row][col] != '.':
-                    digit = int(board[row][col])
-                    self.place_number(digit, row, col)
+        for r in range(9):
+            for c in range(9):
+                if self.board[r][c] != '.':
+                    digit = int(self.board[r][c])
+                    self.place_number(digit, r, c)
 
         self.backtrack()
 
-    def could_place(self, digit, row, col):
+    def could_place(self, digit: int, row: int, col: int) -> bool:
         box_index = self.get_box_index(row, col)
         return digit not in self.rows[row] and digit not in self.cols[col] and digit not in self.boxes[box_index]
 
-    def place_number(self, digit, row, col):
+    def place_number(self, digit: int, row: int, col: int):
         box_index = self.get_box_index(row, col)
         self.boxes[box_index][digit] += 1
         self.rows[row][digit] += 1
         self.cols[col][digit] += 1
         self.board[row][col] = str(digit)
 
-    def remove_number(self, digit, row, col):
+    def remove_number(self, digit: int, row: int, col: int):
         box_index = self.get_box_index(row, col)
         del self.boxes[box_index][digit]
         del self.rows[row][digit]
         del self.cols[col][digit]
         self.board[row][col] = '.'
 
-    def place_next_numbers(self, row, col):
+    def place_next_numbers(self, row: int, col: int):
         if row == self.n - 1 and col == self.n - 1:
             self.resolved = True
         else:
@@ -63,5 +63,5 @@ class Solution:
         else:
             self.place_next_numbers(row, col)
 
-    def get_box_index(self, row, col):
+    def get_box_index(self, row: int, col: int) -> int:
         return (row // 3) * 3 + col // 3

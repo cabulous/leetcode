@@ -5,9 +5,9 @@ from collections import Counter
 # https://leetcode.com/problems/arithmetic-slices-ii-subsequence/discuss/1455137/Python-short-dp-explained
 class Solution:
     def numberOfArithmeticSlices(self, nums: List[int]) -> int:
-        ans = 0
         n = len(nums)
         dp = [Counter() for _ in range(n)]
+        ans = 0
 
         for i in range(n):
             for j in range(i):

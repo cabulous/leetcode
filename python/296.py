@@ -12,7 +12,7 @@ class Solution:
         i, j = -1, len(vec)
         dist = left_dist = right_dist = 0
 
-        while i != j:
+        while i < j:
             if left_dist < right_dist:
                 dist += left_dist
                 i += 1
