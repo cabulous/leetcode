@@ -19,7 +19,7 @@ class Solution:
                     sign = -1
                 else:
                     sign = 1
-                signs += [signs[-1] * sign]
+                signs.append(signs[-1] * sign)
             elif c == ')':
                 signs.pop()
 
