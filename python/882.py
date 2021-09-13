@@ -23,7 +23,7 @@ class Solution:
                         heapq.heappush(pq, (-moves2, j))
 
         res = len(seen)
-        for i, j, _ in edges:
-            res += min(seen.get(i, 0) + seen.get(j, 0), graph[i][j])
+        for i, j, l in edges:
+            res += min(seen.get(i, 0) + seen.get(j, 0), l)
 
         return res
