@@ -1,8 +1,9 @@
 # https://leetcode.com/problems/basic-calculator/discuss/62344/Easy-18-lines-C%2B%2B-16-lines-Python
 class Solution:
     def calculate(self, s: str) -> int:
+        signs = [1, 1]
+        i = 0
         total = 0
-        i, signs = 0, [1, 1]
 
         while i < len(s):
             c = s[i]

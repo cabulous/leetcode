@@ -1,10 +1,10 @@
 # https://leetcode.com/problems/sum-of-square-numbers/discuss/104973/Python-Straightforward-with-Explanation
 class Solution:
     def judgeSquareSum(self, c: int) -> bool:
-        def is_square(n):
-            return int(n ** 0.5) ** 2 == n
+        return any(self.is_square(c - a * a) for a in range(int(c ** 0.5) + 1))
 
-        return any(is_square(c - a * a) for a in range(int(c ** 0.5) + 1))
+    def is_square(self, n: int) -> bool:
+        return int(n ** 0.5) ** 2 == n
 
 
 # https://leetcode.com/problems/sum-of-square-numbers/discuss/353607/Python-Easy-Solution%3A-Two-Pointers
