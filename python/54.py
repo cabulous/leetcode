@@ -17,17 +17,17 @@ class Solution:
                 res.append(matrix[row][right])
 
             if top != bottom:
-                for col in range(right - 1, left - 1, -1):
+                for col in reversed(range(left, right)):
                     res.append(matrix[bottom][col])
 
             if left != right:
-                for row in range(bottom - 1, top, -1):
+                for row in reversed(range(top + 1, bottom)):
                     res.append(matrix[row][left])
 
-            left += 1
-            right -= 1
             top += 1
+            right -= 1
             bottom -= 1
+            left += 1
 
         return res
 
