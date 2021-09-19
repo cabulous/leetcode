@@ -6,22 +6,23 @@ class Solution:
     def addOperators(self, num: str, target: int) -> List[str]:
         ans = []
 
-        def backtrack(idx=0, path='', value=0, prev=None):
+        def dfs(idx=0, path='', value=0, prev=None):
             if idx == len(num) and value == target:
                 ans.append(path)
                 return
 
             for i in range(idx + 1, len(num) + 1):
-                if i == idx + 1 or (i > idx + 1 and num[idx] != '0'):
-                    curr = int(num[idx:i])
-                    if prev is None:
-                        backtrack(i, num[idx:i], curr, curr)
-                    else:
-                        backtrack(i, path + '+' + num[idx:i], value + curr, curr)
-                        backtrack(i, path + '-' + num[idx:i], value - curr, -curr)
-                        backtrack(i, path + '*' + num[idx:i], value - prev + prev * curr, prev * curr)
+                if num[idx] == '0' and i > idx + 1:
+                    continue
+                curr = int(num[idx:i])
+                if prev is None:
+                    dfs(i, num[idx:i], curr, curr)
+                else:
+                    dfs(i, path + '+' + num[idx:i], value + curr, curr)
+                    dfs(i, path + '-' + num[idx:i], value - curr, -curr)
+                    dfs(i, path + '*' + num[idx:i], value - prev + prev * curr, prev * curr)
 
-        backtrack()
+        dfs()
         return ans
 
 
