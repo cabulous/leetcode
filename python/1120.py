@@ -15,7 +15,7 @@ class Solution:
 
     def maximumAverageSubtree(self, root: Optional[TreeNode]) -> float:
         if not root:
-            return 0
+            return 0.0
 
         self.helper(root)
         return self.res

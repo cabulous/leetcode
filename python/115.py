@@ -5,7 +5,7 @@ class Solution:
 
         def unique_subsequences(i=0, j=0):
             if i == m or j == n or m - i < n - j:
-                return int(j == len(t))
+                return int(j == n)
 
             if (i, j) in memo:
                 return memo[i, j]
