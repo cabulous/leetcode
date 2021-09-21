@@ -21,7 +21,7 @@ class Solution:
             if r - c == 0:
                 self.diag2 += sign
 
-            if abs(self.row[r]) == n or abs(self.col[c]) == n or abs(self.diag1) == n or abs(self.diag2 == n):
+            if abs(self.row[r]) == n or abs(self.col[c]) == n or abs(self.diag1) == n or abs(self.diag2) == n:
                 return 'A' if sign == 1 else 'B'
 
             sign *= -1

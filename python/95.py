@@ -18,14 +18,14 @@ class Solution:
 
         all_trees = []
 
-        for i in range(start, end + 1):
-            left_trees = self.helper(start, i - 1)
-            right_trees = self.helper(i + 1, end)
-            for l in left_trees:
-                for r in right_trees:
-                    cur_tree = TreeNode(i)
-                    cur_tree.left = l
-                    cur_tree.right = r
-                    all_trees.append(cur_tree)
+        for mid in range(start, end + 1):
+            left_trees = self.helper(start, mid - 1)
+            right_tress = self.helper(mid + 1, end)
+            for left in left_trees:
+                for right in right_tress:
+                    cur = TreeNode(mid)
+                    cur.left = left
+                    cur.right = right
+                    all_trees.append(cur)
 
         return all_trees
