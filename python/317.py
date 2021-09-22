@@ -1,0 +1,47 @@
+import math
+from typing import List
+from collections import deque
+
+
+# https://leetcode.com/problems/shortest-distance-from-all-buildings/discuss/76877/Python-solution-72ms-beats-100-BFS-with-pruning/80688
+class Solution:
+    def shortestDistance(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return -1
+
+        row_max, col_max = len(grid), len(grid[0])
+        matrix = [[[0, 0] for _ in range(col_max)] for _ in range(row_max)]
+        cnt = 0
+
+        for i in range(row_max):
+            for j in range(col_max):
+                if grid[i][j] == 1:
+                    self.bfs(i, j, grid, matrix, cnt)
+                    cnt += 1
+
+        res = math.inf
+        for i in range(row_max):
+            for j in range(col_max):
+                cur_step, cur_cnt = matrix[i][j]
+                if cur_cnt == cnt:
+                    res = min(res, cur_step)
+
+        return res if res != math.inf else -1
+
+    def bfs(self, row, col, grid, matrix, cnt):
+        q = deque([(row, col, 0)])
+        while q:
+            r, c, step = q.popleft()
+            for dr, dc in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+                nr, nc = r + dr, c + dc
+                if nr < 0 or nr >= len(grid) or nc < 0 or nc >= len(grid[0]):
+                    continue
+                if grid[nr][nc] != 0:
+                    continue
+                _, cur_cnt = matrix[nr][nc]
+                if cur_cnt != cnt:
+                    continue
+                cur_step, cur_cnt = step + 1, cnt + 1
+                matrix[nr][nc][0] += cur_step
+                matrix[nr][nc][1] = cur_cnt
+                q.append((nr, nc, cur_step))
