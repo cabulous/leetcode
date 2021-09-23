@@ -6,17 +6,12 @@ class Solution:
         def unique_subsequences(i=0, j=0):
             if i == m or j == n or m - i < n - j:
                 return int(j == n)
-
             if (i, j) in memo:
                 return memo[i, j]
-
             ans = unique_subsequences(i + 1, j)
-
             if s[i] == t[j]:
                 ans += unique_subsequences(i + 1, j + 1)
-
             memo[i, j] = ans
-
             return ans
 
         return unique_subsequences()

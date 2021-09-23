@@ -41,7 +41,7 @@ class Solution:
                 _, cur_cnt = matrix[nr][nc]
                 if cur_cnt != cnt:
                     continue
-                cur_step, cur_cnt = step + 1, cnt + 1
-                matrix[nr][nc][0] += cur_step
-                matrix[nr][nc][1] = cur_cnt
-                q.append((nr, nc, cur_step))
+                new_step, new_cnt = step + 1, cnt + 1
+                matrix[nr][nc][0] += new_step
+                matrix[nr][nc][1] = new_cnt
+                q.append((nr, nc, new_step))
