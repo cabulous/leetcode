@@ -20,10 +20,8 @@ class Solution:
                 self.diag1 += sign
             if r - c == 0:
                 self.diag2 += sign
-
             if abs(self.row[r]) == n or abs(self.col[c]) == n or abs(self.diag1) == n or abs(self.diag2) == n:
                 return 'A' if sign == 1 else 'B'
-
             sign *= -1
 
         if len(moves) == n * n:
