@@ -9,19 +9,19 @@ class Solution:
         if not grid or not grid[0]:
             return -1
 
-        row_max, col_max = len(grid), len(grid[0])
-        matrix = [[[0, 0] for _ in range(col_max)] for _ in range(row_max)]
+        rows, cols = len(grid), len(grid[0])
+        matrix = [[[0, 0] for _ in range(cols)] for _ in range(rows)]
         cnt = 0
 
-        for i in range(row_max):
-            for j in range(col_max):
+        for i in range(rows):
+            for j in range(cols):
                 if grid[i][j] == 1:
                     self.bfs(i, j, grid, matrix, cnt)
                     cnt += 1
 
         res = math.inf
-        for i in range(row_max):
-            for j in range(col_max):
+        for i in range(rows):
+            for j in range(cols):
                 cur_step, cur_cnt = matrix[i][j]
                 if cur_cnt == cnt:
                     res = min(res, cur_step)

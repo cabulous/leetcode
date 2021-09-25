@@ -9,9 +9,8 @@ class Solution:
         for word in arr:
             for i in range(len(res)):
                 new_word = res[i] + word
-                if len(new_word) != len(set(new_word)):
-                    continue
-                res.append(new_word)
-                best = max(best, len(new_word))
+                if len(new_word) == len(set(new_word)):
+                    res.append(new_word)
+                    best = max(best, len(new_word))
 
         return best
