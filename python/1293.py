@@ -6,10 +6,9 @@ from collections import deque
 class Solution:
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
         rows, cols = len(grid), len(grid[0])
-        target = (rows - 1, cols - 1)
 
         def manhattan_dist(row, col):
-            return target[0] - row + target[1] - col
+            return rows - row - 1 + cols - col - 1
 
         state = (0, 0, k)
         queue = [(manhattan_dist(0, 0), 0, state)]
@@ -18,8 +17,8 @@ class Solution:
 
         while queue:
             estimation, steps, (row, col, quota) = heapq.heappop(queue)
-            remain_min_dist = estimation - steps
-            if remain_min_dist <= quota:
+            remaining = estimation - steps
+            if remaining <= quota:
                 return estimation
             for dr, dc in directions:
                 nr, nc = row + dr, col + dc

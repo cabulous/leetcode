@@ -24,8 +24,8 @@ class Solution:
         if not head or not head.next:
             return head
 
-        pre = self.reverseList(head.next)
+        next_node = self.reverseList(head.next)
         head.next.next = head
         head.next = None
 
-        return pre
+        return next_node
