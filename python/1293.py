@@ -17,8 +17,7 @@ class Solution:
 
         while queue:
             estimation, steps, (row, col, quota) = heapq.heappop(queue)
-            remaining = estimation - steps
-            if remaining <= quota:
+            if quota >= estimation - steps:
                 return estimation
             for dr, dc in directions:
                 nr, nc = row + dr, col + dc
