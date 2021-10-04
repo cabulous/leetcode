@@ -7,12 +7,12 @@ class Solution:
         if len(nums) < k:
             return False
 
-        nums_sum = sum(nums)
-        if nums_sum % k != 0:
+        total = sum(nums)
+        if total % k != 0:
             return False
 
         nums.sort(reverse=True)
-        target = [nums_sum / k] * k
+        target = [total / k] * k
 
         def dfs(pos):
             if pos == len(nums):
