@@ -1,50 +1,33 @@
 # Recursion with memoization - forward
 class Solution:
     def climbStairs(self, n):
-        def helper(cur=0):
+        memo = {}
+
+        def helper(cur):
             if cur > n:
                 return 0
-            if cur == n:
-                return 1
-            if memo[cur] > 0:
-                return memo[cur]
-            memo[cur] = helper(cur + 1) + helper(cur + 2)
-            return memo[cur]
-
-        memo = [0] * (n + 1)
-        return helper()
-
-
-# Recursion with memoization - backward
-class Solution:
-    def climbStairs(self, n):
-        def helper(cur=n):
-            if cur <= 0:
-                return 0
-            if cur == 1:
-                return 1
-            if cur == 2:
-                return 2
-            if memo[cur] > 0:
+            if cur == 1 or cur == 2:
+                return cur
+            if cur in memo:
                 return memo[cur]
             memo[cur] = helper(cur - 1) + helper(cur - 2)
             return memo[cur]
 
-        memo = [0] * (n + 1)
-        return helper()
+        return helper(n)
 
 
 # Dynamic programming
 class Solution:
     def climbStairs(self, n):
-        if n == 1:
-            return 1
-        dp = [0] * (n + 1)
-        dp[1] = 1
-        dp[2] = 2
-        for i in range(3, n + 1):
-            dp[i] = dp[i - 1] + dp[i - 2]
-        return dp[-1]
+        if n == 1 or n == 2:
+            return n
+
+        pre, cur = 1, 2
+
+        for _ in range(3, n + 1):
+            pre, cur = cur, pre + cur
+
+        return cur
 
 
 # Binets Method

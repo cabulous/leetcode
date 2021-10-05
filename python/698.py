@@ -14,7 +14,7 @@ class Solution:
         nums.sort(reverse=True)
         target = [total / k] * k
 
-        def dfs(pos):
+        def dfs(pos=0):
             if pos == len(nums):
                 return True
             for i in range(k):
@@ -25,4 +25,4 @@ class Solution:
                     target[i] += nums[pos]
             return False
 
-        return dfs(0)
+        return dfs()
