@@ -6,4 +6,4 @@ class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
         cnt = Counter(text)
         cnt_balloon = Counter('balloon')
-        return min([cnt[c] // cnt_balloon[c] for c in cnt_balloon])
+        return min(cnt[c] // cnt_balloon[c] for c in cnt_balloon)
