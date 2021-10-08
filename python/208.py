@@ -1,5 +1,4 @@
 class Trie:
-
     def __init__(self):
         self.WORD_END = '#'
         self.trie = {}
@@ -28,9 +27,3 @@ class Trie:
 
     def startsWith(self, prefix: str) -> bool:
         return self.search_prefix(prefix) is not None
-
-# Your Trie object will be instantiated and called as such:
-# obj = Trie()
-# obj.insert(word)
-# param_2 = obj.search(word)
-# param_3 = obj.startsWith(prefix)
