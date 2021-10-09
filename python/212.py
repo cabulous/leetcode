@@ -1,42 +1,76 @@
+from collections import defaultdict
+
+
+# https://leetcode.com/problems/word-search-ii/discuss/59790/Python-dfs-solution-(directly-use-Trie-implemented).
+class TrieNode:
+    def __init__(self):
+        self.next = defaultdict(TrieNode)
+        self.is_word = False
+
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for w in word:
+            node = node.next[w]
+        node.is_word = True
+
+    def search(self, word):
+        node = self.root
+        for w in word:
+            node = node.next.get(w)
+            if not node:
+                return False
+        return node.is_word
+
+
 class Solution:
+    def __init__(self):
+        self.rows = 0
+        self.cols = 0
+        self.board = []
+        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        self.res = []
+
     def findWords(self, board, words):
         if not board or not board[0]:
             return []
 
-        word_end_key = '#'
-        trie = {}
-        m, n = len(board), len(board[0])
-        neighbors = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-        output = []
+        self.rows, self.cols = len(board), len(board[0])
+        self.board = board
+
+        trie = Trie()
+        node = trie.root
 
         for word in words:
-            node = trie
-            for w in word:
-                node = node.setdefault(w, {})
-            node[word_end_key] = word
+            trie.insert(word)
 
-        def backtrack(row, col, parent):
-            letter = board[row][col]
-            cur_node = parent[letter]
-            match = cur_node.pop(word_end_key, False)
+        for i in range(self.rows):
+            for j in range(self.cols):
+                self.backtrack(i, j, '', node)
 
-            if match:
-                output.append(match)
+        return self.res
 
-            board[row][col] = '#'
-            for neighbor in neighbors:
-                nr, nc = row + neighbor[0], col + neighbor[1]
-                if 0 <= nr < m and 0 <= nc < n and board[nr][nc] in cur_node:
-                    backtrack(nr, nc, cur_node)
+    def backtrack(self, row, col, path, node):
+        if node.is_word:
+            self.res.append(path)
+            node.is_word = False
 
-            board[row][col] = letter
+        if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
+            return
 
-            if not cur_node:
-                parent.pop(letter)
+        letter = self.board[row][col]
+        node = node.next.get(letter)
 
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] in trie:
-                    backtrack(i, j, trie)
+        if not node:
+            return
 
-        return output
+        self.board[row][col] = '#'
+
+        for dr, dc in self.directions:
+            self.backtrack(row + dr, col + dc, path + letter, node)
+
+        self.board[row][col] = letter
