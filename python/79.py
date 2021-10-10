@@ -9,6 +9,9 @@ class Solution:
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     def exist(self, board: List[List[str]], word: str) -> bool:
+        if not board or not board[0]:
+            return False
+
         self.rows, self.cols = len(board), len(board[0])
         self.board = board
 

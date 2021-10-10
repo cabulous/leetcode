@@ -8,10 +8,10 @@ class Solution:
         counts = Counter(nums1)
         res = []
 
-        for num in nums2:
-            if counts[num] > 0:
-                res.append(num)
-                counts[num] -= 1
+        for n in nums2:
+            if counts[n] > 0:
+                res.append(n)
+                counts[n] -= 1
 
         return res
 
