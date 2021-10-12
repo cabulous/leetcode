@@ -43,14 +43,12 @@ class Solution:
         self.board = board
 
         trie = Trie()
-        node = trie.root
-
         for word in words:
             trie.insert(word)
 
         for i in range(self.rows):
             for j in range(self.cols):
-                self.backtrack(i, j, '', node)
+                self.backtrack(i, j, '', trie.root)
 
         return self.res
 

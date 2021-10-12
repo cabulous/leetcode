@@ -22,8 +22,6 @@ class Solution:
         m, n = len(s), len(t)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
 
-        for j in range(n + 1):
-            dp[m][j] = 0
         for i in range(m + 1):
             dp[i][n] = 1
 
