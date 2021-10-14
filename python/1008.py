@@ -13,10 +13,10 @@ class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
         return self.build_tree(preorder[::-1], float('inf'))
 
-    def build_tree(self, reversed_preorder, bound):
-        if not reversed_preorder or reversed_preorder[-1] > bound:
+    def build_tree(self, reversed_preorder, upper_bound):
+        if not reversed_preorder or reversed_preorder[-1] > upper_bound:
             return None
         node = TreeNode(reversed_preorder.pop())
         node.left = self.build_tree(reversed_preorder, node.val)
-        node.right = self.build_tree(reversed_preorder, bound)
+        node.right = self.build_tree(reversed_preorder, upper_bound)
         return node
