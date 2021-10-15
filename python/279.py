@@ -55,7 +55,7 @@ class Solution:
 
 class Solution:
     def numSquares(self, n: int) -> int:
-        while (n & 3) == 0:
+        while n & 3 == 0:
             n >>= 2
 
         if n & 7 == 7:
@@ -64,12 +64,11 @@ class Solution:
         if self.is_square(n):
             return 1
 
-        for i in range(1, int(n ** 0.5) + 1):
+        for i in range(1, int(math.sqrt(n)) + 1):
             if self.is_square(n - i * i):
                 return 2
 
         return 3
 
     def is_square(self, n):
-        sq = int(math.sqrt(n))
-        return sq * sq == n
+        return n == int(math.sqrt(n)) ** 2
