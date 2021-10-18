@@ -18,23 +18,6 @@ class Solution:
 class Solution:
     def numSquares(self, n: int) -> int:
         square_nums = [i ** 2 for i in range(int(math.sqrt(n)) + 1)]
-
-        def is_divided_by(n, count):
-            if count == 1:
-                return n in square_nums
-            for square_num in square_nums:
-                if is_divided_by(n - square_num, count - 1):
-                    return True
-            return False
-
-        for count in range(1, n + 1):
-            if is_divided_by(n, count):
-                return count
-
-
-class Solution:
-    def numSquares(self, n: int) -> int:
-        square_nums = [i ** 2 for i in range(int(math.sqrt(n)) + 1)]
         level = 0
         queue = {n}
 
@@ -65,7 +48,7 @@ class Solution:
             return 1
 
         for i in range(1, int(math.sqrt(n)) + 1):
-            if self.is_square(n - i * i):
+            if self.is_square(n - i ** 2):
                 return 2
 
         return 3
