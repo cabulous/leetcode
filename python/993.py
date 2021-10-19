@@ -19,7 +19,7 @@ class Solution:
             if len(res) == 2:
                 break
             node, depth, parent = queue.popleft()
-            if node.val == x or node.val == y:
+            if node.val in (x, y):
                 res.append((depth, parent))
             if node.left:
                 queue.append((node.left, depth + 1, node))
