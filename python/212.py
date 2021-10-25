@@ -46,9 +46,9 @@ class Solution:
         for word in words:
             trie.insert(word)
 
-        for i in range(self.rows):
-            for j in range(self.cols):
-                self.backtrack(i, j, '', trie.root)
+        for row in range(self.rows):
+            for col in range(self.cols):
+                self.backtrack(row, col, '', trie.root)
 
         return self.res
 

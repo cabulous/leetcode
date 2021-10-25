@@ -50,3 +50,18 @@ class Solution:
                 node = node.right
                 left = pivot + 1
         return node is not None
+
+
+class Solution:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
+        level = [root]
+        counts = 0
+
+        while level:
+            counts += len(level)
+            level = [kid for node in level for kid in (node.left, node.right) if kid]
+
+        return counts
