@@ -19,7 +19,7 @@ class RandomizedSet:
         last_elem, idx = self.list[-1], self.dict[val]
         self.list[idx], self.dict[last_elem] = last_elem, idx
         self.list.pop()
-        del self.dict[val]
+        self.dict.pop(val, None)
         return True
 
     def getRandom(self) -> int:
