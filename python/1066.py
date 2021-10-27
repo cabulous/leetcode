@@ -15,11 +15,11 @@ class Solution:
 
         while True:
             cost, i, taken = heapq.heappop(queue)
+            if i == len(workers):
+                return cost
             if (i, taken) in seen:
                 continue
             seen.add((i, taken))
-            if i == len(workers):
-                return cost
             for j in range(len(bikes)):
                 if taken & (1 << j) == 0:
                     heapq.heappush(queue, [cost + self.manhattan_dist(i, j), i + 1, taken | (1 << j)])
