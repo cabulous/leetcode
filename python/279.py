@@ -10,32 +10,12 @@ class Solution:
             for square_num in square_nums:
                 if i < square_num:
                     break
-                dp[i] = min(dp[i], dp[i - square_num] + 1)
+                dp[i] = min(dp[i], 1 + dp[i - square_num])
 
         return int(dp[-1])
 
 
-class Solution:
-    def numSquares(self, n: int) -> int:
-        square_nums = [i ** 2 for i in range(int(math.sqrt(n)) + 1)]
-        level = 0
-        queue = {n}
-
-        while queue:
-            level += 1
-            next_queue = set()
-            for remainder in queue:
-                for square_num in square_nums:
-                    if remainder == square_num:
-                        return level
-                    if remainder < square_num:
-                        break
-                    next_queue.add(remainder - square_num)
-            queue = next_queue
-
-        return level
-
-
+# n=4^k(8m+7)
 class Solution:
     def numSquares(self, n: int) -> int:
         while n & 3 == 0:
