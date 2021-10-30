@@ -13,8 +13,8 @@ class MinStack:
     def pop(self) -> None:
         if self.min_stack[-1][0] == self.stack[-1]:
             self.min_stack[-1][1] -= 1
-        if self.min_stack[-1][1] == 0:
-            self.min_stack.pop()
+            if self.min_stack[-1][1] == 0:
+                self.min_stack.pop()
         self.stack.pop()
 
     def top(self) -> int:

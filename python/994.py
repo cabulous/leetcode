@@ -10,6 +10,7 @@ class Solution:
         queue = deque()
         fresh_orange = 0
         rows, cols = len(grid), len(grid[0])
+
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 1:
@@ -18,7 +19,6 @@ class Solution:
                     queue.append((r, c))
 
         queue.append((-1, -1))
-
         time_elapsed = -1
         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
