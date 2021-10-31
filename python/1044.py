@@ -5,14 +5,16 @@ from functools import reduce
 class Solution:
     def __init__(self):
         self.MOD = 2 ** 63 - 1
-        self.hashes = []
+        self.hash = []
         self.s_length = 0
 
     def longestDupSubstring(self, s: str) -> str:
         self.s_length = len(s)
-        self.hashes = [ord(c) - ord('a') for c in s]
+        self.hash = [ord(c) - ord('a') for c in s]
+
         lo, hi = 0, self.s_length
         res = 0
+
         while lo < hi:
             mi = (lo + hi + 1) // 2
             pos = self.test(mi)
@@ -21,14 +23,15 @@ class Solution:
                 res = pos
             else:
                 hi = mi - 1
+
         return s[res:res + lo]
 
     def test(self, length):
         p = pow(26, length, self.MOD)
-        cur = reduce(lambda x, y: (x * 26 + y) % self.MOD, self.hashes[:length], 0)
+        cur = reduce(lambda x, y: (26 * x + y) % self.MOD, self.hash[:length], 0)
         seen = {cur}
         for i in range(length, self.s_length):
-            cur = (cur * 26 + self.hashes[i] - self.hashes[i - length] * p) % self.MOD
+            cur = (cur * 26 + self.hash[i] - self.hash[i - length] * p) % self.MOD
             if cur in seen:
                 return i - length + 1
             seen.add(cur)
