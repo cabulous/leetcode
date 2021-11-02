@@ -60,6 +60,6 @@ class Solution:
             i, j = save.pop()
             if 0 <= i < rows and 0 <= j < cols and board[i][j] == 'O':
                 board[i][j] = 'Z'
-                save += (i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)
+                save += (i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)
 
         board[:] = [['XO'[c == 'Z'] for c in row] for row in board]

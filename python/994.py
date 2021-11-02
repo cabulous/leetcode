@@ -4,12 +4,12 @@ from collections import deque
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        if not grid or not grid[0]:
+        if not any(grid):
             return -1
 
-        queue = deque()
-        fresh_orange = 0
         rows, cols = len(grid), len(grid[0])
+        fresh_orange = 0
+        queue = deque()
 
         for r in range(rows):
             for c in range(cols):
