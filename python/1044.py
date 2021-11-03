@@ -28,7 +28,7 @@ class Solution:
 
     def test(self, length):
         p = pow(26, length, self.MOD)
-        cur = reduce(lambda x, y: (26 * x + y) % self.MOD, self.hash[:length], 0)
+        cur = reduce(lambda x, y: (x * 26 + y) % self.MOD, self.hash[:length], 0)
         seen = {cur}
         for i in range(length, self.s_length):
             cur = (cur * 26 + self.hash[i] - self.hash[i - length] * p) % self.MOD

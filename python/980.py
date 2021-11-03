@@ -16,6 +16,7 @@ class Solution:
 
         self.rows, self.cols = len(grid), len(grid[0])
         self.grid = grid
+
         start_row, start_col = 0, 0
         empty = 0
 
