@@ -7,7 +7,8 @@ class Solution:
         self.rows = 0
         self.cols = 0
         self.board = []
-        self.directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        self.BORDER_MARK = 'Z'
+        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     def solve(self, board: List[List[str]]) -> None:
         if not any(board):
@@ -19,24 +20,24 @@ class Solution:
         for row in [0, self.rows - 1]:
             for col in range(self.cols):
                 if board[row][col] == 'O':
-                    self.dfs(row, col)
+                    self.mark_border(row, col)
 
         for col in [0, self.cols - 1]:
             for row in range(self.rows):
                 if board[row][col] == 'O':
-                    self.dfs(row, col)
+                    self.mark_border(row, col)
 
         self.flip()
 
-    def dfs(self, row, col):
-        self.board[row][col] = 'Z'
+    def mark_border(self, row, col):
+        self.board[row][col] = self.BORDER_MARK
         for dr, dc in self.directions:
             nr, nc = row + dr, col + dc
             if nr < 0 or nr >= self.rows or nc < 0 or nc >= self.cols:
                 continue
             if self.board[nr][nc] != 'O':
                 continue
-            self.dfs(nr, nc)
+            self.mark_border(nr, nc)
 
     def flip(self):
         for row in range(self.rows):
