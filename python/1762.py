@@ -4,12 +4,12 @@ from typing import List
 class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
         ans = []
-        max_height = -1
+        max_height = 0
 
         for i in reversed(range(len(heights))):
-            if max_height < heights[i]:
-                ans.append(i)
+            if heights[i] > max_height:
                 max_height = heights[i]
+                ans.append(i)
 
         ans.reverse()
         return ans

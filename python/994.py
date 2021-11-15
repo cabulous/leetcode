@@ -31,10 +31,13 @@ class Solution:
             else:
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
-                    if 0 <= nr < rows and 0 <= nc < cols:
-                        if grid[nr][nc] == 1:
-                            grid[nr][nc] = 2
-                            fresh_orange -= 1
-                            queue.append((nr, nc))
+                    if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
+                        continue
+                    if grid[nr][nc] == 0:
+                        continue
+                    if grid[nr][nc] == 1:
+                        grid[nr][nc] = 2
+                        fresh_orange -= 1
+                        queue.append((nr, nc))
 
         return time_elapsed if fresh_orange == 0 else -1
