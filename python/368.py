@@ -8,4 +8,4 @@ class Solution:
         for num in sorted(nums):
             subsets[num] = max([subsets[k] for k in subsets if num % k == 0], key=len) | {num}
 
-        return list(max(subsets.values(), key=len))
+        return max(subsets.values(), key=len)
