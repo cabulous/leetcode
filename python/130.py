@@ -42,7 +42,7 @@ class Solution:
     def flip(self):
         for row in range(self.rows):
             for col in range(self.cols):
-                if self.board[row][col] == 'Z':
+                if self.board[row][col] == self.BORDER_MARK:
                     self.board[row][col] = 'O'
                 elif self.board[row][col] == 'O':
                     self.board[row][col] = 'X'
