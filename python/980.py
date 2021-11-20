@@ -6,7 +6,7 @@ class Solution:
         self.rows = 0
         self.cols = 0
         self.grid = []
-        self.path_count = 0
+        self.res = 0
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         self.VISITED_MARK = -2
 
@@ -22,19 +22,18 @@ class Solution:
 
         for row in range(self.rows):
             for col in range(self.cols):
-                cell = grid[row][col]
-                if cell >= 0:
+                if self.grid[row][col] >= 0:
                     empty += 1
-                if cell == 1:
+                if self.grid[row][col] == 1:
                     start_row, start_col = row, col
 
         self.backtrack(start_row, start_col, empty)
 
-        return self.path_count
+        return self.res
 
     def backtrack(self, row, col, remain):
         if self.grid[row][col] == 2 and remain == 1:
-            self.path_count += 1
+            self.res += 1
             return
 
         temp = self.grid[row][col]
