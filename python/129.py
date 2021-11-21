@@ -14,14 +14,14 @@ class Solution:
         stack = [(root, 0)]
 
         while stack:
-            node, cur_sum = stack.pop()
+            node, curr_sum = stack.pop()
             if node is None:
                 continue
-            cur_sum = cur_sum * 10 + node.val
+            curr_sum = curr_sum * 10 + node.val
             if node.left is None and node.right is None:
-                total += cur_sum
-            stack.append((node.left, cur_sum))
-            stack.append((node.right, cur_sum))
+                total += curr_sum
+            stack.append((node.left, curr_sum))
+            stack.append((node.right, curr_sum))
 
         return total
 
