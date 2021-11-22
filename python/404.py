@@ -10,12 +10,15 @@ class TreeNode:
 
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
         total = 0
         stack = [root]
 
         while stack:
             node = stack.pop()
-            if node is None:
+            if not node:
                 continue
             if self.is_leaf(node.left):
                 total += node.left.val
@@ -24,5 +27,5 @@ class Solution:
 
         return total
 
-    def is_leaf(self, node):
+    def is_leaf(self, node: Optional[TreeNode]):
         return node is not None and node.left is None and node.right is None
