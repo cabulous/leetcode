@@ -18,9 +18,9 @@ class Solution:
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         for i in range(len(nums)):
-            new_index = abs(nums[i]) - 1
-            if nums[new_index] > 0:
-                nums[new_index] *= -1
+            new_idx = abs(nums[i]) - 1
+            if nums[new_idx] > 0:
+                nums[new_idx] *= -1
 
         res = []
         for i in range(1, len(nums) + 1):

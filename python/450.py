@@ -26,9 +26,9 @@ class Solution:
                 root.val = temp.val
                 root.right = self.deleteNode(root.right, root.val)
 
-        elif root.val > key:
-            root.left = self.deleteNode(root.left, key)
-        else:
+        elif root.val < key:
             root.right = self.deleteNode(root.right, key)
+        else:
+            root.left = self.deleteNode(root.left, key)
 
         return root
