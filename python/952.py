@@ -6,7 +6,7 @@ class DisjointSetUnion(object):
 
     def __init__(self, size):
         self.parent = [i for i in range(size + 1)]
-        self.size = [1] * (size + 1)
+        self.rank = [1] * (size + 1)
 
     def find(self, x):
         if self.parent[x] != x:
@@ -17,10 +17,10 @@ class DisjointSetUnion(object):
         px, py = self.find(x), self.find(y)
         if px == py:
             return px
-        if self.size[px] > self.size[py]:
+        if self.rank[px] > self.rank[py]:
             px, py = py, px
         self.parent[px] = py
-        self.size[py] += self.size[px]
+        self.rank[py] += self.rank[px]
         return py
 
 
