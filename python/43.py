@@ -21,7 +21,9 @@ class Solution:
         if ans[-1] == 0:
             ans.pop()
 
-        return ''.join(str(digit) for digit in reversed(ans))
+        ans.reverse()
+
+        return ''.join(str(x) for x in ans)
 
 
 class Solution:
