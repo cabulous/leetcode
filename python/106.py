@@ -18,16 +18,15 @@ class Solution:
         self.idx_map = {val: idx for idx, val in enumerate(inorder)}
         return self.helper(0, len(inorder) - 1)
 
-    def helper(self, idx_left, idx_right):
-        if idx_left > idx_right:
+    def helper(self, left_idx, right_idx):
+        if left_idx > right_idx:
             return None
 
         val = self.postorder.pop()
-        root = TreeNode(val)
-
+        node = TreeNode(val)
         idx = self.idx_map[val]
 
-        root.right = self.helper(idx + 1, idx_right)
-        root.left = self.helper(idx_left, idx - 1)
+        node.right = self.helper(idx + 1, right_idx)
+        node.left = self.helper(left_idx, idx - 1)
 
-        return root
+        return node
