@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import List
 
 
-class DisjointSetUnion(object):
+class DisjointSetUnion:
 
     def __init__(self, size):
         self.parent = [i for i in range(size + 1)]
@@ -16,11 +16,11 @@ class DisjointSetUnion(object):
     def union(self, x, y):
         px, py = self.find(x), self.find(y)
         if px == py:
-            return px
+            return py
         if self.rank[px] > self.rank[py]:
             px, py = py, px
-        self.parent[px] = py
         self.rank[py] += self.rank[px]
+        self.parent[px] = py
         return py
 
 
