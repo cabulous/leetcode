@@ -2,6 +2,7 @@ from typing import List
 
 
 class Solution:
+
     def __init__(self):
         self.graph = []
         self.res = []
@@ -11,9 +12,10 @@ class Solution:
         self.dfs(0, [0])
         return self.res
 
-    def dfs(self, curr, path):
-        if curr == len(self.graph) - 1:
+    def dfs(self, node, path):
+        if node == len(self.graph) - 1:
             self.res.append(path)
             return
-        for i in self.graph[curr]:
-            self.dfs(i, path + [i])
+
+        for next_node in self.graph[node]:
+            self.dfs(next_node, path + [next_node])
