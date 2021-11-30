@@ -10,8 +10,7 @@ class TreeNode:
 
 class Solution:
     def largestBSTSubtree(self, root: Optional[TreeNode]) -> int:
-        count, _, _ = self.dfs(root)
-        return count
+        return self.dfs(root)[0]
 
     def dfs(self, node):
         if not node:
