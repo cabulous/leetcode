@@ -19,7 +19,7 @@ class Solution:
             if prev.val <= insertVal <= curr.val:
                 to_insert = True
             elif prev.val > curr.val:
-                if insertVal >= prev.val or insertVal <= curr.val:
+                if prev.val < insertVal or insertVal < curr.val:
                     to_insert = True
 
             if to_insert:
@@ -34,4 +34,3 @@ class Solution:
         prev.next = Node(insertVal, curr)
 
         return head
-

@@ -28,7 +28,7 @@ class Solution:
 
         prev, curr = 0, nums[0]
 
-        for i in range(1, len(nums)):
-            prev, curr = curr, max(curr, prev + nums[i])
+        for num in nums[1:]:
+            prev, curr = curr, max(curr, prev + num)
 
         return curr
