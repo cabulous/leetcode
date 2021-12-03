@@ -16,11 +16,14 @@ class Solution:
 
     def dfs(self, node: 'Node'):
         first = second = 0
+
         for kid in node.children:
             depth = self.dfs(kid)
             if depth > first:
                 first, second = depth, first
             elif depth > second:
                 second = depth
+
         self.res = max(self.res, first + second)
+
         return 1 + first

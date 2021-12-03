@@ -12,16 +12,18 @@ class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
         self.accounts = accounts
         self.visited = [False] * len(accounts)
-        res = []
 
         for i, account in enumerate(accounts):
             for email in account[1:]:
                 self.emails_accounts_map[email].append(i)
 
+        res = []
+
         for i, account in enumerate(accounts):
             if self.visited[i]:
                 continue
-            name, emails = account[0], set()
+            name = account[0]
+            emails = set()
             self.dfs(i, emails)
             res.append([name] + sorted(emails))
 
@@ -35,5 +37,5 @@ class Solution:
 
         for email in self.accounts[i][1:]:
             emails.add(email)
-            for nei in self.emails_accounts_map[email]:
-                self.dfs(nei, emails)
+            for account_idx in self.emails_accounts_map[email]:
+                self.dfs(account_idx, emails)
