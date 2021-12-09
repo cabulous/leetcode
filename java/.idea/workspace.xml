@@ -2,8 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b540908-872c-4cec-8be3-8f94cdc15df0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/numFactoredBinaryTrees.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../python/823.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/s540.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KthLargest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LRUCache146.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyHashMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addTwoNumbers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/countVowelStrings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/createSortedArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/decodeAtIndex.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deleteDuplicates.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/increasingTriplet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lengthOfLongestSubstringKDistinct.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/longestPalindrome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/longestValidParentheses.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maxCoins.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/minJumps.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mostCompetitive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nextGreaterElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/numFactoredBinaryTrees.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pseudoPalindromicPaths.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solveNQueens.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +48,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1lbpR05UGYMhywYoWvtsVUwoEcj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,7 +67,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -77,6 +100,9 @@
       <workItem from="1615130020613" duration="537000" />
       <workItem from="1615214081903" duration="3000" />
       <workItem from="1615649750907" duration="217000" />
+      <workItem from="1639061618365" duration="62000" />
+      <workItem from="1639061693938" duration="127000" />
+      <workItem from="1639061832317" duration="296000" />
     </task>
     <servers />
   </component>
