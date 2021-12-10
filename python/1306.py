@@ -13,10 +13,11 @@ class Solution:
                 return True
             if arr[node] < 0:
                 continue
+            arr[node] *= -1
             for i in [node + arr[node], node - arr[node]]:
                 if 0 <= i < n:
                     queue.append(i)
-            arr[node] *= -1
+
         return False
 
 
