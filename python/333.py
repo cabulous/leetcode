@@ -22,6 +22,6 @@ class Solution:
         is_valid_bst = left_max < node.val < right_min
 
         if is_valid_bst:
-            return left_count + right_count + 1, min(left_min, node.val), max(right_max, node.val)
+            return left_count + right_count + 1, min(node.val, left_min), max(node.val, right_max)
 
         return max(left_count, right_count), float('-inf'), float('inf')
