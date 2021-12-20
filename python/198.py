@@ -26,9 +26,9 @@ class Solution:
         if not nums:
             return 0
 
-        prev, curr = 0, nums[0]
+        prev2, prev1 = 0, nums[0]
 
         for num in nums[1:]:
-            prev, curr = curr, max(curr, prev + num)
+            prev2, prev1 = prev1, max(prev1, prev2 + num)
 
-        return curr
+        return prev1
