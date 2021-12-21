@@ -14,6 +14,7 @@ class Solution:
             graph[v].add(u)
 
         res = set(range(n))
+
         while len(res) > 2:
             leaves = set(i for i in res if len(graph[i]) == 1)
             res -= leaves
