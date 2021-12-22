@@ -3,6 +3,9 @@ from typing import List
 
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
+        if not any(matrix):
+            return 0
+
         rows, cols = len(matrix), len(matrix[0])
         dp = [[0] * cols for _ in range(rows)]
         res = 0
