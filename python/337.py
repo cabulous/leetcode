@@ -18,7 +18,7 @@ class Solution:
         if not node:
             return 0, 0
 
-        left, right = self.helper(node.left), self.helper(node.right)
+        left, right = map(self.helper, [node.left, node.right])
 
         now = node.val + left[1] + right[1]
         later = max(left) + max(right)
