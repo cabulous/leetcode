@@ -8,12 +8,12 @@ class Solution:
         min_diff = float('inf')
         res = []
 
-        for i in range(len(arr) - 1):
-            curr_diff = arr[i + 1] - arr[i]
+        for i in range(1, len(arr)):
+            curr_diff = arr[i] - arr[i - 1]
             if curr_diff == min_diff:
-                res.append([arr[i], arr[i + 1]])
+                res.append([arr[i - 1], arr[i]])
             elif curr_diff < min_diff:
-                res = [[arr[i], arr[i + 1]]]
                 min_diff = curr_diff
+                res = [[arr[i - 1], arr[i]]]
 
         return res

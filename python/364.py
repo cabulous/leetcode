@@ -48,15 +48,15 @@ class Solution:
         stack = []
 
         while curr_level:
-            total = 0
             next_level = []
+            total = 0
             for item in curr_level:
                 if item.isInteger():
                     total += item.getInteger()
                 else:
                     next_level.extend(item.getList())
-            curr_level = next_level
             stack.append(total)
+            curr_level = next_level
 
         res = 0
         for i, n in enumerate(stack[::-1]):

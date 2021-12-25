@@ -1,4 +1,5 @@
 from collections import Counter
+from functools import lru_cache
 from typing import List
 
 
@@ -6,19 +7,16 @@ from typing import List
 class Solution:
 
     def __init__(self):
-        self.memo = {}
         self.stickers = []
 
     def minStickers(self, stickers: List[str], target: str) -> int:
-        self.stickers = [Counter(sticker) for sticker in stickers if set(sticker) & set(target)]
+        self.stickers = [Counter(s) for s in stickers if set(s) & set(target)]
         return self.dfs(target)
 
+    @lru_cache(None)
     def dfs(self, target):
         if not target:
             return 0
-
-        if target in self.memo:
-            return self.memo[target]
 
         target_counter = Counter(target)
         res = float('inf')
@@ -31,6 +29,4 @@ class Solution:
             if nxt != -1:
                 res = min(res, nxt + 1)
 
-        self.memo[target] = -1 if res == float('inf') else res
-
-        return self.memo[target]
+        return -1 if res == float('inf') else res
