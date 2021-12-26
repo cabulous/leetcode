@@ -4,7 +4,6 @@ from typing import List
 
 class Solution:
     def canReach(self, arr: List[int], start: int) -> bool:
-        n = len(arr)
         queue = deque([start])
 
         while queue:
@@ -15,7 +14,7 @@ class Solution:
                 continue
             arr[node] *= -1
             for i in [node + arr[node], node - arr[node]]:
-                if 0 <= i < n:
+                if 0 <= i < len(arr):
                     queue.append(i)
 
         return False

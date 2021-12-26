@@ -3,7 +3,7 @@ class Solution:
         if str1 == str2:
             return True
 
-        conversion_map = dict()
+        conversion_map = {}
         unique_char_str2 = set()
 
         for c1, c2 in zip(str1, str2):
