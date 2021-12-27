@@ -10,13 +10,13 @@ class Solution:
         while bb > 0:
             aa, bb = bb, aa % bb
 
-        l, r, lcm = 2, 10 ** 14, a * b // aa
+        left, right, lcm = 2, 10 ** 14, a * b // aa
 
-        while l < r:
-            m = (l + r) // 2
-            if m // a + m // b - m // lcm < n:
-                l = m + 1
+        while left < right:
+            mid = left + (right - left) // 2
+            if mid // a + mid // b - mid // lcm < n:
+                left = mid + 1
             else:
-                r = m
+                right = mid
 
-        return l % MOD
+        return left % MOD

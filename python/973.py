@@ -1,5 +1,4 @@
 import heapq
-from math import sqrt
 from typing import List
 
 
