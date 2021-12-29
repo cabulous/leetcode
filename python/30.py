@@ -25,8 +25,8 @@ class Solution:
                     count += 1
                     while sub_counter[word] > word_counter[word]:
                         sub_counter[s[left:left + word_len]] -= 1
-                        left += word_len
                         count -= 1
+                        left += word_len
                     if count == num_of_words:
                         res.append(left)
 

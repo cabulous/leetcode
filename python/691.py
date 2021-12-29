@@ -13,7 +13,7 @@ class Solution:
         self.stickers = [Counter(s) for s in stickers if set(s) & set(target)]
         return self.dfs(target)
 
-    @lru_cache(None)
+    @lru_cache()
     def dfs(self, target):
         if not target:
             return 0
