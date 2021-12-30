@@ -11,7 +11,7 @@ class Leaderboard:
         self.scores[playerId] += score
 
     def top(self, K: int) -> int:
-        return sum(v for i, v in self.scores.most_common(K))
+        return sum(v for _, v in self.scores.most_common(K))
 
     def reset(self, playerId: int) -> None:
         self.scores[playerId] = 0
