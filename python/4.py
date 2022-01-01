@@ -19,10 +19,10 @@ class Solution:
         median1, median2 = nums1[idx1], nums2[idx2]
 
         if idx1 + idx2 < k:
-            if median1 > median2:
-                return self.kth(nums1, nums2[idx2 + 1:], k - idx2 - 1)
-            return self.kth(nums1[idx1 + 1:], nums2, k - idx1 - 1)
+            if median1 < median2:
+                return self.kth(nums1[idx1 + 1:], nums2, k - idx1 - 1)
+            return self.kth(nums1, nums2[idx2 + 1:], k - idx2 - 1)
 
-        if median1 > median2:
-            return self.kth(nums1[:idx1], nums2, k)
-        return self.kth(nums1, nums2[:idx2], k)
+        if median1 < median2:
+            return self.kth(nums1, nums2[:idx2], k)
+        return self.kth(nums1[:idx1], nums2, k)
