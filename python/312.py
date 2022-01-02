@@ -19,8 +19,9 @@ class Solution:
         if left + 1 == right:
             return 0
         return max(
-            self.nums[left] * self.nums[i] * self.nums[right] + self.helper(left, i) + self.helper(i, right) for i in
-            range(left + 1, right))
+            self.nums[left] * self.nums[i] * self.nums[right] + self.helper(left, i) + self.helper(i, right)
+            for i in range(left + 1, right)
+        )
 
 
 # DP bottom-up
