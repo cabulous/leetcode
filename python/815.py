@@ -19,6 +19,7 @@ class Solution:
             for bus_idx in to_routes[stop]:
                 for next_stop in routes[bus_idx]:
                     if next_stop not in seen:
+                        seen.add(next_stop)
                         queue.append((next_stop, count + 1))
                 routes[bus_idx] = []
 

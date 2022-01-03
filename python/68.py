@@ -15,7 +15,7 @@ class Solution:
                 res.append(''.join(cur))
                 letters_count = 0
                 cur = []
-            cur.append(word)
             letters_count += len(word)
+            cur.append(word)
 
         return res + [' '.join(cur).ljust(maxWidth)]
