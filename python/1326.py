@@ -6,10 +6,10 @@ class Solution:
     def minTaps(self, n: int, ranges: List[int]) -> int:
         dp = [0] + [n + 2] * n
 
-        for i, x in enumerate(ranges):
-            left = max(0, i - x + 1)
-            right = min(n, i + x) + 1
+        for i, tap_range in enumerate(ranges):
+            left = max(i - tap_range, 0) + 1
+            right = min(i + tap_range, n) + 1
             for j in range(left, right):
-                dp[j] = min(dp[j], dp[max(0, i - x)] + 1)
+                dp[j] = min(dp[j], dp[max(i - tap_range, 0)] + 1)
 
         return dp[n] if dp[n] < n + 2 else -1

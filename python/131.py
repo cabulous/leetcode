@@ -1,17 +1,23 @@
-# dfs
 # https://leetcode.com/problems/palindrome-partitioning/discuss/41973/Python-recursiveiterative-backtracking-solution
 class Solution:
-    def partition(self, s: str) -> [[str]]:
-        def dfs(sub_str, cur_list):
-            if not sub_str:
-                res.append(cur_list[:])
-                return
-            for i in range(1, len(sub_str) + 1):
-                if sub_str[:i] == sub_str[i - 1::-1]:
-                    cur_list.append(sub_str[:i])
-                    dfs(sub_str[i:], cur_list)
-                    cur_list.pop()
 
-        res = []
-        dfs(s, [])
-        return res
+    def __init__(self):
+        self.res = []
+
+    def partition(self, s: str) -> [[str]]:
+        self.helper(s, [])
+        return self.res
+
+    def helper(self, remain, curr_list):
+        if not remain:
+            self.res.append(curr_list[:])
+            return
+        for i in range(1, len(remain) + 1):
+            curr_str = remain[:i]
+            if self.is_palindrome(curr_str):
+                curr_list.append(curr_str)
+                self.helper(remain[i:], curr_list)
+                curr_list.pop()
+
+    def is_palindrome(self, string):
+        return string == string[::-1]

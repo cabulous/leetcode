@@ -3,15 +3,15 @@ from typing import List
 
 class Solution:
     def atMostNGivenDigitSet(self, digits: List[str], n: int) -> int:
-        s = str(n)
-        k = len(s)
-        dp = [0] * k + [1]
+        n_str = str(n)
+        n_length = len(n_str)
+        dp = [0] * n_length + [1]
 
-        for i in reversed(range(k)):
+        for i in reversed(range(n_length)):
             for d in digits:
-                if d < s[i]:
-                    dp[i] += len(digits) ** (k - i - 1)
-                elif d == s[i]:
+                if d < n_str[i]:
+                    dp[i] += len(digits) ** (n_length - i - 1)
+                elif d == n_str[i]:
                     dp[i] += dp[i + 1]
 
-        return dp[0] + sum(len(digits) ** i for i in range(1, k))
+        return dp[0] + sum(len(digits) ** i for i in range(1, n_length))

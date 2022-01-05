@@ -21,7 +21,7 @@ class Solution:
         cur_max = max(cur_max, node.val)
         cur_min = min(cur_min, node.val)
 
-        left = self.helper(node.left, cur_max, cur_min)
-        right = self.helper(node.right, cur_max, cur_min)
+        left_diff = self.helper(node.left, cur_max, cur_min)
+        right_diff = self.helper(node.right, cur_max, cur_min)
 
-        return max(left, right)
+        return max(left_diff, right_diff)
