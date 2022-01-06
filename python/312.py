@@ -3,6 +3,7 @@ from functools import lru_cache
 
 # DP top-down
 class Solution:
+
     def __init__(self):
         self.nums = []
 
