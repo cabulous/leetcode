@@ -5,17 +5,17 @@ from typing import List
 class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
         letters_count = 0
-        cur = []
+        curr_line = []
         res = []
 
         for word in words:
-            if letters_count + len(word) + len(cur) > maxWidth:
+            if letters_count + len(word) + len(curr_line) > maxWidth:
                 for i in range(maxWidth - letters_count):
-                    cur[i % (len(cur) - 1 or 1)] += ' '
-                res.append(''.join(cur))
+                    curr_line[i % (len(curr_line) - 1 or 1)] += ' '
+                res.append(''.join(curr_line))
                 letters_count = 0
-                cur = []
+                curr_line = []
             letters_count += len(word)
-            cur.append(word)
+            curr_line.append(word)
 
-        return res + [' '.join(cur).ljust(maxWidth)]
+        return res + [' '.join(curr_line).ljust(maxWidth)]
