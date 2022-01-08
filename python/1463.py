@@ -2,56 +2,61 @@ from functools import lru_cache
 import math
 
 
-# dp dfs
+# dfs
 class Solution:
+
+    def __init__(self):
+        self.grid = []
+        self.rows = 0
+        self.cols = 0
+
     def cherryPickup(self, grid: [[int]]) -> int:
-        if not grid or not grid[0]:
+        if not any(grid):
             return 0
 
-        m, n = len(grid), len(grid[0])
+        self.grid = grid
+        self.rows, self.cols = len(grid), len(grid[0])
 
-        @lru_cache(None)
-        def dfs(row, col1, col2):
-            if col1 < 0 or col1 >= n or col2 < 0 or col2 >= n:
-                return -math.inf
-            result = 0
-            result += grid[row][col1]
-            if col1 != col2:
-                result += grid[row][col2]
-            if row != m - 1:
-                result += max(
-                    dfs(row + 1, new_col1, new_col2)
-                    for new_col1 in [col1 - 1, col1, col1 + 1]
-                    for new_col2 in [col2 - 1, col2, col2 + 1]
-                )
-            return result
+        return self.helper(0, 0, self.cols - 1)
 
-        return dfs(0, 0, n - 1)
+    @lru_cache(None)
+    def helper(self, row, col1, col2):
+        if col1 < 0 or col1 >= self.cols or col2 < 0 or col2 >= self.cols:
+            return -math.inf
+        result = self.grid[row][col1]
+        if col1 != col2:
+            result += self.grid[row][col2]
+        if row != self.rows - 1:
+            result += max(
+                self.helper(row + 1, new_col1, new_col2)
+                for new_col1 in [col1 - 1, col1, col1 + 1]
+                for new_col2 in [col2 - 1, col2, col2 + 1]
+            )
+        return result
 
 
 # dp
 class Solution:
     def cherryPickup(self, grid: [[int]]) -> int:
-        if not grid or not grid[0]:
+        if not any(grid):
             return 0
 
-        m, n = len(grid), len(grid[0])
-        dp = [[[0] * n for _ in range(n)] for _ in range(m)]
+        rows, cols = len(grid), len(grid[0])
+        dp = [[[0] * cols for _ in range(cols)] for _ in range(rows)]
 
-        for row in reversed(range(m)):
-            for col1 in range(n):
-                for col2 in range(n):
-                    result = 0
-                    result += grid[row][col1]
-                    if col1 != col2:
-                        result += grid[row][col2]
-                    if row != m - 1:
+        for r in reversed(range(rows)):
+            for c1 in range(cols):
+                for c2 in range(cols):
+                    result = grid[r][c1]
+                    if c1 != c2:
+                        result += grid[r][c2]
+                    if r != rows - 1:
                         result += max(
-                            dp[row + 1][new_col1][new_col2]
-                            for new_col1 in [col1 - 1, col1, col1 + 1]
-                            for new_col2 in [col2 - 1, col2, col2 + 1]
-                            if 0 <= new_col1 < n and 0 <= new_col2 < n
+                            dp[r + 1][nc1][nc2]
+                            for nc1 in [c1 - 1, c1, c1 + 1]
+                            for nc2 in [c2 - 1, c2, c2 + 1]
+                            if 0 <= nc1 < cols and 0 <= nc2 < cols
                         )
-                    dp[row][col1][col2] = result
+                    dp[r][c1][c2] = result
 
         return dp[0][0][-1]
