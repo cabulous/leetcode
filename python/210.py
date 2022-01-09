@@ -15,13 +15,13 @@ class Solution:
         res = []
 
         while zero_in_degree:
-            vertex = zero_in_degree.popleft()
-            res.append(vertex)
-            if vertex not in adj_list:
+            course = zero_in_degree.popleft()
+            res.append(course)
+            if course not in adj_list:
                 continue
-            for nei in adj_list[vertex]:
-                in_degree[nei] -= 1
-                if in_degree[nei] == 0:
-                    zero_in_degree.append(nei)
+            for next_course in adj_list[course]:
+                in_degree[next_course] -= 1
+                if in_degree[next_course] == 0:
+                    zero_in_degree.append(next_course)
 
         return res if len(res) == numCourses else []
