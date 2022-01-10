@@ -22,7 +22,7 @@ class DLinkedList:
         return self._size
 
     def append(self, node=None):
-        if not node:
+        if node is None:
             return
         node.next = self._sentinel.next
         node.prev = self._sentinel
@@ -32,8 +32,8 @@ class DLinkedList:
 
     def pop(self, node=None):
         if self._size == 0:
-            return
-        if not node:
+            return None
+        if node is None:
             node = self._sentinel.prev
         node.prev.next, node.next.prev = node.next, node.prev
         self._size -= 1
@@ -50,11 +50,11 @@ class LFUCache:
         self._min_freq = 0
 
     def _update(self, node=None):
-        if not node:
+        if node is None:
             return
         freq = node.freq
         self._freq[freq].pop(node)
-        if self._min_freq == freq and not self._freq[freq]:
+        if self._min_freq == freq and len(self._freq[freq]) == 0:
             self._min_freq += 1
         node.freq += 1
         self._freq[node.freq].append(node)
@@ -72,15 +72,15 @@ class LFUCache:
 
         if key in self._node:
             node = self._node[key]
-            self._update(node)
             node.val = value
+            self._update(node)
         else:
             if self._size == self._capacity:
                 node = self._freq[self._min_freq].pop()
                 del self._node[node.key]
                 self._size -= 1
             node = Node(key, value)
+            self._size += 1
             self._node[key] = node
             self._freq[1].append(node)
             self._min_freq = 1
-            self._size += 1

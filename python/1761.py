@@ -17,7 +17,7 @@ class Solution:
             in_degree_sum = len(graph[u]) + len(graph[v])
             for in_degree, node in degree_node:
                 if node in graph[u] and node in graph[v]:
-                    res = min(res, in_degree + in_degree_sum)
+                    res = min(res, in_degree_sum + in_degree)
                     break
 
         return res - 6 if res != float('inf') else -1

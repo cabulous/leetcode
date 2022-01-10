@@ -5,6 +5,9 @@ class Solution:
         self.res = []
 
     def partition(self, s: str) -> [[str]]:
+        if not s:
+            return []
+
         self.helper(s, [])
         return self.res
 
@@ -12,6 +15,7 @@ class Solution:
         if not remain:
             self.res.append(curr_list[:])
             return
+
         for i in range(1, len(remain) + 1):
             curr_str = remain[:i]
             if self.is_palindrome(curr_str):

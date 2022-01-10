@@ -29,4 +29,4 @@ class Solution:
             if nxt != -1:
                 res = min(res, nxt + 1)
 
-        return -1 if res == float('inf') else res
+        return res if res != float('inf') else -1
