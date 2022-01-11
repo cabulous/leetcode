@@ -16,7 +16,7 @@ class Solution:
         for curr in flatten_schedule[1:]:
             if curr.start <= prev.end < curr.end:
                 prev.end = curr.end
-            elif curr.start > prev.end:
+            elif prev.end < curr.start:
                 res.append(Interval(prev.end, curr.start))
                 prev = curr
 

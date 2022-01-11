@@ -6,8 +6,8 @@ class Solution:
         stops = []
 
         for passenger_count, start, end in trips:
-            stops.append([start, passenger_count])
-            stops.append([end, -passenger_count])
+            stops.append((start, passenger_count))
+            stops.append((end, -passenger_count))
 
         stops.sort()
 
