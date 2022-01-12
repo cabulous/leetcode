@@ -12,7 +12,7 @@ class Solution:
         for start, end in tickets:
             self.flight_map[start].append(end)
 
-        for start, itinerary in self.flight_map.items():
+        for _, itinerary in self.flight_map.items():
             itinerary.sort(reverse=True)
 
         self.dfs('JFK')

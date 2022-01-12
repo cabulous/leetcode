@@ -14,7 +14,7 @@ class Solution:
         return [' '.join(words) for words in self.memo[s]]
 
     def helper(self, s):
-        if not s:
+        if len(s) == 0:
             return [[]]
 
         if s in self.memo:
