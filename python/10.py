@@ -19,6 +19,9 @@ class Solution:
         self.p = ''
 
     def isMatch(self, s: str, p: str) -> bool:
+        if not p:
+            return not s
+
         self.s, self.p = s, p
         return self.dp(0, 0)
 

@@ -10,7 +10,7 @@ class Solution:
 
         for i in range(point_count):
             slopes = defaultdict(lambda: 1)
-            slopes['inf'] = 1
+            slopes['vertical'] = 1
             same = 0
             x1, y1 = points[i]
 
@@ -18,12 +18,12 @@ class Solution:
                 x2, y2 = points[j]
                 dx, dy = x1 - x2, y1 - y2
 
-                if dx == 0 and dy == 0:
+                if dx == dy == 0:
                     same += 1
                     continue
 
                 if dx == 0:
-                    slope_key = 'inf'
+                    slope_key = 'vertical'
                 else:
                     slope_key = self.frac(dx, dy)
 
