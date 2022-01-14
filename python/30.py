@@ -6,7 +6,7 @@ from typing import List
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
         word_counter = Counter(words)
-        num_of_words = len(words)
+        target_word_count = len(words)
         word_len = len(words[0])
         res = []
 
@@ -27,7 +27,7 @@ class Solution:
                         sub_counter[s[left:left + word_len]] -= 1
                         count -= 1
                         left += word_len
-                    if count == num_of_words:
+                    if count == target_word_count:
                         res.append(left)
 
                 else:
