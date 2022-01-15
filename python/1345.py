@@ -5,6 +5,7 @@ from collections import defaultdict
 class Solution:
     def minJumps(self, arr: [int]) -> int:
         n = len(arr)
+
         if n <= 1:
             return 0
 
@@ -17,21 +18,21 @@ class Solution:
         step = 0
 
         while cur:
-            nex = []
+            nxt = []
             for node in cur:
                 if node == n - 1:
                     return step
-                for child in graph[arr[node]]:
-                    if child not in visited:
-                        visited.add(child)
-                        nex.append(child)
+                for next_node in graph[arr[node]]:
+                    if next_node not in visited:
+                        visited.add(next_node)
+                        nxt.append(next_node)
                 graph[arr[node]].clear()
-                for child in [node - 1, node + 1]:
-                    if 0 <= child < n and child not in visited:
-                        visited.add(child)
-                        nex.append(child)
-            cur = nex
+                for next_node in [node - 1, node + 1]:
+                    if 0 <= next_node < n and next_node not in visited:
+                        visited.add(next_node)
+                        nxt.append(next_node)
             step += 1
+            cur = nxt
 
         return -1
 
@@ -40,6 +41,7 @@ class Solution:
 class Solution:
     def minJumps(self, arr: [int]) -> int:
         n = len(arr)
+
         if n <= 1:
             return 0
 
@@ -55,22 +57,22 @@ class Solution:
         while cur:
             if len(cur) > len(other):
                 cur, other = other, cur
-            nex = []
+            nxt = []
             for node in cur:
-                for child in graph[arr[node]]:
-                    if child in other:
+                for next_node in graph[arr[node]]:
+                    if next_node in other:
                         return step + 1
-                    if child not in visited:
-                        visited.add(child)
-                        nex.append(child)
+                    if next_node not in visited:
+                        visited.add(next_node)
+                        nxt.append(next_node)
                 graph[arr[node]].clear()
-                for child in [node - 1, node + 1]:
-                    if child in other:
+                for next_node in [node - 1, node + 1]:
+                    if next_node in other:
                         return step + 1
-                    if 0 <= child < n and child not in visited:
-                        visited.add(child)
-                        nex.append(child)
-            cur = nex
+                    if 0 <= next_node < n and next_node not in visited:
+                        visited.add(next_node)
+                        nxt.append(next_node)
             step += 1
+            cur = nxt
 
         return -1
