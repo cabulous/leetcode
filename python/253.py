@@ -7,16 +7,16 @@ class Solution:
         if not intervals:
             return 0
 
-        free_rooms = []
+        used_rooms = []
         intervals.sort(key=lambda x: x[0])
-        heapq.heappush(free_rooms, intervals[0][1])
+        heapq.heappush(used_rooms, intervals[0][1])
 
         for start, end in intervals[1:]:
-            if free_rooms[0] <= start:
-                heapq.heappop(free_rooms)
-            heapq.heappush(free_rooms, end)
+            if used_rooms[0] <= start:
+                heapq.heappop(used_rooms)
+            heapq.heappush(used_rooms, end)
 
-        return len(free_rooms)
+        return len(used_rooms)
 
 
 class Solution:

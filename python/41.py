@@ -9,7 +9,7 @@ class Solution:
             return 1
 
         for i in range(n):
-            if nums[i] <= 0 or nums[i] > n:
+            if nums[i] <= 0 or n < nums[i]:
                 nums[i] = 1
 
         for i in range(n):

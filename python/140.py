@@ -23,7 +23,7 @@ class Solution:
         for end_index in range(1, len(s) + 1):
             word = s[:end_index]
             if word in self.word_set:
-                for sub_sentence in self.helper(s[end_index:]):
-                    self.memo[s].append([word] + sub_sentence)
+                for next_words in self.helper(s[end_index:]):
+                    self.memo[s].append([word] + next_words)
 
         return self.memo[s]

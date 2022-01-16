@@ -32,18 +32,14 @@ class Solution:
         self.res = 0
 
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-
         self.helper(root, 0)
-
         return self.res
 
-    def helper(self, node, cur_sum):
-        cur_sum = (cur_sum << 1) | node.val
+    def helper(self, node, cur_num):
+        cur_num = (cur_num << 1) | node.val
         if node.left is None and node.right is None:
-            self.res += cur_sum
+            self.res += cur_num
         if node.left:
-            self.helper(node.left, cur_sum)
+            self.helper(node.left, cur_num)
         if node.right:
-            self.helper(node.right, cur_sum)
+            self.helper(node.right, cur_num)

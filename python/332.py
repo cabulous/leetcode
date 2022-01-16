@@ -12,8 +12,8 @@ class Solution:
         for start, end in tickets:
             self.flight_map[start].append(end)
 
-        for _, itinerary in self.flight_map.items():
-            itinerary.sort(reverse=True)
+        for dest_list in self.flight_map.values():
+            dest_list.sort(reverse=True)
 
         self.dfs('JFK')
 
@@ -32,24 +32,25 @@ class Solution:
     def __init__(self):
         self.flight_map = defaultdict(list)
         self.visited = {}
-        self.flights = 0
+        self.flight_count = 0
         self.res = []
 
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        self.flight_count = len(tickets)
+
         for start, end in tickets:
             self.flight_map[start].append(end)
 
-        for start, itinerary in self.flight_map.items():
-            itinerary.sort()
-            self.visited[start] = [False] * len(itinerary)
+        for start, dest_list in self.flight_map.items():
+            dest_list.sort()
+            self.visited[start] = [False] * len(dest_list)
 
-        self.flights = len(tickets)
         self.backtrack('JFK', ['JFK'])
 
         return self.res
 
     def backtrack(self, start, route):
-        if len(route) == self.flights + 1:
+        if len(route) == self.flight_count + 1:
             self.res = route
             return True
 
