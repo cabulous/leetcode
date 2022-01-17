@@ -27,16 +27,16 @@ class Solution:
 class Solution:
     def maxDistToClosest(self, seats: List[int]) -> int:
         people = (i for i, seat in enumerate(seats) if seat == 1)
-        prev, nxt = None, next(people, None)
+        pre, nxt = None, next(people, None)
         res = 0
 
         for i, seat in enumerate(seats):
             if seat == 1:
-                prev = i
+                pre = i
             else:
                 while nxt is not None and nxt < i:
                     nxt = next(people, None)
-                left = float('inf') if prev is None else i - prev
+                left = float('inf') if pre is None else i - pre
                 right = float('inf') if nxt is None else nxt - i
                 res = max(res, min(left, right))
 
