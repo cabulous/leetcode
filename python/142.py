@@ -1,41 +1,48 @@
+from typing import Optional
+
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
 # hash table
 class Solution:
-    def detectCycle(self, head):
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         visited = set()
-        while head:
-            if head in visited:
-                return head
-            visited.add(head)
-            head = head.next
+        curr = head
+
+        while curr:
+            if curr in visited:
+                return curr
+            visited.add(curr)
+            curr = curr.next
+
         return None
 
 
 # two pointers
 class Solution:
     def detectCycle(self, head):
-        def getIntersect(head):
-            slow = head
-            fast = head
-            while fast and fast.next:
-                slow = slow.next
-                fast = fast.next.next
-                if slow == fast:
-                    return slow
+        slow = fast = head
+        intersect = None
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                intersect = slow
+                break
+
+        if intersect is None:
             return None
 
-        if not head:
-            return None
+        pointer1 = head
+        pointer2 = intersect
 
-        intersect = getIntersect(head)
+        while pointer1 != pointer2:
+            pointer1 = pointer1.next
+            pointer2 = pointer2.next
 
-        if not intersect:
-            return None
-
-        ptr1 = head
-        ptr2 = intersect
-
-        while ptr1 != ptr2:
-            ptr1 = ptr1.next
-            ptr2 = ptr2.next
-
-        return ptr1
+        return pointer1

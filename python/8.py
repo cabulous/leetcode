@@ -6,21 +6,20 @@ class Solution:
     def myAtoi(self, s: str) -> int:
         sign = 1
         index = 0
-        n = len(s)
+        s_len = len(s)
         res = 0
 
-        while index < n and s[index] == ' ':
+        while index < s_len and s[index] == ' ':
             index += 1
 
-        if index < n and s[index] == '+':
+        if index < s_len and s[index] == '+':
             sign = 1
             index += 1
-        elif index < n and s[index] == '-':
+        elif index < s_len and s[index] == '-':
             sign = -1
             index += 1
 
-        while index < n and s[index].isdigit():
-
+        while index < s_len and s[index].isdigit():
             digit = int(s[index])
             is_res_overflow = res > INT_MAX // 10
             is_sum_overflow = res == INT_MAX // 10 and digit > INT_MAX % 10
