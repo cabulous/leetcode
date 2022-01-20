@@ -9,7 +9,7 @@ class Solution:
         res = []
 
         for word in words:
-            if letters_count + len(word) + len(curr_line) > maxWidth:
+            if letters_count + len(curr_line) + len(word) > maxWidth:
                 for i in range(maxWidth - letters_count):
                     curr_line[i % (len(curr_line) - 1 or 1)] += ' '
                 res.append(''.join(curr_line))

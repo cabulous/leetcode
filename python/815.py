@@ -11,16 +11,16 @@ class Solution:
                 to_routes[stop].add(bus_idx)
 
         queue = [(source, 0)]
-        seen = {source}
+        visited = {source}
 
         for stop, count in queue:
             if stop == target:
                 return count
             for bus_idx in to_routes[stop]:
                 for next_stop in routes[bus_idx]:
-                    if next_stop not in seen:
-                        seen.add(next_stop)
+                    if next_stop not in visited:
+                        visited.add(next_stop)
                         queue.append((next_stop, count + 1))
-                routes[bus_idx] = []
+                routes[bus_idx].clear()
 
         return -1
