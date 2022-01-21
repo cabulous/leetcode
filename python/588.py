@@ -21,7 +21,7 @@ class FileSystem:
         if len(path) == 1:
             return node
         for word in path.split('/')[1:]:
-            if not node.child.get(word) and not create:
+            if word not in node.child and not create:
                 return None
             node = node.child[word]
         return node

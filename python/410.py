@@ -23,10 +23,10 @@ class Solution:
 
         return left
 
-    def can_split(self, x):
+    def can_split(self, sum_max):
         curr = cuts = 0
         for num in self.nums:
-            if curr + num > x:
+            if curr + num > sum_max:
                 cuts += 1
                 curr = 0
             curr += num
