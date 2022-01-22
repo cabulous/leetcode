@@ -16,7 +16,8 @@ class Solution:
 
         while index < len(password):
             if password[index] == password[index - 1] == password[index - 2]:
-                length = 2
+                length = 3
+                index += 1
                 while index < len(password) and password[index] == password[index - 1]:
                     length += 1
                     index += 1

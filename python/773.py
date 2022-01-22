@@ -26,9 +26,9 @@ class Solution:
                     nr, nc = zero_row_idx + dr, zero_col_idx + dc
                     if 0 <= nr < height and 0 <= nc < width:
                         next_zero_idx = nr * width + nc
-                        ch = [digit for digit in curr_s]
-                        ch[zero_idx], ch[next_zero_idx] = ch[next_zero_idx], '0'
-                        next_s = ''.join(ch)
+                        curr_board = [digit for digit in curr_s]
+                        curr_board[zero_idx], curr_board[next_zero_idx] = curr_board[next_zero_idx], '0'
+                        next_s = ''.join(curr_board)
                         if next_s not in seen:
                             seen.add(next_s)
                             queue.append((next_s, next_zero_idx))

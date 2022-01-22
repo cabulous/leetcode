@@ -12,4 +12,4 @@ class Solution:
             for j in range(left, right):
                 dp[j] = min(dp[j], dp[max(i - tap_range, 0)] + 1)
 
-        return dp[n] if dp[n] < n + 2 else -1
+        return dp[-1] if dp[-1] < n + 2 else -1
