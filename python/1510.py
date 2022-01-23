@@ -18,14 +18,12 @@ class Solution:
     def winnerSquareGame(self, n: int) -> bool:
         return self.dfs(n)
 
-    @lru_cache()
+    @lru_cache(None)
     def dfs(self, remain):
         if remain == 0:
             return False
 
-        sqrt_root = int(remain ** 0.5)
-
-        for i in range(1, sqrt_root + 1):
+        for i in range(1, int(remain ** 0.5) + 1):
             if not self.dfs(remain - i * i):
                 return True
 

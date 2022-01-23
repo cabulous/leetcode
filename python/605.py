@@ -6,8 +6,8 @@ class Solution:
         if n == 0:
             return True
 
-        remaining = n
         flowerbed = [0] + flowerbed + [0]
+        remaining = n
 
         for i in range(1, len(flowerbed) - 1):
             if flowerbed[i - 1] == flowerbed[i] == flowerbed[i + 1] == 0:

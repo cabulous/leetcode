@@ -12,7 +12,7 @@ class TreeNode:
 class Solution:
     def findNearestRightNode(self, root: TreeNode, u: TreeNode) -> Optional[TreeNode]:
         if not root:
-            return root
+            return None
 
         curr_level = deque([root])
 
