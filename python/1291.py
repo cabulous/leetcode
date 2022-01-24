@@ -21,9 +21,9 @@ class Seqs:
 
     def __init__(self):
         self.res = []
-        self.run()
+        self._run()
 
-    def run(self):
+    def _run(self):
         sample = '123456789'
         length_max = 10
 
@@ -39,4 +39,4 @@ class Seqs:
 class Solution:
     def sequentialDigits(self, low: int, high: int) -> List[int]:
         seqs = Seqs().get_seqs()
-        return [x for x in seqs if low <= x <= high]
+        return [num for num in seqs if low <= num <= high]
