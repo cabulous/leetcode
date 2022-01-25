@@ -6,11 +6,11 @@ class Solution:
 
     def __init__(self):
         self.memo = {}
-        self.words = []
+        self.words = {}
 
     def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
         self.words = set(words)
-        return [word for word in words if self.dfs(word)]
+        return [word for word in self.words if self.dfs(word)]
 
     def dfs(self, word):
         if word in self.memo:
