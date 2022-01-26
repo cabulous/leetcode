@@ -36,6 +36,7 @@ class AutocompleteSystem:
 
         if node.is_end:
             res.append((node.rank, node.data))
+
         for kid in node.children:
             res.extend(self.dfs(node.children[kid]))
 

@@ -51,12 +51,9 @@ class Solution:
         for r in reversed(range(rows)):
             for c1 in range(cols):
                 for c2 in range(cols):
-
                     res = grid[r][c1]
-
                     if c1 != c2:
                         res += grid[r][c2]
-
                     if r != rows - 1:
                         res += max(
                             dp[r + 1][nc1][nc2]
@@ -64,7 +61,6 @@ class Solution:
                             for nc2 in [c2 - 1, c2, c2 + 1]
                             if 0 <= nc1 < cols and 0 <= nc2 < cols
                         )
-
                     dp[r][c1][c2] = res
 
         return dp[0][0][-1]

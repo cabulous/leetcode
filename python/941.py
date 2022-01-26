@@ -4,10 +4,11 @@ from typing import List
 class Solution:
     def validMountainArray(self, arr: List[int]) -> bool:
         n = len(arr)
-        i = 0
 
         if n < 3:
             return False
+
+        i = 0
 
         while i + 1 < n and arr[i] < arr[i + 1]:
             i += 1
