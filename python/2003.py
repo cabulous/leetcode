@@ -26,7 +26,7 @@ class Solution:
 
         while index >= 0:
             self.dfs(index)
-            while self.seen[miss]:
+            while self.seen[miss] == 1:
                 miss += 1
             res[index] = miss
             index = parents[index]
