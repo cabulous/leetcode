@@ -10,7 +10,8 @@ class Solution:
             elif i == 'R':
                 facing = (facing + 1) % 4
             else:
-                x += directions[facing][0]
-                y += directions[facing][1]
+                dx, dy = directions[facing]
+                x += dx
+                y += dy
 
         return (x == 0 and y == 0) or facing != 0

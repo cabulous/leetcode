@@ -10,16 +10,15 @@ class Solution:
             graph[u].add(v)
             graph[v].add(u)
 
-        degree_node = sorted([[len(graph[node]), node] for node in graph])
+        degree_nodes = sorted([len(graph[node]), node] for node in graph)
         res = float('inf')
 
         for node1, node2 in edges:
-            in_degree_two_sum = len(graph[node1]) + len(graph[node2])
-            for in_degree, node in degree_node:
+            for in_degree, node in degree_nodes:
                 is_connect_node1 = node in graph[node1]
                 is_connect_node2 = node in graph[node2]
                 if is_connect_node1 and is_connect_node2:
-                    res = min(res, in_degree_two_sum + in_degree)
+                    res = min(res, len(graph[node1]) + len(graph[node2]) + in_degree)
                     break
 
         return res - 6 if res != float('inf') else -1

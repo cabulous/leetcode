@@ -33,13 +33,10 @@ class Codec:
         def helper(node):
             if node is None:
                 return
-
             while vals[0] != '#':
-                val = vals.popleft()
-                kid = Node(int(val), [])
+                kid = Node(int(vals.popleft()), [])
                 node.children.append(kid)
                 helper(kid)
-
             vals.popleft()
 
         helper(root)

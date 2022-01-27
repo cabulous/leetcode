@@ -12,7 +12,7 @@ class Solution:
         for i, num in enumerate(nums):
             prefix_sum += num
             while queue and prefix_sum - queue[0][1] >= k:
-                res = min(res, i + 1 - queue.popleft()[0])
+                res = min(res, i - queue.popleft()[0] + 1)
             while queue and prefix_sum <= queue[-1][1]:
                 queue.pop()
             queue.append([i + 1, prefix_sum])

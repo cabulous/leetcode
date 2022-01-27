@@ -26,7 +26,6 @@ class Seqs:
     def _run(self):
         sample = '123456789'
         length_max = 10
-
         for length in range(2, length_max):
             for start in range(length_max - length):
                 num = int(sample[start:start + length])
