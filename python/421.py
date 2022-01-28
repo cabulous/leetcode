@@ -3,14 +3,14 @@ from typing import List
 
 class Solution:
     def findMaximumXOR(self, nums: List[int]) -> int:
-        length = len(bin(max(nums))) - 2
+        bin_length = len(bin(max(nums))) - 2
         max_xor = 0
 
-        for i in reversed(range(length)):
+        for i in reversed(range(bin_length)):
             max_xor <<= 1
-            cur_xor = max_xor | 1
+            candidate_xor = max_xor | 1
             prefixes = {num >> i for num in nums}
-            max_xor |= any(cur_xor ^ p in prefixes for p in prefixes)
+            max_xor |= any(candidate_xor ^ p in prefixes for p in prefixes)
 
         return max_xor
 
