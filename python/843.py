@@ -16,10 +16,10 @@ class Solution:
             count = [Counter(w[i] for w in wordlist) for i in range(6)]
             guess = max(wordlist, key=lambda w: sum(count[i][c] for i, c in enumerate(w)))
             n = master.guess(guess)
-            wordlist = [w for w in wordlist if self.match(w, guess) == n]
+            wordlist = [w for w in wordlist if self.match_words(w, guess) == n]
 
-    def match(self, w1, w2):
-        return sum(i == j for i, j in zip(w1, w2))
+    def match_words(self, w1, w2):
+        return sum(c1 == c2 for c1, c2 in zip(w1, w2))
 
 
 class Solution:

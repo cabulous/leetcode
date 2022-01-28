@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 # https://leetcode.com/problems/design-add-and-search-words-data-structure/discuss/59725/Python-easy-to-follow-solution-using-Trie./507243
@@ -21,9 +21,9 @@ class WordDictionary:
         node.is_word = True
 
     def search(self, word: str) -> bool:
-        stack = [(self.root, 0)]
+        stack = deque([(self.root, 0)])
         while stack:
-            node, index = stack.pop()
+            node, index = stack.popleft()
             if index == len(word):
                 if node.is_word:
                     return True
