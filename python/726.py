@@ -12,12 +12,13 @@ class Solution:
                 stack.append(Counter())
                 index += 1
             elif formula[index] == ')':
-                top = stack.pop()
                 index += 1
                 index_start = index
                 while index < formula_count and formula[index].isdigit():
                     index += 1
                 multiplicity = int(formula[index_start:index] or 1)
+
+                top = stack.pop()
                 for name, count in top.items():
                     stack[-1][name] += count * multiplicity
             else:
@@ -31,6 +32,7 @@ class Solution:
                 while index < formula_count and formula[index].isdigit():
                     index += 1
                 multiplicity = int(formula[index_start:index] or 1)
+
                 stack[-1][name] += multiplicity
 
         res = []
