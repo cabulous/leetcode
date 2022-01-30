@@ -10,7 +10,6 @@ class Solution:
 
         for i in range(point_count):
             slopes = defaultdict(lambda: 1)
-            slopes['vertical'] = 1
             same = 0
             x1, y1 = points[i]
 
@@ -29,7 +28,7 @@ class Solution:
 
                 slopes[slope_key] += 1
 
-            res = max(res, max(slopes.values()) + same)
+            res = max(res, max(slopes.values() or [1]) + same)
 
         return res
 
