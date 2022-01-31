@@ -1,4 +1,3 @@
-import math
 from collections import defaultdict
 from typing import List
 
@@ -7,39 +6,36 @@ from typing import List
 class Solution:
     def minTransfers(self, transactions: List[List[int]]) -> int:
         balances = defaultdict(int)
-
         for source, target, amount in transactions:
             balances[source] -= amount
             balances[target] += amount
 
         net_profit = []
-
         for amount in balances.values():
             if amount != 0:
                 net_profit.append(amount)
 
         return self.backtrack(net_profit, 0, 0)
 
-    def backtrack(self, net_profit, start_idx, num_trans):
-        while start_idx < len(net_profit) and net_profit[start_idx] == 0:
-            start_idx += 1
+    def backtrack(self, net_profit, start_index, trans_count):
+        while start_index < len(net_profit) and net_profit[start_index] == 0:
+            start_index += 1
 
-        if start_idx + 1 >= len(net_profit):
-            return num_trans
+        if start_index + 1 >= len(net_profit):
+            return trans_count
 
-        for i in range(start_idx + 1, len(net_profit)):
-            if net_profit[i] + net_profit[start_idx] == 0:
-                net_profit[i] += net_profit[start_idx]
-                min_num_trans = self.backtrack(net_profit, start_idx + 1, num_trans + 1)
-                net_profit[i] -= net_profit[start_idx]
-                return min_num_trans
+        for i in range(start_index + 1, len(net_profit)):
+            if net_profit[i] + net_profit[start_index] == 0:
+                net_profit[i] += net_profit[start_index]
+                trans_count_min = self.backtrack(net_profit, start_index + 1, trans_count + 1)
+                net_profit[i] -= net_profit[start_index]
+                return trans_count_min
 
-        min_num_trans = math.inf
+        trans_count_min = float('inf')
+        for i in range(start_index + 1, len(net_profit)):
+            if net_profit[i] * net_profit[start_index] < 0:
+                net_profit[i] += net_profit[start_index]
+                trans_count_min = min(trans_count_min, self.backtrack(net_profit, start_index + 1, trans_count + 1))
+                net_profit[i] -= net_profit[start_index]
 
-        for i in range(start_idx + 1, len(net_profit)):
-            if net_profit[i] * net_profit[start_idx] < 0:
-                net_profit[i] += net_profit[start_idx]
-                min_num_trans = min(min_num_trans, self.backtrack(net_profit, start_idx + 1, num_trans + 1))
-                net_profit[i] -= net_profit[start_idx]
-
-        return min_num_trans
+        return trans_count_min

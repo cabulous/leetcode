@@ -33,8 +33,8 @@ class Solution:
 
         return res
 
-    def dfs(self, parent):
-        if self.seen[self.nums[parent]] == 0:
-            for next_parent in self.children[parent]:
-                self.dfs(next_parent)
-            self.seen[self.nums[parent]] = 1
+    def dfs(self, index):
+        if self.seen[self.nums[index]] == 0:
+            for kid in self.children[index]:
+                self.dfs(kid)
+            self.seen[self.nums[index]] = 1
