@@ -36,9 +36,10 @@ class Solution:
                 stack[-1][name] += multiplicity
 
         res = []
-        for name in sorted(stack[-1]):
-            if stack[-1][name] > 1:
-                res.append(name + str(stack[-1][name]))
+        counter = stack.pop()
+        for name in sorted(counter):
+            if counter[name] > 1:
+                res.append(name + str(counter[name]))
             else:
                 res.append(name)
 

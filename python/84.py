@@ -1,7 +1,6 @@
 from typing import List
 
 
-# stack
 # https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28917/AC-Python-clean-solution-using-stack-76ms
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
