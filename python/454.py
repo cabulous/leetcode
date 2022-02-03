@@ -1,37 +1,32 @@
-class Solution:
-    def fourSumCount(self, A: [int], B: [int], C: [int], D: [int]) -> int:
-        count = 0
-        m = {}
-        for a in A:
-            for b in B:
-                m[a + b] = m.get(a + b, 0) + 1
-        for c in C:
-            for d in D:
-                count += m.get(-c - d, 0)
-        return count
+from collections import defaultdict
+from typing import List
 
 
 class Solution:
-    def fourSumCount(self, A: [int], B: [int], C: [int], D: [int]) -> int:
-        m = {}
 
-        def add_to_hash(lists, i, total):
-            if i == len(lists) // 2:
-                m[total] = m.get(total, 0) + 1
-            else:
-                for num in lists[i]:
-                    add_to_hash(lists, i + 1, total + num)
+    def __init__(self):
+        self.map = defaultdict(int)
 
-        def count_complements(lists, i, complement):
-            if i == len(lists):
-                return m.get(complement, 0)
-            count = 0
-            for num in lists[i]:
-                count += count_complements(lists, i + 1, complement - num)
-            return count
+    def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -> int:
+        return self.k_sum_count([nums1, nums2, nums3, nums4])
 
-        def n_sum_count(lists):
-            add_to_hash(lists, 0, 0)
-            return count_complements(lists, len(lists) // 2, 0)
+    def add_to_hash(self, lists, index, total):
+        if index == len(lists) // 2:
+            self.map[total] += 1
+        else:
+            for num in lists[index]:
+                self.add_to_hash(lists, index + 1, total + num)
 
-        return n_sum_count([A, B, C, D])
+    def count_complements(self, lists, index, complement):
+        if index == len(lists):
+            return self.map[complement]
+
+        res = 0
+        for num in lists[index]:
+            res += self.count_complements(lists, index + 1, complement - num)
+
+        return res
+
+    def k_sum_count(self, lists):
+        self.add_to_hash(lists, 0, 0)
+        return self.count_complements(lists, len(lists) // 2, 0)
