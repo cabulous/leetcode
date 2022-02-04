@@ -2,7 +2,6 @@
 class Solution:
     def strongPasswordChecker(self, password: str) -> int:
         missing_type = 3
-
         if any('a' <= c <= 'z' for c in password):
             missing_type -= 1
         if any('A' <= c <= 'Z' for c in password):
@@ -15,10 +14,10 @@ class Solution:
         index = 2
 
         while index < len(password):
-            if password[index] == password[index - 1] == password[index - 2]:
+            if password[index - 2] == password[index - 1] == password[index]:
                 length = 3
                 index += 1
-                while index < len(password) and password[index] == password[index - 1]:
+                while index < len(password) and password[index - 1] == password[index]:
                     length += 1
                     index += 1
                 change += length // 3

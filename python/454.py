@@ -13,9 +13,10 @@ class Solution:
     def add_to_counter(self, lists, index, curr_sum):
         if index == len(lists) // 2:
             self.count[curr_sum] += 1
-        else:
-            for num in lists[index]:
-                self.add_to_counter(lists, index + 1, curr_sum + num)
+            return
+
+        for num in lists[index]:
+            self.add_to_counter(lists, index + 1, curr_sum + num)
 
     def count_complements(self, lists, index, complement):
         if index == len(lists):
