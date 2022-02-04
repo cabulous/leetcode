@@ -26,7 +26,7 @@ class Solution:
 
             else:
                 for s_idx in range(1, s_len + 1):
-                    dp[p_idx][s_idx] = dp[p_idx - 1][s_idx - 1] and p[p_idx - 1] == s[s_idx - 1]
+                    dp[p_idx][s_idx] = dp[p_idx - 1][s_idx - 1] and s[s_idx - 1] == p[p_idx - 1]
 
         return dp[-1][-1]
 

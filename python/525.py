@@ -9,10 +9,7 @@ class Solution:
         res = 0
 
         for index, num in enumerate(nums, 1):
-            if num == 0:
-                count -= 1
-            else:
-                count += 1
+            count += 1 if num == 1 else -1
 
             if count in table:
                 res = max(res, index - table[count])
