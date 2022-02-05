@@ -12,16 +12,17 @@ class ListNode:
 # https://leetcode.com/problems/merge-k-sorted-lists/discuss/10511/10-line-python-solution-with-priority-queue
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-        k = len(lists)
-        q = PriorityQueue(maxsize=k)
-        sentinel = curr = ListNode()
+        queue = PriorityQueue(maxsize=len(lists))
         for i, node in enumerate(lists):
             if node:
-                q.put((node.val, i, node))
-        while q.qsize() > 0:
-            popped = q.get()
-            index, curr.next = popped[1], popped[2]
+                queue.put((node.val, i, node))
+
+        sentinel = curr = ListNode()
+        while queue.qsize() > 0:
+            _, index, node = queue.get()
+            curr.next = node
             curr = curr.next
             if curr.next:
-                q.put((curr.next.val, index, curr.next))
+                queue.put((curr.next.val, index, curr.next))
+
         return sentinel.next
