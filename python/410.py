@@ -6,11 +6,11 @@ class Solution:
 
     def __init__(self):
         self.nums = []
-        self.m = 0
+        self.cut_max = 0
 
     def splitArray(self, nums: List[int], m: int) -> int:
         self.nums = nums
-        self.m = m
+        self.cut_max = m
 
         left, right = max(nums), sum(nums)
 
@@ -24,10 +24,11 @@ class Solution:
         return left
 
     def can_split(self, sum_max):
-        curr = cuts = 0
+        curr = 0
+        cut = 0
         for num in self.nums:
             if curr + num > sum_max:
-                cuts += 1
+                cut += 1
                 curr = 0
             curr += num
-        return cuts < self.m
+        return cut < self.cut_max

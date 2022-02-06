@@ -1,45 +1,36 @@
-# Pop
+from typing import List
+
+
 class Solution:
-    def removeDuplicates(self, nums: [int]) -> int:
-        max_duplicates = 2
-        i = 1
+    def removeDuplicates(self, nums: List[int]) -> int:
         count = 1
-        while i < len(nums):
-            if nums[i] == nums[i - 1]:
+        index = 1
+
+        while index < len(nums):
+            if nums[index - 1] == nums[index]:
                 count += 1
-                if count > max_duplicates:
-                    nums.pop(i)
-                    i -= 1
+                if count > 2:
+                    nums.pop(index)
+                    index -= 1
             else:
                 count = 1
-            i += 1
+            index += 1
+
         return len(nums)
 
 
-# Two pointers
 class Solution:
-    def removeDuplicates(self, nums: [int]) -> int:
-        max_duplicates = 2
-        j = 1
+    def removeDuplicates(self, nums: List[int]) -> int:
         count = 1
-        for i in range(1, len(nums)):
-            if nums[i] == nums[i - 1]:
+        ptr1 = 1
+
+        for ptr2 in range(1, len(nums)):
+            if nums[ptr2 - 1] == nums[ptr2]:
                 count += 1
             else:
                 count = 1
-            if count <= max_duplicates:
-                nums[j] = nums[i]
-                j += 1
-        return j
+            if count <= 2:
+                nums[ptr1] = nums[ptr2]
+                ptr1 += 1
 
-
-# https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/discuss/27976/3-6-easy-lines-C%2B%2B-Java-Python-Ruby
-class Solution:
-    def removeDuplicates(self, nums: [int]) -> int:
-        max_duplicates = 2
-        i = 0
-        for n in nums:
-            if i < 2 or n > nums[i - 2]:
-               nums[i] = n
-               i += 1
-        return i
+        return ptr1
