@@ -24,11 +24,13 @@ class Solution:
 
                 for dr, dc in directions:
                     nr, nc = zero_row_idx + dr, zero_col_idx + dc
+
                     if 0 <= nr < height and 0 <= nc < width:
-                        next_zero_idx = nr * width + nc
                         curr_board = [digit for digit in curr_s]
+                        next_zero_idx = nr * width + nc
                         curr_board[zero_idx], curr_board[next_zero_idx] = curr_board[next_zero_idx], '0'
                         next_s = ''.join(curr_board)
+
                         if next_s not in seen:
                             seen.add(next_s)
                             queue.append((next_s, next_zero_idx))
