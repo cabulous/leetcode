@@ -18,7 +18,7 @@ class Solution:
     def winnerSquareGame(self, n: int) -> bool:
         return self.dfs(n)
 
-    @lru_cache(None)
+    @lru_cache()
     def dfs(self, remain):
         if remain == 0:
             return False
