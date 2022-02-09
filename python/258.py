@@ -9,4 +9,4 @@ class Solution:
 
 class Solution:
     def addDigits(self, num: int) -> int:
-        return 1 + (num - 1) % 9 if num else 0
+        return (num - 1) % 9 + 1 if num > 0 else 0
