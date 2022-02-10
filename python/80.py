@@ -22,15 +22,17 @@ class Solution:
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         count = 1
-        ptr1 = 1
+        slow = 1
 
-        for ptr2 in range(1, len(nums)):
-            if nums[ptr2 - 1] == nums[ptr2]:
+        for fast in range(1, len(nums)):
+
+            if nums[fast - 1] == nums[fast]:
                 count += 1
             else:
                 count = 1
-            if count <= 2:
-                nums[ptr1] = nums[ptr2]
-                ptr1 += 1
 
-        return ptr1
+            if count <= 2:
+                nums[slow] = nums[fast]
+                slow += 1
+
+        return slow

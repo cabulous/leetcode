@@ -42,7 +42,7 @@ class Solution:
             res = -1
         else:
             res = comb_max + self.grid[i1][j1]
-            if i1 != i2 or j1 != j2:
+            if (i1, j1) != (i2, j2):
                 res += self.grid[i2][j2]
 
         self.memo[i1, j1, i2, j2] = res

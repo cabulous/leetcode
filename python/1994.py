@@ -11,15 +11,15 @@ class Solution:
         dp = [1] + [0] * (1 << 10)
         count = Counter(nums)
 
-        for n in count:
-            if n == 1:
+        for num in count:
+            if num == 1:
                 continue
-            if n % 4 == 0 or n % 9 == 0 or n == 25:
+            if num % 4 == 0 or num % 9 == 0 or num == 25:
                 continue
-            mask = sum(1 << i for i, p in enumerate(primes) if n % p == 0)
+            mask = sum(1 << i for i, p in enumerate(primes) if num % p == 0)
             for i in range(1 << 10):
                 if i & mask:
                     continue
-                dp[i | mask] = (dp[i | mask] + count[n] * dp[i]) % MOD
+                dp[i | mask] = (dp[i | mask] + dp[i] * count[num]) % MOD
 
         return (1 << count[1]) * (sum(dp) - 1) % MOD
