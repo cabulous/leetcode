@@ -28,7 +28,7 @@ class AutocompleteSystem:
         node.data = sentence
         node.rank -= hot
 
-    def dfs(self, node):
+    def collect_candidates(self, node):
         if node is None:
             return []
 
@@ -38,7 +38,7 @@ class AutocompleteSystem:
             res.append((node.rank, node.data))
 
         for kid in node.children:
-            res.extend(self.dfs(node.children[kid]))
+            res.extend(self.collect_candidates(node.children[kid]))
 
         return res
 
@@ -48,7 +48,7 @@ class AutocompleteSystem:
             if c not in node.children:
                 return []
             node = node.children[c]
-        return self.dfs(node)
+        return self.collect_candidates(node)
 
     def input(self, c: str) -> List[str]:
         if c == '#':
@@ -59,4 +59,4 @@ class AutocompleteSystem:
         self.keyword += c
         res = self.search(self.keyword)
 
-        return [item[1] for item in sorted(res)[:3]]
+        return [sentence for _, sentence in sorted(res)[:3]]

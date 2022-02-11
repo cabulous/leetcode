@@ -13,7 +13,7 @@ class Solution:
         while i + 1 < n and arr[i] < arr[i + 1]:
             i += 1
 
-        if i == 0 or i == n - 1:
+        if i in (0, n - 1):
             return False
 
         while i + 1 < n and arr[i] > arr[i + 1]:
