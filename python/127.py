@@ -1,74 +1,69 @@
+from typing import List
 from collections import defaultdict, deque
 
 
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: [str]) -> int:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList or not beginWord or not endWord or not wordList:
             return 0
 
-        word_len = len(beginWord)
         all_combo_dict = defaultdict(list)
-
-        for w in wordList:
-            for i in range(word_len):
-                all_combo_dict[w[:i] + '*' + w[i + 1:]].append(w)
+        for word in wordList:
+            for i in range(len(word)):
+                all_combo_dict[word[:i] + '*' + word[i + 1:]].append(word)
 
         queue = deque([(beginWord, 1)])
         visited = set()
 
         while queue:
             word, level = queue.popleft()
-            for i in range(word_len):
+            for i in range(len(word)):
                 intermediate_word = word[:i] + '*' + word[i + 1:]
-                for w in all_combo_dict[intermediate_word]:
-                    if w == endWord:
+                for next_word in all_combo_dict[intermediate_word]:
+                    if next_word == endWord:
                         return level + 1
-                    if w not in visited:
-                        visited.add(w)
-                        queue.append((w, level + 1))
-                all_combo_dict[intermediate_word] = []
+                    if next_word not in visited:
+                        visited.add(next_word)
+                        queue.append((next_word, level + 1))
+                all_combo_dict[intermediate_word].clear()
 
         return 0
 
 
 class Solution:
-    def __init__(self):
-        self.length = 0
-        self.all_combo_dict = defaultdict(list)
-
-    def visit_word_node(self, queue, visited, others_visited):
-        cur_word, level = queue.popleft()
-        for i in range(self.length):
-            intermediate_word = cur_word[:i] + '*' + cur_word[i + 1:]
-            for word in self.all_combo_dict[intermediate_word]:
-                if word in others_visited:
-                    return level + others_visited[word]
-                if word not in visited:
-                    visited[word] = level + 1
-                    queue.append((word, level + 1))
-        return None
-
-    def ladderLength(self, beginWord: str, endWord: str, wordList: [str]) -> int:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList or not beginWord or not endWord or not wordList:
             return 0
 
-        self.length = len(beginWord)
-
+        all_combo_dict = defaultdict(list)
         for word in wordList:
-            for i in range(self.length):
-                self.all_combo_dict[word[:i] + '*' + word[i + 1:]].append(word)
+            for i in range(len(word)):
+                all_combo_dict[word[:i] + '*' + word[i + 1:]].append(word)
 
-        queue_begin = deque([(beginWord, 1)])
-        queue_end = deque([(endWord, 1)])
-        visited_begin = {beginWord: 1}
-        visited_end = {endWord: 1}
+        curr = deque([beginWord])
+        other = deque([endWord])
+        visited = {beginWord, endWord}
+        step = 1
 
-        while queue_begin and queue_end:
-            ans = self.visit_word_node(queue_begin, visited_begin, visited_end)
-            if ans:
-                return ans
-            ans = self.visit_word_node(queue_end, visited_end, visited_begin)
-            if ans:
-                return ans
+        while curr:
+            if len(curr) > len(other):
+                curr, other = other, curr
+
+            nxt = deque()
+
+            while curr:
+                word = curr.popleft()
+                for i in range(len(word)):
+                    intermediate_word = word[:i] + '*' + word[i + 1:]
+                    for next_word in all_combo_dict[intermediate_word]:
+                        if next_word in other:
+                            return step + 1
+                        if next_word not in visited:
+                            visited.add(next_word)
+                            nxt.append(next_word)
+                    all_combo_dict[intermediate_word].clear()
+
+            step += 1
+            curr = nxt
 
         return 0
