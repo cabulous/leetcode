@@ -13,18 +13,18 @@ class Solution:
                 all_combo_dict[word[:i] + '*' + word[i + 1:]].append(word)
 
         queue = deque([(beginWord, 1)])
-        visited = set()
+        visited = {beginWord}
 
         while queue:
-            word, level = queue.popleft()
+            word, step = queue.popleft()
             for i in range(len(word)):
                 intermediate_word = word[:i] + '*' + word[i + 1:]
                 for next_word in all_combo_dict[intermediate_word]:
                     if next_word == endWord:
-                        return level + 1
+                        return step + 1
                     if next_word not in visited:
                         visited.add(next_word)
-                        queue.append((next_word, level + 1))
+                        queue.append((next_word, step + 1))
                 all_combo_dict[intermediate_word].clear()
 
         return 0
