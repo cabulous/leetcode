@@ -21,7 +21,7 @@ class Solution:
         res = None
 
         for cand in candidates:
-            if cand != n and not cand.startswith('00'):
+            if cand != n:
                 if res is None:
                     res = cand
                 elif self.delta(cand) < self.delta(res):
