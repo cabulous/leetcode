@@ -37,9 +37,9 @@ class Solution:
 
         res = []
         counter = stack.pop()
-        for name in sorted(counter):
-            if counter[name] > 1:
-                res.append(name + str(counter[name]))
+        for name, count in sorted(counter.items()):
+            if count > 1:
+                res.append(name + str(count))
             else:
                 res.append(name)
 

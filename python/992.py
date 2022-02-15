@@ -15,12 +15,15 @@ class Solution:
         for end in range(len(nums)):
             if count[nums[end]] == 0:
                 quota -= 1
+
             count[nums[end]] += 1
+
             while quota < 0:
                 count[nums[start]] -= 1
                 if count[nums[start]] == 0:
                     quota += 1
                 start += 1
+
             res += end - start + 1
 
         return res

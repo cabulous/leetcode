@@ -5,16 +5,18 @@ from collections import Counter
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         count1, count2 = Counter(s1), Counter(s2[:len(s1)])
+        win_size = len(s1)
 
-        for i in range(len(s1), len(s2)):
+        for right in range(len(s1), len(s2)):
             if count1 == count2:
                 return True
 
-            count2[s2[i]] += 1
+            count2[s2[right]] += 1
 
-            start_index = i - len(s1)
-            count2[s2[start_index]] -= 1
-            if count2[s2[start_index]] == 0:
-                del count2[s2[start_index]]
+            left = right - win_size
+            count2[s2[left]] -= 1
+
+            if count2[s2[left]] == 0:
+                del count2[s2[left]]
 
         return count1 == count2
