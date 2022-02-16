@@ -39,7 +39,8 @@ class Solution:
             heapq.heappush(lo, -heapq.heappushpop(hi, nums[i]))
 
             out_num = nums[i - k]
-            if out_num > -lo[0]:
+            out_num_in_hi = out_num > -lo[0]
+            if out_num_in_hi:
                 heapq.heappush(hi, -heapq.heappop(lo))
 
             to_remove[out_num] += 1

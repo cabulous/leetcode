@@ -1,35 +1,34 @@
-# Recursive
+from typing import Optional
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
 class Solution:
-    def swapPairs(self, head):
-        if not head or not head.next:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
             return head
 
-        first = head
-        second = head.next
-
-        first.next = self.swapPairs(second.next)
-        second.next = first
+        first, second = head, head.next
+        first.next, second.next = self.swapPairs(second.next), first
 
         return second
 
 
-# Iterative
 class Solution:
-    def swapPairs(self, head):
-        if not head or not head.next:
-            return head
-
-        sentinel = ListNode(-1)
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        sentinel = ListNode()
         sentinel.next = head
         prev = sentinel
 
         while head and head.next:
-            first = head
-            second = head.next
+            first, second = head, head.next
 
             prev.next = second
-            first.next = second.next
-            second.next = first
+            first.next, second.next = second.next, first
 
             prev = first
             head = first.next
