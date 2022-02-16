@@ -24,7 +24,7 @@ class Solution:
                     nums.append(self.operation(ops.pop(), nums.pop(), nums.pop()))
                 ops.pop()
             elif c in '+-*/':
-                while len(ops) != 0 and self.precedence(c, ops[-1]):
+                while len(ops) > 0 and self.precedence(c, ops[-1]):
                     nums.append(self.operation(ops.pop(), nums.pop(), nums.pop()))
                 ops.append(c)
             i += 1
