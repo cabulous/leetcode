@@ -5,23 +5,24 @@ from typing import List
 # https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92009/Python-Sliding-Window-Solution-using-Counter
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        s_len, p_len = len(s), len(p)
-        if s_len < p_len:
+        if len(s) < len(p):
             return []
 
-        s_count = Counter(s[:p_len - 1])
+        s_count = Counter(s[:len(p) - 1])
         p_count = Counter(p)
+        left = 0
         res = []
 
-        for i in range(p_len - 1, s_len):
-            s_count[s[i]] += 1
-            start_index = i - p_len + 1
+        for right in range(len(p) - 1, len(s)):
+            s_count[s[right]] += 1
 
             if s_count == p_count:
-                res.append(start_index)
+                res.append(left)
 
-            s_count[s[start_index]] -= 1
-            if s_count[s[start_index]] == 0:
-                del s_count[s[start_index]]
+            s_count[s[left]] -= 1
+            if s_count[s[left]] == 0:
+                del s_count[s[left]]
+
+            left += 1
 
         return res

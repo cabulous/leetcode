@@ -1,31 +1,30 @@
 import heapq
-from math import inf
 from typing import List
 
 
 class Solution:
     def minimumDeviation(self, nums: List[int]) -> int:
         evens = []
-        minimum = inf
+        num_min = float('inf')
 
         for num in nums:
             if num % 2 == 0:
                 evens.append(-num)
-                minimum = min(minimum, num)
+                num_min = min(num_min, num)
             else:
                 evens.append(-num * 2)
-                minimum = min(minimum, num * 2)
+                num_min = min(num_min, num * 2)
 
         heapq.heapify(evens)
-        min_deviation = inf
+        res = float('inf')
 
         while evens:
-            maximum = -heapq.heappop(evens)
-            min_deviation = min(min_deviation, maximum - minimum)
-            if maximum % 2 == 0:
-                minimum = min(minimum, maximum // 2)
-                heapq.heappush(evens, -maximum // 2)
+            num_max = -heapq.heappop(evens)
+            res = min(res, num_max - num_min)
+            if num_max % 2 == 0:
+                num_min = min(num_min, num_max // 2)
+                heapq.heappush(evens, -num_max // 2)
             else:
                 break
 
-        return min_deviation
+        return res
