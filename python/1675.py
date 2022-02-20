@@ -25,6 +25,6 @@ class Solution:
                 num_min = min(num_min, num_max // 2)
                 heapq.heappush(evens, -num_max // 2)
             else:
-                break
+                return res
 
         return res

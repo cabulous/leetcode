@@ -13,7 +13,7 @@ class Solution:
                 continue
             elif c.isdigit():
                 num = int(c)
-                while i < len(s) - 1 and s[i + 1].isdigit():
+                while i + 1 < len(s) and s[i + 1].isdigit():
                     num = num * 10 + int(s[i + 1])
                     i += 1
                 nums.append(num)
