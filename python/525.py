@@ -8,12 +8,12 @@ class Solution:
         count = 0
         res = 0
 
-        for index, num in enumerate(nums, 1):
+        for i, num in enumerate(nums, 1):
             count += 1 if num == 1 else -1
 
             if count in table:
-                res = max(res, index - table[count])
+                res = max(res, i - table[count])
             else:
-                table[count] = index
+                table[count] = i
 
         return res
