@@ -2,7 +2,6 @@ from queue import PriorityQueue
 from typing import List
 
 
-# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -13,16 +12,18 @@ class ListNode:
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
         queue = PriorityQueue(maxsize=len(lists))
-        for i, node in enumerate(lists):
-            if node:
-                queue.put((node.val, i, node))
+        for i, first_node in enumerate(lists):
+            if first_node:
+                queue.put((first_node.val, i, first_node))
 
-        sentinel = curr = ListNode()
+        sentinel = ListNode()
+        curr = sentinel
+
         while queue.qsize() > 0:
             _, index, node = queue.get()
             curr.next = node
             curr = curr.next
-            if curr.next:
-                queue.put((curr.next.val, index, curr.next))
+            if node.next:
+                queue.put((node.next.val, index, node.next))
 
         return sentinel.next
