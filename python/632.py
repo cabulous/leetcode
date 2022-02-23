@@ -8,17 +8,17 @@ class Solution:
         queue = [(lst[0], i, 0) for i, lst in enumerate(nums)]
         heapq.heapify(queue)
 
-        right = max(lst[0] for lst in nums)
+        hi = max(lst[0] for lst in nums)
         res = [float('-inf'), float('inf')]
 
         while queue:
-            left, list_index, num_index = heapq.heappop(queue)
-            if right - left < res[1] - res[0]:
-                res = [left, right]
+            lo, list_index, num_index = heapq.heappop(queue)
+            if hi - lo < res[1] - res[0]:
+                res = [lo, hi]
             if num_index + 1 == len(nums[list_index]):
                 return res
-            val = nums[list_index][num_index + 1]
-            right = max(right, val)
-            heapq.heappush(queue, (val, list_index, num_index + 1))
+            next_val = nums[list_index][num_index + 1]
+            hi = max(hi, next_val)
+            heapq.heappush(queue, (next_val, list_index, num_index + 1))
 
         return res
