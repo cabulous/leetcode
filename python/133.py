@@ -11,17 +11,17 @@ class Node:
 class Solution:
 
     def __init__(self):
-        self.visited = {}
+        self.memo = {}
 
     def cloneGraph(self, node: Node) -> Optional[Node]:
         if node is None:
             return None
 
-        if node in self.visited:
-            return self.visited[node]
+        if node in self.memo:
+            return self.memo[node]
 
         clone = Node(node.val)
-        self.visited[node] = clone
+        self.memo[node] = clone
 
         if node.neighbors:
             clone.neighbors = [self.cloneGraph(n) for n in node.neighbors]

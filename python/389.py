@@ -6,7 +6,7 @@ class Solution:
         sorted_s = sorted(s)
         sorted_t = sorted(t)
 
-        for i in range(len(s)):
+        for i in range(len(sorted_s)):
             if sorted_s[i] != sorted_t[i]:
                 return sorted_t[i]
 
