@@ -12,22 +12,10 @@ class Solution:
         self.s1, self.s2 = s1, s2
         return self.dfs(0, 0, 0)
 
-    def get_candidates(self, s):
-        res = [int(s)]
-
-        if len(s) == 2:
-            if s[1] != '0':
-                res.append(int(s[0]) + int(s[1]))
-            return res
-
-        if len(s) == 3:
-            if s[1] != '0':
-                res.append(int(s[:1]) + int(s[1:]))
-            if s[2] != '0':
-                res.append(int(s[:2]) + int(s[2:]))
-            if s[1] != '0' and s[2] != '0':
-                res.append(int(s[0]) + int(s[1]) + int(s[2]))
-
+    def get_possible_length(self, s):
+        res = {int(s)}
+        for i in range(1, len(s)):
+            res |= {x + y for x in self.get_possible_length(s[:i]) for y in self.get_possible_length(s[i:])}
         return res
 
     @lru_cache(None)
@@ -39,16 +27,16 @@ class Solution:
             next_i = i
             while next_i < len(self.s1) and self.s1[next_i].isdigit():
                 next_i += 1
-            for x in self.get_candidates(self.s1[i:next_i]):
-                if self.dfs(next_i, j, diff - x):
+            for length in self.get_possible_length(self.s1[i:next_i]):
+                if self.dfs(next_i, j, diff - length):
                     return True
 
         elif j < len(self.s2) and self.s2[j].isdigit():
             next_j = j
             while next_j < len(self.s2) and self.s2[next_j].isdigit():
                 next_j += 1
-            for x in self.get_candidates(self.s2[j:next_j]):
-                if self.dfs(i, next_j, diff + x):
+            for length in self.get_possible_length(self.s2[j:next_j]):
+                if self.dfs(i, next_j, diff + length):
                     return True
 
         elif diff == 0:
@@ -59,7 +47,7 @@ class Solution:
             if i < len(self.s1):
                 return self.dfs(i + 1, j, diff - 1)
 
-        else:
+        elif diff < 0:
             if j < len(self.s2):
                 return self.dfs(i, j + 1, diff + 1)
 
