@@ -8,7 +8,7 @@ class Solution:
             v2 = v2_parts[i] if i < len(v2_parts) else 0
             if v1 < v2:
                 return -1
-            elif v1 > v2:
+            if v1 > v2:
                 return 1
 
         return 0
