@@ -39,7 +39,6 @@ class Solution:
 # https://leetcode.com/problems/closest-binary-search-tree-value-ii/discuss/70534/O(k-%2B-logn)-Python-Solution
 class Solution:
     def closestKValues(self, root: Optional[TreeNode], target: float, k: int) -> List[int]:
-        res = []
         pre_stack = []
         suc_stack = []
 
@@ -53,6 +52,7 @@ class Solution:
 
         pre = self.get_predecessor(pre_stack)
         suc = self.get_successor(suc_stack)
+        res = []
 
         while k:
             k -= 1
@@ -62,31 +62,31 @@ class Solution:
             elif not pre and suc:
                 res.append(suc.val)
                 suc = self.get_successor(suc_stack)
-            elif pre and suc and abs(pre.val - target) <= abs(suc.val - target):
+            elif pre and suc and abs(pre.val - target) < abs(suc.val - target):
                 res.append(pre.val)
                 pre = self.get_predecessor(pre_stack)
-            elif pre and suc and abs(pre.val - target) > - abs(suc.val - target):
+            elif pre and suc and abs(pre.val - target) >= abs(suc.val - target):
                 res.append(suc.val)
                 suc = self.get_successor(suc_stack)
 
         return res
 
-    def get_predecessor(self, stack):
-        if stack:
-            pre = stack.pop()
-            p = pre.left
-            while p:
-                stack.append(p)
-                p = p.right
-            return pre
-        return None
+    def get_predecessor(self, stack: List[TreeNode]):
+        if not stack:
+            return None
+        pre = stack.pop()
+        p = pre.left
+        while p:
+            stack.append(p)
+            p = p.right
+        return pre
 
-    def get_successor(self, stack):
-        if stack:
-            suc = stack.pop()
-            p = suc.right
-            while p:
-                stack.append(p)
-                p = p.left
-            return suc
-        return None
+    def get_successor(self, stack: List[TreeNode]):
+        if not stack:
+            return None
+        suc = stack.pop()
+        p = suc.right
+        while p:
+            stack.append(p)
+            p = p.left
+        return suc
