@@ -65,8 +65,8 @@ class Solution:
 
             elif curr == 'cdata':
                 if code[i:i + 3] == ']]>':
-                    i += 3
                     curr = 'plain'
+                    i += 3
                     continue
 
             i += 1
