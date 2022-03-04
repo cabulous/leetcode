@@ -17,6 +17,6 @@ class Solution:
             curr_range[1:] = [num]
 
         if curr_range:
-            ranges.append(curr_range)
+            ranges.append(curr_range[:])
 
         return ['->'.join(map(str, r)) for r in ranges]
