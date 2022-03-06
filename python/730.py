@@ -36,7 +36,7 @@ class Solution:
             forward_index = self.forward[i][letter]
             backward_index = self.backward[j][letter]
 
-            if forward_index == -1 or backward_index < i or forward_index > j:
+            if forward_index == -1 or backward_index < i or j < forward_index:
                 continue
 
             res += 1
