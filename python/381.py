@@ -21,9 +21,10 @@ class RandomizedCollection:
         last_val = self.lst[-1]
         self.lst[remove_idx] = last_val
         self.idx[last_val].add(remove_idx)
-        self.idx[last_val].discard(len(self.lst) - 1)
 
+        self.idx[last_val].discard(len(self.lst) - 1)
         self.lst.pop()
+
         return True
 
     def getRandom(self) -> int:

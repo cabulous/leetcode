@@ -34,6 +34,6 @@ class Solution:
         def dp(i, j):
             if i == 0:
                 return -10000 * j
-            return max(dp(i - 1, j ^ m) + freq[i - 1][m] for m in freq[i - 1])
+            return max(dp(i - 1, j ^ mask) + freq[i - 1][mask] for mask in freq[i - 1])
 
         return len(nums) - max(sum(mxs) - min(mxs), dp(k, 0))

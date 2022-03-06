@@ -27,11 +27,10 @@ class Solution:
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
         points = Counter()
-        max_num = 0
         for num in nums:
             points[num] += num
-            max_num = max(max_num, num)
 
+        max_num = max(nums)
         two_prev = 0
         one_prev = points[1]
 
