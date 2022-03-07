@@ -19,3 +19,18 @@ class Solution:
             return
         for i in range(len(nums)):
             self.dfs(nums[i:], target - nums[i], path + [nums[i]])
+
+
+# https://leetcode.com/problems/combination-sum/discuss/937255/Python-3-or-DFSBacktracking-and-Two-DP-methods-or-Explanations
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        dp = [[] for _ in range(target + 1)]
+
+        for num in candidates:
+            for curr_target in range(num, target + 1):
+                if curr_target == num:
+                    dp[curr_target].append([num])
+                for comb in dp[curr_target - num]:
+                    dp[curr_target].append(comb + [num])
+
+        return dp[target]

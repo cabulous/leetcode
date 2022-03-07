@@ -22,7 +22,7 @@ class Solution:
 # iteration
 class Solution:
     def mergeTwoLists(self, l1, l2):
-        sentinel = ListNode(-1)
+        sentinel = ListNode()
         prev = sentinel
 
         while l1 and l2:
@@ -34,6 +34,6 @@ class Solution:
                 l2 = l2.next
             prev = prev.next
 
-        prev.next = l1 if l1 else l2
+        prev.next = l1 or l2
 
         return sentinel.next
