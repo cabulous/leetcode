@@ -1,3 +1,6 @@
+MOD = 1337
+
+
 # https://leetcode.com/problems/largest-palindrome-product/discuss/171580/Python-Solution-using-Math-and-Detailed-Mathematical-deduction
 class Solution:
     def largestPalindrome(self, n: int) -> int:
@@ -14,4 +17,4 @@ class Solution:
                 root_1 = 1 / 2 * (z + (z ** 2 - 4 * right) ** 0.5)
                 root_2 = 1 / 2 * (z - (z ** 2 - 4 * right) ** 0.5)
                 if root_1.is_integer() or root_2.is_integer():
-                    return (10 ** n * left + right) % 1337
+                    return (10 ** n * left + right) % MOD
