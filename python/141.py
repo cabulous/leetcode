@@ -1,6 +1,14 @@
-# hash table
+from typing import Optional
+
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
 class Solution:
-    def hasCycle(self, head) -> bool:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
         seen = set()
         while head:
             if head in seen:
@@ -12,7 +20,7 @@ class Solution:
 
 # two pointers
 class Solution:
-    def hasCycle(self, head) -> bool:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
         slow = head
         fast = head
 

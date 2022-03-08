@@ -16,11 +16,11 @@ class Solution:
         self.nodes = {}
         self.in_degree = defaultdict(int)
         self.seen = set()
-        self.is_invalid = False
+        self.is_valid = True
         self.sub_root_val = float('-inf')
 
     def canMerge(self, trees: List[TreeNode]) -> Optional[TreeNode]:
-        self.collect_nodes(trees)
+        self.collect_trees(trees)
 
         root_vals = [val for val, in_degree_count in self.in_degree.items() if in_degree_count == 0]
         if len(root_vals) != 1:
@@ -28,14 +28,14 @@ class Solution:
 
         root = self.inorder(root_vals[0])
 
-        if self.is_invalid or len(self.seen) != len(self.nodes):
+        if not self.is_valid or len(self.seen) != len(self.nodes):
             return None
 
         return root
 
     def inorder(self, val):
         if val in self.seen:
-            self.is_invalid = True
+            self.is_valid = False
             return
 
         self.seen.add(val)
@@ -45,7 +45,7 @@ class Solution:
             node.left = self.inorder(node.left.val)
 
         if val <= self.sub_root_val:
-            self.is_invalid = True
+            self.is_valid = False
             return
 
         self.sub_root_val = val
@@ -55,7 +55,7 @@ class Solution:
 
         return node
 
-    def collect_nodes(self, trees):
+    def collect_trees(self, trees):
         for tree in trees:
             if tree.val not in self.in_degree:
                 self.in_degree[tree.val] = 0
