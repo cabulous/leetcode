@@ -11,9 +11,7 @@ class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
         for num in nums:
             self.points[num] += num
-
-        max_num = max(nums)
-        return self.helper(max_num)
+        return self.helper(max(nums))
 
     @lru_cache(None)
     def helper(self, num):
@@ -30,11 +28,10 @@ class Solution:
         for num in nums:
             points[num] += num
 
-        max_num = max(nums)
         two_prev = 0
         one_prev = points[1]
 
-        for i in range(2, max_num + 1):
-            two_prev, one_prev = one_prev, max(one_prev, two_prev + points[i])
+        for num in range(2, max(nums) + 1):
+            two_prev, one_prev = one_prev, max(one_prev, two_prev + points[num])
 
         return one_prev

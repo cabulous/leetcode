@@ -22,8 +22,8 @@ class Solution:
             num_max = -heapq.heappop(evens)
             res = min(res, num_max - num_min)
             if num_max % 2 == 0:
-                num_min = min(num_min, num_max // 2)
                 heapq.heappush(evens, -num_max // 2)
+                num_min = min(num_min, num_max // 2)
             else:
                 return res
 
