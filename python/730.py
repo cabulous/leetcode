@@ -26,22 +26,25 @@ class Solution:
         return self.dp(0, len(s) - 1) - 1
 
     @lru_cache(None)
-    def dp(self, i, j):
-        if i > j:
+    def dp(self, forward_index, backward_index):
+        if forward_index > backward_index:
             return 1
 
         res = 1
 
         for letter in ('a', 'b', 'c', 'd'):
-            forward_index = self.forward[i][letter]
-            backward_index = self.backward[j][letter]
+            next_forward_index = self.forward[forward_index][letter]
+            next_backward_index = self.backward[backward_index][letter]
 
-            if forward_index == -1 or backward_index < i or j < forward_index:
+            if next_forward_index == -1:
+                continue
+
+            if next_backward_index < forward_index or backward_index < next_forward_index:
                 continue
 
             res += 1
 
-            if forward_index < backward_index:
-                res += self.dp(forward_index + 1, backward_index - 1)
+            if next_forward_index < next_backward_index:
+                res += self.dp(next_forward_index + 1, next_backward_index - 1)
 
         return res % MOD

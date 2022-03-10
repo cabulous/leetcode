@@ -12,9 +12,9 @@ class Solution:
 
     def containVirus(self, isInfected: List[List[int]]) -> int:
         self.rows, self.cols = len(isInfected), len(isInfected[0])
-        self.grid = copy.copy(isInfected)
+        self.grid = copy.deepcopy(isInfected)
 
-        virus_areas, dangers, walls = self.get_areas(self.grid)
+        virus_areas, dangers, walls = self.get_areas()
         wall_count = 0
 
         while virus_areas:
@@ -32,12 +32,12 @@ class Solution:
 
             self.spread(dangers[:most_danger_index] + dangers[most_danger_index + 1:])
 
-            virus_areas, dangers, walls = self.get_areas(self.grid)
+            virus_areas, dangers, walls = self.get_areas()
 
         return wall_count
 
     def get_adj(self, row, col):
-        for next_row, next_col in [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]:
+        for next_row, next_col in [(row + 1, col), (row - 1, col), (row, col + 1), (row, col - 1)]:
             if 0 <= next_row < self.rows and 0 <= next_col < self.cols:
                 yield next_row, next_col
 
@@ -46,7 +46,7 @@ class Solution:
             for row, col in danger:
                 self.grid[row][col] = 1
 
-    def get_areas(self, grid):
+    def get_areas(self):
         virus_areas = []
         dangers = []
         walls = []
@@ -54,7 +54,7 @@ class Solution:
 
         for r in range(self.rows):
             for c in range(self.cols):
-                if grid[r][c] == 1 and not seen[r][c]:
+                if self.grid[r][c] == 1 and not seen[r][c]:
                     seen[r][c] = True
                     area = [(r, c)]
                     danger = set()
@@ -63,11 +63,11 @@ class Solution:
                     while queue:
                         curr_r, curr_c = queue.pop()
                         for next_r, next_c in self.get_adj(curr_r, curr_c):
-                            if grid[next_r][next_c] == 1 and not seen[next_r][next_c]:
+                            if self.grid[next_r][next_c] == 1 and not seen[next_r][next_c]:
                                 seen[next_r][next_c] = True
-                                queue.append((next_r, next_c))
                                 area.append((next_r, next_c))
-                            elif grid[next_r][next_c] == 0:
+                                queue.append((next_r, next_c))
+                            elif self.grid[next_r][next_c] == 0:
                                 danger.add((next_r, next_c))
                                 wall += 1
                     virus_areas.append(area)

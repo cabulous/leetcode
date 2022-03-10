@@ -1,16 +1,18 @@
-# Definition for singly-linked list.
+from typing import Optional
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 
-# https://leetcode.com/problems/add-two-numbers/discuss/1016/Clear-python-code-straight-forward
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         carry = 0
-        sentinel = ListNode(0)
-        cur = sentinel
+        sentinel = ListNode()
+        curr = sentinel
+
         while l1 or l2 or carry:
             if l1:
                 carry += l1.val
@@ -18,6 +20,8 @@ class Solution:
             if l2:
                 carry += l2.val
                 l2 = l2.next
-            carry, val = divmod(carry, 10)
-            cur.next = cur = ListNode(val)
+            curr.next = ListNode(carry % 10)
+            curr = curr.next
+            carry //= 10
+
         return sentinel.next
