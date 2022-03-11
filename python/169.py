@@ -4,12 +4,8 @@ from typing import List
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        target = len(nums) // 2 + 1
         count = Counter(nums)
-
-        for num in count:
-            if count[num] >= target:
-                return num
+        return max(count.keys(), key=lambda x: count[x])
 
 
 class Solution:
