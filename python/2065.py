@@ -23,5 +23,5 @@ class Solution:
         for next_node in self.graph[curr_node]:
             next_time = self.graph[curr_node][next_node]
             if remaining_time >= next_time:
-                res = max(res, self.dfs(next_node, seen | (next_node), remaining_time - next_time))
+                res = max(res, self.dfs(next_node, seen | {next_node}, remaining_time - next_time))
         return res
