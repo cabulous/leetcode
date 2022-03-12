@@ -8,19 +8,24 @@ class Node:
 
 # Recursive
 class Solution:
+
     def __init__(self):
-        self.visited = {}
+        self.memo = {}
 
     def copyRandomList(self, head: 'Node') -> 'Node':
-        if not head:
+        if head is None:
             return None
-        if head in self.visited:
-            return self.visited[head]
-        node = Node(head.val)
-        self.visited[head] = node
-        node.next = self.copyRandomList(head.next)
-        node.random = self.copyRandomList(head.random)
-        return node
+
+        if head in self.memo:
+            return self.memo[head]
+
+        clone = Node(head.val)
+        self.memo[head] = clone
+
+        clone.next = self.copyRandomList(head.next)
+        clone.random = self.copyRandomList(head.random)
+
+        return clone
 
 
 # Iterative
