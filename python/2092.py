@@ -30,4 +30,4 @@ class Solution:
                         res.add(next_person)
                         queue.append(next_person)
 
-        return res
+        return list(res)

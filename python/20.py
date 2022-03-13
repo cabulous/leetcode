@@ -1,12 +1,18 @@
 # https://leetcode.com/problems/valid-parentheses/discuss/9203/Simple-Python-solution-with-stack
 class Solution:
     def isValid(self, s: str) -> bool:
+        valid_parentheses = {')': '(', '}': '{', ']': '['}
         stack = []
-        mapping = {')': '(', '}': '{', ']': '['}
-        for char in s:
-            if char in mapping:
-                if not stack or mapping[char] != stack.pop():
+
+        for ch in s:
+            if ch in valid_parentheses:
+                if not stack:
                     return False
+                expected = valid_parentheses[ch]
+                if expected != stack[-1]:
+                    return False
+                stack.pop()
             else:
-                stack.append(char)
+                stack.append(ch)
+
         return not stack

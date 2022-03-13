@@ -24,7 +24,7 @@ class Solution:
         self.memo[node] = clone
 
         if node.neighbors:
-            clone.neighbors = [self.cloneGraph(n) for n in node.neighbors]
+            clone.neighbors = [self.cloneGraph(nei) for nei in node.neighbors]
 
         return clone
 

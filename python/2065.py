@@ -6,8 +6,8 @@ from typing import List
 class Solution:
 
     def __init__(self):
-        self.values = []
         self.graph = defaultdict(dict)
+        self.values = []
 
     def maximalPathQuality(self, values: List[int], edges: List[List[int]], maxTime: int) -> int:
         self.values = values
@@ -21,7 +21,7 @@ class Solution:
     def dfs(self, curr_node, seen, remaining_time):
         res = sum(self.values[node] for node in seen) if curr_node == 0 else 0
         for next_node in self.graph[curr_node]:
-            next_time = self.graph[curr_node][next_node]
-            if remaining_time >= next_time:
-                res = max(res, self.dfs(next_node, seen | {next_node}, remaining_time - next_time))
+            time = self.graph[curr_node][next_node]
+            if remaining_time >= time:
+                res = max(res, self.dfs(next_node, seen | {curr_node}, remaining_time - time))
         return res

@@ -10,4 +10,4 @@ class Solution:
                 res.append('1' + self.makeLargestSpecial(s[start_index + 1:end_index]) + '0')
                 start_index = end_index + 1
 
-        return ''.join(sorted(res)[::-1])
+        return ''.join(sorted(res, reverse=True))
