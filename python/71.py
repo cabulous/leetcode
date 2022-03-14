@@ -1,12 +1,14 @@
 class Solution:
     def simplifyPath(self, path: str) -> str:
         stack = []
-        for portion in path.split('/'):
-            if portion == '..':
+
+        for part in path.split('/'):
+            if part == '..':
                 if stack:
                     stack.pop()
-            elif portion == '.' or not portion:
+            elif part == '.' or not part:
                 continue
             else:
-                stack.append(portion)
+                stack.append(part)
+
         return '/' + '/'.join(stack)

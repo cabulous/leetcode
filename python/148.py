@@ -13,16 +13,17 @@ class Solution:
         if head is None or head.next is None:
             return head
 
-        pre, slow, fast = None, head, head
+        prev, slow, fast = None, head, head
         while fast and fast.next:
-            pre, slow, fast = slow, slow.next, fast.next.next
+            prev, slow, fast = slow, slow.next, fast.next.next
 
-        pre.next = None
+        prev.next = None
 
         return self.merge(*map(self.sortList, (head, slow)))
 
     def merge(self, node1: ListNode, node2: ListNode):
-        sentinel = tail = ListNode()
+        sentinel = ListNode()
+        tail = sentinel
 
         while node1 and node2:
             if node1.val < node2.val:

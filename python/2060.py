@@ -15,12 +15,6 @@ class Solution:
         self.s1, self.s2 = s1, s2
         return self.dfs(0, 0, 0)
 
-    def get_possible_length(self, s):
-        res = {int(s)}
-        for i in range(1, len(s)):
-            res |= {x + y for x in self.get_possible_length(s[:i]) for y in self.get_possible_length(s[i:])}
-        return res
-
     @lru_cache(None)
     def dfs(self, i, j, diff):
         if i == self.s1_len and j == self.s2_len:
@@ -55,3 +49,9 @@ class Solution:
                 return self.dfs(i, j + 1, diff + 1)
 
         return False
+
+    def get_possible_length(self, s):
+        res = {int(s)}
+        for i in range(1, len(s)):
+            res |= {x + y for x in self.get_possible_length(s[:i]) for y in self.get_possible_length(s[i:])}
+        return res
