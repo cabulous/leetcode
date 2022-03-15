@@ -7,6 +7,7 @@ class Solution:
 
     def minWindow(self, s1: str, s2: str) -> str:
         self.s1, self.s2 = s1, s2
+
         s1_pointer = 0
         min_len = float('inf')
         res = ''
@@ -34,9 +35,9 @@ class Solution:
             if self.s1[s1_pointer] == self.s2[s2_pointer]:
                 s2_pointer += 1
                 if s2_pointer == len(self.s2):
-                    break
+                    return s1_pointer
             s1_pointer += 1
-        return s1_pointer if s2_pointer == len(self.s2) else None
+        return None
 
     def get_best_start_pointer(self, s1_pointer):
         s2_pointer = len(self.s2) - 1

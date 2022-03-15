@@ -12,21 +12,21 @@ class Solution:
         if head is None or head.next is None:
             return head
 
-        last = head
+        old_tail = head
         node_count = 1
-        while last.next:
-            last = last.next
+        while old_tail.next:
+            old_tail = old_tail.next
             node_count += 1
 
         if k % node_count == 0:
             return head
 
-        last_kth_node = head
-        for i in range(node_count - k % node_count - 1):
-            last_kth_node = last_kth_node.next
+        new_tail = head
+        for _ in range(node_count - k % node_count - 1):
+            new_tail = new_tail.next
 
-        new_head = last_kth_node.next
-        last.next = head
-        last_kth_node.next = None
+        new_head = new_tail.next
+        old_tail.next = head
+        new_tail.next = None
 
         return new_head

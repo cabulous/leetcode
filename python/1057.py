@@ -5,7 +5,7 @@ from typing import List
 
 class Solution:
     def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> List[int]:
-        worker_to_bike_list = []
+        worker_to_bike_group = []
         queue = []
 
         for worker, worker_loc in enumerate(workers):
@@ -15,7 +15,7 @@ class Solution:
                 curr_worker_pairs.append((distance, worker, bike))
             curr_worker_pairs.sort(reverse=True)
             heapq.heappush(queue, curr_worker_pairs.pop())
-            worker_to_bike_list.append(curr_worker_pairs)
+            worker_to_bike_group.append(curr_worker_pairs)
 
         bike_status = [False] * len(bikes)
         worker_status = [-1] * len(workers)
@@ -26,7 +26,7 @@ class Solution:
                 bike_status[bike] = True
                 worker_status[worker] = bike
             else:
-                next_closest_bike = worker_to_bike_list[worker].pop()
+                next_closest_bike = worker_to_bike_group[worker].pop()
                 heapq.heappush(queue, next_closest_bike)
 
         return worker_status

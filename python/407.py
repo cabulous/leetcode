@@ -15,8 +15,8 @@ class Solution:
         for r in range(rows):
             for c in range(cols):
                 if r in (0, rows - 1) or c in (0, cols - 1):
-                    heapq.heappush(queue, (heightMap[r][c], r, c))
                     visited[r][c] = True
+                    heapq.heappush(queue, (heightMap[r][c], r, c))
 
         res = 0
         while queue:
