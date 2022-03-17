@@ -2,6 +2,7 @@
 class Solution:
     def superEggDrop(self, k: int, n: int) -> int:
         dp = [[0] * (k + 1) for _ in range(n + 1)]
+
         for move in range(1, n + 1):
             for egg in range(1, k + 1):
                 dp[move][egg] = dp[move - 1][egg - 1] + dp[move - 1][egg] + 1

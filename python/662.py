@@ -34,21 +34,21 @@ class Solution:
 class Solution:
 
     def __init__(self):
+        self.depth_to_head_position = {}
         self.res = 0
-        self.first_col_index_table = {}
 
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.dfs(root, 0, 0)
         return self.res
 
-    def dfs(self, node, depth, col_index):
+    def dfs(self, node, depth, position):
         if node is None:
             return
 
-        if depth not in self.first_col_index_table:
-            self.first_col_index_table[depth] = col_index
+        if depth not in self.depth_to_head_position:
+            self.depth_to_head_position[depth] = position
 
-        self.res = max(self.res, col_index - self.first_col_index_table[depth] + 1)
+        self.res = max(self.res, position - self.depth_to_head_position[depth] + 1)
 
-        self.dfs(node.left, depth + 1, col_index * 2)
-        self.dfs(node.right, depth + 1, col_index * 2 + 1)
+        self.dfs(node.left, depth + 1, position * 2)
+        self.dfs(node.right, depth + 1, position * 2 + 1)
