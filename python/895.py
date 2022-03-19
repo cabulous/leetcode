@@ -14,8 +14,8 @@ class FreqStack:
         self.max_freq = max(self.max_freq, self.freq[val])
 
     def pop(self) -> int:
-        x = self.group[self.max_freq].pop()
-        self.freq[x] -= 1
+        val = self.group[self.max_freq].pop()
+        self.freq[val] -= 1
         if not self.group[self.max_freq]:
             self.max_freq -= 1
-        return x
+        return val

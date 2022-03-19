@@ -10,10 +10,10 @@ class Solution:
         min_index = 0
 
         for i, ch in enumerate(s):
-            if s[i] < s[min_index]:
+            if ch < s[min_index]:
                 min_index = i
-            count[s[i]] -= 1
-            if count[s[i]] == 0:
+            count[ch] -= 1
+            if count[ch] == 0:
                 break
 
         remaining = s[min_index:].replace(s[min_index], '')

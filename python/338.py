@@ -15,6 +15,6 @@ class Solution:
 class Solution:
     def countBits(self, num):
         res = [0] * (num + 1)
-        for i in range(num + 1):
+        for i in range(len(res)):
             res[i] = res[i // 2] + (i % 2)
         return res

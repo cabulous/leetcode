@@ -9,13 +9,13 @@ class Solution:
         queue = []
 
         for worker, worker_loc in enumerate(workers):
-            curr_worker_pairs = []
+            curr = []
             for bike, bike_loc in enumerate(bikes):
                 distance = self.get_distance(worker_loc, bike_loc)
-                curr_worker_pairs.append((distance, worker, bike))
-            curr_worker_pairs.sort(reverse=True)
-            heapq.heappush(queue, curr_worker_pairs.pop())
-            worker_to_bike_group.append(curr_worker_pairs)
+                curr.append((distance, worker, bike))
+            curr.sort(reverse=True)
+            heapq.heappush(queue, curr.pop())
+            worker_to_bike_group.append(curr)
 
         bike_status = [False] * len(bikes)
         worker_status = [-1] * len(workers)
