@@ -49,7 +49,7 @@ class Solution:
                         return False
 
                     close_tag_str = ''.join(close_tag)
-                    if not stack or close_tag_str != stack[-1]:
+                    if not stack or stack[-1] != close_tag_str:
                         return False
                     stack.pop()
 
