@@ -22,7 +22,7 @@ class Solution:
         left, right = 0, 10 ** 10
         while left <= right:
             mid = left + (right - left) // 2
-            if self.count(nums1_neg, nums2_neg, mid) + self.count(nums1_pos, nums2_pos, mid) >= k:
+            if self.count(nums1_pos, nums2_pos, mid) + self.count(nums1_neg, nums2_neg, mid) >= k:
                 right = mid - 1
             else:
                 left = mid + 1
