@@ -9,21 +9,21 @@ class Solution:
         nums2_neg = [-x for x in nums2 if x < 0][::-1]
         nums2_pos = [x for x in nums2 if x >= 0]
 
-        neg = len(nums1_neg) * len(nums2_pos) + len(nums1_pos) * len(nums2_neg)
+        neg_len_total = len(nums1_neg) * len(nums2_pos) + len(nums1_pos) * len(nums2_neg)
 
-        if k > neg:
-            k -= neg
+        if k > neg_len_total:
+            k -= neg_len_total
             sign = 1
         else:
-            k = neg - k + 1
+            k = neg_len_total - k + 1
             nums2_neg, nums2_pos = nums2_pos, nums2_neg
             sign = -1
 
         left, right = 0, 10 ** 10
-        while left < right:
+        while left <= right:
             mid = left + (right - left) // 2
             if self.count(nums1_neg, nums2_neg, mid) + self.count(nums1_pos, nums2_pos, mid) >= k:
-                right = mid
+                right = mid - 1
             else:
                 left = mid + 1
 
