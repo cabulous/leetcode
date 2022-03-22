@@ -9,7 +9,7 @@ class Solution:
 
         for i, ch in enumerate(s):
             right = max(right, right_most[ch])
-            if i == right:
+            if right == i:
                 res.append(right - left + 1)
                 left = i + 1
 
