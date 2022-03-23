@@ -1,10 +1,12 @@
 class Solution:
-    def brokenCalc(self, X: int, Y: int) -> int:
-        ans = 0
-        while Y > X:
-            ans += 1
-            if Y & 1 == 1:
-                Y += 1
+    def brokenCalc(self, startValue: int, target: int) -> int:
+        res = 0
+
+        while target > startValue:
+            res += 1
+            if target % 2 == 1:
+                target += 1
             else:
-                Y >>= 1
-        return ans + X - Y
+                target //= 2
+
+        return res + startValue - target
