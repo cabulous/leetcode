@@ -5,22 +5,9 @@ from typing import List
 class Solution:
     def numRescueBoats(self, people: List[int], limit: int) -> int:
         people.sort(reverse=True)
-        i, j = 0, len(people) - 1
-        while i <= j:
-            if people[i] + people[j] <= limit:
-                j -= 1
-            i += 1
-        return i
-
-
-class Solution:
-    def numRescueBoats(self, people: List[int], limit: int) -> int:
-        people.sort()
-        i, j = 0, len(people) - 1
-        ans = 1
-        while i <= j:
-            ans += 1
-            if people[i] + people[j] <= limit:
-                i += 1
-            j -= 1
-        return ans
+        left, right = 0, len(people) - 1
+        while left <= right:
+            if people[left] + people[right] <= limit:
+                right -= 1
+            left += 1
+        return left

@@ -19,7 +19,8 @@ class Solution:
             self.forward.appendleft(forward_dic.copy())
 
         backward_dic = defaultdict(lambda: -1)
-        for i, ch in enumerate(s):
+        for i in range(len(s)):
+            ch = s[i]
             backward_dic[ch] = i
             self.backward.append(backward_dic.copy())
 
@@ -39,7 +40,7 @@ class Solution:
             if next_forward_index == -1:
                 continue
 
-            if next_backward_index < forward_index or backward_index < next_forward_index:
+            if next_forward_index > backward_index or next_backward_index < forward_index:
                 continue
 
             res += 1
