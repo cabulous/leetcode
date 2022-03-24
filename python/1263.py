@@ -10,58 +10,63 @@ class Solution:
 
     def minPushBox(self, grid: List[List[str]]) -> int:
         self.grid = grid
-        rows, cols = len(grid), len(grid[0])
-        target = box = person = None
 
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == 'T':
-                    target = (r, c)
-                elif grid[r][c] == 'B':
-                    box = (r, c)
-                elif grid[r][c] == 'S':
-                    person = (r, c)
+        destination = None
+        box_position = None
+        person_position = None
 
-        queue = deque([(0, box, person)])
-        visited = {box + person}
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == 'T':
+                    destination = (row, col)
+                elif grid[row][col] == 'B':
+                    box_position = (row, col)
+                elif grid[row][col] == 'S':
+                    person_position = (row, col)
+
+        queue = deque([(0, box_position, person_position)])
+        visited = {box_position + person_position}
 
         while queue:
             distance, box, person = queue.popleft()
-            if box == target:
+            if box == destination:
                 return distance
 
             box_row, box_col = box
+            box_coordinates = [(box_row + 1, box_col), (box_row - 1, box_col), (box_row, box_col + 1),
+                               (box_row, box_col - 1)]
+            person_coordinates = [(box_row - 1, box_col), (box_row + 1, box_col), (box_row, box_col - 1),
+                                  (box_row, box_col + 1)]
 
-            box_coordinate = [(box_row + 1, box_col), (box_row - 1, box_col), (box_row, box_col + 1),
-                              (box_row, box_col - 1)]
-            person_coordinate = [(box_row - 1, box_col), (box_row + 1, box_col), (box_row, box_col - 1),
-                                 (box_row, box_col + 1)]
-
-            for new_box, new_person in zip(box_coordinate, person_coordinate):
-                if self.valid(*new_box) and new_box + box not in visited:
-                    if self.valid(*new_person) and self.check(person, new_person, box):
-                        visited.add(new_box + box)
-                        queue.append((distance + 1, new_box, box))
+            for next_box, next_person in zip(box_coordinates, person_coordinates):
+                if self.is_valid(*next_box) and next_box + box not in visited:
+                    if self.is_valid(*next_person) and self.check(person, next_person, box):
+                        visited.add(next_box + box)
+                        queue.append((distance + 1, next_box, box))
 
         return -1
 
-    def valid(self, row, col):
+    def is_valid(self, row, col):
         return 0 <= row < len(self.grid) and 0 <= col < len(self.grid[0]) and self.grid[row][col] != '#'
 
-    def check(self, curr, destination, box):
-        queue = deque([curr])
-        seen = set()
+    def check(self, curr_position, destination, box_position):
+        queue = deque([curr_position])
+        visited = set()
+
         while queue:
-            row, col = queue.popleft()
-            if (row, col) == destination:
+            position = queue.popleft()
+            if position == destination:
                 return True
+
+            row, col = position
             for next_row, next_col in [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]:
-                if not self.valid(next_row, next_col):
+                if not self.is_valid(next_row, next_col):
                     continue
-                if (next_row, next_col) in seen:
+                if (next_row, next_col) in visited:
                     continue
-                if (next_row, next_col) == box:
+                if (next_row, next_col) == box_position:
                     continue
-                seen.add((next_row, next_col))
+                visited.add((next_row, next_col))
                 queue.append((next_row, next_col))
+
         return False
