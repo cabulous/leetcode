@@ -11,26 +11,26 @@ class Solution:
     def minPushBox(self, grid: List[List[str]]) -> int:
         self.grid = grid
 
-        destination = None
+        target = None
         box_position = None
         person_position = None
 
         for row in range(len(grid)):
             for col in range(len(grid[0])):
                 if grid[row][col] == 'T':
-                    destination = (row, col)
+                    target = (row, col)
                 elif grid[row][col] == 'B':
                     box_position = (row, col)
                 elif grid[row][col] == 'S':
                     person_position = (row, col)
 
         queue = deque([(0, box_position, person_position)])
-        visited = {box_position + person_position}
+        visited = {box_position, person_position}
 
         while queue:
-            distance, box, person = queue.popleft()
-            if box == destination:
-                return distance
+            step, box, person = queue.popleft()
+            if box == target:
+                return step
 
             box_row, box_col = box
             box_coordinates = [(box_row + 1, box_col), (box_row - 1, box_col), (box_row, box_col + 1),
@@ -40,16 +40,16 @@ class Solution:
 
             for next_box, next_person in zip(box_coordinates, person_coordinates):
                 if self.is_valid(*next_box) and next_box + box not in visited:
-                    if self.is_valid(*next_person) and self.check(person, next_person, box):
+                    if self.is_valid(*next_person) and self.person_can_reach(person, next_person, box):
                         visited.add(next_box + box)
-                        queue.append((distance + 1, next_box, box))
+                        queue.append((step + 1, next_box, box))
 
         return -1
 
     def is_valid(self, row, col):
         return 0 <= row < len(self.grid) and 0 <= col < len(self.grid[0]) and self.grid[row][col] != '#'
 
-    def check(self, curr_position, destination, box_position):
+    def person_can_reach(self, curr_position, destination, box_position):
         queue = deque([curr_position])
         visited = set()
 
