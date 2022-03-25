@@ -33,7 +33,7 @@ class Solution:
     def findStrobogrammatic(self, n: int) -> List[str]:
         reversible_pairs = [['0', '0'], ['1', '1'], ['6', '9'], ['8', '8'], ['9', '6']]
         curr_length = n % 2
-        curr = [''] if curr_length == 0 else ['0', '1', '8']
+        curr = ['0', '1', '8'] if curr_length == 1 else ['']
 
         while curr_length < n:
             nxt = []

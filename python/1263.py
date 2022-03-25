@@ -51,7 +51,7 @@ class Solution:
 
     def person_can_reach(self, curr_position, destination, box_position):
         queue = deque([curr_position])
-        visited = set()
+        visited = {curr_position}
 
         while queue:
             position = queue.popleft()
