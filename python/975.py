@@ -9,13 +9,13 @@ class Solution:
         next_lower = [0] * n
 
         stack = []
-        for a, i in sorted([a, i] for i, a in enumerate(arr)):
+        for _, i in sorted([a, i] for i, a in enumerate(arr)):
             while stack and stack[-1] < i:
                 next_higher[stack.pop()] = i
             stack.append(i)
 
         stack = []
-        for a, i in sorted([-a, i] for i, a in enumerate(arr)):
+        for _, i in sorted([-a, i] for i, a in enumerate(arr)):
             while stack and stack[-1] < i:
                 next_lower[stack.pop()] = i
             stack.append(i)
