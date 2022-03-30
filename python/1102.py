@@ -28,11 +28,11 @@ class Solution:
 
             for nr, nc in self.get_next_cell(row, col):
                 heapq.heappush(queue, (-grid[nr][nc], nr, nc))
-                self.visited[nr][nc] = True
 
         return res
 
     def get_next_cell(self, row, col):
         for nr, nc in [(row + 1, col), (row - 1, col), (row, col + 1), (row, col - 1)]:
-            if 0 <= nr < self.rows and 0 <= nc < self.cols and (nr, nc) and not self.visited[nr][nc]:
+            if 0 <= nr < self.rows and 0 <= nc < self.cols and not self.visited[nr][nc]:
+                self.visited[nr][nc] = True
                 yield nr, nc
