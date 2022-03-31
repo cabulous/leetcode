@@ -10,12 +10,10 @@ class Solution:
         left, right = 0, rows * cols - 1
 
         while left <= right:
-            mid = (left + right) // 2
+            mid = left + (right - left) // 2
             val = matrix[mid // cols][mid % cols]
-
             if val == target:
                 return True
-
             if val < target:
                 left = mid + 1
             else:

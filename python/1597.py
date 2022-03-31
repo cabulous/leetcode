@@ -15,20 +15,20 @@ class Solution:
         return self.parse_expression(tokens)
 
     def parse_expression(self, tokens):
-        lhs = self.parse_term(tokens)
+        left = self.parse_term(tokens)
         while len(tokens) > 0 and tokens[0] in '+-':
             op = tokens.popleft()
-            rhs = self.parse_term(tokens)
-            lhs = Node(op, lhs, rhs)
-        return lhs
+            right = self.parse_term(tokens)
+            left = Node(op, left, right)
+        return left
 
     def parse_term(self, tokens):
-        lhs = self.parse_factor(tokens)
+        left = self.parse_factor(tokens)
         while len(tokens) > 0 and tokens[0] in '*/':
             op = tokens.popleft()
-            rhs = self.parse_factor(tokens)
-            lhs = Node(op, lhs, rhs)
-        return lhs
+            right = self.parse_factor(tokens)
+            left = Node(op, left, right)
+        return left
 
     def parse_factor(self, tokens):
         if tokens[0] == '(':

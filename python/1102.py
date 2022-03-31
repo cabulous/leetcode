@@ -13,8 +13,8 @@ class Solution:
         self.rows, self.cols = len(grid), len(grid[0])
         self.visited = [[False] * self.cols for _ in range(self.rows)]
 
-        queue = []
-        heapq.heappush(queue, (-grid[0][0], 0, 0))
+        queue = [(-grid[0][0], 0, 0)]
+        heapq.heapify(queue)
         self.visited[0][0] = True
 
         res = grid[0][0]
