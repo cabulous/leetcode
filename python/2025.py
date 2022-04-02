@@ -8,6 +8,7 @@ class Solution:
     def waysToPartition(self, nums: List[int], k: int) -> int:
         prefix_sum = list(accumulate(nums))
         nums_sum = sum(nums)
+
         pre_sum = defaultdict(int)
         suf_sum = Counter(prefix_sum)
         suf_sum[nums_sum] -= 1
