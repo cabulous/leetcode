@@ -6,8 +6,8 @@ from typing import List
 # https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/discuss/1507271/Pythoncpp-Explanation-with-pictures.-O(N)
 class Solution:
     def waysToPartition(self, nums: List[int], k: int) -> int:
-        prefix_sum = list(accumulate(nums))
         nums_sum = sum(nums)
+        prefix_sum = list(accumulate(nums))
 
         pre_sum = defaultdict(int)
         suf_sum = Counter(prefix_sum)
