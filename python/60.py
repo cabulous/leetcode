@@ -3,7 +3,7 @@ class Solution:
         factorials = [1]
         nums = ['1']
         for i in range(1, n):
-            factorials.append(factorials[i - 1] * i)
+            factorials.append(factorials[-1] * i)
             nums.append(str(i + 1))
 
         k -= 1
