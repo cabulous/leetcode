@@ -1,4 +1,4 @@
-from collections import defaultdict, Counter
+from collections import Counter
 from itertools import accumulate
 from typing import List
 
@@ -6,10 +6,10 @@ from typing import List
 # https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/discuss/1507271/Pythoncpp-Explanation-with-pictures.-O(N)
 class Solution:
     def waysToPartition(self, nums: List[int], k: int) -> int:
-        nums_sum = sum(nums)
         prefix_sum = list(accumulate(nums))
+        nums_sum = sum(nums)
 
-        pre_sum = defaultdict(int)
+        pre_sum = Counter()
         suf_sum = Counter(prefix_sum)
         suf_sum[nums_sum] -= 1
 
@@ -26,7 +26,7 @@ class Solution:
                     if i > 0:
                         curr += pre_sum[new_sum // 2]
                     if i < len(nums) - 1:
-                        curr += suf_sum[new_sum // 2 + nums[i] - k]
+                        curr += suf_sum[new_sum // 2 - k + nums[i]]
             res = max(res, curr)
             pre_sum[prefix_sum[i]] += 1
             suf_sum[prefix_sum[i]] -= 1
