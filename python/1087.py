@@ -6,5 +6,5 @@ from typing import List
 class Solution:
     def expand(self, s: str) -> List[str]:
         lst = s.replace('{', ' ').replace('}', ' ').strip().split()
-        lst = [sorted(a.split(',')) for a in lst]
+        lst = [sorted(item.split(',')) for item in lst]
         return [''.join(item) for item in product(*lst)]

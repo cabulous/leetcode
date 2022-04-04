@@ -1,20 +1,27 @@
-# Definition for singly-linked list.
+from typing import Optional
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 
-# https://leetcode.com/problems/swapping-nodes-in-a-linked-list/discuss/1009800/C%2B%2BJP3-One-Pass
 class Solution:
-    def swapNodes(self, head: ListNode, k: int) -> ListNode:
-        n1, n2, cur = None, None, head
-        while cur:
+    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        kth_node = head
+        k -= 1
+
+        while k > 0:
             k -= 1
-            n2 = None if not n2 else n2.next
-            if k == 0:
-                n1 = cur
-                n2 = head
-            cur = cur.next
-        n1.val, n2.val = n2.val, n1.val
+            kth_node = kth_node.next
+
+        last_kth_node = head
+        tail = kth_node
+        while tail.next:
+            last_kth_node = last_kth_node.next
+            tail = tail.next
+
+        kth_node.val, last_kth_node.val = last_kth_node.val, kth_node.val
+
         return head

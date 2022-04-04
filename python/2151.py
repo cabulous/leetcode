@@ -10,7 +10,7 @@ class Solution:
 
     def maximumGood(self, statements: List[List[int]]) -> int:
         self.statements = statements
-        self.n = len(self.statements)
+        self.n = len(statements)
 
         res = 0
 
