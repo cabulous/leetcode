@@ -12,7 +12,7 @@ class Solution:
             return
 
         j = len(nums) - 1
-        while j >= 0 and nums[j] <= nums[i]:
+        while j >= 0 and nums[i] >= nums[j]:
             j -= 1
 
         nums[i], nums[j] = nums[j], nums[i]

@@ -57,7 +57,7 @@ class LFUCache:
         if self._min_freq == freq and len(self._freq[freq]) == 0:
             self._min_freq += 1
         node.freq += 1
-        self._freq[node.freq].append(node)
+        self._freq[node.val_to_freq].append(node)
 
     def get(self, key: int) -> int:
         if key not in self._node:

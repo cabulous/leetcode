@@ -1,4 +1,4 @@
-import itertools
+from itertools import combinations_with_replacement
 from typing import List
 from collections import Counter
 
@@ -7,16 +7,16 @@ from collections import Counter
 class Solution:
     def threeSumMulti(self, arr: List[int], target: int) -> int:
         mod = 10 ** 9 + 7
-        c = Counter(arr)
+        count = Counter(arr)
         res = 0
-        for i, j in itertools.combinations_with_replacement(c, 2):
+        for i, j in combinations_with_replacement(count, 2):
             k = target - i - j
             if i == j == k:
-                res += c[i] * (c[i] - 1) * (c[i] - 2) / 6
+                res += count[i] * (count[i] - 1) * (count[i] - 2) // 6
             elif i == j != k:
-                res += c[i] * (c[i] - 1) / 2 * c[k]
+                res += count[i] * (count[i] - 1) // 2 * count[k]
             elif i < k and j < k:
-                res += c[i] * c[j] * c[k]
+                res += count[i] * count[j] * count[k]
         return int(res % mod)
 
 
