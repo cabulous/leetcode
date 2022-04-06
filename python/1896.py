@@ -13,10 +13,10 @@ class Solution:
     def correct(self, s):
         stack = []
         d = {}
-        for i, elem in enumerate(s):
-            if elem == '(':
+        for i, ch in enumerate(s):
+            if ch == '(':
                 stack.append(i)
-            elif elem == ')':
+            elif ch == ')':
                 last = stack.pop()
                 d[i] = last
         return d
@@ -29,14 +29,15 @@ class Solution:
         if start2 == start:
             return self.dfs(start + 1, end - 1)
 
-        p1, c1 = self.dfs(start, start2 - 2)
-        p2, c2 = self.dfs(start2, end)
+        val1, change1 = self.dfs(start, start2 - 2)
+        val2, change2 = self.dfs(start2, end)
         op = self.expression[start2 - 1]
 
         t = {
             '|': lambda x, y: x | y,
             '&': lambda x, y: x & y,
         }
-        c3 = 1 if p1 + p2 == 1 else min(c1, c2) + (p1 ^ (op == '&'))
 
-        return t[op](p1, p2), c3
+        change3 = 1 if val1 + val2 == 1 else min(change1, change2) + (val1 ^ (op == '&'))
+
+        return t[op](val1, val2), change3
