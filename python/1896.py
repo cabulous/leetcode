@@ -7,10 +7,10 @@ class Solution:
 
     def minOperationsToFlip(self, expression: str) -> int:
         self.expression = expression
-        self.d = self.correct(expression)
+        self.d = self.collect(expression)
         return self.dfs(0, len(expression) - 1)[1]
 
-    def correct(self, s):
+    def collect(self, s):
         stack = []
         d = {}
         for i, ch in enumerate(s):
