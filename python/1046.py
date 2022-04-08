@@ -8,9 +8,9 @@ class Solution:
         heapq.heapify(queue)
 
         while len(queue) > 1:
-            stone1 = heapq.heappop(queue)
-            stone2 = heapq.heappop(queue)
-            if stone1 != stone2:
-                heapq.heappush(queue, stone1 - stone2)
+            weight1 = -heapq.heappop(queue)
+            weight2 = -heapq.heappop(queue)
+            if weight1 != weight2:
+                heapq.heappush(queue, -(weight1 - weight2))
 
         return -heapq.heappop(queue) if queue else 0

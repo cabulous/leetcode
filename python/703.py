@@ -1,19 +1,18 @@
 import heapq
+from typing import List
 
 
-# https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/148866/Python-simple-heapq-solution-beats-100
 class KthLargest:
 
-    def __init__(self, k: int, nums: [int]):
-        self.pool = nums
+    def __init__(self, k: int, nums: List[int]):
         self.k = k
-        heapq.heapify(self.pool)
-        while len(self.pool) > k:
-            heapq.heappop(self.pool)
+        self.queue = nums[:]
+        heapq.heapify(self.queue)
+        while len(self.queue) > k:
+            heapq.heappop(self.queue)
 
     def add(self, val: int) -> int:
-        if len(self.pool) < self.k:
-            heapq.heappush(self.pool, val)
-        elif val > self.pool[0]:
-            heapq.heappushpop(self.pool, val)
-        return self.pool[0]
+        heapq.heappush(self.queue, val)
+        if len(self.queue) > self.k:
+            heapq.heappop(self.queue)
+        return self.queue[0]
