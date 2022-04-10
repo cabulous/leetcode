@@ -13,7 +13,7 @@ class Solution:
         return self.solve(s)
 
     def solve(self, s):
-        if not s:
+        if len(s) == 0:
             return 0
 
         if s in self.memo:
