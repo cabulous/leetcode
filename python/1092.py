@@ -8,9 +8,11 @@ class Solution:
             while str1[i] != ch:
                 res += str1[i]
                 i += 1
+
             while str2[j] != ch:
                 res += str2[j]
                 j += 1
+
             res += ch
             i += 1
             j += 1
