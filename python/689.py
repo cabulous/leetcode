@@ -9,8 +9,8 @@ class Solution:
         window3 = sum(nums[2 * k:3 * k])
 
         window1_max = window1
-        window2_max = window1 + window2
-        window3_max = window1 + window2 + window3
+        window2_max = window1_max + window2
+        window3_max = window2_max + window3
 
         window1_max_index = [0]
         window2_max_index = [0, k]
