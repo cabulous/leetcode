@@ -6,24 +6,25 @@ from typing import List
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
         live_cells = {(r, c) for r, row in enumerate(board) for c, live in enumerate(row) if live}
-        live_cells = self.next_round(live_cells)
-        for r, row in enumerate(board):
-            for c in range(len(row)):
-                row[c] = int((r, c) in live_cells)
+        next_live_cells = self.next_round(live_cells)
 
-    def next_round(self, live):
+        for row in range(len(board)):
+            for col in range(len(board[0])):
+                board[row][col] = int((row, col) in next_live_cells)
+
+    def next_round(self, live_cells):
         count = Counter(
             (nr, nc)
-            for r, c in live
+            for r, c in live_cells
             for nr in range(r - 1, r + 2)
             for nc in range(c - 1, c + 2)
-            if nr != r or nc != c
+            if (nr, nc) != (r, c)
         )
 
         return {
             pair
             for pair in count
-            if count[pair] == 3 or (count[pair] == 2 and pair in live)
+            if count[pair] == 3 or (count[pair] == 2 and pair in live_cells)
         }
 
 
