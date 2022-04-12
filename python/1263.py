@@ -59,14 +59,14 @@ class Solution:
                 return True
 
             row, col = position
-            for next_row, next_col in [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]:
-                if not self.is_valid(next_row, next_col):
+            for nr, nc in [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]:
+                if not self.is_valid(nr, nc):
                     continue
-                if (next_row, next_col) in visited:
+                if (nr, nc) in visited:
                     continue
-                if (next_row, next_col) == box_position:
+                if (nr, nc) == box_position:
                     continue
-                visited.add((next_row, next_col))
-                queue.append((next_row, next_col))
+                visited.add((nr, nc))
+                queue.append((nr, nc))
 
         return False
