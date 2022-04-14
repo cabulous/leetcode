@@ -23,7 +23,7 @@ class Solution:
     def transform(self, mask):
         res = 0
         for i in range(self.cols, 2 * self.cols):
-            if mask & 1 << i != 0:
+            if mask & (1 << i) != 0:
                 res |= 1 << (i - self.cols)
         return res
 
@@ -43,7 +43,7 @@ class Solution:
 
         for dr, dc in [(0, -1), (-1, 1), (-1, -1)]:
             nr, nc = row + dr, col + dc
-            if 0 <= nr < self.rows and 0 <= nc < self.cols and mask & 1 << ((nr == row) * self.cols + nc):
+            if 0 <= nr < self.rows and 0 <= nc < self.cols and mask & (1 << ((nr == row) * self.cols + nc)):
                 break
         else:
             res = max(res, self.solve(next_row, next_col, mask | 1 << (self.cols + col)) + 1)
