@@ -11,4 +11,4 @@ class Solution:
         for i in range(10):
             index = num.find(str(i))
             if 0 <= index <= k:
-                return str(num[index]) + self.minInteger(num[:index] + num[index + 1:], k - index)
+                return num[index] + self.minInteger(num[:index] + num[index + 1:], k - index)
