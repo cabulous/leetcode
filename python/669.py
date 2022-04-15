@@ -1,4 +1,6 @@
-# Definition for a binary tree node.
+from typing import Optional
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -7,16 +9,17 @@ class TreeNode:
 
 
 class Solution:
-    def trimBST(self, root: TreeNode, low: int, high: int) -> TreeNode:
-        def trim(node):
-            if not node:
-                return None
-            if node.val > high:
-                return trim(node.left)
-            if node.val < low:
-                return trim(node.right)
-            node.left = trim(node.left)
-            node.right = trim(node.right)
-            return node
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        if root is None:
+            return None
 
-        return trim(root)
+        if root.val < low:
+            return self.trimBST(root.right, low, high)
+
+        if high < root.val:
+            return self.trimBST(root.left, low, high)
+
+        root.left = self.trimBST(root.left, low, high)
+        root.right = self.trimBST(root.right, low, high)
+
+        return root
