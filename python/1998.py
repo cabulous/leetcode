@@ -1,6 +1,7 @@
 from typing import List
 
 
+# https://leetcode.com/problems/gcd-sort-of-an-array/discuss/1445180/C%2B%2BPython-Union-Find-and-Sieve-and-Sorting-Clean-and-Concise
 class UnionFind:
 
     def __init__(self):
@@ -20,11 +21,11 @@ class UnionFind:
 
 class Solution:
     def gcdSort(self, nums: List[int]) -> bool:
-        smallest_primes = self.sieve(max(nums) + 1)
+        smallest_prime_factors = self.get_samllest_prime_factors(max(nums) + 1)
         uf = UnionFind()
 
         for x in nums:
-            for y in self.get_prime_factors(x, smallest_primes):
+            for y in self.get_prime_factor(x, smallest_prime_factors):
                 uf.union(x, y)
 
         for x, y in zip(nums, sorted(nums)):
@@ -33,17 +34,17 @@ class Solution:
 
         return True
 
-    def sieve(self, n):
-        smallest_primes = [i for i in range(n)]
+    def get_samllest_prime_factors(self, n):
+        smallest_prime_factors = [i for i in range(n)]
         for i in range(2, n):
-            if smallest_primes[i] != i:
+            if smallest_prime_factors[i] != i:
                 continue
             for j in range(i * i, n, i):
-                if smallest_primes[j] > i:
-                    smallest_primes[j] = i
-        return smallest_primes
+                if smallest_prime_factors[j] > i:
+                    smallest_prime_factors[j] = i
+        return smallest_prime_factors
 
-    def get_prime_factors(self, num, smallest_primes):
+    def get_prime_factor(self, num, smallest_prime_factors):
         while num > 1:
-            yield smallest_primes[num]
-            num //= smallest_primes[num]
+            yield smallest_prime_factors[num]
+            num //= smallest_prime_factors[num]
