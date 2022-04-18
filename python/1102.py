@@ -13,8 +13,8 @@ class Solution:
         self.rows, self.cols = len(grid), len(grid[0])
         self.visited = [[False] * self.cols for _ in range(self.rows)]
 
+        target = (self.rows - 1, self.cols - 1)
         queue = [(-grid[0][0], 0, 0)]
-        heapq.heapify(queue)
         self.visited[0][0] = True
 
         res = grid[0][0]
@@ -23,7 +23,7 @@ class Solution:
             _, row, col = heapq.heappop(queue)
             res = min(res, grid[row][col])
 
-            if (row, col) == (self.rows - 1, self.cols - 1):
+            if (row, col) == target:
                 return res
 
             for nr, nc in self.get_next_cell(row, col):
