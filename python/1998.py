@@ -21,7 +21,7 @@ class UnionFind:
 
 class Solution:
     def gcdSort(self, nums: List[int]) -> bool:
-        smallest_prime_factors = self.get_samllest_prime_factors(max(nums) + 1)
+        smallest_prime_factors = self.get_smallest_prime_factors(max(nums) + 1)
         uf = UnionFind()
 
         for x in nums:
@@ -34,15 +34,15 @@ class Solution:
 
         return True
 
-    def get_samllest_prime_factors(self, n):
-        smallest_prime_factors = [i for i in range(n)]
+    def get_smallest_prime_factors(self, n):
+        res = [i for i in range(n)]
         for i in range(2, n):
-            if smallest_prime_factors[i] != i:
+            if res[i] != i:
                 continue
             for j in range(i * i, n, i):
-                if smallest_prime_factors[j] > i:
-                    smallest_prime_factors[j] = i
-        return smallest_prime_factors
+                if res[j] > i:
+                    res[j] = i
+        return res
 
     def get_prime_factor(self, num, smallest_prime_factors):
         while num > 1:
