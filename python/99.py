@@ -18,10 +18,9 @@ class Solution:
         return self.inorder(node.left) + [node.val] + self.inorder(node.right) if node else []
 
     def find_two_swapped(self, nums):
-        n = len(nums)
         x = y = None
 
-        for i in range(n - 1):
+        for i in range(len(nums) - 1):
             if nums[i + 1] < nums[i]:
                 y = nums[i + 1]
                 if x is None:
@@ -32,11 +31,14 @@ class Solution:
         return x, y
 
     def recover(self, node, count, x, y):
-        if node:
-            if node.val == x or node.val == y:
-                node.val = y if node.val == x else x
-                count -= 1
-                if count == 0:
-                    return
-            self.recover(node.left, count, x, y)
-            self.recover(node.right, count, x, y)
+        if node is None:
+            return
+
+        if node.val == x or node.val == y:
+            node.val = y if node.val == x else x
+            count -= 1
+            if count == 0:
+                return
+
+        self.recover(node.left, count, x, y)
+        self.recover(node.right, count, x, y)
