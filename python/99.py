@@ -12,7 +12,7 @@ class Solution:
     def recoverTree(self, root: Optional[TreeNode]) -> None:
         nums = self.inorder(root)
         x, y = self.get_two_swapped(nums)
-        self.recover_tree(root, 2, x, y)
+        self.recover(root, 2, x, y)
 
     def inorder(self, node):
         return self.inorder(node.left) + [node.val] + self.inorder(node.right) if node else []
@@ -30,7 +30,7 @@ class Solution:
 
         return x, y
 
-    def recover_tree(self, node, count, x, y):
+    def recover(self, node, count, x, y):
         if node is None:
             return
 
@@ -40,5 +40,5 @@ class Solution:
             if count == 0:
                 return
 
-        self.recover_tree(node.left, count, x, y)
-        self.recover_tree(node.right, count, x, y)
+        self.recover(node.left, count, x, y)
+        self.recover(node.right, count, x, y)
