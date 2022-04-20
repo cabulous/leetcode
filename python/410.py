@@ -27,7 +27,7 @@ class Solution:
         cut = 0
         for num in self.nums:
             if curr_sum + num > sum_max:
-                curr_sum = 0
                 cut += 1
+                curr_sum = 0
             curr_sum += num
         return cut < self.cut_max
