@@ -12,16 +12,19 @@ class TreeNode:
 class BSTree:
 
     def __init__(self):
-        self.root = None
+        self.root = TreeNode(-1)
 
-    def search(self, node: TreeNode, val: int) -> Optional[TreeNode]:
+    def search(self, val: int):
+        return self.binary_search(self.root, val)
+
+    def binary_search(self, node: TreeNode, val: int) -> Optional[TreeNode]:
         if node is None:
             return node
         if val == node.val:
             return node
         if val < node.val:
-            return self.search(node.left, val)
-        return self.search(node.right, val)
+            return self.binary_search(node.left, val)
+        return self.binary_search(node.right, val)
 
     def insert(self, node: TreeNode, val: int) -> TreeNode:
         if node is None:
@@ -79,7 +82,7 @@ class Bucket:
         self.tree.root = self.tree.delete(self.tree.root, val)
 
     def exits(self, val):
-        return self.tree.search(self.tree.root, val) is not None
+        return self.tree.search(val) is not None
 
 
 class MyHashSet:
