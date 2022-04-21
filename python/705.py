@@ -14,7 +14,7 @@ class BSTree:
     def __init__(self):
         self.root = TreeNode(-1)
 
-    def search(self, val: int):
+    def search(self, val: int) -> Optional[TreeNode]:
         return self.binary_search(self.root, val)
 
     def binary_search(self, node: TreeNode, val: int) -> Optional[TreeNode]:
@@ -26,15 +26,18 @@ class BSTree:
             return self.binary_search(node.left, val)
         return self.binary_search(node.right, val)
 
-    def insert(self, node: TreeNode, val: int) -> TreeNode:
+    def insert(self, val: int):
+        self.binary_insert(self.root, val)
+
+    def binary_insert(self, node: TreeNode, val: int) -> TreeNode:
         if node is None:
             return TreeNode(val)
         if val == node.val:
             return node
         if val < node.val:
-            node.left = self.insert(node.left, val)
+            node.left = self.binary_insert(node.left, val)
         else:
-            node.right = self.insert(node.right, val)
+            node.right = self.binary_insert(node.right, val)
         return node
 
     def successor(self, node: TreeNode) -> int:
@@ -76,7 +79,7 @@ class Bucket:
         self.tree = BSTree()
 
     def insert(self, val):
-        self.tree.root = self.tree.insert(self.tree.root, val)
+        self.tree.insert(val)
 
     def delete(self, val):
         self.tree.root = self.tree.delete(self.tree.root, val)
