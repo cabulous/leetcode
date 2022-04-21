@@ -9,12 +9,12 @@ class Node:
             if not self.right:
                 self.right = node
                 return True
-            return self.right.binary_insert(node)
+            return self.right.insert(node)
         if node.end <= self.start:
             if not self.left:
                 self.left = node
                 return True
-            return self.left.binary_insert(node)
+            return self.left.insert(node)
         return False
 
 
@@ -27,4 +27,4 @@ class MyCalendar:
         if not self.root:
             self.root = node
             return True
-        return self.root.binary_insert(node)
+        return self.root.insert(node)
