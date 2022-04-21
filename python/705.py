@@ -52,23 +52,26 @@ class BSTree:
             node = node.right
         return node.val
 
-    def delete(self, node: TreeNode, key: int) -> Optional[TreeNode]:
+    def delete(self, key: int) -> Optional[TreeNode]:
+        return self.binary_delete(self.root, key)
+
+    def binary_delete(self, node: TreeNode, key: int) -> Optional[TreeNode]:
         if node is None:
             return None
 
         if key < node.val:
-            node.left = self.delete(node.left, key)
+            node.left = self.binary_delete(node.left, key)
         elif key > node.val:
-            node.right = self.delete(node.right, key)
+            node.right = self.binary_delete(node.right, key)
         else:
             if node.left is None and node.right is None:
                 node = None
             elif node.left is None:
                 node.val = self.successor(node)
-                node.right = self.delete(node.right, node.val)
+                node.right = self.binary_delete(node.right, node.val)
             else:
                 node.val = self.predecessor(node)
-                node.left = self.delete(node.left, node.val)
+                node.left = self.binary_delete(node.left, node.val)
 
         return node
 
@@ -82,7 +85,7 @@ class Bucket:
         self.tree.insert(val)
 
     def delete(self, val):
-        self.tree.root = self.tree.delete(self.tree.root, val)
+        self.tree.delete(val)
 
     def exits(self, val):
         return self.tree.search(val) is not None
