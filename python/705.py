@@ -19,7 +19,7 @@ class BSTree:
 
     def binary_search(self, node: TreeNode, val: int) -> Optional[TreeNode]:
         if node is None:
-            return node
+            return None
         if val == node.val:
             return node
         if val < node.val:
@@ -97,7 +97,7 @@ class MyHashSet:
         self.key_range = 769
         self.bucket = [Bucket() for _ in range(self.key_range)]
 
-    def hash(self, key) -> int:
+    def hash(self, key: int) -> int:
         return key % self.key_range
 
     def add(self, key: int) -> None:
