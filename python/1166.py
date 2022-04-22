@@ -6,7 +6,7 @@ class TrieNode:
     def __init__(self, name=''):
         self.node = defaultdict(TrieNode)
         self.name = name
-        self.val = -1
+        self.value = -1
 
 
 class FileSystem:
@@ -15,8 +15,8 @@ class FileSystem:
         self.root = TrieNode()
 
     def createPath(self, path: str, value: int) -> bool:
-        components = path.split('/')
         curr = self.root
+        components = path.split('/')
 
         for i in range(1, len(components)):
             name = components[i]
@@ -27,18 +27,20 @@ class FileSystem:
                     return False
             curr = curr.node[name]
 
-        if curr.val != -1:
+        if curr.value != -1:
             return False
 
-        curr.val = value
+        curr.value = value
 
         return True
 
     def get(self, path: str) -> int:
         curr = self.root
         components = path.split('/')
+
         for name in components[1:]:
             if name not in curr.node:
                 return -1
             curr = curr.node[name]
-        return curr.val
+
+        return curr.value

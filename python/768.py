@@ -10,6 +10,7 @@ class Solution:
         for a, b in zip(arr, sorted(arr)):
             sum1 += a
             sum2 += b
-            res += sum1 == sum2
+            if sum1 == sum2:
+                res += 1
 
         return res
