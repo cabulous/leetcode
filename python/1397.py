@@ -8,11 +8,11 @@ def srange(a, b):
     yield from (chr(i) for i in range(ord(a), ord(b) + 1))
 
 
-def failure(pat):
+def failure(pattern):
     res = [0]
     i, target = 1, 0
-    while i < len(pat):
-        if pat[i] == pat[target]:
+    while i < len(pattern):
+        if pattern[i] == pattern[target]:
             target += 1
             res += [target]
             i += 1
