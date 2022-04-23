@@ -4,7 +4,7 @@ from collections import defaultdict
 class TrieNode:
 
     def __init__(self, name=''):
-        self.node = defaultdict(TrieNode)
+        self.next = defaultdict(TrieNode)
         self.name = name
         self.value = -1
 
@@ -20,12 +20,12 @@ class FileSystem:
 
         for i in range(1, len(components)):
             name = components[i]
-            if name not in curr.node:
+            if name not in curr.next:
                 if i == len(components) - 1:
-                    curr.node[name] = TrieNode(name)
+                    curr.next[name] = TrieNode(name)
                 else:
                     return False
-            curr = curr.node[name]
+            curr = curr.next[name]
 
         if curr.value != -1:
             return False
@@ -39,8 +39,8 @@ class FileSystem:
         components = path.split('/')
 
         for name in components[1:]:
-            if name not in curr.node:
+            if name not in curr.next:
                 return -1
-            curr = curr.node[name]
+            curr = curr.next[name]
 
         return curr.value

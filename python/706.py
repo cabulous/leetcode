@@ -17,28 +17,28 @@ class MyHashMap:
 
     def put(self, key: int, value: int) -> None:
         index = self.hash(key)
-        head = self.data[index]
-        while head.next:
-            if head.next.key == key:
-                head.next.val = value
+        curr = self.data[index]
+        while curr.next:
+            if curr.next.key == key:
+                curr.next.val = value
                 return
-            head = head.next
-        head.next = Node(key, value)
+            curr = curr.next
+        curr.next = Node(key, value)
 
     def get(self, key: int) -> int:
         index = self.hash(key)
-        head = self.data[index]
-        while head.next:
-            if head.next.key == key:
-                return head.next.val
-            head = head.next
+        curr = self.data[index]
+        while curr.next:
+            if curr.next.key == key:
+                return curr.next.val
+            curr = curr.next
         return -1
 
     def remove(self, key: int) -> None:
         index = self.hash(key)
-        head = self.data[index]
-        while head.next:
-            if head.next.key == key:
-                head.next = head.next.next
+        curr = self.data[index]
+        while curr.next:
+            if curr.next.key == key:
+                curr.next = curr.next.next
                 return
-            head = head.next
+            curr = curr.next
