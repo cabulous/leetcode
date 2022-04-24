@@ -4,8 +4,8 @@ MOD = 10 ** 9 + 7
 
 
 # https://leetcode.com/problems/find-all-good-strings/discuss/555010/Python-Simple-DFS-with-KMP
-def char_range(a, b):
-    yield from (chr(i) for i in range(ord(a), ord(b) + 1))
+def char_range(left, right):
+    yield from (chr(i) for i in range(ord(left), ord(right) + 1))
 
 
 def failure(pattern):

@@ -3,7 +3,7 @@ from typing import Optional
 
 class TreeNode:
 
-    def __init__(self, val):
+    def __init__(self, val=-1):
         self.val = val
         self.left = None
         self.right = None
@@ -12,7 +12,7 @@ class TreeNode:
 class BSTree:
 
     def __init__(self):
-        self.root = TreeNode(-1)
+        self.root = TreeNode()
 
     def search(self, val: int) -> Optional[TreeNode]:
         return self.binary_search(self.root, val)
@@ -52,17 +52,17 @@ class BSTree:
             node = node.right
         return node.val
 
-    def delete(self, key: int) -> Optional[TreeNode]:
-        return self.binary_delete(self.root, key)
+    def delete(self, val: int) -> Optional[TreeNode]:
+        return self.binary_delete(self.root, val)
 
-    def binary_delete(self, node: TreeNode, key: int) -> Optional[TreeNode]:
+    def binary_delete(self, node: TreeNode, val: int) -> Optional[TreeNode]:
         if node is None:
             return None
 
-        if key < node.val:
-            node.left = self.binary_delete(node.left, key)
-        elif key > node.val:
-            node.right = self.binary_delete(node.right, key)
+        if val < node.val:
+            node.left = self.binary_delete(node.left, val)
+        elif val > node.val:
+            node.right = self.binary_delete(node.right, val)
         else:
             if node.left is None and node.right is None:
                 node = None

@@ -7,8 +7,9 @@ class Solution:
         res = 0
 
         while left < right:
-            area = min(height[left], height[right]) * (right - left)
-            res = max(res, area)
+            w = right - left
+            h = min(height[left], height[right])
+            res = max(res, w * h)
             if height[left] < height[right]:
                 left += 1
             else:

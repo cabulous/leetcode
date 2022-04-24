@@ -10,7 +10,10 @@ class Solution:
         res = float('inf')
 
         for i in range(len(indexes) - k + 1):
-            res = min(res, prefix_sum[k + i] - prefix_sum[k // 2 + i] - prefix_sum[(k + 1) // 2 + i] + prefix_sum[i])
+            res = min(
+                res,
+                prefix_sum[i + k] - prefix_sum[k // 2 + i] - prefix_sum[(k + 1) // 2 + i] + prefix_sum[i]
+            )
 
         res -= (k // 2) * ((k + 1) // 2)
 
