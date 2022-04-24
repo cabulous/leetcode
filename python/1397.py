@@ -4,7 +4,7 @@ MOD = 10 ** 9 + 7
 
 
 # https://leetcode.com/problems/find-all-good-strings/discuss/555010/Python-Simple-DFS-with-KMP
-def srange(a, b):
+def char_range(a, b):
     yield from (chr(i) for i in range(ord(a), ord(b) + 1))
 
 
@@ -13,14 +13,14 @@ def failure(pattern):
     i, target = 1, 0
     while i < len(pattern):
         if pattern[i] == pattern[target]:
-            target += 1
-            res += [target]
             i += 1
-        elif target:
+            target += 1
+            res.append(target)
+        elif target != 0:
             target = res[target - 1]
         else:
-            res += [0]
             i += 1
+            res.append(0)
     return res
 
 
@@ -37,7 +37,7 @@ class Solution:
 
             left = s1[idx] if lb else 'a'
             right = s2[idx] if rb else 'z'
-            candidates = [*srange(left, right)]
+            candidates = [*char_range(left, right)]
 
             res = 0
             for i, ch in enumerate(candidates):
@@ -47,8 +47,8 @@ class Solution:
                 res += dfs(
                     idx + 1,
                     next_matched + (ch == evil[next_matched]),
-                    lb=(lb and i == 0),
-                    rb=(rb and i == len(candidates) - 1)
+                    lb and i == 0,
+                    rb and i == len(candidates) - 1
                 )
 
             return res
