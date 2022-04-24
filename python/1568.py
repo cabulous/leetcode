@@ -13,41 +13,41 @@ class Solution:
         self.rows = len(grid)
         self.cols = len(grid[0])
 
-        copy_grid = copy.deepcopy(grid)
-        count = self.no_islands(copy_grid)
+        grid_copy = copy.deepcopy(grid)
+        count = self.count_island(grid_copy)
         if count != 1:
             return 0
 
         for i in range(self.rows):
             for j in range(self.cols):
-                copy_grid = copy.deepcopy(grid)
-                copy_grid[i][j] = 0
-                count = self.no_islands(copy_grid)
+                grid_copy = copy.deepcopy(grid)
+                grid_copy[i][j] = 0
+                count = self.count_island(grid_copy)
                 if count != 1:
                     return 1
 
         return 2
 
-    def no_islands(self, grid):
+    def count_island(self, grid):
         res = 0
         for i in range(self.rows):
             for j in range(self.cols):
                 if grid[i][j] == 1:
                     res += 1
-                    self.no_islands_recur(grid, i, j)
+                    self.recursive_disconnect_island(grid, i, j)
         return res
 
-    def no_islands_recur(self, grid, i, j):
+    def recursive_disconnect_island(self, grid, i, j):
         if grid[i][j] == 0:
             return
 
         grid[i][j] = 0
 
         if i - 1 >= 0:
-            self.no_islands_recur(grid, i - 1, j)
+            self.recursive_disconnect_island(grid, i - 1, j)
         if i + 1 < self.rows:
-            self.no_islands_recur(grid, i + 1, j)
+            self.recursive_disconnect_island(grid, i + 1, j)
         if j - 1 >= 0:
-            self.no_islands_recur(grid, i, j - 1)
+            self.recursive_disconnect_island(grid, i, j - 1)
         if j + 1 < self.cols:
-            self.no_islands_recur(grid, i, j + 1)
+            self.recursive_disconnect_island(grid, i, j + 1)
