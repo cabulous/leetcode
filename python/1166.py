@@ -3,10 +3,10 @@ from collections import defaultdict
 
 class TrieNode:
 
-    def __init__(self, name=''):
+    def __init__(self, name='', val=-1):
         self.next = defaultdict(TrieNode)
         self.name = name
-        self.value = -1
+        self.val = val
 
 
 class FileSystem:
@@ -22,15 +22,15 @@ class FileSystem:
             name = components[i]
             if name not in curr.next:
                 if i == len(components) - 1:
-                    curr.next[name] = TrieNode(name)
-                else:
-                    return False
+                    curr.next[name] = TrieNode(name, value)
+                    return True
+                return False
             curr = curr.next[name]
 
-        if curr.value != -1:
+        if curr.val != -1:
             return False
 
-        curr.value = value
+        curr.val = value
 
         return True
 
@@ -43,4 +43,4 @@ class FileSystem:
                 return -1
             curr = curr.next[name]
 
-        return curr.value
+        return curr.val
