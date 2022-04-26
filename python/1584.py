@@ -5,9 +5,9 @@ from typing import List
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         n = len(points)
-        res = 0
-        edges_used = 0
         in_mst = [False] * n
+        edges_used = 0
+        res = 0
 
         min_dist = [math.inf] * n
         min_dist[0] = 0
@@ -17,7 +17,7 @@ class Solution:
             curr_node = -1
 
             for node in range(n):
-                if not in_mst[node] and curr_min_edge > min_dist[node]:
+                if not in_mst[node] and min_dist[node] < curr_min_edge:
                     curr_min_edge = min_dist[node]
                     curr_node = node
 
@@ -27,7 +27,7 @@ class Solution:
 
             for next_node in range(n):
                 weight = self.get_manhattan_dist(points[curr_node], points[next_node])
-                if not in_mst[next_node] and min_dist[next_node] > weight:
+                if not in_mst[next_node] and weight < min_dist[next_node]:
                     min_dist[next_node] = weight
 
         return res
