@@ -5,10 +5,10 @@ from typing import List
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         n = len(points)
-        in_mst = [False] * n
         edges_used = 0
         res = 0
 
+        in_mst = [False] * n
         min_dist = [math.inf] * n
         min_dist[0] = 0
 
