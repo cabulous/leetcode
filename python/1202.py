@@ -30,8 +30,8 @@ class Solution:
         for i in range(len(s)):
             m[uf.find(i)].append(s[i])
 
-        for comp_id in m.keys():
-            m[comp_id].sort(reverse=True)
+        for key in m.keys():
+            m[key].sort(reverse=True)
 
         res = []
         for i in range(len(s)):
