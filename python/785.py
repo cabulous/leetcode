@@ -4,34 +4,19 @@ from collections import deque
 
 # https://leetcode.com/problems/is-graph-bipartite/discuss/115543/Easy-Python-Solution/800016
 class Solution:
+
+    def __init__(self):
+        self.color_memo = {}
+        self.graph = []
+
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        color = {}
+        self.graph = graph
+        return all(i in self.color_memo or self.dfs(i, 1) for i in range(len(graph)))
 
-        def dfs(x, c):
-            if x in color:
-                return color[x] == c
-            color[x] = c
-            return all(dfs(y, -c) for y in graph[x])
+    def dfs(self, node, color):
+        if node in self.color_memo:
+            return self.color_memo[node] == color
 
-        return all(i in color or dfs(i, 1) for i in range(len(graph)))
+        self.color_memo[node] = color
 
-
-# https://leetcode.com/problems/is-graph-bipartite/discuss/115543/Easy-Python-Solution/800016
-class Solution:
-    def isBipartite(self, graph: List[List[int]]) -> bool:
-        color = {}
-
-        def bfs(x):
-            q = deque([x])
-            color[x] = 1
-            while q:
-                cur = q.popleft()
-                for n in graph[cur]:
-                    if n not in color:
-                        color[n] = -color[cur]
-                        q.append(n)
-                    elif color[n] == color[cur]:
-                        return False
-            return True
-
-        return all(i in color or bfs(i) for i in range(len(graph)))
+        return all(self.dfs(next_node, -color) for next_node in self.graph[node])
