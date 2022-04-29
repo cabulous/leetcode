@@ -8,27 +8,27 @@ class Solution:
         edges_used = 0
         res = 0
 
-        in_mst = [False] * n
+        visited = [False] * n
         min_dist = [math.inf] * n
         min_dist[0] = 0
 
         while edges_used < n:
-            curr_min_edge = math.inf
+            curr_min_dist = math.inf
             curr_node = -1
 
             for node in range(n):
-                if not in_mst[node] and min_dist[node] < curr_min_edge:
-                    curr_min_edge = min_dist[node]
+                if not visited[node] and min_dist[node] < curr_min_dist:
+                    curr_min_dist = min_dist[node]
                     curr_node = node
 
-            res += curr_min_edge
+            res += curr_min_dist
             edges_used += 1
-            in_mst[curr_node] = True
+            visited[curr_node] = True
 
             for next_node in range(n):
-                weight = self.get_manhattan_dist(points[curr_node], points[next_node])
-                if not in_mst[next_node] and weight < min_dist[next_node]:
-                    min_dist[next_node] = weight
+                dist = self.get_manhattan_dist(points[curr_node], points[next_node])
+                if not visited[next_node] and dist < min_dist[next_node]:
+                    min_dist[next_node] = dist
 
         return res
 
