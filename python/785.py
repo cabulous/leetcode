@@ -11,12 +11,12 @@ class Solution:
 
     def isBipartite(self, graph: List[List[int]]) -> bool:
         self.graph = graph
-        return all(i in self.color_memo or self.dfs(i, 1) for i in range(len(graph)))
+        return all(i in self.color_memo or self.can_bipartite(i, 1) for i in range(len(graph)))
 
-    def dfs(self, node, color):
+    def can_bipartite(self, node, color):
         if node in self.color_memo:
             return self.color_memo[node] == color
 
         self.color_memo[node] = color
 
-        return all(self.dfs(next_node, -color) for next_node in self.graph[node])
+        return all(self.can_bipartite(next_node, -color) for next_node in self.graph[node])
