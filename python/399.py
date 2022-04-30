@@ -29,9 +29,12 @@ class Solution:
 
         while queue:
             variable, value = queue.popleft()
+
             if variable == var2:
                 return value
+
             visited.add(variable)
+
             for next_variable, next_value in self.graph[variable]:
                 if next_variable not in visited:
                     queue.append((next_variable, value * next_value))
