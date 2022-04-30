@@ -6,7 +6,7 @@ class Solution:
 
         n = len(num)
         if k >= n * (n - 1) // 2:
-            return ''.join(sorted(list(num)))
+            return ''.join(sorted(num))
 
         for i in range(10):
             index = num.find(str(i))
