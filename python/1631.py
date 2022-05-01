@@ -13,6 +13,7 @@ class Solution:
 
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
         self.rows, self.cols = len(heights), len(heights[0])
+
         target = (self.rows - 1, self.cols - 1)
         dist_min = [[math.inf] * self.cols for _ in range(self.rows)]
         queue = [(0, 0, 0)]

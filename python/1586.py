@@ -17,11 +17,11 @@ class BSTIterator:
         self.pointer = -1
 
     def hasNext(self) -> bool:
+        if self.pointer < len(self.arr) - 1:
+            return True
         if len(self.stack) > 0:
             return True
         if self.last is not None:
-            return True
-        if self.pointer < len(self.arr) - 1:
             return True
         return False
 
