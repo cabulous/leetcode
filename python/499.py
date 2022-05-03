@@ -28,7 +28,7 @@ class Solution:
             for next_row, next_col, delta_pattern, delta_dist in self.get_next_step(row, col):
                 next_pattern = pattern + delta_pattern
                 next_dist = dist + delta_dist
-                if (next_row, next_col) in stopped and [next_dist, next_pattern] >= stopped[next_row, next_col]:
+                if (next_row, next_col) in stopped and stopped[next_row, next_col] <= [next_dist, next_pattern]:
                     continue
                 stopped[next_row, next_col] = [next_dist, next_pattern]
                 heapq.heappush(queue, (next_dist, next_pattern, next_row, next_col))

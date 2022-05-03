@@ -1,5 +1,4 @@
 from typing import List
-from collections import deque
 
 
 # https://leetcode.com/problems/is-graph-bipartite/discuss/115543/Easy-Python-Solution/800016
