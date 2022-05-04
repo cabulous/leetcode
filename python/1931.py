@@ -26,11 +26,9 @@ class Solution:
         if row == self.rows:
             out.append(curr_col_mask)
             return
-        for color in [1, 2, 3]:
-            diff_from_left = self.get_color(prev_col_mask, row) != color
-            diff_from_top = self.get_color(curr_col_mask, row - 1) != color
-            if diff_from_left and (row != 0 or diff_from_top):
-                self.dfs(row + 1, self.set_color(curr_col_mask, row, color), prev_col_mask, out)
+        for i in [1, 2, 3]:
+            if self.get_color(prev_col_mask, row) != i and (row == 0 or self.get_color(curr_col_mask, row - 1) != i):
+                self.dfs(row + 1, self.set_color(curr_col_mask, row, i), prev_col_mask, out)
 
     @lru_cache(None)
     def neighbor(self, prev_col_mask):
