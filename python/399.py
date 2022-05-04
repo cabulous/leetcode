@@ -13,8 +13,7 @@ class Solution:
         return [self.find_path(q) for q in queries]
 
     def build_graph(self, equations, values):
-        for vertices, value in zip(equations, values):
-            source, target = vertices
+        for [source, target], value in zip(equations, values):
             self.graph[source].append((target, value))
             self.graph[target].append((source, 1 / value))
 
@@ -25,7 +24,7 @@ class Solution:
             return -1.0
 
         queue = deque([(var1, 1.0)])
-        visited = set()
+        visited = {var1}
 
         while queue:
             variable, value = queue.popleft()
@@ -33,10 +32,9 @@ class Solution:
             if variable == var2:
                 return value
 
-            visited.add(variable)
-
             for next_variable, next_value in self.graph[variable]:
                 if next_variable not in visited:
+                    visited.add(next_variable)
                     queue.append((next_variable, value * next_value))
 
         return -1.0

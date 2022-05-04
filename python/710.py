@@ -24,4 +24,6 @@ class Solution:
 
     def pick(self) -> int:
         index = random.randrange(self.length)
-        return self.remap[index] if index in self.remap else index
+        if index in self.remap:
+            return self.remap[index]
+        return index
