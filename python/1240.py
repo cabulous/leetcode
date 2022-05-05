@@ -33,7 +33,7 @@ class Solution:
         while end < self.m and height[end] == min_height:
             end += 1
 
-        for i in reversed(range(1, min(end - start, self.n - min_height) + 1)):
+        for i in range(min(end - start, self.n - min_height), 0, -1):
             new_height = height[:]
             for j in range(i):
                 new_height[start + j] += i

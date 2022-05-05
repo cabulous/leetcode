@@ -13,8 +13,8 @@ class Solution:
 
         for num in nums:
             if count[k - num] > 0:
-                res += 1
                 count[k - num] -= 1
+                res += 1
             else:
                 count[num] += 1
 

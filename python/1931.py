@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-MOD = 1_000_000_007
+MOD = 10 ** 9 + 7
 
 
 # https://leetcode.com/problems/painting-a-grid-with-three-different-colors/discuss/1330185/C%2B%2BPython-DP-and-DFS-and-Bitmask-Picture-explain-Clean-and-Concise
