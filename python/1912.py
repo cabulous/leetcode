@@ -29,12 +29,12 @@ class MovieRentingSystem:
             price, shop = heapq.heappop(self.movies[movie])
             temp.append((price, shop))
             if self.available[shop, movie]:
-                res.append((price, shop))
+                res.append(shop)
 
         for price, shop in temp:
             heapq.heappush(self.movies[movie], (price, shop))
 
-        return [shop for _, shop in res]
+        return res
 
     def rent(self, shop: int, movie: int) -> None:
         self.available[shop, movie] = False

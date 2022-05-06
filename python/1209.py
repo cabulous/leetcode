@@ -11,4 +11,4 @@ class Solution:
             else:
                 stack.append([ch, 1])
 
-        return ''.join(count * ch for ch, count in stack)
+        return ''.join(ch * count for ch, count in stack)

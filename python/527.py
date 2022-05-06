@@ -5,12 +5,11 @@ from typing import List
 # https://leetcode.com/problems/word-abbreviation/discuss/99781/Python-Straightforward-with-Explanation
 class Solution:
     def wordsAbbreviation(self, words: List[str]) -> List[str]:
-        res = [''] * len(words)
-
         groups = defaultdict(list)
         for index, word in enumerate(words):
             groups[len(word), word[-1]].append((word, index))
 
+        res = [''] * len(words)
         for (size, last_letter), enum_words in groups.items():
             enum_words.sort()
 
