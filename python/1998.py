@@ -8,7 +8,7 @@ class UnionFind:
         self.parent = {}
 
     def find(self, x):
-        if x != self.parent.setdefault(x, x):
+        if self.parent.setdefault(x, x) != x:
             self.parent[x] = self.find(self.parent[x])
         return self.parent[x]
 
@@ -21,11 +21,11 @@ class UnionFind:
 
 class Solution:
     def gcdSort(self, nums: List[int]) -> bool:
-        smallest_prime_factors = self.get_smallest_prime_factors(max(nums) + 1)
+        prime_factors_map = self.build_prime_factors_map(max(nums) + 1)
         uf = UnionFind()
 
         for x in nums:
-            for y in self.get_prime_factor(x, smallest_prime_factors):
+            for y in self.get_prime_factor(x, prime_factors_map):
                 uf.union(x, y)
 
         for x, y in zip(nums, sorted(nums)):
@@ -34,17 +34,16 @@ class Solution:
 
         return True
 
-    def get_smallest_prime_factors(self, n):
-        res = [i for i in range(n)]
-        for i in range(2, n):
+    def build_prime_factors_map(self, num):
+        res = [i for i in range(num)]
+        for i in range(2, num):
             if res[i] != i:
                 continue
-            for j in range(i * i, n, i):
-                if res[j] > i:
-                    res[j] = i
+            for j in range(i * i, num, i):
+                res[j] = min(res[j], i)
         return res
 
-    def get_prime_factor(self, num, smallest_prime_factors):
+    def get_prime_factor(self, num, prime_factors_map):
         while num > 1:
-            yield smallest_prime_factors[num]
-            num //= smallest_prime_factors[num]
+            yield prime_factors_map[num]
+            num //= prime_factors_map[num]
