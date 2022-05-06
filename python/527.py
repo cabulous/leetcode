@@ -9,16 +9,16 @@ class Solution:
 
         groups = defaultdict(list)
         for index, word in enumerate(words):
-            groups[len(word), word[0], word[-1]].append((word, index))
+            groups[len(word), word[-1]].append((word, index))
 
-        for (size, first_letter, last_letter), enum_words in groups.items():
+        for (size, last_letter), enum_words in groups.items():
             enum_words.sort()
 
             lcp = [0] * len(enum_words)
             for i, (word, _) in enumerate(enum_words):
                 if i > 0:
                     prev_word, _ = enum_words[i - 1]
-                    prefix_count = self.longest_common_prefix(word, prev_word)
+                    prefix_count = self.longest_common_prefix(prev_word, word)
                     lcp[i] = max(lcp[i], prefix_count)
                     lcp[i - 1] = max(lcp[i - 1], prefix_count)
 
