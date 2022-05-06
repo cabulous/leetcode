@@ -11,14 +11,14 @@ class Solution:
         for index, word in enumerate(words):
             groups[len(word), word[0], word[-1]].append((word, index))
 
-        for (size, first, last), enum_words in groups.items():
+        for (size, first_letter, last_letter), enum_words in groups.items():
             enum_words.sort()
 
             lcp = [0] * len(enum_words)
             for i, (word, _) in enumerate(enum_words):
                 if i > 0:
-                    word2, _ = enum_words[i - 1]
-                    prefix_count = self.longest_common_prefix(word, word2)
+                    prev_word, _ = enum_words[i - 1]
+                    prefix_count = self.longest_common_prefix(word, prev_word)
                     lcp[i] = max(lcp[i], prefix_count)
                     lcp[i - 1] = max(lcp[i - 1], prefix_count)
 
@@ -27,7 +27,7 @@ class Solution:
                 if delta <= max(1, len(str(delta)) - 1):
                     res[index] = word
                 else:
-                    res[index] = word[:prefix_count + 1] + str(delta) + last
+                    res[index] = word[:prefix_count + 1] + str(delta) + last_letter
 
         return res
 
