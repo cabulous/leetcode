@@ -20,6 +20,5 @@ class Solution:
             if stack and stack[-1] < nums[i]:
                 return True
             stack.append(nums[i])
-            print(stack)
 
         return False
