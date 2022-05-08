@@ -19,7 +19,7 @@ class Solution:
         self.robot = None
         self.visited = set()
 
-    def cleanRoom(self, robot):
+    def cleanRoom(self, robot: Robot):
         self.robot = robot
         self.dfs(0, 0, 0, 1)
 

@@ -21,7 +21,7 @@ class Solution:
         x = y = None
 
         for i in range(len(nums) - 1):
-            if nums[i + 1] < nums[i]:
+            if nums[i] > nums[i + 1]:
                 y = nums[i + 1]
                 if x is None:
                     x = nums[i]
