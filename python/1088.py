@@ -20,4 +20,4 @@ class Solution:
                 continue
             if num * 10 + d > self.num_max:
                 break
-            self.dfs(num * 10 + d, num_rotated * unit + d_rotated, unit * 10)
+            self.dfs(num * 10 + d, d_rotated * unit + num_rotated, unit * 10)
