@@ -15,9 +15,12 @@ class MyHashMap:
     def hash(self, key):
         return key % self.key_range
 
-    def put(self, key: int, value: int) -> None:
+    def get_data_node(self, key):
         index = self.hash(key)
-        curr = self.data[index]
+        return self.data[index]
+
+    def put(self, key: int, value: int) -> None:
+        curr = self.get_data_node(key)
         while curr.next:
             if curr.next.key == key:
                 curr.next.val = value
@@ -26,8 +29,7 @@ class MyHashMap:
         curr.next = Node(key, value)
 
     def get(self, key: int) -> int:
-        index = self.hash(key)
-        curr = self.data[index]
+        curr = self.get_data_node(key)
         while curr.next:
             if curr.next.key == key:
                 return curr.next.val
@@ -35,8 +37,7 @@ class MyHashMap:
         return -1
 
     def remove(self, key: int) -> None:
-        index = self.hash(key)
-        curr = self.data[index]
+        curr = self.get_data_node(key)
         while curr.next:
             if curr.next.key == key:
                 curr.next = curr.next.next
