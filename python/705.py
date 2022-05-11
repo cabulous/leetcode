@@ -9,7 +9,7 @@ class TreeNode:
         self.right = None
 
 
-class BSTree:
+class BinarySearchTree:
 
     def __init__(self):
         self.root = TreeNode()
@@ -17,7 +17,7 @@ class BSTree:
     def search(self, val: int) -> Optional[TreeNode]:
         return self.binary_search(self.root, val)
 
-    def binary_search(self, node: TreeNode, val: int) -> Optional[TreeNode]:
+    def binary_search(self, node: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if node is None:
             return None
         if val == node.val:
@@ -29,7 +29,7 @@ class BSTree:
     def insert(self, val: int):
         self.binary_insert(self.root, val)
 
-    def binary_insert(self, node: TreeNode, val: int) -> TreeNode:
+    def binary_insert(self, node: Optional[TreeNode], val: int) -> TreeNode:
         if node is None:
             return TreeNode(val)
         if val == node.val:
@@ -55,7 +55,7 @@ class BSTree:
     def delete(self, val: int) -> Optional[TreeNode]:
         return self.binary_delete(self.root, val)
 
-    def binary_delete(self, node: TreeNode, val: int) -> Optional[TreeNode]:
+    def binary_delete(self, node: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if node is None:
             return None
 
@@ -79,7 +79,7 @@ class BSTree:
 class Bucket:
 
     def __init__(self):
-        self.tree = BSTree()
+        self.tree = BinarySearchTree()
 
     def insert(self, val):
         self.tree.insert(val)
@@ -95,19 +95,19 @@ class MyHashSet:
 
     def __init__(self):
         self.key_range = 769
-        self.bucket = [Bucket() for _ in range(self.key_range)]
+        self.data = [Bucket() for _ in range(self.key_range)]
 
     def hash(self, key: int) -> int:
         return key % self.key_range
 
     def add(self, key: int) -> None:
         index = self.hash(key)
-        self.bucket[index].insert(key)
+        return self.data[index].insert(key)
 
     def remove(self, key: int) -> None:
         index = self.hash(key)
-        self.bucket[index].delete(key)
+        return self.data[index].delete(key)
 
     def contains(self, key: int) -> bool:
         index = self.hash(key)
-        return self.bucket[index].exits(key)
+        return self.data[index].exits(key)

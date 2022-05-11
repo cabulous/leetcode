@@ -35,6 +35,6 @@ class Solution:
         if (n, k) in self.memo:
             return self.memo[n, k]
 
-        self.memo[n, k] = sum(self.dfs(n - 1, k) for k in range(1, k + 1))
+        self.memo[n, k] = sum(self.dfs(n - 1, nk) for nk in range(1, k + 1))
 
         return self.memo[n, k]
