@@ -10,11 +10,11 @@ class Solution:
         res = 0
 
         arrays = [range(i + 1) for i in balls]
-        t = list(product(*arrays))
+        comb = list(product(*arrays))
 
-        for i in range(len(t)):
-            if sum(t[i]) == box_sum and t[i].count(0) == t[-i - 1].count(0):
-                res += self.multinomial(t[i]) * self.multinomial(t[-i - 1])
+        for i in range(len(comb)):
+            if sum(comb[i]) == box_sum and comb[i].count(0) == comb[-i - 1].count(0):
+                res += self.multinomial(comb[i]) * self.multinomial(comb[-i - 1])
 
         return res / self.multinomial(list(balls))
 
