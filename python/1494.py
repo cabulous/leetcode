@@ -6,8 +6,8 @@ from typing import List
 class Solution:
     def minNumberOfSemesters(self, n: int, relations: List[List[int]], k: int) -> int:
         reqs = [0] * n
-        for u, v in relations:
-            reqs[v - 1] |= 1 << (u - 1)
+        for pre, nxt in relations:
+            reqs[nxt - 1] |= 1 << (pre - 1)
 
         dp = [n] * (1 << n)
         dp[0] = 0
@@ -15,14 +15,14 @@ class Solution:
         for mask in range(1 << n):
             available = []
 
-            for v in range(n):
-                if mask & (1 << v) == 0 and mask & reqs[v] == reqs[v]:
-                    available.append(v)
+            for course in range(n):
+                if mask & (1 << course) == 0 and mask & reqs[course] == reqs[course]:
+                    available.append(course)
 
             for choice in combinations(available, min(k, len(available))):
                 mask2 = mask
-                for u in choice:
-                    mask2 |= (1 << u)
+                for course in choice:
+                    mask2 |= (1 << course)
                 dp[mask2] = min(dp[mask2], 1 + dp[mask])
 
         return dp[-1]
