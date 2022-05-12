@@ -11,7 +11,6 @@ class Solution:
 
         for index, num in enumerate(nums, 1):
             freq[count[num]] -= 1
-
             count[num] += 1
             freq[count[num]] += 1
 

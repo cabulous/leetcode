@@ -33,7 +33,7 @@ class Solution:
 
     def backtrack(self, comb, counter):
         if len(comb) == len(self.nums):
-            self.res.append(list(comb))
+            self.res.append(comb[:])
             return
 
         for num in counter:
