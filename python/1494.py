@@ -20,9 +20,9 @@ class Solution:
                     available.append(course)
 
             for choice in combinations(available, min(k, len(available))):
-                mask2 = mask
+                next_mask = mask
                 for course in choice:
-                    mask2 |= (1 << course)
-                dp[mask2] = min(dp[mask2], 1 + dp[mask])
+                    next_mask |= (1 << course)
+                dp[next_mask] = min(dp[next_mask], 1 + dp[mask])
 
         return dp[-1]
