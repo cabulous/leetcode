@@ -31,7 +31,6 @@ class Solution:
 
     def normalize(self, shape):
         rotated_shapes = [[] for _ in range(8)]
-        res = []
 
         for x, y in shape:
             rotated_shapes[0].append((x, y))
@@ -46,6 +45,7 @@ class Solution:
         for rotated in rotated_shapes:
             rotated.sort()
 
+        res = []
         for rotated in rotated_shapes:
             tmp = [(0, 0)]
             for i in range(1, len(rotated)):
