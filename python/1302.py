@@ -12,12 +12,12 @@ class Solution:
             return 0
 
         level = [root]
-        prev_level = []
+        pre_level = []
         while level:
-            prev_level = level
+            pre_level = level[:]
             level = [kid for node in level for kid in [node.left, node.right] if kid]
 
-        return sum(node.val for node in prev_level)
+        return sum(node.val for node in pre_level)
 
 
 # Iterative DFS Preorder Traversal
