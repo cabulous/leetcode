@@ -9,7 +9,6 @@ class Solution:
         self.rows = 0
         self.cols = 0
         self.visited = set()
-        self.path_signature = []
 
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
         self.grid = grid
@@ -20,14 +19,14 @@ class Solution:
 
         for row in range(self.rows):
             for col in range(self.cols):
-                self.path_signature = []
-                self.dfs(row, col, '0')
-                if self.path_signature:
-                    res.add(tuple(self.path_signature))
+                path_signature = []
+                self.dfs(row, col, '0', path_signature)
+                if path_signature:
+                    res.add(tuple(path_signature))
 
         return len(res)
 
-    def dfs(self, row, col, direction):
+    def dfs(self, row, col, direction, out):
         if row < 0 or self.rows <= row or col < 0 or self.cols <= col:
             return
         if (row, col) in self.visited:
@@ -36,11 +35,11 @@ class Solution:
             return
 
         self.visited.add((row, col))
-        self.path_signature.append(direction)
+        out.append(direction)
 
-        self.dfs(row + 1, col, 'D')
-        self.dfs(row - 1, col, 'U')
-        self.dfs(row, col + 1, 'R')
-        self.dfs(row, col - 1, 'L')
+        self.dfs(row - 1, col, 'U', out)
+        self.dfs(row + 1, col, 'D', out)
+        self.dfs(row, col - 1, 'L', out)
+        self.dfs(row, col + 1, 'R', out)
 
-        self.path_signature.append('0')
+        out.append('0')
