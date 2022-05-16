@@ -1,7 +1,6 @@
 from typing import List
 
 
-# Hash By Path Signature
 class Solution:
 
     def __init__(self):
@@ -16,13 +15,12 @@ class Solution:
         self.cols = len(grid[0])
 
         res = set()
-
         for row in range(self.rows):
             for col in range(self.cols):
-                path_signature = []
-                self.dfs(row, col, '0', path_signature)
-                if path_signature:
-                    res.add(tuple(path_signature))
+                path = []
+                self.dfs(row, col, '0', path)
+                if len(path) > 0:
+                    res.add(tuple(path))
 
         return len(res)
 

@@ -12,18 +12,19 @@ class Solution:
         self.cols = 0
 
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
-        self.rows, self.cols = len(heights), len(heights[0])
+        self.rows = len(heights)
+        self.cols = len(heights[0])
 
-        target = (self.rows - 1, self.cols - 1)
         dist_min = [[math.inf] * self.cols for _ in range(self.rows)]
         queue = [(0, 0, 0)]
+        target = (self.rows - 1, self.cols - 1)
 
         while queue:
             dist, row, col = heapq.heappop(queue)
-            if dist > dist_min[row][col]:
-                continue
             if (row, col) == target:
                 return dist
+            if dist > dist_min[row][col]:
+                continue
             for next_row, next_col in self.get_next_cell(row, col):
                 next_dist = max(dist, abs(heights[next_row][next_col] - heights[row][col]))
                 if next_dist < dist_min[next_row][next_col]:

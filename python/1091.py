@@ -3,24 +3,37 @@ from collections import deque
 
 
 class Solution:
-    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        max_row, max_col = len(grid), len(grid[0])
-        directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
-        if grid[0][0] == 1 or grid[max_row - 1][max_col - 1] == 1:
+    def __init__(self):
+        self.grid = []
+        self.rows = 0
+        self.cols = 0
+        self.directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        self.visited = set()
+
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        if grid[0][0] == 1:
             return -1
 
+        self.grid = grid
+        self.rows = len(grid)
+        self.cols = len(grid[0])
+
         queue = deque([(0, 0, 1)])
-        visited = {(0, 0)}
+        target = (self.rows - 1, self.cols - 1)
 
         while queue:
-            row, col, distance = queue.popleft()
-            if row == max_row - 1 and col == max_col - 1:
-                return distance
-            for dx, dy in directions:
-                nr, nc = row + dx, col + dy
-                if 0 <= nr < max_row and 0 <= nc < max_col and (nr, nc) not in visited and grid[nr][nc] == 0:
-                    visited.add((nr, nc))
-                    queue.append((nr, nc, distance + 1))
+            row, col, dist = queue.popleft()
+            if (row, col) == target:
+                return dist
+            for next_row, next_col in self.get_next_step(row, col):
+                queue.append((next_row, next_col, dist + 1))
 
         return -1
+
+    def get_next_step(self, row, col):
+        for dr, dc in self.directions:
+            nr, nc = row + dr, col + dc
+            if 0 <= nr < self.rows and 0 <= nc < self.cols and (nr, nc) not in self.visited and self.grid[nr][nc] == 0:
+                self.visited.add((nr, nc))
+                yield nr, nc
