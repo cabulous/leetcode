@@ -13,9 +13,14 @@ class Solution:
         return self.dp(0, len(slices) - 1, len(slices) // 3, 1)
 
     @lru_cache(None)
-    def dp(self, i, j, k, cycle=0):
-        if k == 1:
-            return max(self.slices[i:j + 1])
-        if j - i + 1 < k * 2 - 1:
+    def dp(self, start, end, remaining, cycle=0):
+        if remaining == 1:
+            return max(self.slices[start:end + 1])
+
+        if end - start + 1 < remaining * 2 - 1:
             return -float('inf')
-        return max(self.dp(i + cycle, j - 2, k - 1) + self.slices[j], self.dp(i, j - 1, k))
+
+        return max(
+            self.dp(start + cycle, end - 2, remaining - 1) + self.slices[end],
+            self.dp(start, end - 1, remaining)
+        )
