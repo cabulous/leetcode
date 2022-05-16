@@ -22,5 +22,5 @@ class Solution:
 
         return max(
             self.dp(start + cycle, end - 2, remaining - 1) + self.slices[end],
-            self.dp(start, end - 1, remaining)
+            self.dp(start, end - 1, remaining),
         )
