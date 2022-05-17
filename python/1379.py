@@ -1,4 +1,6 @@
-# Definition for a binary tree node.
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -6,41 +8,44 @@ class TreeNode:
         self.right = None
 
 
-# inorder travers
-from collections import deque
+class Solution:
+    def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+        original_queue = deque([original])
+        cloned_queue = deque([cloned])
+
+        while original_queue:
+            o_node = original_queue.popleft()
+            c_node = cloned_queue.popleft()
+
+            if o_node is target:
+                return c_node
+
+            if o_node.left:
+                original_queue.append(o_node.left)
+                cloned_queue.append(c_node.left)
+            if o_node.right:
+                original_queue.append(o_node.right)
+                cloned_queue.append(c_node.right)
 
 
 class Solution:
-    def getTargetCopy(self, original, cloned, target):
-        ans = None
 
-        def inorder(o, c):
-            if o:
-                inorder(o.left, c.left)
-                if o is target:
-                    nonlocal ans
-                    ans = c
-                inorder(o.right, c.right)
+    def __init__(self):
+        self.target = None
+        self.res = None
 
-        inorder(original, cloned)
-        return ans
+    def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+        self.target = target
+        self.inorder(original, cloned)
+        return self.res
 
+    def inorder(self, original_node, cloned_node):
+        if original_node.left:
+            self.inorder(original_node.left, cloned_node.left)
 
-# bfs
-class Solution:
-    def getTargetCopy(self, original, cloned, target):
-        queue_o = deque([original, ])
-        queue_c = deque([cloned, ])
+        if original_node is self.target:
+            self.res = cloned_node
+            return
 
-        while queue_o:
-            node_o = queue_o.popleft()
-            node_c = queue_c.popleft()
-            if node_o is target:
-                return node_c
-            if node_o:
-                queue_o.append(node_o.left)
-                queue_o.append(node_o.right)
-                queue_c.append(node_c.left)
-                queue_c.append(node_c.right)
-
-        return None
+        if original_node.right:
+            self.inorder(original_node.right, cloned_node.right)

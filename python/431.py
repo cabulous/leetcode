@@ -21,6 +21,7 @@ class Codec:
             return None
 
         binary = TreeNode(root.val)
+
         if not root.children:
             return binary
 
@@ -37,6 +38,7 @@ class Codec:
             return None
 
         nary = Node(data.val, [])
+
         node = data.left
         while node:
             nary.children.append(self.decode(node))
