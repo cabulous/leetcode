@@ -4,66 +4,34 @@ from collections import defaultdict
 
 # https://leetcode.com/problems/critical-connections-in-a-network/discuss/410345/Python-(98-Time-100-Memory)-clean-solution-with-explanaions-for-confused-people-like-me/419605
 class Solution:
+
+    def __init__(self):
+        self.low = []
+        self.edges = defaultdict(list)
+
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        low = [0] * n
-        edges = defaultdict(list)
+        self.low = [0] * n
 
         for u, v in connections:
-            edges[u].append(v)
-            edges[v].append(u)
+            self.edges[u].append(v)
+            self.edges[v].append(u)
 
-        def dfs(rank, curr, prev):
-            low[curr] = rank
-            res = []
-            for neighbor in edges[curr]:
-                if neighbor == prev:
-                    continue
-                if not low[neighbor]:
-                    res += dfs(rank + 1, neighbor, curr)
-                low[curr] = min(low[curr], low[neighbor])
-                if low[neighbor] >= rank + 1:
-                    res.append([curr, neighbor])
-            return res
+        return self.dfs(1, 0, -1)
 
-        return dfs(1, 0, -1)
-
-
-class Solution:
-    def __init__(self):
-        self.rank = {}
-        self.graph = defaultdict(list)
-        self.conn_dict = {}
-
-    def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        self.form_graph(n, connections)
-        self.dfs(0, 0)
-
+    def dfs(self, rank, curr, prev):
+        self.low[curr] = rank
         res = []
-        for u, v in self.conn_dict:
-            res.append([u, v])
+
+        for node in self.edges[curr]:
+            if node == prev:
+                continue
+
+            if self.low[node] == 0:
+                res += self.dfs(rank + 1, node, curr)
+
+            self.low[curr] = min(self.low[curr], self.low[node])
+
+            if self.low[node] >= rank + 1:
+                res.append([curr, node])
 
         return res
-
-    def dfs(self, node, discovery_rank):
-        if self.rank[node]:
-            return self.rank[node]
-        self.rank[node] = discovery_rank
-        min_rank = discovery_rank + 1
-        for neighbor in self.graph[node]:
-            if self.rank[neighbor] and self.rank[neighbor] == discovery_rank - 1:
-                continue
-            recursive_rank = self.dfs(neighbor, discovery_rank + 1)
-            if recursive_rank <= discovery_rank:
-                del self.conn_dict[(min(node, neighbor), max(node, neighbor))]
-            min_rank = min(min_rank, recursive_rank)
-        return min_rank
-
-    def form_graph(self, n, connections):
-        for i in range(n):
-            self.rank[i] = None
-
-        for edge in connections:
-            u, v = edge[0], edge[1]
-            self.graph[u].append(v)
-            self.graph[v].append(u)
-            self.conn_dict[(min(u, v), max(u, v))] = 1
