@@ -17,10 +17,11 @@ class Solution:
         res = set()
         for row in range(self.rows):
             for col in range(self.cols):
-                path = []
-                self.dfs(row, col, '0', path)
-                if len(path) > 0:
-                    res.add(tuple(path))
+                if grid[row][col] == 1:
+                    path = []
+                    self.dfs(row, col, '0', path)
+                    if len(path) > 0:
+                        res.add(tuple(path))
 
         return len(res)
 

@@ -6,32 +6,32 @@ from collections import defaultdict
 class Solution:
 
     def __init__(self):
-        self.low = []
-        self.edges = defaultdict(list)
+        self.rank_min = []
+        self.graph = defaultdict(list)
 
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        self.low = [0] * n
+        self.rank_min = [0] * n
 
         for u, v in connections:
-            self.edges[u].append(v)
-            self.edges[v].append(u)
+            self.graph[u].append(v)
+            self.graph[v].append(u)
 
         return self.dfs(1, 0, -1)
 
-    def dfs(self, rank, curr, prev):
-        self.low[curr] = rank
+    def dfs(self, rank, curr_node, prev_node):
+        self.rank_min[curr_node] = rank
         res = []
 
-        for node in self.edges[curr]:
-            if node == prev:
+        for next_node in self.graph[curr_node]:
+            if next_node == prev_node:
                 continue
 
-            if self.low[node] == 0:
-                res += self.dfs(rank + 1, node, curr)
+            if self.rank_min[next_node] == 0:
+                res += self.dfs(rank + 1, next_node, curr_node)
 
-            self.low[curr] = min(self.low[curr], self.low[node])
+            self.rank_min[curr_node] = min(self.rank_min[curr_node], self.rank_min[next_node])
 
-            if self.low[node] >= rank + 1:
-                res.append([curr, node])
+            if self.rank_min[next_node] >= rank + 1:
+                res.append([curr_node, next_node])
 
         return res

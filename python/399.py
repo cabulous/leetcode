@@ -18,23 +18,23 @@ class Solution:
             self.graph[target].append((source, 1 / value))
 
     def find_path(self, query):
-        var1, var2 = query
+        source, target = query
 
-        if var1 not in self.graph or var2 not in self.graph:
+        if source not in self.graph or target not in self.graph:
             return -1.0
 
-        queue = deque([(var1, 1.0)])
-        visited = {var1}
+        queue = deque([(source, 1.0)])
+        visited = {source}
 
         while queue:
-            variable, value = queue.popleft()
+            node, value = queue.popleft()
 
-            if variable == var2:
+            if node == target:
                 return value
 
-            for next_variable, next_value in self.graph[variable]:
-                if next_variable not in visited:
-                    visited.add(next_variable)
-                    queue.append((next_variable, value * next_value))
+            for next_node, next_value in self.graph[node]:
+                if next_node not in visited:
+                    visited.add(next_node)
+                    queue.append((next_node, value * next_value))
 
         return -1.0
