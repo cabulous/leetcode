@@ -11,9 +11,6 @@ class Solution:
         self.dp = []
 
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        if not any(matrix):
-            return 0
-
         self.matrix = matrix
         self.rows = len(matrix)
         self.cols = len(matrix[0])

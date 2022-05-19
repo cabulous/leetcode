@@ -18,7 +18,7 @@ class Solution:
             return max(self.slices[start:end + 1])
 
         if end - start + 1 < remaining * 2 - 1:
-            return -float('inf')
+            return -1
 
         return max(
             self.dp(start + cycle, end - 2, remaining - 1) + self.slices[end],
