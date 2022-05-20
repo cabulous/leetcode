@@ -2,43 +2,23 @@ from typing import List
 
 
 # https://leetcode.com/problems/unique-paths-ii/discuss/23410/Python-different-solutions-(O(m*n)-O(n)-in-place).
-
-# O(n) space
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         if not obstacleGrid or obstacleGrid[0][0] == 1:
             return 0
 
-        r, c = len(obstacleGrid), len(obstacleGrid[0])
-        cur = [0] * c
-        cur[0] = 1 - obstacleGrid[0][0]
+        rows = len(obstacleGrid)
+        cols = len(obstacleGrid[0])
 
-        for i in range(1, c):
-            cur[i] = cur[i - 1] * (1 - obstacleGrid[0][i])
-        for i in range(1, r):
-            cur[0] *= (1 - obstacleGrid[i][0])
-            for j in range(1, c):
-                cur[j] = (cur[j] + cur[j - 1]) * (1 - obstacleGrid[i][j])
+        dp = [0] * cols
+        dp[0] = 1 - obstacleGrid[0][0]
 
-        return cur[-1]
+        for i in range(1, cols):
+            dp[i] = dp[i - 1] * (1 - obstacleGrid[0][i])
 
+        for i in range(1, rows):
+            dp[0] *= 1 - obstacleGrid[i][0]
+            for j in range(1, cols):
+                dp[j] = (dp[j] + dp[j - 1]) * (1 - obstacleGrid[i][j])
 
-# O(m*n) space
-class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if not obstacleGrid or obstacleGrid[0][0] == 1:
-            return 0
-
-        r, c = len(obstacleGrid), len(obstacleGrid[0])
-        dp = [[0] * c for _ in range(r)]
-        dp[0][0] = 1 - obstacleGrid[0][0]
-
-        for i in range(1, r):
-            dp[i][0] = dp[i - 1][0] * (1 - obstacleGrid[i][0])
-        for i in range(1, c):
-            dp[0][i] = dp[0][i - 1] * (1 - obstacleGrid[0][i])
-        for i in range(1, r):
-            for j in range(1, c):
-                dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]) * (1 - obstacleGrid[i][j])
-
-        return dp[-1][-1]
+        return dp[-1]

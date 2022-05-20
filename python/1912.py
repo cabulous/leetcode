@@ -10,13 +10,12 @@ class MovieRentingSystem:
         self.movies = defaultdict(list)
         self.available = {}
         self.price = {}
+        self.rented = []
 
         for shop, movie, price in entries:
             heapq.heappush(self.movies[movie], (price, shop))
             self.available[shop, movie] = True
             self.price[shop, movie] = price
-
-        self.rented = []
 
     def search(self, movie: int) -> List[int]:
         if movie not in self.movies:

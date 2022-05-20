@@ -1,7 +1,6 @@
 from typing import List
 
 
-# Sort the list and check if it's still the same number in the list.
 # https://leetcode.com/problems/shortest-unsorted-continuous-subarray/discuss/103052/Python-Sort-Solutions
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
