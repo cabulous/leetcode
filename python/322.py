@@ -11,4 +11,4 @@ class Solution:
                 if i - coin >= 0:
                     dp[i] = min(dp[i], 1 + dp[i - coin])
 
-        return dp[-1] if dp[-1] < math.inf else -1
+        return dp[amount] if dp[amount] < math.inf else -1
