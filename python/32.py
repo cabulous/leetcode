@@ -1,4 +1,3 @@
-# dp
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
         if not s:
@@ -24,10 +23,11 @@ class Solution:
     def longestValidParentheses(self, s: str) -> int:
         if not s:
             return 0
-        n = len(s)
+
         stack = [-1]
         res = 0
-        for i in range(n):
+
+        for i in range(len(s)):
             if s[i] == '(':
                 stack.append(i)
             else:
@@ -36,6 +36,7 @@ class Solution:
                     res = max(res, i - stack[-1])
                 else:
                     stack.append(i)
+
         return res
 
 
@@ -44,11 +45,11 @@ class Solution:
     def longestValidParentheses(self, s: str) -> int:
         if not s:
             return 0
-        n = len(s)
+
         res = 0
         left = right = 0
-        for i in range(n):
-            if s[i] == '(':
+        for c in s:
+            if c == '(':
                 left += 1
             else:
                 right += 1
@@ -56,14 +57,16 @@ class Solution:
                 res = max(res, right * 2)
             elif right > left:
                 left = right = 0
+
         left = right = 0
-        for i in reversed(range(n)):
-            if s[i] == '(':
+        for c in s[::-1]:
+            if c == '(':
                 left += 1
             else:
                 right += 1
             if left == right:
-                res = max(res, left * 2)
+                res = max(res, right * 2)
             elif left > right:
                 left = right = 0
+
         return res
