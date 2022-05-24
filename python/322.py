@@ -6,9 +6,9 @@ class Solution:
     def coinChange(self, coins, amount):
         dp = [0] + [math.inf] * amount
 
-        for i in range(1, amount + 1):
+        for target in range(1, amount + 1):
             for coin in coins:
-                if i - coin >= 0:
-                    dp[i] = min(dp[i], 1 + dp[i - coin])
+                if target - coin >= 0:
+                    dp[target] = min(dp[target], 1 + dp[target - coin])
 
         return dp[amount] if dp[amount] < math.inf else -1
