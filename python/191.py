@@ -1,10 +1,10 @@
 class Solution:
     def hammingWeight(self, n):
-        total = 0
+        res = 0
         while n != 0:
-            total += 1
+            res += 1
             n &= (n - 1)
-        return total
+        return res
 
 
 class Solution:
