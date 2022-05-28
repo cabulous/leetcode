@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        return sum(range(1, len(nums) + 1)) - sum(nums)
+        return sum(range(len(nums) + 1)) - sum(nums)
 
 
 # bit
