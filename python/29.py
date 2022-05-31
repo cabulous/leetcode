@@ -1,6 +1,6 @@
-MAX_INT = 2147483647  # 2**31 - 1
-MIN_INT = -2147483648  # -2**31
-HALF_MIN_INT = -1073741824  # MIN_INT // 2
+MAX_INT = 2 ** 31 - 1
+MIN_INT = -2 ** 31
+HALF_MIN_INT = MIN_INT // 2
 
 
 class Solution:
@@ -19,8 +19,8 @@ class Solution:
         highest_double = divisor
         highest_power_of_two = -1
         while highest_double >= HALF_MIN_INT and dividend <= highest_double + highest_double:
-            highest_power_of_two += highest_power_of_two
             highest_double += highest_double
+            highest_power_of_two += highest_power_of_two
 
         quotient = 0
         while dividend <= divisor:

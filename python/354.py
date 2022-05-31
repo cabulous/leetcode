@@ -5,16 +5,16 @@ from typing import List
 class Solution:
     def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
         envelopes.sort(key=lambda x: (x[0], -x[1]))
-        return self.get_length([x[1] for x in envelopes])
+        return self.longest_increasing_seq([x[1] for x in envelopes])
 
-    def get_length(self, nums):
+    def longest_increasing_seq(self, nums):
         dp = []
 
-        for i in range(len(nums)):
-            idx = bisect_left(dp, nums[i])
+        for num in nums:
+            idx = bisect_left(dp, num)
             if idx == len(dp):
-                dp.append(nums[i])
+                dp.append(num)
             else:
-                dp[idx] = nums[i]
+                dp[idx] = num
 
         return len(dp)
