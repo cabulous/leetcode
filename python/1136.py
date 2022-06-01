@@ -12,8 +12,8 @@ class Solution:
             in_degree[end] += 1
 
         queue = [node for node in range(1, n + 1) if in_degree[node] == 0]
-        step = 0
         studied_count = 0
+        res = 0
 
         while queue:
             next_queue = []
@@ -23,7 +23,7 @@ class Solution:
                     in_degree[next_node] -= 1
                     if in_degree[next_node] == 0:
                         next_queue.append(next_node)
-            step += 1
+            res += 1
             queue = next_queue
 
-        return step if studied_count == n else -1
+        return res if studied_count == n else -1

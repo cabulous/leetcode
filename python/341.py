@@ -21,15 +21,14 @@ class NestedIterator:
         return nested_list[index].getInteger()
 
     def hasNext(self) -> bool:
-        s = self.stack
-        while s:
-            nested_list, index = s[-1]
+        while self.stack:
+            nested_list, index = self.stack[-1]
             if index == len(nested_list):
-                s.pop()
+                self.stack.pop()
             else:
-                x = nested_list[index]
-                if x.isInteger():
+                item = nested_list[index]
+                if item.isInteger():
                     return True
-                s[-1][1] += 1
-                s.append([x.getList(), 0])
+                self.stack[-1][1] += 1
+                self.stack.append([item.getList(), 0])
         return False
