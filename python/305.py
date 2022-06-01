@@ -6,14 +6,12 @@ class UnionFind:
 
     def __init__(self):
         self.parent = {}
-        self.rank = {}
         self.count = 0
 
     def add(self, position):
         if position in self.parent:
             return
         self.parent[position] = position
-        self.rank[position] = 1
         self.count += 1
 
     def find(self, x):
@@ -28,11 +26,7 @@ class UnionFind:
         if x_root == y_root:
             return
 
-        if self.rank[x_root] > self.rank[y_root]:
-            x_root, y_root = y_root, x_root
-
         self.parent[x_root] = y_root
-        self.rank[y_root] += self.rank[x_root]
         self.count -= 1
 
 
