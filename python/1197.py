@@ -5,18 +5,18 @@ from functools import lru_cache
 # dfs
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
-        @lru_cache(None)
-        def dfs(x, y):
-            if x + y == 0:
-                return 0
-            if x + y == 2:
-                return 2
-            return 1 + min(
-                dfs(abs(x - 1), abs(y - 2)),
-                dfs(abs(x - 2), abs(y - 1)),
-            )
+        return self.dfs(abs(x), abs(y))
 
-        return dfs(abs(x), abs(y))
+    @lru_cache(None)
+    def dfs(self, x, y):
+        if x + y == 0:
+            return 0
+        if x + y == 2:
+            return 2
+        return 1 + min(
+            self.dfs(abs(x - 1), abs(y - 2)),
+            self.dfs(abs(x - 2), abs(y - 1)),
+        )
 
 
 # bfs

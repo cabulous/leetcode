@@ -1,6 +1,6 @@
 class Solution:
     def hasAllCodes(self, s: str, k: int) -> bool:
-        seen = {s[i - k:i] for i in range(k, len(s) + 1)}
+        seen = set(s[i - k:i] for i in range(k, len(s) + 1))
         return len(seen) == 1 << k
 
 
@@ -10,9 +10,9 @@ class Solution:
         seen = set()
 
         for i in range(k, len(s) + 1):
-            tmp = s[i - k:i]
-            if tmp not in seen:
-                seen.add(tmp)
+            curr = s[i - k:i]
+            if curr not in seen:
+                seen.add(curr)
                 need -= 1
                 if need == 0:
                     return True
