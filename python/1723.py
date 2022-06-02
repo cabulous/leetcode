@@ -34,6 +34,6 @@ class Solution:
                     return True
                 time[i] += self.jobs[curr_job_index]
             if time[i] == target:
-                break
+                return False
 
         return False
