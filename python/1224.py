@@ -17,9 +17,9 @@ class Solution:
             c = count[num]
             if freq[c] * c == index and index < len(nums):
                 res = index + 1
-
-            delta = index - freq[c] * c
-            if delta in [1, c + 1] and freq[delta] == 1:
-                res = index
+            else:
+                delta = index - freq[c] * c
+                if delta in [1, c + 1] and freq[delta] == 1:
+                    res = index
 
         return res
