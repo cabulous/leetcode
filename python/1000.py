@@ -22,13 +22,13 @@ class Solution:
         return self.dp(0, n - 1)
 
     @lru_cache(None)
-    def dp(self, i, j):
-        if j - i + 1 < self.k:
+    def dp(self, left, right):
+        if right - left + 1 < self.k:
             return 0
 
-        res = min(self.dp(i, mid) + self.dp(mid + 1, j) for mid in range(i, j, self.k - 1))
+        res = min(self.dp(left, mid) + self.dp(mid + 1, right) for mid in range(left, right, self.k - 1))
 
-        if (j - i) % (self.k - 1) == 0:
-            res += self.prefix[j + 1] - self.prefix[i]
+        if (right - left) % (self.k - 1) == 0:
+            res += self.prefix[right + 1] - self.prefix[left]
 
         return res
