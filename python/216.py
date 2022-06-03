@@ -9,17 +9,21 @@ class Solution:
 
 
 class Solution:
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        res = []
-        self.dfs(list(range(1, 10)), k, n, [], res)
-        return res
 
-    def dfs(self, nums, k, n, path, out):
-        if k < 0 or n < 0:
+    def __init__(self):
+        self.res = []
+
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        self.dfs(list(range(1, 10)), k, n, [])
+        return self.res
+
+    def dfs(self, nums, count_remain, total_remain, path):
+        if count_remain < 0 or total_remain < 0:
             return
 
-        if k == 0 and n == 0:
-            out.append(path)
+        if count_remain == 0 and total_remain == 0:
+            self.res.append(path[:])
+            return
 
         for i in range(len(nums)):
-            self.dfs(nums[i + 1:], k - 1, n - nums[i], path + [nums[i]], out)
+            self.dfs(nums[i + 1:], count_remain - 1, total_remain - nums[i], path + [nums[i]])
