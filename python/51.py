@@ -10,7 +10,8 @@ class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
         self.queen_count = n
         self.dfs([], [], [])
-        return [['.' * i + 'Q' + '.' * (n - i - 1) for i in item] for item in self.res]
+
+        return [['.' * i + 'Q' + '.' * (n - i - 1) for i in row] for row in self.res]
 
     def dfs(self, queens, xy_sum, xy_diff):
         row = len(queens)
