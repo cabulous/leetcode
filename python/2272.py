@@ -18,18 +18,18 @@ class Solution:
                 for ch in s:
                     if ch == ch1:
                         meet_ch1 = True
-                        diff += 1
                         max_diff = max(max_diff, last_ch1_diff)
+                        diff += 1
                         last_ch1_diff = diff
                     elif ch == ch2:
                         meet_ch2 = True
-                        diff -= 1
                         min_diff = min(min_diff, last_ch2_diff)
+                        diff -= 1
                         last_ch2_diff = diff
                     else:
                         continue
 
                     if meet_ch1 and meet_ch2:
-                        res = max(res, diff - min_diff, max_diff - diff)
+                        res = max(res, max_diff - diff, diff - min_diff)
 
         return res
