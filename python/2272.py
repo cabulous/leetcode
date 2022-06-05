@@ -9,11 +9,11 @@ class Solution:
                 ch1 = chars[i]
                 ch2 = chars[j]
 
+                meet_ch1 = meet_ch2 = False
+
                 diff = 0
                 max_diff = min_diff = 0
                 last_ch1_diff = last_ch2_diff = 0
-
-                meet_ch1 = meet_ch2 = False
 
                 for ch in s:
                     if ch == ch1:
