@@ -1,11 +1,9 @@
-# math - Combination
 # https://en.wikipedia.org/wiki/Combination
 class Solution:
     def countVowelStrings(self, n: int) -> int:
         return (n + 4) * (n + 3) * (n + 2) * (n + 1) // 24
 
 
-# dp  Bottom up, 1D DP
 # https://leetcode.com/problems/count-sorted-vowel-strings/discuss/918498/JavaC%2B%2BPython-DP-O(1)-Time-and-Space
 class Solution:
     def countVowelStrings(self, n: int) -> int:
@@ -18,7 +16,6 @@ class Solution:
         return dp[5]
 
 
-# dp top down
 # https://leetcode.com/problems/count-sorted-vowel-strings/discuss/918498/JavaC%2B%2BPython-DP-O(1)-Time-and-Space
 class Solution:
 
