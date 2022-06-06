@@ -14,6 +14,7 @@ class Solution:
 
         for mask in range(1 << n):
             available = []
+
             for course in range(n):
                 if mask & (1 << course) == 0 and mask & reqs[course] == reqs[course]:
                     available.append(course)
