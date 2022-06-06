@@ -38,8 +38,8 @@ class Solution:
 
         for num in counter:
             if counter[num] > 0:
-                comb.append(num)
                 counter[num] -= 1
+                comb.append(num)
                 self.backtrack(comb, counter)
-                comb.pop()
                 counter[num] += 1
+                comb.pop()
