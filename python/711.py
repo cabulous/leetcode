@@ -11,13 +11,13 @@ class Solution:
             for c in range(cols):
                 if grid[r][c] == 1:
                     shape = []
-                    self.dfs(grid, r, c, shape)
+                    self.collect_shape(grid, r, c, shape)
                     norm = self.normalize(shape)
                     res.add(norm)
 
         return len(res)
 
-    def dfs(self, grid, r, c, shape):
+    def collect_shape(self, grid, r, c, shape):
         grid[r][c] = 0
         shape.append((r, c))
 
@@ -27,7 +27,7 @@ class Solution:
         for dr, dc in directions:
             nr, nc = r + dr, c + dc
             if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
-                self.dfs(grid, nr, nc, shape)
+                self.collect_shape(grid, nr, nc, shape)
 
     def normalize(self, shape):
         rotated_shapes = [[] for _ in range(8)]
