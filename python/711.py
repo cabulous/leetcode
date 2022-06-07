@@ -1,4 +1,3 @@
-import copy
 from typing import List
 
 
@@ -27,7 +26,7 @@ class Solution:
 
         for dr, dc in directions:
             nr, nc = r + dr, c + dc
-            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] != 0:
+            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
                 self.dfs(grid, nr, nc, shape)
 
     def normalize(self, shape):
