@@ -2,32 +2,34 @@ from typing import List
 from collections import deque
 
 
-# Sliding Window with Two Pointers
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
         ones = sum(data)
-        cnt_one = max_one = 0
+        one_count = one_max = 0
+
         left = right = 0
         while right < len(data):
-            cnt_one += data[right]
+            one_count += data[right]
             right += 1
             if right - left > ones:
-                cnt_one -= data[left]
+                one_count -= data[left]
                 left += 1
-            max_one = max(max_one, cnt_one)
-        return ones - max_one
+            one_max = max(one_max, one_count)
+
+        return ones - one_max
 
 
-# Sliding Window with Deque
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
         ones = sum(data)
-        cnt_one = max_one = 0
-        q = deque()
-        for i in range(len(data)):
-            q.append(data[i])
-            cnt_one += data[i]
-            if len(q) > ones:
-                cnt_one -= q.popleft()
-            max_one = max(max_one, cnt_one)
-        return ones - max_one
+        one_count = one_max = 0
+        queue = deque()
+
+        for num in data:
+            one_count += num
+            queue.append(num)
+            if len(queue) > ones:
+                one_count -= queue.popleft()
+            one_max = max(one_max, one_count)
+
+        return ones - one_max

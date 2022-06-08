@@ -5,7 +5,7 @@ from typing import List
 # https://leetcode.com/problems/amount-of-new-area-painted-each-day/discuss/1958749/Python-beats-100
 class Solution:
     def amountPainted(self, paint: List[List[int]]) -> List[int]:
-        seen = defaultdict()
+        seen = defaultdict(int)
         res = []
 
         for start, end in paint:
