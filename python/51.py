@@ -14,12 +14,11 @@ class Solution:
         return [['.' * i + 'Q' + '.' * (n - i - 1) for i in row] for row in self.res]
 
     def dfs(self, queens, xy_sum, xy_diff):
-        row = len(queens)
-
-        if row == self.queen_count:
+        if len(queens) == self.queen_count:
             self.res.append(queens)
             return
 
+        row = len(queens)
         for col in range(self.queen_count):
             if col not in queens and row + col not in xy_sum and row - col not in xy_diff:
                 self.dfs(queens + [col], xy_sum + [row + col], xy_diff + [row - col])

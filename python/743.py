@@ -12,8 +12,8 @@ class Solution:
 
         min_time = [math.inf] * (n + 1)
         min_time[0] = 0
-        queue = deque([(k, 0)])
 
+        queue = deque([(k, 0)])
         while queue:
             node, time = queue.popleft()
             if time < min_time[node]:
