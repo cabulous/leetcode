@@ -12,24 +12,24 @@ class Solution:
                 meet_ch1 = meet_ch2 = False
 
                 diff = 0
-                max_diff = min_diff = 0
-                last_ch1_diff = last_ch2_diff = 0
+                diff_max = diff_min = 0
+                diff_last_ch1 = diff_last_ch2 = 0
 
                 for ch in s:
                     if ch == ch1:
                         meet_ch1 = True
-                        max_diff = max(max_diff, last_ch1_diff)
                         diff += 1
-                        last_ch1_diff = diff
+                        diff_max = max(diff_max, diff_last_ch1)
+                        diff_last_ch1 = diff
                     elif ch == ch2:
                         meet_ch2 = True
-                        min_diff = min(min_diff, last_ch2_diff)
                         diff -= 1
-                        last_ch2_diff = diff
+                        diff_min = min(diff_min, diff_last_ch2)
+                        diff_last_ch2 = diff
                     else:
                         continue
 
                     if meet_ch1 and meet_ch2:
-                        res = max(res, max_diff - diff, diff - min_diff)
+                        res = max(res, diff_max - diff, diff - diff_min)
 
         return res
