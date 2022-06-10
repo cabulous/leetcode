@@ -9,9 +9,9 @@ class Solution:
 
         for right in range(len(s)):
             if s[right] in seen:
-                left = max(left, seen[s[right]])
+                left = max(left, seen[s[right]] + 1)
             res = max(res, right - left + 1)
-            seen[s[right]] = right + 1
+            seen[s[right]] = right
 
         return res
 
