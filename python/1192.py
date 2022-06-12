@@ -18,8 +18,8 @@ class Solution:
 
         return self.dfs(1, 0, -1)
 
-    def dfs(self, rank, curr_node, prev_node):
-        self.rank_min[curr_node] = rank
+    def dfs(self, curr_rank, curr_node, prev_node):
+        self.rank_min[curr_node] = curr_rank
         res = []
 
         for next_node in self.graph[curr_node]:
@@ -27,11 +27,11 @@ class Solution:
                 continue
 
             if self.rank_min[next_node] == 0:
-                res += self.dfs(rank + 1, next_node, curr_node)
+                res += self.dfs(curr_rank + 1, next_node, curr_node)
 
             self.rank_min[curr_node] = min(self.rank_min[curr_node], self.rank_min[next_node])
 
-            if self.rank_min[next_node] >= rank + 1:
+            if self.rank_min[next_node] >= curr_rank + 1:
                 res.append([curr_node, next_node])
 
         return res

@@ -5,7 +5,8 @@ from collections import deque
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
         ones = sum(data)
-        one_count = one_max = 0
+        one_count = 0
+        one_max = 0
 
         left = right = 0
         while right < len(data):
@@ -22,7 +23,8 @@ class Solution:
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
         ones = sum(data)
-        one_count = one_max = 0
+        one_count = 0
+        one_max = 0
         queue = deque()
 
         for num in data:
