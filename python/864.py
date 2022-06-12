@@ -1,4 +1,3 @@
-from collections import deque
 from typing import List
 
 
@@ -39,7 +38,7 @@ class Solution:
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
                     if 0 <= nr < rows and 0 <= nc < cols and not self.is_wall(nr, nc):
-                        if self.can_reach(nr, nc):
+                        if self.is_empty(nr, nc):
                             if (nr, nc, keys) not in visited:
                                 visited.add((nr, nc, keys))
                                 next_level.append((nr, nc, keys))
@@ -78,7 +77,4 @@ class Solution:
         return self.grid[row][col] == '#'
 
     def is_empty(self, row, col):
-        return self.grid[row][col] == '.'
-
-    def can_reach(self, row, col):
-        return self.is_empty(row, col) or self.is_start(row, col)
+        return self.grid[row][col] == '.' or self.is_start(row, col)
