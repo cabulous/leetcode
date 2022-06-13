@@ -6,8 +6,8 @@ class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
         seen = {}
         curr = 0
-        res = 0
         left = 0
+        res = 0
 
         for right, num in enumerate(nums):
             if num in seen:
@@ -18,25 +18,6 @@ class Solution:
                     left += 1
             seen[num] = right
             curr += num
-            res = max(res, curr)
-
-        return res
-
-
-class Solution:
-    def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        seen = set()
-        curr = 0
-        res = 0
-        left = 0
-
-        for right in range(len(nums)):
-            while nums[right] in seen:
-                seen.discard(nums[left])
-                curr -= nums[left]
-                left += 1
-            seen.add(nums[right])
-            curr += nums[right]
             res = max(res, curr)
 
         return res

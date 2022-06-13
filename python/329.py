@@ -16,7 +16,7 @@ class Solution:
         self.cols = len(matrix[0])
         self.dp = [[0] * self.cols for _ in range(self.rows)]
 
-        return max(self.dfs(row, col) for col in range(self.cols) for row in range(self.rows))
+        return max(self.dfs(r, c) for c in range(self.cols) for r in range(self.rows))
 
     def dfs(self, row, col):
         if self.dp[row][col] != 0:

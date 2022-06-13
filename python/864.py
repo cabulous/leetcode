@@ -14,8 +14,8 @@ class Solution:
         self.grid = grid
         rows = len(grid)
         cols = len(grid[0])
-        all_keys = [0, 0, 0, 0, 0, 0]
         start = []
+        all_keys = [0] * 6
 
         for row in range(rows):
             for col in range(cols):
@@ -26,7 +26,7 @@ class Solution:
 
         all_keys = tuple(all_keys)
 
-        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         curr_level = [(start[0], start[1], tuple([0] * 6))]
         visited = {(start[0], start[1], tuple([0] * 6))}
         moves = 0
@@ -37,8 +37,10 @@ class Solution:
             for r, c, keys in curr_level:
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
-                    if 0 <= nr < rows and 0 <= nc < cols and not self.is_wall(nr, nc):
-                        if self.is_empty(nr, nc):
+                    if 0 <= nr < rows and 0 <= nc < cols:
+                        if self.is_wall(nr, nc):
+                            continue
+                        elif self.is_empty(nr, nc):
                             if (nr, nc, keys) not in visited:
                                 visited.add((nr, nc, keys))
                                 next_level.append((nr, nc, keys))
