@@ -6,26 +6,26 @@ MOD = 10 ** 9 + 7
 class Solution:
     def totalStrength(self, strength: List[int]) -> int:
         prefix_sum = 0
+        prefix_sum_acc = [0]
         stack = [-1]
-        acc = [0]
         res = 0
         strength += [0]
 
         for right, num in enumerate(strength):
             prefix_sum += num
-            acc.append(prefix_sum + acc[-1])
+            prefix_sum_acc.append(prefix_sum + prefix_sum_acc[-1])
 
-            while stack and strength[stack[-1]] > num:
-                index = stack.pop()
+            while stack and num < strength[stack[-1]]:
+                min_index = stack.pop()
                 left = stack[-1]
 
-                acc_left = acc[index] - acc[max(left, 0)]
-                acc_right = acc[right] - acc[index]
+                prefix_sum_left = prefix_sum_acc[min_index] - prefix_sum_acc[max(left, 0)]
+                prefix_sum_right = prefix_sum_acc[right] - prefix_sum_acc[min_index]
 
-                dist_left = index - left
-                dist_right = right - index
+                dist_left = min_index - left
+                dist_right = right - min_index
 
-                res += strength[index] * (acc_right * dist_left - acc_left * dist_right) % MOD
+                res += strength[min_index] * (prefix_sum_right * dist_left - prefix_sum_left * dist_right) % MOD
 
             stack.append(right)
 
