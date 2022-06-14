@@ -3,6 +3,7 @@ from typing import List
 MOD = 10 ** 9 + 7
 
 
+# https://leetcode.com/problems/sum-of-total-strength-of-wizards/discuss/2061985/JavaC%2B%2BPython-One-Pass-Solution
 class Solution:
     def totalStrength(self, strength: List[int]) -> int:
         prefix_sum = 0

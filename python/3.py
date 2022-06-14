@@ -7,11 +7,11 @@ class Solution:
         left = 0
         res = 0
 
-        for right in range(len(s)):
-            if s[right] in seen:
-                left = max(left, seen[s[right]] + 1)
+        for right, ch in enumerate(s):
+            if ch in seen:
+                left = max(left, seen[ch] + 1)
             res = max(res, right - left + 1)
-            seen[s[right]] = right
+            seen[ch] = right
 
         return res
 
