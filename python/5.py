@@ -8,7 +8,7 @@ class Solution:
         self.s = s
         res = ''
 
-        for i in range(len(self.s)):
+        for i in range(len(s)):
             res = max(self.helper(i, i), self.helper(i, i + 1), res, key=len)
 
         return res
