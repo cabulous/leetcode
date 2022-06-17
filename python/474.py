@@ -14,4 +14,4 @@ class Solution:
         return dp[m][n]
 
     def count(self, s):
-        return sum(1 for c in s if c == '0'), sum(1 for c in s if c == '1')
+        return sum(c == '0' for c in s), sum(c == '1' for c in s)
