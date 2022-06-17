@@ -14,7 +14,7 @@ class Solution:
                 right += 1
             if left == right:
                 res = max(res, 2 * right)
-            elif right > left:
+            elif left < right:
                 left = right = 0
 
         left = right = 0
@@ -25,7 +25,7 @@ class Solution:
                 right += 1
             if left == right:
                 res = max(res, 2 * right)
-            elif left > right:
+            elif right < left:
                 left = right = 0
 
         return res
