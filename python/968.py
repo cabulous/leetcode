@@ -20,7 +20,7 @@ class Solution:
         ret = self.dfs(root)
         return self.res + (ret == IS_LEAF)
 
-    def dfs(self, node):
+    def dfs(self, node: TreeNode):
         if node is None:
             return IS_COVERED_WITHOUT_CAMERA
 
