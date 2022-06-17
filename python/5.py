@@ -9,7 +9,7 @@ class Solution:
         res = ''
 
         for i in range(len(s)):
-            res = max(self.helper(i, i), self.helper(i, i + 1), res, key=len)
+            res = max(res, self.helper(i, i), self.helper(i, i + 1), key=len)
 
         return res
 
@@ -23,17 +23,17 @@ class Solution:
 # https://leetcode.com/problems/longest-palindromic-substring/discuss/121496/Python-DP-solution/194444
 class Solution:
     def longestPalindrome(self, s: str) -> str:
+        if s == s[::-1]:
+            return s
+
         n = len(s)
         dp = [[0] * n for _ in range(n)]
-        max_length = 0
         res = ''
 
         for i in range(n - 1, -1, -1):
             for j in range(i, n):
-                if s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1] == 1):
-                    dp[i][j] = 1
-                    if res == '' or max_length < j - i + 1:
-                        max_length = j - i + 1
-                        res = s[i:j + 1]
+                dp[i][j] = s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1] == 1)
+                if dp[i][j] == 1:
+                    res = max(res, s[i:j + 1], key=len)
 
         return res

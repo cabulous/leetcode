@@ -8,56 +8,27 @@ class TreeNode:
 
 # https://leetcode.com/problems/binary-tree-cameras/discuss/211180/JavaC%2B%2BPython-Greedy-DFS
 class Solution:
+
+    def __init__(self):
+        self.res = 0
+
     def minCameraCover(self, root: TreeNode) -> int:
-        res = 0
+        ret = self.dfs(root)
+        return self.res + (ret == 0)
 
-        def dfs(node):
-            nonlocal res
-            if not node:
-                return 2
-            left, right = dfs(node.left), dfs(node.right)
-            if left == 0 or right == 0:
-                res += 1
-                return 1
-            if left == 1 or right == 1:
-                return 2
-            return 0
+    def dfs(self, node):
+        if node is None:
+            return 2
 
-        return (dfs(root) == 0) + res
+        left = self.dfs(node.left)
+        right = self.dfs(node.right)
 
+        if left == 0 or right == 0:
+            self.res += 1
+            return 1
 
-# dp
-class Solution:
-    def minCameraCover(self, root: TreeNode) -> int:
-        def solve(node):
-            if not node:
-                return 0, 0, float('inf')
-            left = solve(node.left)
-            right = solve(node.right)
-            dp0 = left[1] + right[1]
-            dp1 = min(left[2] + min(right[1:]), right[2] + min(left[1:]))
-            dp2 = 1 + min(left) + min(right)
-            return dp0, dp1, dp2
+        if left == 1 or right == 1:
+            return 2
 
-        return min(solve(root)[1:])
+        return 0
 
-
-# greedy
-class Solution:
-    def minCameraCover(self, root: TreeNode) -> int:
-        ans = 0
-        covered = {None}
-
-        def dfs(node, parent=None):
-            nonlocal ans
-            if node:
-                dfs(node.left, node)
-                dfs(node.right, node)
-                if (parent is None and node not in covered) or (node.left not in covered) or (
-                        node.right not in covered):
-                    ans += 1
-                    covered.update({node, parent, node.left, node.right})
-
-        dfs(root)
-
-        return ans
