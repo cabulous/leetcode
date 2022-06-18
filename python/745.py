@@ -23,9 +23,9 @@ class Trie:
             curr = curr.next[ch]
             curr.index = index
 
-    def starts_with(self, word):
+    def starts_with(self, prefix):
         curr = self.root
-        for ch in word:
+        for ch in prefix:
             if ch not in curr.next:
                 return -1
             curr = curr.next[ch]
@@ -36,7 +36,6 @@ class WordFilter:
 
     def __init__(self, words: List[str]):
         self.trie = Trie()
-        self.words = {}
 
         for index, word in enumerate(words):
             long = word + '#' + word
@@ -50,10 +49,11 @@ class WordFilter:
 class WordFilter:
 
     def __init__(self, words: List[str]):
-        self.d = {}
+        self.map = {}
+
         for i, word in enumerate(words):
-            for p, s in product(range(len(word) + 1), repeat=2):
-                self.d[word[:p], word[s:]] = i
+            for prefix_idx, suffix_idx in product(range(len(word) + 1), repeat=2):
+                self.map[word[:prefix_idx], word[suffix_idx:]] = i
 
     def f(self, prefix: str, suffix: str) -> int:
-        return self.d.get((prefix, suffix), -1)
+        return self.map.get((prefix, suffix), -1)
