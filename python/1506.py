@@ -11,7 +11,7 @@ class Solution:
         sum = 0
         for node in tree:
             sum += node.val
-            for c in node.children:
+            for c in node.next:
                 sum -= c.val
         for node in tree:
             if sum == node.val:
@@ -23,7 +23,7 @@ class Solution:
     def findRoot(self, tree: ['Node']) -> 'Node':
         seen = set()
         for node in tree:
-            for c in node.children:
+            for c in node.next:
                 seen.add(c)
         for node in tree:
             if node not in seen:

@@ -46,6 +46,6 @@ class Solution:
         if node.children:
             for kid in node.children:
                 clone = self.dfs(kid)
-                self.memo[node].children.append(clone)
+                self.memo[node].next.append(clone)
 
         return self.memo[node]
