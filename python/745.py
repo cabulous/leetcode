@@ -4,6 +4,19 @@ from collections import defaultdict
 
 
 # https://leetcode.com/problems/prefix-and-suffix-search/discuss/1185171/Python-Two-solutions-%2B-Trie-and-bruteforce-explained
+class WordFilter:
+
+    def __init__(self, words: List[str]):
+        self.map = {}
+
+        for i, word in enumerate(words):
+            for prefix_idx, suffix_idx in product(range(len(word) + 1), repeat=2):
+                self.map[word[:prefix_idx], word[suffix_idx:]] = i
+
+    def f(self, prefix: str, suffix: str) -> int:
+        return self.map.get((prefix, suffix), -1)
+
+
 class TrieNode:
 
     def __init__(self):
@@ -44,16 +57,3 @@ class WordFilter:
 
     def f(self, prefix: str, suffix: str) -> int:
         return self.trie.starts_with(suffix + '#' + prefix)
-
-
-class WordFilter:
-
-    def __init__(self, words: List[str]):
-        self.map = {}
-
-        for i, word in enumerate(words):
-            for prefix_idx, suffix_idx in product(range(len(word) + 1), repeat=2):
-                self.map[word[:prefix_idx], word[suffix_idx:]] = i
-
-    def f(self, prefix: str, suffix: str) -> int:
-        return self.map.get((prefix, suffix), -1)
