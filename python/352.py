@@ -23,7 +23,7 @@ class SummaryRanges:
         res = []
         while intervals:
             curr = heapq.heappop(intervals)
-            if res and curr[0] == res[-1][1] + 1:
+            if res and res[-1][1] + 1 == curr[0]:
                 res[-1][1] = curr[1]
             else:
                 res.append(curr)

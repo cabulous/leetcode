@@ -10,6 +10,7 @@ class Solution:
             groups[len(word), word[-1]].append((word, index))
 
         res = [''] * len(words)
+
         for (size, last_letter), enum_words in groups.items():
             enum_words.sort()
 
@@ -23,7 +24,7 @@ class Solution:
 
             for (word, index), prefix_count in zip(enum_words, lcp):
                 delta = size - 2 - prefix_count
-                if delta <= max(1, len(str(delta)) - 1):
+                if delta <= 1:
                     res[index] = word
                 else:
                     res[index] = word[:prefix_count + 1] + str(delta) + last_letter

@@ -1,4 +1,4 @@
-from bisect import bisect_left
+import bisect
 from typing import List
 
 
@@ -11,10 +11,10 @@ class Solution:
         dp = []
 
         for num in nums:
-            idx = bisect_left(dp, num)
-            if idx == len(dp):
+            index = bisect.bisect_left(dp, num)
+            if index == len(dp):
                 dp.append(num)
             else:
-                dp[idx] = num
+                dp[index] = num
 
         return len(dp)
