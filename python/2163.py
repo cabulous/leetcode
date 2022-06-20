@@ -8,8 +8,8 @@ class Solution:
     def minimumDifference(self, nums: List[int]) -> int:
         n = len(nums) // 3
 
-        pre_min = [sum(nums[:n])]
         cur_min = sum(nums[:n])
+        pre_min = [cur_min]
         pre_max_hp = [-x for x in nums[:n]]
         heapq.heapify(pre_max_hp)
         for i in range(n, 2 * n):
@@ -19,8 +19,8 @@ class Solution:
             pre_min.append(cur_min)
             heapq.heappush(pre_max_hp, -min(cur_pop, nums[i]))
 
-        suf_max = [sum(nums[2 * n:])]
         cur_max = sum(nums[2 * n:])
+        suf_max = [cur_max]
         suf_min_hp = [x for x in nums[2 * n:]]
         heapq.heapify(suf_min_hp)
         for i in range(2 * n - 1, n - 1, -1):
@@ -29,10 +29,9 @@ class Solution:
             cur_max += max(cur_pop, nums[i])
             suf_max.append(cur_max)
             heapq.heappush(suf_min_hp, max(cur_pop, nums[i]))
-        suf_max = suf_max[::-1]
 
         res = math.inf
-        for a, b in zip(pre_min, suf_max):
+        for a, b in zip(pre_min, suf_max[::-1]):
             res = min(res, a - b)
 
         return res
