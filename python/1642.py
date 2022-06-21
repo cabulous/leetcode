@@ -1,30 +1,27 @@
 import heapq
-import math
 from typing import List
 
 
-# Min-Heap
 class Solution:
     def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int:
-        ladder_allocations = []
+        used_ladders = []
 
         for i in range(len(heights) - 1):
             climb = heights[i + 1] - heights[i]
             if climb <= 0:
                 continue
 
-            heapq.heappush(ladder_allocations, climb)
-            if len(ladder_allocations) <= ladders:
+            heapq.heappush(used_ladders, climb)
+            if len(used_ladders) <= ladders:
                 continue
 
-            bricks -= heapq.heappop(ladder_allocations)
+            bricks -= heapq.heappop(used_ladders)
             if bricks < 0:
                 return i
 
         return len(heights) - 1
 
 
-# Improved Binary Search for Final Reachable Building
 class Solution:
     def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int:
         climbs = []

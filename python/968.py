@@ -17,15 +17,15 @@ class Solution:
         self.res = 0
 
     def minCameraCover(self, root: TreeNode) -> int:
-        ret = self.dfs(root)
+        ret = self.helper(root)
         return self.res + (ret == IS_LEAF)
 
-    def dfs(self, node: TreeNode):
+    def helper(self, node: TreeNode):
         if node is None:
             return IS_COVERED_WITHOUT_CAMERA
 
-        left = self.dfs(node.left)
-        right = self.dfs(node.right)
+        left = self.helper(node.left)
+        right = self.helper(node.right)
 
         if left == IS_LEAF or right == IS_LEAF:
             self.res += 1
