@@ -40,8 +40,8 @@ class Solution:
         return res
 
     def arm_length(self, graph, start, exclude):
-        res = 0
         queue = deque()
+        res = 0
 
         for cand in graph[start]:
             if cand != exclude:

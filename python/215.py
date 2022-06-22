@@ -3,40 +3,45 @@ import random
 from typing import List
 
 
-# heap
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         return heapq.nlargest(k, nums)[-1]
 
 
-# Quickselect
 class Solution:
+
+    def __init__(self):
+        self.nums = []
+
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        def partition(left, right, pivot_index):
-            pivot = nums[pivot_index]
-            nums[right], nums[pivot_index] = nums[pivot_index], nums[right]
-            store_index = left
+        self.nums = nums
+        return self.select(0, len(nums) - 1, len(nums) - k)
 
-            for i in range(left, right):
-                if nums[i] < pivot:
-                    nums[i], nums[store_index] = nums[store_index], nums[i]
-                    store_index += 1
+    def partition(self, left, right, pivot_idx):
+        pivot = self.nums[pivot_idx]
+        self.nums[right], self.nums[pivot_idx] = self.nums[pivot_idx], self.nums[right]
+        res = left
 
-            nums[right], nums[store_index] = nums[store_index], nums[right]
+        for i in range(left, right):
+            if self.nums[i] < pivot:
+                self.nums[i], self.nums[res] = self.nums[res], self.nums[i]
+                res += 1
 
-            return store_index
+        self.nums[right], self.nums[res] = self.nums[res], self.nums[right]
 
-        def select(left, right, k_smallest):
-            if left == right:
-                return nums[left]
+        return res
 
-            pivot_index = random.randint(left, right)
-            pivot_index = partition(left, right, pivot_index)
+    def select(self, left, right, k_smallest):
+        if left == right:
+            return self.nums[left]
 
-            if pivot_index == k_smallest:
-                return nums[pivot_index]
-            if pivot_index < k_smallest:
-                return select(pivot_index + 1, right, k_smallest)
-            return select(left, pivot_index - 1, k_smallest)
+        pivot_idx = random.randint(left, right)
+        pivot_idx = self.partition(left, right, pivot_idx)
 
-        return select(0, len(nums) - 1, len(nums) - k)
+        if pivot_idx == k_smallest:
+            return self.nums[pivot_idx]
+
+        if pivot_idx < k_smallest:
+            return self.select(pivot_idx + 1, right, k_smallest)
+
+        return self.select(left, pivot_idx - 1, k_smallest)

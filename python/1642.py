@@ -33,16 +33,16 @@ class Solution:
 
         left, right = 0, len(heights) - 1
         while left < right:
-            mi = left + (right - left + 1) // 2
-            if self.is_reachable(mi, climbs, bricks, ladders):
-                left = mi
+            mid = left + (right - left + 1) // 2
+            if self.is_reachable(mid, climbs, bricks, ladders):
+                left = mid
             else:
-                right = mi - 1
+                right = mid - 1
 
         return left
 
-    def is_reachable(self, building_idx, climbs, bricks, ladders):
-        for climb, idx in climbs:
+    def is_reachable(self, building_idx, sorted_climbs, bricks, ladders):
+        for climb, idx in sorted_climbs:
             if building_idx < idx:
                 continue
             if climb <= bricks:
