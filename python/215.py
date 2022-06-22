@@ -20,6 +20,7 @@ class Solution:
     def partition(self, left, right, pivot_idx):
         pivot = self.nums[pivot_idx]
         self.nums[right], self.nums[pivot_idx] = self.nums[pivot_idx], self.nums[right]
+
         res = left
 
         for i in range(left, right):
