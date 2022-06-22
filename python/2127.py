@@ -11,21 +11,21 @@ class Solution:
     def maximumInvitations(self, favorite: List[int]) -> int:
         self.favorite = favorite
 
-        max_count_in_loop = self.count_in_loop()
-        max_count_in_pair = self.count_in_pair()
+        count_in_loop = self.count_in_loop()
+        count_in_pair = self.count_in_pair()
 
-        return max(max_count_in_loop, max_count_in_pair)
+        return max(count_in_loop, count_in_pair)
 
     def count_in_pair(self):
         n = len(self.favorite)
+        seen = [False] * n
         pair = []
-        visited = [False] * n
 
         for i in range(n):
-            if self.favorite[self.favorite[i]] == i and not visited[i]:
+            if self.favorite[self.favorite[i]] == i and not seen[i]:
                 pair.append([i, self.favorite[i]])
-                visited[i] = True
-                visited[self.favorite[i]] = True
+                seen[i] = True
+                seen[self.favorite[i]] = True
 
         graph = defaultdict(list)
         for i in range(n):
@@ -57,8 +57,8 @@ class Solution:
 
     def count_in_loop(self):
         n = len(self.favorite)
-        max_count = 0
         seen = [False] * n
+        res = 0
 
         for i in range(n):
             if seen[i]:
@@ -78,6 +78,6 @@ class Solution:
                 while start != people:
                     count -= 1
                     start = self.favorite[start]
-                max_count = max(max_count, count)
+                res = max(res, count)
 
-        return max_count
+        return res
