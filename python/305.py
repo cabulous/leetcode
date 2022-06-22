@@ -26,7 +26,7 @@ class UnionFind:
     def add(self, row, col):
         if self.contains(row, col):
             return
-        self.parent[row, col] = (row, col)
+        self.parent[row, col] = row, col
         self.count += 1
 
     def get_count(self):
@@ -39,12 +39,12 @@ class Solution:
         islands = UnionFind()
         res = []
 
-        for row, col in positions:
-            islands.add(row, col)
+        for r, c in positions:
+            islands.add(r, c)
             for dr, dc in directions:
-                new_row, new_col = row + dr, col + dc
-                if islands.contains(new_row, new_col):
-                    islands.union((row, col), (new_row, new_col))
+                nr, nc = r + dr, c + dc
+                if islands.contains(nr, nc):
+                    islands.union((r, c), (nr, nc))
             res.append(islands.get_count())
 
         return res

@@ -9,8 +9,8 @@ class Solution:
         heapq.heapify(slots)
 
         while len(slots) > 1:
-            _, end1 = heapq.heappop(slots)
-            start2, _ = slots[0]
+            start1, end1 = heapq.heappop(slots)
+            start2, end2 = slots[0]
             if end1 >= start2 + duration:
                 return [start2, start2 + duration]
 
