@@ -4,13 +4,12 @@ import bisect
 class Solution:
     def nextPalindrome(self, num: str) -> str:
         half_idx, remainder = divmod(len(num), 2)
-        mid = num[half_idx] if remainder == 1 else ''
-
         if half_idx <= 1:
             return ''
 
-        stack = []
+        mid = num[half_idx] if remainder == 1 else ''
         half = num[:half_idx]
+        stack = []
 
         for i in range(half_idx - 1, -1, -1):
             if not stack or half[i] >= half[i + 1]:
