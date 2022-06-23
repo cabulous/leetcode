@@ -6,11 +6,9 @@ class Solution:
 
     def __init__(self):
         self.jobs = []
-        self.bucket_count = 0
 
     def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
         self.jobs = jobs
-        self.bucket_count = k
 
         left, right = max(jobs), sum(jobs)
         while left <= right:
@@ -26,7 +24,7 @@ class Solution:
         if job_idx == len(self.jobs):
             return True
 
-        for i in range(self.bucket_count):
+        for i in range(len(bucket)):
             if bucket[i] >= self.jobs[job_idx]:
                 bucket[i] -= self.jobs[job_idx]
                 if self.can_reach(job_idx + 1, bucket, origin_val):
