@@ -3,21 +3,23 @@ import bisect
 
 class Solution:
     def nextPalindrome(self, num: str) -> str:
-        n = len(num)
-        k, r = divmod(n, 2)
-        mid = num[k] if r else ''
+        half_idx, remainder = divmod(len(num), 2)
+        mid = num[half_idx] if remainder == 1 else ''
 
-        if k > 1:
-            s = num[:k]
-            stack = []
-            for i in range(k - 1, -1, -1):
-                if not stack or s[i] >= s[i + 1]:
-                    stack.append(s[i])
-                else:
-                    index = bisect.bisect_right(stack, s[i])
-                    x = stack[index]
-                    stack[index] = s[i]
-                    half = s[:i] + x + ''.join(stack)
-                    return half + mid + half[::-1]
+        if half_idx <= 1:
+            return ''
+
+        stack = []
+        half = num[:half_idx]
+
+        for i in range(half_idx - 1, -1, -1):
+            if not stack or half[i] >= half[i + 1]:
+                stack.append(half[i])
+            else:
+                index = bisect.bisect_right(stack, half[i])
+                pivot = stack[index]
+                stack[index] = half[i]
+                greater_half = half[:i] + pivot + ''.join(stack)
+                return greater_half + mid + greater_half[::-1]
 
         return ''
