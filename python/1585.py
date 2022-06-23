@@ -5,7 +5,6 @@ from collections import deque
 class Solution:
     def isTransformable(self, s: str, t: str) -> bool:
         index = [deque() for _ in range(10)]
-
         for i, ch in enumerate(s):
             index[int(ch)].append(i)
 

@@ -22,16 +22,16 @@ class Solution:
 
         return left
 
-    def can_reach(self, curr_job_index, bucket, origin_val):
-        if curr_job_index == len(self.jobs):
+    def can_reach(self, job_idx, bucket, origin_val):
+        if job_idx == len(self.jobs):
             return True
 
         for i in range(self.bucket_count):
-            if bucket[i] >= self.jobs[curr_job_index]:
-                bucket[i] -= self.jobs[curr_job_index]
-                if self.can_reach(curr_job_index + 1, bucket, origin_val):
+            if bucket[i] >= self.jobs[job_idx]:
+                bucket[i] -= self.jobs[job_idx]
+                if self.can_reach(job_idx + 1, bucket, origin_val):
                     return True
-                bucket[i] += self.jobs[curr_job_index]
+                bucket[i] += self.jobs[job_idx]
             if bucket[i] == origin_val:
                 return False
 

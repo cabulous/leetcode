@@ -12,8 +12,8 @@ class Solution:
         total_time = 0
 
         for end, time in lst:
-            total_time += time
             heapq.heappush(taken, -time)
+            total_time += time
             if total_time > end:
                 largest_time = -heapq.heappop(taken)
                 total_time -= largest_time
