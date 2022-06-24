@@ -18,6 +18,7 @@ class Solution:
             self.prefix_sum[i + 1] = self.prefix_sum[i] + stones[i]
 
         self.k = k
+
         return self.dp(0, n - 1)
 
     @lru_cache(None)
