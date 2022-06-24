@@ -7,7 +7,6 @@ class Solution:
         if half_idx <= 1:
             return ''
 
-        mid = num[half_idx] if remainder == 1 else ''
         half = num[:half_idx]
         stack = []
 
@@ -19,6 +18,7 @@ class Solution:
                 pivot = stack[index]
                 stack[index] = half[i]
                 greater_half = half[:i] + pivot + ''.join(stack)
+                mid = num[half_idx] if remainder == 1 else ''
                 return greater_half + mid + greater_half[::-1]
 
         return ''
