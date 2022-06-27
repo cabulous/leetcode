@@ -33,9 +33,9 @@ class Solution:
 
         res = 0
         for a, b in pair:
-            max_arm_a = self.arm_length(graph, a, b)
-            max_arm_b = self.arm_length(graph, b, a)
-            res += 2 + max_arm_a + max_arm_b
+            arm_a = self.arm_length(graph, a, b)
+            arm_b = self.arm_length(graph, b, a)
+            res += 2 + arm_a + arm_b
 
         return res
 
