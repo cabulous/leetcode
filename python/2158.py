@@ -16,8 +16,8 @@ class Solution:
                     start = seen[start]
                 else:
                     seen[start] = end
-                    work += 1
                     start += 1
+                    work += 1
 
             res.append(work)
 
