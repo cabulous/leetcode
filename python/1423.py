@@ -2,7 +2,6 @@ from typing import List
 
 
 # https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/discuss/597763/Python3-Easy-Sliding-Window-O(n):-Find-minimum-subarray/517081
-# Sliding Window
 class Solution:
     def maxScore(self, cardPoints: List[int], k: int) -> int:
         curr = sum(cardPoints[:k])

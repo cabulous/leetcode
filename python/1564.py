@@ -1,7 +1,6 @@
 from typing import List
 
 
-# Add the Largest Possible Boxes from Left to Right
 class Solution:
     def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
         boxes.sort(reverse=True)
