@@ -12,6 +12,6 @@ class Solution:
         for num in freq:
             if num > max_freq_allowed:
                 res += num - max_freq_allowed
-            max_freq_allowed = max(0, min(num, max_freq_allowed) - 1)
+            max_freq_allowed = max(0, min(max_freq_allowed, num) - 1)
 
         return res

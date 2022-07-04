@@ -21,15 +21,16 @@ class UnionFind:
 
 class Solution:
     def numSimilarGroups(self, strs: List[str]) -> int:
-        n = len(strs)
-        uf = UnionFind(n)
+        uf = UnionFind(len(strs))
 
-        for i in range(n):
-            for j in range(i + 1, n):
-                diff = sum(strs[i][k] != strs[j][k] for k in range(len(strs[i])))
+        for i in range(len(strs)):
+            for j in range(i + 1, len(strs)):
+                str1 = strs[i]
+                str2 = strs[j]
+                diff = sum(str1[k] != str2[k] for k in range(len(str1)))
                 if diff in (0, 2):
                     uf.union(i, j)
 
-        res = set(uf.find(i) for i in range(n))
+        res = set(uf.find(i) for i in range(len(strs)))
 
         return len(res)
