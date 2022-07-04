@@ -3,7 +3,6 @@ from functools import lru_cache
 from typing import List
 
 
-# memoization
 class Solution:
 
     def __init__(self):
@@ -24,18 +23,20 @@ class Solution:
     @lru_cache(None)
     def paint_cost(self, house_idx, color):
         cost = self.costs[house_idx][color]
+
         if house_idx == len(self.costs) - 1:
-            pass
-        elif color == 0:
+            return cost
+
+        if color == 0:
             cost += min(self.paint_cost(house_idx + 1, 1), self.paint_cost(house_idx + 1, 2))
         elif color == 1:
             cost += min(self.paint_cost(house_idx + 1, 0), self.paint_cost(house_idx + 1, 2))
         elif color == 2:
             cost += min(self.paint_cost(house_idx + 1, 0), self.paint_cost(house_idx + 1, 1))
+
         return cost
 
 
-# dp
 class Solution:
     def minCost(self, costs: List[List[int]]) -> int:
         if not costs:
