@@ -5,11 +5,10 @@ from collections import defaultdict
 class Solution:
     def appealSum(self, s: str) -> int:
         last = defaultdict(lambda: -1)
-        n = len(s)
         res = 0
 
         for index, ch in enumerate(s):
-            res += (index - last[ch]) * (n - index)
+            res += (index - last[ch]) * (len(s) - index)
             last[ch] = index
 
         return res
