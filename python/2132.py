@@ -14,8 +14,8 @@ class Solution:
             for c in range(cols):
                 first[r + 1][c + 1] = first[r + 1][c] + first[r][c + 1] - first[r][c] + (1 - grid[r][c])
                 if r + 1 >= stampHeight and c + 1 >= stampWidth:
-                    nr = r - stampHeight + 1
-                    nc = c - stampWidth + 1
+                    nr = r + 1 - stampHeight
+                    nc = c + 1 - stampWidth
                     if first[r + 1][c + 1] - first[nr][c + 1] - first[r + 1][nc] + first[nr][nc] == count:
                         good[r][c] += 1
 
