@@ -2,19 +2,22 @@ from collections import defaultdict
 
 
 class Solution:
+
+    def __init__(self):
+        self.memo = defaultdict(int)
+
     def fib(self, n: int) -> int:
-        m = defaultdict(int)
+        return self.helper(n)
 
-        def helper(n):
-            if n <= 1:
-                return n
-            if n == 2:
-                return 1
-            if not m[n]:
-                m[n] = helper(n - 1) + helper(n - 2)
-            return m[n]
-
-        return helper(n)
+    def helper(self, n):
+        if n <= 1:
+            return n
+        if n == 2:
+            return 1
+        if n in self.memo:
+            return self.memo[n]
+        self.memo[n] = self.helper(n - 1) + self.helper(n - 2)
+        return self.memo[n]
 
 
 # Iterative Top-Down Approach
@@ -28,7 +31,7 @@ class Solution:
         curr = 0
         prev1 = prev2 = 1
 
-        for i in range(3, n + 1):
+        for _ in range(3, n + 1):
             curr = prev1 + prev2
             prev1, prev2 = curr, prev1
 

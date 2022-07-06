@@ -5,8 +5,8 @@ from typing import List
 class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         curr = sum(nums)
-        res = math.inf
         left = 0
+        res = math.inf
 
         for right in range(len(nums)):
             curr -= nums[right]

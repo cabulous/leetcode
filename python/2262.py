@@ -12,15 +12,3 @@ class Solution:
             last[ch] = index
 
         return res
-
-
-class Solution:
-    def appealSum(self, s: str) -> int:
-        last = defaultdict(int)
-        res = 0
-
-        for index, ch in enumerate(s):
-            last[ch] = index + 1
-            res += sum(last.values())
-
-        return res
