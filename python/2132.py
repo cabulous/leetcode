@@ -6,10 +6,10 @@ class Solution:
     def possibleToStamp(self, grid: List[List[int]], stampHeight: int, stampWidth: int) -> bool:
         rows = len(grid)
         cols = len(grid[0])
-        count = stampHeight * stampWidth
 
         first = [[0] * (cols + 1) for _ in range(rows + 1)]
         good = [[0] * cols for _ in range(rows)]
+        count = stampHeight * stampWidth
         for r in range(rows):
             for c in range(cols):
                 first[r + 1][c + 1] = first[r + 1][c] + first[r][c + 1] - first[r][c] + (1 - grid[r][c])
