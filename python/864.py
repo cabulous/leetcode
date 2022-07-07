@@ -17,12 +17,12 @@ class Solution:
         start = []
         all_keys = [0] * 6
 
-        for row in range(rows):
-            for col in range(cols):
-                if self.is_start(row, col):
-                    start = row, col
-                elif self.is_key(row, col):
-                    all_keys[self.hash_key(row, col)] = 1
+        for r in range(rows):
+            for c in range(cols):
+                if self.is_start(r, c):
+                    start = r, c
+                elif self.is_key(r, c):
+                    all_keys[self.hash_key(r, c)] = 1
 
         all_keys = tuple(all_keys)
 
@@ -54,7 +54,7 @@ class Solution:
                                 visited.add((nr, nc, new_keys))
                                 next_level.append((nr, nc, new_keys))
                         elif self.is_lock(nr, nc):
-                            if keys[self.hash_key(nr, nc)] == 1 and (nr, nc, keys) not in visited:
+                            if self.has_key_for_lock(keys, nr, nc) and (nr, nc, keys) not in visited:
                                 visited.add((nr, nc, keys))
                                 next_level.append((nr, nc, keys))
 
@@ -71,6 +71,9 @@ class Solution:
 
     def is_key(self, row, col):
         return self.grid[row][col].islower()
+
+    def has_key_for_lock(self, keys, row, col):
+        return keys[self.hash_key(row, col)] == 1
 
     def is_lock(self, row, col):
         return self.grid[row][col].isupper()
