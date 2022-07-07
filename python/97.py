@@ -1,18 +1,16 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        s1_len, s2_len, s3_len = len(s1), len(s2), len(s3)
-
-        if s1_len + s2_len != s3_len:
+        if len(s1) + len(s2) != len(s3):
             return False
 
-        dp = [True] * (s2_len + 1)
+        dp = [True] * (len(s2) + 1)
 
-        for i in range(1, s2_len + 1):
+        for i in range(1, len(s2) + 1):
             dp[i] = dp[i - 1] and s2[i - 1] == s3[i - 1]
 
-        for i in range(1, s1_len + 1):
+        for i in range(1, len(s1) + 1):
             dp[0] = dp[0] and s1[i - 1] == s3[i - 1]
-            for j in range(1, s2_len + 1):
+            for j in range(1, len(s2) + 1):
                 dp[j] = (dp[j] and s1[i - 1] == s3[i - 1 + j]) or (dp[j - 1] and s2[j - 1] == s3[i - 1 + j])
 
         return dp[-1]
