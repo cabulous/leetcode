@@ -6,23 +6,22 @@ from typing import List
 # https://leetcode.com/problems/paint-house-iii/discuss/674485/Python-Solution
 class Solution:
     def minCost(self, houses: List[int], cost: List[List[int]], m: int, n: int, target: int) -> int:
-        dp1 = {(0, 0): 0}
-        dp2 = {}
+        dp = {(0, 0): 0}
+        next_dp = {}
 
-        for index, house in enumerate(houses):
-            colors = range(1, n + 1) if house == 0 else [house]
-            for painted_color in colors:
-                for color, block in dp1:
-                    new_block_count = block + (color != painted_color)
-                    if new_block_count > target:
-                        continue
-                    dp2[painted_color, new_block_count] = min(
-                        dp2.get((painted_color, new_block_count), math.inf),
-                        dp1[color, block] + (cost[index][painted_color - 1] if painted_color != house else 0),
-                    )
-            dp1, dp2 = dp2, {}
+        for i, painted_color in enumerate(houses):
+            available_colors = range(1, n + 1) if painted_color == 0 else [painted_color]
+            for next_color in available_colors:
+                for color, block in dp:
+                    next_block = block + (color != next_color)
+                    if next_block <= target:
+                        next_dp[next_color, next_block] = min(
+                            next_dp.get((next_color, next_block), math.inf),
+                            dp[color, block] + (cost[i][next_color - 1] if next_color != painted_color else 0)
+                        )
+            dp, next_dp = next_dp, {}
 
-        return min([dp1[color, block] for color, block in dp1 if block == target] or [-1])
+        return min([dp[c, b] for c, b in dp if b == target] or [-1])
 
 
 class Solution:
