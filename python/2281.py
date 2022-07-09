@@ -23,10 +23,10 @@ class Solution:
                 prefix_sum_left = prefix_sum_acc[pivot_index] - prefix_sum_acc[max(0, left)]
                 prefix_sum_right = prefix_sum_acc[right] - prefix_sum_acc[pivot_index]
 
-                dist_left = pivot_index - left
-                dist_right = right - pivot_index
+                options_left = pivot_index - left
+                options_right = right - pivot_index
 
-                res += strength[pivot_index] * (prefix_sum_right * dist_left - prefix_sum_left * dist_right) % MOD
+                res += strength[pivot_index] * (prefix_sum_right * options_left - prefix_sum_left * options_right) % MOD
 
             stack.append(right)
 
