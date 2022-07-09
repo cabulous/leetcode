@@ -17,16 +17,16 @@ class Solution:
             prefix_sum_acc.append(prefix_sum + prefix_sum_acc[-1])
 
             while stack and num < strength[stack[-1]]:
-                pivot_index = stack.pop()
+                smallest_idx = stack.pop()
                 left = stack[-1]
 
-                prefix_sum_left = prefix_sum_acc[pivot_index] - prefix_sum_acc[max(0, left)]
-                prefix_sum_right = prefix_sum_acc[right] - prefix_sum_acc[pivot_index]
+                prefix_sum_left = prefix_sum_acc[smallest_idx] - prefix_sum_acc[max(0, left)]
+                prefix_sum_right = prefix_sum_acc[right] - prefix_sum_acc[smallest_idx]
 
-                options_left = pivot_index - left
-                options_right = right - pivot_index
+                option_left = smallest_idx - left
+                option_right = right - smallest_idx
 
-                res += strength[pivot_index] * (prefix_sum_right * options_left - prefix_sum_left * options_right) % MOD
+                res += strength[smallest_idx] * (prefix_sum_right * option_left - prefix_sum_left * option_right) % MOD
 
             stack.append(right)
 
