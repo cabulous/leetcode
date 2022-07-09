@@ -6,6 +6,10 @@ class Solution:
 
         for p1 in range(1, len1 + 1):
             for p2 in range(1, len2 + 1):
-                dp[p1][p2] = max(dp[p1 - 1][p2], dp[p1][p2 - 1], dp[p1 - 1][p2 - 1] + (word1[p1 - 1] == word2[p2 - 1]))
+                dp[p1][p2] = max(
+                    dp[p1 - 1][p2],
+                    dp[p1][p2 - 1],
+                    dp[p1 - 1][p2 - 1] + (word1[p1 - 1] == word2[p2 - 1]),
+                )
 
         return len1 + len2 - 2 * dp[-1][-1]
