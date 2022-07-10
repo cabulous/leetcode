@@ -15,16 +15,16 @@ class SummaryRanges:
         self.seen.add(val)
         heapq.heappush(self.intervals, [val, val])
 
-    def getIntervals(self) -> List[List[int]]:
-        self.intervals = self.clean_intervals(self.intervals)
-        return self.intervals
-
-    def clean_intervals(self, intervals):
+    def _clean_up(self):
         res = []
-        while intervals:
-            curr = heapq.heappop(intervals)
+        while self.intervals:
+            curr = heapq.heappop(self.intervals)
             if res and res[-1][1] + 1 == curr[0]:
                 res[-1][1] = curr[1]
             else:
                 res.append(curr)
-        return res
+        self.intervals = res
+
+    def getIntervals(self) -> List[List[int]]:
+        self._clean_up()
+        return self.intervals
