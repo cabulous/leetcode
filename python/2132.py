@@ -17,7 +17,7 @@ class Solution:
                     nr = r + 1 - stampHeight
                     nc = c + 1 - stampWidth
                     total = first[r + 1][c + 1] - first[nr][c + 1] - first[r + 1][nc] + first[nr][nc]
-                    if total == stamp_count:
+                    if stamp_count == total:
                         good[r][c] += 1
 
         second = [[0] * (cols + 1) for _ in range(rows + 1)]
@@ -28,7 +28,7 @@ class Solution:
             for c in range(cols):
                 nr = min(r + stampHeight, rows)
                 nc = min(c + stampWidth, cols)
-                total = second[nr][nc] - second[r][nc] - second[nr][c] + second[r][c]
+                total = second[nr][nc] - second[nr][c] - second[r][nc] + second[r][c]
                 if grid[r][c] == total == 0:
                     return False
 
