@@ -9,14 +9,15 @@ class Solution:
 
         first = [[0] * (cols + 1) for _ in range(rows + 1)]
         good = [[0] * cols for _ in range(rows)]
-        count = stampHeight * stampWidth
+        stamp_count = stampHeight * stampWidth
         for r in range(rows):
             for c in range(cols):
                 first[r + 1][c + 1] = first[r + 1][c] + first[r][c + 1] - first[r][c] + (1 - grid[r][c])
                 if r + 1 >= stampHeight and c + 1 >= stampWidth:
                     nr = r + 1 - stampHeight
                     nc = c + 1 - stampWidth
-                    if first[r + 1][c + 1] - first[nr][c + 1] - first[r + 1][nc] + first[nr][nc] == count:
+                    total = first[r + 1][c + 1] - first[nr][c + 1] - first[r + 1][nc] + first[nr][nc]
+                    if total == stamp_count:
                         good[r][c] += 1
 
         second = [[0] * (cols + 1) for _ in range(rows + 1)]
@@ -27,7 +28,8 @@ class Solution:
             for c in range(cols):
                 nr = min(r + stampHeight, rows)
                 nc = min(c + stampWidth, cols)
-                if grid[r][c] == 0 and second[nr][nc] - second[r][nc] - second[nr][c] + second[r][c] == 0:
+                total = second[nr][nc] - second[r][nc] - second[nr][c] + second[r][c]
+                if grid[r][c] == total == 0:
                     return False
 
         return True
