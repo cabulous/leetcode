@@ -2,7 +2,6 @@ from typing import List
 from collections import deque
 
 
-# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -13,13 +12,17 @@ class TreeNode:
 # https://leetcode.com/problems/binary-tree-right-side-view/discuss/56064/5-9-Lines-Python-48%2B-ms
 class Solution:
     def rightSideView(self, root: TreeNode) -> List[int]:
-        view = []
-        if root:
-            level = [root]
-            while level:
-                view.append(level[-1].val)
-                level = [kid for node in level for kid in [node.left, node.right] if kid]
-        return view
+        if not root:
+            return []
+
+        level = [root]
+        res = []
+
+        while level:
+            res.append(level[-1].val)
+            level = [kid for node in level for kid in [node.left, node.right] if kid]
+
+        return res
 
 
 class Solution:
