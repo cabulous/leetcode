@@ -26,13 +26,13 @@ class Solution:
         if s == s[::-1]:
             return s
 
-        dp = [[0] * len(s) for _ in range(len(s))]
+        dp = [[False] * len(s) for _ in range(len(s))]
         res = ''
 
         for i in range(len(s) - 1, -1, -1):
             for j in range(i, len(s)):
-                dp[i][j] = s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1] == 1)
-                if dp[i][j] == 1:
+                dp[i][j] = s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1])
+                if dp[i][j]:
                     res = max(res, s[i:j + 1], key=len)
 
         return res
