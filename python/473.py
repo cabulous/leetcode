@@ -12,10 +12,8 @@ class Solution:
         if not matchsticks:
             return False
 
-        perimeter = sum(matchsticks)
-        self.side_target = perimeter // 4
-
-        if self.side_target * 4 != perimeter:
+        self.side_target, rem = divmod(sum(matchsticks), 4)
+        if rem != 0:
             return False
 
         self.sticks = sorted(matchsticks, reverse=True)
@@ -31,8 +29,7 @@ class Solution:
             if sides[i] + self.sticks[index] <= self.side_target:
                 new_sides = list(sides)
                 new_sides[i] += self.sticks[index]
-                new_sides = tuple(new_sides)
-                if self.helper(index + 1, new_sides):
+                if self.helper(index + 1, tuple(new_sides)):
                     return True
 
         return False
