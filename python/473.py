@@ -27,9 +27,9 @@ class Solution:
 
         for i in range(4):
             if sides[i] + self.sticks[index] <= self.side_target:
-                new_sides = list(sides)
-                new_sides[i] += self.sticks[index]
-                if self.helper(index + 1, tuple(new_sides)):
+                next_sides = list(sides)
+                next_sides[i] += self.sticks[index]
+                if self.helper(index + 1, tuple(next_sides)):
                     return True
 
         return False

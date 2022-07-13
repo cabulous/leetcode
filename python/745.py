@@ -13,8 +13,8 @@ class WordFilter:
             for prefix_idx, suffix_idx in product(range(len(word) + 1), repeat=2):
                 self.map[word[:prefix_idx], word[suffix_idx:]] = i
 
-    def f(self, prefix: str, suffix: str) -> int:
-        return self.map.get((prefix, suffix), -1)
+    def f(self, pref: str, suff: str) -> int:
+        return self.map.get((pref, suff), -1)
 
 
 class TrieNode:
@@ -55,5 +55,5 @@ class WordFilter:
             for i in range(len(word)):
                 self.trie.insert(long[i:], index)
 
-    def f(self, prefix: str, suffix: str) -> int:
-        return self.trie.starts_with(suffix + '#' + prefix)
+    def f(self, pref: str, suff: str) -> int:
+        return self.trie.starts_with(suff + '#' + pref)
