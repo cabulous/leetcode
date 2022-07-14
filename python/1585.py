@@ -9,12 +9,12 @@ class Solution:
             index[int(ch)].append(i)
 
         for ch in t:
-            digit = int(ch)
-            if not index[digit]:
+            curr_num = int(ch)
+            if not index[curr_num]:
                 return False
-            for smaller_num in range(digit):
-                if index[smaller_num] and index[smaller_num][0] < index[digit][0]:
+            for smaller_num in range(curr_num):
+                if index[smaller_num] and index[smaller_num][0] < index[curr_num][0]:
                     return False
-            index[digit].popleft()
+            index[curr_num].popleft()
 
         return True
