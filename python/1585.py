@@ -12,8 +12,8 @@ class Solution:
             digit = int(ch)
             if not index[digit]:
                 return False
-            for i in range(digit):
-                if index[i] and index[i][0] < index[digit][0]:
+            for smaller_num in range(digit):
+                if index[smaller_num] and index[smaller_num][0] < index[digit][0]:
                     return False
             index[digit].popleft()
 

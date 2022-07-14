@@ -28,10 +28,9 @@ class Solution:
             return None
 
         val = self.preorder[self.preorder_idx]
-        node = TreeNode(val)
-
         self.preorder_idx += 1
 
+        node = TreeNode(val)
         node.left = self.helper(left, self.inorder_map[val] - 1)
         node.right = self.helper(self.inorder_map[val] + 1, right)
 
