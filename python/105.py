@@ -9,27 +9,30 @@ class TreeNode:
 
 
 class Solution:
+
+    def __init__(self):
+        self.inorder_idx_map = {}
+        self.preorder_idx = 0
+        self.preorder = []
+
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-        inorder_idx_map = {}
-        preorder_idx = 0
+        self.preorder = preorder
 
         for idx, value in enumerate(inorder):
-            inorder_idx_map[value] = idx
+            self.inorder_idx_map[value] = idx
 
-        def array_to_tree(left, right):
-            nonlocal preorder_idx
+        return self.array_to_tree(0, len(preorder) - 1)
 
-            if left > right:
-                return None
+    def array_to_tree(self, left, right):
+        if left > right:
+            return None
 
-            root_value = preorder[preorder_idx]
-            root = TreeNode(root_value)
+        root_val = self.preorder[self.preorder_idx]
+        root = TreeNode(root_val)
 
-            preorder_idx += 1
+        self.preorder_idx += 1
 
-            root.left = array_to_tree(left, inorder_idx_map[root_value] - 1)
-            root.right = array_to_tree(inorder_idx_map[root_value] + 1, right)
+        root.left = self.array_to_tree(left, self.inorder_idx_map[root_val] - 1)
+        root.right = self.array_to_tree(self.inorder_idx_map[root_val] + 1, right)
 
-            return root
-
-        return array_to_tree(0, len(preorder) - 1)
+        return root
