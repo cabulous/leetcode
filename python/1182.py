@@ -6,8 +6,8 @@ from collections import defaultdict
 class Solution:
     def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
         colors_idx_map = defaultdict(list)
-        for i, c in enumerate(colors):
-            colors_idx_map[c].append(i)
+        for i, color in enumerate(colors):
+            colors_idx_map[color].append(i)
 
         res = []
         for i, (target, color) in enumerate(queries):
@@ -16,11 +16,12 @@ class Solution:
                 continue
 
             idx_list = colors_idx_map[color]
-            insert = bisect.bisect_left(idx_list, target)
-            left_nearest = abs(idx_list[max(insert - 1, 0)] - target)
-            right_nearest = abs(idx_list[min(insert, len(idx_list) - 1)] - target)
+            index = bisect.bisect_left(idx_list, target)
 
-            res.append(min(left_nearest, right_nearest))
+            left = abs(idx_list[max(0, index - 1)] - target)
+            right = abs(idx_list[min(len(idx_list) - 1, index)] - target)
+
+            res.append(min(left, right))
 
         return res
 
@@ -28,21 +29,21 @@ class Solution:
 class Solution:
     def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
         n = len(colors)
-        rightmost = [0, 0, 0]
-        leftmost = [n - 1, n - 1, n - 1]
+        left_most = [n - 1, n - 1, n - 1]
+        right_most = [0, 0, 0]
         dist = [[-1] * n for _ in range(3)]
 
         for i in range(n):
             color = colors[i] - 1
-            for j in range(rightmost[color], i + 1):
+            for j in range(right_most[color], i + 1):
                 dist[color][j] = i - j
-            rightmost[color] = i
+            right_most[color] = i
 
         for i in range(n - 1, -1, -1):
             color = colors[i] - 1
-            for j in range(leftmost[color], i - 1, -1):
+            for j in range(left_most[color], i - 1, -1):
                 if dist[color][j] == -1 or dist[color][j] > j - i:
                     dist[color][j] = j - i
-            leftmost[color] = i
+            left_most[color] = i
 
         return [dist[c - 1][i] for i, c in queries]
