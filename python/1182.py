@@ -28,18 +28,17 @@ class Solution:
 
 class Solution:
     def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
-        n = len(colors)
-        dist = [[-1] * n for _ in range(3)]
+        dist = [[-1] * len(colors) for _ in range(3)]
 
-        right_most = [0, 0, 0]
-        for i in range(n):
+        right_most = [0] * 3
+        for i in range(len(colors)):
             color = colors[i] - 1
             for j in range(right_most[color], i + 1):
                 dist[color][j] = i - j
             right_most[color] = i
 
-        left_most = [n - 1, n - 1, n - 1]
-        for i in range(n - 1, -1, -1):
+        left_most = [len(colors) - 1] * 3
+        for i in range(len(colors) - 1, -1, -1):
             color = colors[i] - 1
             for j in range(left_most[color], i - 1, -1):
                 if dist[color][j] == -1 or dist[color][j] > j - i:
