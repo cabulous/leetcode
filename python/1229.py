@@ -28,10 +28,10 @@ class Solution:
             start1, end1 = slots1[p1]
             start2, end2 = slots2[p2]
 
-            left = max(start1, start2)
-            right = min(end1, end2)
-            if right - left >= duration:
-                return [left, left + duration]
+            start = max(start1, start2)
+            end = min(end1, end2)
+            if end - start >= duration:
+                return [start, start + duration]
 
             if end1 < end2:
                 p1 += 1
