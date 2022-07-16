@@ -21,15 +21,15 @@ class Solution:
         return self.helper(0, (0, 0, 0, 0))
 
     @lru_cache(None)
-    def helper(self, index, sides):
-        if index == len(self.sticks):
+    def helper(self, stick_idx, sides):
+        if stick_idx == len(self.sticks):
             return sides[0] == sides[1] == sides[2] == self.side_target
 
         for i in range(4):
-            if sides[i] + self.sticks[index] <= self.side_target:
+            if sides[i] + self.sticks[stick_idx] <= self.side_target:
                 next_sides = list(sides)
-                next_sides[i] += self.sticks[index]
-                if self.helper(index + 1, tuple(next_sides)):
+                next_sides[i] += self.sticks[stick_idx]
+                if self.helper(stick_idx + 1, tuple(next_sides)):
                     return True
 
         return False

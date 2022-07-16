@@ -10,25 +10,20 @@ class Solution:
 
     def maximumInvitations(self, favorite: List[int]) -> int:
         self.favorite = favorite
-
-        count_in_loop = self.count_in_loop()
-        count_in_pair = self.count_in_pair()
-
-        return max(count_in_loop, count_in_pair)
+        return max(self.count_in_loop(), self.count_in_pair())
 
     def count_in_pair(self):
-        n = len(self.favorite)
-        seen = [False] * n
+        seen = [False] * len(self.favorite)
         pair = []
 
-        for i in range(n):
+        for i in range(len(self.favorite)):
             if self.favorite[self.favorite[i]] == i and not seen[i]:
                 pair.append([i, self.favorite[i]])
                 seen[i] = True
                 seen[self.favorite[i]] = True
 
         graph = defaultdict(list)
-        for i in range(n):
+        for i in range(len(self.favorite)):
             graph[self.favorite[i]].append(i)
 
         res = 0
@@ -41,12 +36,12 @@ class Solution:
 
     def arm_length(self, graph, start, exclude):
         queue = deque()
-        res = 0
 
         for cand in graph[start]:
             if cand != exclude:
                 queue.append([cand, 1])
 
+        res = 0
         while queue:
             people, count = queue.popleft()
             res = max(res, count)
@@ -56,11 +51,10 @@ class Solution:
         return res
 
     def count_in_loop(self):
-        n = len(self.favorite)
-        seen = [False] * n
+        seen = [False] * len(self.favorite)
         res = 0
 
-        for i in range(n):
+        for i in range(len(self.favorite)):
             if seen[i]:
                 continue
 

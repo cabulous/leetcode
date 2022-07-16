@@ -22,7 +22,7 @@ class Solution:
 class Solution:
     def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
         modulo = 10 ** 9 + 7
-        directions = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
         cur = [[0] * n for _ in range(m)]
         cur[startRow][startColumn] = 1
