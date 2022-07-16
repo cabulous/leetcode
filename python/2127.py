@@ -36,7 +36,6 @@ class Solution:
 
     def arm_length(self, graph, start, exclude):
         queue = deque()
-
         for cand in graph[start]:
             if cand != exclude:
                 queue.append([cand, 1])
