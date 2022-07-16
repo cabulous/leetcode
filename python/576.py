@@ -1,21 +1,21 @@
 from functools import lru_cache
 
+MOD = 10 ** 9 + 7
+
 
 class Solution:
-    def __init__(self):
-        self.modulo = 10 ** 9 + 7
-
-    @lru_cache(2000)
+    @lru_cache(None)
     def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
-        if startRow < 0 or startRow >= m or startColumn < 0 or startColumn >= n:
+        if startRow < 0 or m <= startRow or startColumn < 0 or n <= startColumn:
             return 1
         if maxMove == 0:
             return 0
-        return (self.findPaths(m, n, maxMove - 1, startRow + 1, startColumn)
-                + self.findPaths(m, n, maxMove - 1, startRow - 1, startColumn)
-                + self.findPaths(m, n, maxMove - 1, startRow, startColumn + 1)
-                + self.findPaths(m, n, maxMove - 1, startRow, startColumn - 1)
-                ) % self.modulo
+        return sum([
+            self.findPaths(m, n, maxMove - 1, startRow - 1, startColumn),
+            self.findPaths(m, n, maxMove - 1, startRow + 1, startColumn),
+            self.findPaths(m, n, maxMove - 1, startRow, startColumn - 1),
+            self.findPaths(m, n, maxMove - 1, startRow, startColumn + 1),
+        ]) % MOD
 
 
 # https://leetcode.com/problems/out-of-boundary-paths/discuss/102993/Python-Straightforward-with-Explanation
