@@ -16,10 +16,10 @@ class Solution:
                 continue
 
             idx_list = colors_idx_map[color]
-            index = bisect.bisect_left(idx_list, target)
+            insert_idx = bisect.bisect_left(idx_list, target)
 
-            left = abs(idx_list[max(0, index - 1)] - target)
-            right = abs(idx_list[min(len(idx_list) - 1, index)] - target)
+            left = abs(idx_list[max(0, insert_idx - 1)] - target)
+            right = abs(idx_list[min(len(idx_list) - 1, insert_idx)] - target)
 
             res.append(min(left, right))
 
@@ -29,16 +29,16 @@ class Solution:
 class Solution:
     def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
         n = len(colors)
-        left_most = [n - 1, n - 1, n - 1]
-        right_most = [0, 0, 0]
         dist = [[-1] * n for _ in range(3)]
 
+        right_most = [0, 0, 0]
         for i in range(n):
             color = colors[i] - 1
             for j in range(right_most[color], i + 1):
                 dist[color][j] = i - j
             right_most[color] = i
 
+        left_most = [n - 1, n - 1, n - 1]
         for i in range(n - 1, -1, -1):
             color = colors[i] - 1
             for j in range(left_most[color], i - 1, -1):
