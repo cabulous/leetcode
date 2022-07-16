@@ -22,23 +22,23 @@ class Solution:
 class Solution:
     def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
         modulo = 10 ** 9 + 7
-        nxt = [[0] * n for _ in range(m)]
-        nxt[startRow][startColumn] = 1
-        res = 0
         directions = [[1, 0], [0, 1], [-1, 0], [0, -1]]
 
-        for time in range(maxMove):
-            cur = nxt
+        cur = [[0] * n for _ in range(m)]
+        cur[startRow][startColumn] = 1
+        res = 0
+
+        for _ in range(maxMove):
             nxt = [[0] * n for _ in range(m)]
-            for r, row in enumerate(cur):
-                for c, val in enumerate(row):
+            for r in range(m):
+                for c in range(n):
+                    val = cur[r][c]
                     for dr, dc in directions:
                         nr, nc = r + dr, c + dc
                         if 0 <= nr < m and 0 <= nc < n:
-                            nxt[nr][nc] += val
-                            nxt[nr][nc] %= modulo
+                            nxt[nr][nc] += val % modulo
                         else:
-                            res += val
-                            res %= modulo
+                            res += val % modulo
+            cur = nxt
 
-        return res
+        return res % modulo
