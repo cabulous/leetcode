@@ -14,7 +14,7 @@ class Solution:
             heapq.heappush(taken, -time)
             total_time += time
             if total_time > end:
-                largest_time = -heapq.heappop(taken)
-                total_time -= largest_time
+                longest_time = -heapq.heappop(taken)
+                total_time -= longest_time
 
         return len(taken)
