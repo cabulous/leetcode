@@ -5,13 +5,12 @@ from typing import List
 # https://leetcode.com/problems/course-schedule-iii/discuss/104847/Python-Straightforward-with-Explanation
 class Solution:
     def scheduleCourse(self, courses: List[List[int]]) -> int:
-        lst = list(map(lambda x: [x[1], x[0]], courses))
-        lst.sort()
+        course_group = sorted(courses, key=lambda x: [x[1], x[0]])
 
         taken = []
         total_time = 0
 
-        for end, time in lst:
+        for time, end in course_group:
             heapq.heappush(taken, -time)
             total_time += time
             if total_time > end:
