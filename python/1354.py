@@ -9,11 +9,11 @@ class Solution:
             return target == [1]
 
         total = sum(target)
-        target = [-x for x in target]
-        heapq.heapify(target)
+        max_hp = [-x for x in target]
+        heapq.heapify(max_hp)
 
         while True:
-            num = -heapq.heappop(target)
+            num = -heapq.heappop(max_hp)
             if num == 1:
                 return True
 
@@ -26,4 +26,4 @@ class Solution:
 
             num %= total
             total += num
-            heapq.heappush(target, -num)
+            heapq.heappush(max_hp, -num)

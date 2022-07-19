@@ -31,18 +31,18 @@ class Solution:
         dist = [[-1] * len(colors) for _ in range(3)]
 
         right_most = [0] * 3
-        for i in range(len(colors)):
-            color = colors[i] - 1
-            for j in range(right_most[color], i + 1):
-                dist[color][j] = i - j
-            right_most[color] = i
+        for right in range(len(colors)):
+            color = colors[right] - 1
+            for left in range(right_most[color], right + 1):
+                dist[color][left] = right - left
+            right_most[color] = right
 
         left_most = [len(colors) - 1] * 3
-        for i in range(len(colors) - 1, -1, -1):
-            color = colors[i] - 1
-            for j in range(left_most[color], i - 1, -1):
-                if dist[color][j] == -1 or dist[color][j] > j - i:
-                    dist[color][j] = j - i
-            left_most[color] = i
+        for left in range(len(colors) - 1, -1, -1):
+            color = colors[left] - 1
+            for right in range(left_most[color], left - 1, -1):
+                if dist[color][right] == -1 or dist[color][right] > right - left:
+                    dist[color][right] = right - left
+            left_most[color] = left
 
         return [dist[c - 1][i] for i, c in queries]
