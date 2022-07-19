@@ -10,9 +10,9 @@ class Solution:
 
         for height in rods:
             next_dp = dp.copy()
-            for delta, max_height in dp.items():
-                next_dp[height + delta] = max(next_dp[height + delta], max_height)
-                next_dp[abs(height - delta)] = max(next_dp[abs(height - delta)], max_height + min(height, delta))
+            for delta, curr_height in dp.items():
+                next_dp[height + delta] = max(next_dp[height + delta], curr_height)
+                next_dp[abs(height - delta)] = max(next_dp[abs(height - delta)], curr_height + min(height, delta))
             dp = next_dp
 
         return dp[0]
