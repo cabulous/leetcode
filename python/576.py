@@ -24,21 +24,21 @@ class Solution:
         modulo = 10 ** 9 + 7
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-        cur = [[0] * n for _ in range(m)]
-        cur[startRow][startColumn] = 1
+        curr_move = [[0] * n for _ in range(m)]
+        curr_move[startRow][startColumn] = 1
         res = 0
 
         for _ in range(maxMove):
-            nxt = [[0] * n for _ in range(m)]
+            next_move = [[0] * n for _ in range(m)]
             for r in range(m):
                 for c in range(n):
-                    val = cur[r][c]
+                    val = curr_move[r][c]
                     for dr, dc in directions:
                         nr, nc = r + dr, c + dc
                         if 0 <= nr < m and 0 <= nc < n:
-                            nxt[nr][nc] += val % modulo
+                            next_move[nr][nc] += val % modulo
                         else:
                             res += val % modulo
-            cur = nxt
+            curr_move = next_move
 
         return res % modulo
