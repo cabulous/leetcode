@@ -5,10 +5,10 @@ from typing import List
 # https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/discuss/489743/JavaC%2B%2BPython-One-Pass-O(1)-Space
 class Solution:
     def maxValueAfterReverse(self, nums: List[int]) -> int:
-        total = 0
-        res = 0
         min_peak = math.inf
         max_valley = -math.inf
+        total = 0
+        res = 0
 
         for a, b in zip(nums, nums[1:]):
             total += abs(a - b)
