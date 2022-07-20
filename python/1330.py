@@ -8,13 +8,13 @@ class Solution:
         min_peak = math.inf
         max_valley = -math.inf
         total = 0
-        res = 0
+        improve = 0
 
         for a, b in zip(nums, nums[1:]):
             total += abs(a - b)
-            res = max(res, abs(nums[0] - b) - abs(a - b))
-            res = max(res, abs(nums[-1] - a) - abs(a - b))
+            improve = max(improve, abs(nums[0] - b) - abs(a - b))
+            improve = max(improve, abs(nums[-1] - a) - abs(a - b))
             min_peak = min(min_peak, max(a, b))
             max_valley = max(max_valley, min(a, b))
 
-        return total + max(res, (max_valley - min_peak) * 2)
+        return total + max(improve, (max_valley - min_peak) * 2)
