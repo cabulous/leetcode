@@ -6,12 +6,12 @@ from collections import defaultdict
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
         waiting = defaultdict(list)
+        for word in words:
+            waiting[word[0]].append(iter(word[1:]))
 
-        for w in words:
-            waiting[w[0]].append(iter(w[1:]))
-
-        for c in s:
-            for it in waiting.pop(c, ()):
-                waiting[next(it, None)].append(it)
+        for ch in s:
+            for suffix in waiting.pop(ch, ()):
+                next_ch = next(suffix, None)
+                waiting[next_ch].append(suffix)
 
         return len(waiting[None])
