@@ -10,19 +10,19 @@ class Solution:
         if left == right:
             return head
 
-        sentinel = ListNode(0)
-        sentinel.next = head
+        sentinel = ListNode(0, head)
         tail = sentinel
 
         for _ in range(left - 1):
             tail = tail.next
 
-        pre, cur = None, tail.next
+        prev = tail
+        curr = tail.next
 
         for _ in range(right - left + 1):
-            cur.next, cur, pre = pre, cur.next, cur
+            curr.next, prev, curr = prev, curr, curr.next
 
-        tail.next.next = cur
-        tail.next = pre
+        tail.next.next = curr
+        tail.next = prev
 
         return sentinel.next
