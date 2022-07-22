@@ -8,8 +8,8 @@ class Solution:
         hot = ''.join(ch * (freq // k) for ch, freq in Counter(s).items())
 
         combs = set()
-        for i in range(len(hot) + 1):
-            for cand in combinations(hot, i):
+        for length in range(len(hot) + 1):
+            for cand in combinations(hot, length):
                 for perm in permutations(cand):
                     combs.add(''.join(perm))
 
