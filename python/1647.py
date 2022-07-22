@@ -1,10 +1,10 @@
+from collections import Counter
+
+
 class Solution:
     def minDeletions(self, s: str) -> int:
-        freq = [0] * 26
-        for ch in s:
-            freq[ord(ch) - ord('a')] += 1
-
-        freq.sort(reverse=True)
+        count = Counter(s)
+        freq = sorted(list(count.values()), reverse=True)
 
         max_freq_allowed = len(s)
         res = 0
