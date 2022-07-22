@@ -15,8 +15,7 @@ class Solution:
                 if y in nums_set:
                     curr = gcd(curr, y)
                 if curr == x:
+                    res += 1
                     break
-            if curr == x:
-                res += 1
 
         return res
