@@ -4,21 +4,29 @@ from collections import defaultdict
 
 # https://leetcode.com/problems/all-paths-from-source-lead-to-destination/discuss/304940/Python-straightforward-DFS
 class Solution:
+
+    def __init__(self):
+        self.graph = defaultdict(list)
+        self.seen = set()
+        self.destination = 0
+
     def leadsToDestination(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        graph = defaultdict(list)
-        seen = set()
-
         for u, v in edges:
-            graph[u].append(v)
+            self.graph[u].append(v)
 
-        def reachable(node):
-            seen.add(node)
-            for nei in graph[node]:
-                if nei == node or nei in seen:
-                    return False
-                if not reachable(nei):
-                    return False
-            seen.discard(node)
-            return len(graph[node]) != 0 or node == destination
+        self.destination = destination
 
-        return reachable(source)
+        return self.reachable(source)
+
+    def reachable(self, node):
+        self.seen.add(node)
+
+        for next_node in self.graph[node]:
+            if next_node == node or next_node in self.seen:
+                return False
+            if not self.reachable(next_node):
+                return False
+
+        self.seen.discard(node)
+
+        return len(self.graph[node]) != 0 or node == self.destination
