@@ -22,7 +22,7 @@ class Solution:
         self.seen.add(node)
 
         for next_node in self.graph[node]:
-            if next_node == node or next_node in self.seen:
+            if next_node in self.seen:
                 return False
             if not self.reachable(next_node):
                 return False

@@ -18,8 +18,8 @@ class Solution:
                 count = Counter()
                 count[0] = 1
                 for c in range(1, cols + 1):
-                    curr_sum = ps[r2][c] - ps[r1 - 1][c]
-                    res += count[curr_sum - target]
-                    count[curr_sum] += 1
+                    curr = ps[r2][c] - ps[r1 - 1][c]
+                    res += count[curr - target]
+                    count[curr] += 1
 
         return res
