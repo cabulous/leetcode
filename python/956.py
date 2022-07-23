@@ -8,11 +8,12 @@ class Solution:
         dp = defaultdict(int)
         dp[0] = 0
 
-        for height in rods:
+        for next_height in rods:
             next_dp = dp.copy()
-            for delta, curr_height in dp.items():
-                next_dp[delta + height] = max(next_dp[delta + height], curr_height)
-                next_dp[abs(delta - height)] = max(next_dp[abs(delta - height)], curr_height + min(delta, height))
+            for diff, height in dp.items():
+                next_dp[diff + next_height] = max(next_dp[diff + next_height], height)
+                next_dp[abs(diff - next_height)] = max(next_dp[abs(diff - next_height)],
+                                                       height + min(diff, next_height))
             dp = next_dp
 
         return dp[0]
