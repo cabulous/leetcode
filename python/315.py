@@ -4,24 +4,30 @@ from typing import List
 # merge sort
 # https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76584/Mergesort-solution
 class Solution:
+
     def __init__(self):
-        self.smaller = []
+        self.res = []
 
     def countSmaller(self, nums: List[int]) -> List[int]:
-        self.smaller = [0] * len(nums)
+        self.res = [0] * len(nums)
         self.sort(list(enumerate(nums)))
-        return self.smaller
+        return self.res
 
     def sort(self, enum):
         half = len(enum) // 2
-        if half:
-            left, right = self.sort(enum[:half]), self.sort(enum[half:])
-            for i in reversed(range(len(enum))):
-                if not right or (left and left[-1][1] > right[-1][1]):
-                    self.smaller[left[-1][0]] += len(right)
-                    enum[i] = left.pop()
-                else:
-                    enum[i] = right.pop()
+        if half == 0:
+            return enum
+
+        left = self.sort(enum[:half])
+        right = self.sort(enum[half:])
+
+        for i in range(len(enum) - 1, -1, -1):
+            if not right or (left and left[-1][1] > right[-1][1]):
+                self.res[left[-1][0]] += len(right)
+                enum[i] = left.pop()
+            else:
+                enum[i] = right.pop()
+
         return enum
 
 

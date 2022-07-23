@@ -29,4 +29,4 @@ class Solution:
 
         self.seen.discard(node)
 
-        return len(self.graph[node]) != 0 or node == self.destination
+        return node == self.destination or len(self.graph[node]) != 0
