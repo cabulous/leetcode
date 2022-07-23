@@ -11,8 +11,8 @@ class Solution:
         for height in rods:
             next_dp = dp.copy()
             for delta, curr_height in dp.items():
-                next_dp[height + delta] = max(next_dp[height + delta], curr_height)
-                next_dp[abs(height - delta)] = max(next_dp[abs(height - delta)], curr_height + min(height, delta))
+                next_dp[delta + height] = max(next_dp[delta + height], curr_height)
+                next_dp[abs(delta - height)] = max(next_dp[abs(delta - height)], curr_height + min(delta, height))
             dp = next_dp
 
         return dp[0]
