@@ -9,7 +9,7 @@ class Solution:
         self.costs = []
 
     def minCost(self, costs: List[List[int]]) -> int:
-        if not costs:
+        if not any(costs):
             return 0
 
         self.costs = costs
