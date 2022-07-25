@@ -18,7 +18,7 @@ class Solution:
         lo = self.search(target)
         hi = self.search(target + 1) - 1
 
-        return [lo, hi] if target in nums[lo:lo + 1] else [-1, -1]
+        return [lo, hi] if lo <= hi else [-1, -1]
 
     def search(self, target):
         lo, hi = 0, len(self.nums) - 1

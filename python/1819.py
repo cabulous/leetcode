@@ -9,12 +9,12 @@ class Solution:
         nums_set = set(nums)
         res = 0
 
-        for x in range(1, max_num + 1):
-            curr = 0
-            for y in range(x, max_num + 1, x):
-                if y in nums_set:
-                    curr = gcd(curr, y)
-                if curr == x:
+        for cand in range(1, max_num + 1):
+            curr_gcd = 0
+            for num in range(cand, max_num + 1, cand):
+                if num in nums_set:
+                    curr_gcd = gcd(curr_gcd, num)
+                if curr_gcd == cand:
                     res += 1
                     break
 
