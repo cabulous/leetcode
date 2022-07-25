@@ -39,7 +39,7 @@ class Solution:
 
 class Solution:
     def minCost(self, costs: List[List[int]]) -> int:
-        if not costs:
+        if not any(costs):
             return 0
 
         curr = copy.deepcopy(costs)
@@ -53,13 +53,12 @@ class Solution:
 
 class Solution:
     def minCost(self, costs: List[List[int]]) -> int:
-        if not costs:
+        if not any(costs):
             return 0
 
         prev = costs[-1]
-
-        for i in reversed(range(len(costs) - 1)):
-            curr = copy.deepcopy(costs[i])
+        for i in range(len(costs) - 2, -1, -1):
+            curr = costs[i].copy()
             curr[0] += min(prev[1], prev[2])
             curr[1] += min(prev[0], prev[2])
             curr[2] += min(prev[0], prev[1])
