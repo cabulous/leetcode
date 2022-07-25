@@ -7,18 +7,19 @@ class Solution:
         if w >= max(capital):
             return w + sum(heapq.nlargest(k, profits))
 
-        projects = [(capital[i], profits[i]) for i in range(len(profits))]
-        projects.sort(key=lambda x: -x[0])
-
-        taken = []
+        projects = sorted(list(zip(capital, profits)), key=lambda x: -x[0])
+        projects_taken = []
+        projects_count = 0
         res = w
-        while k > 0:
+
+        while projects_count < k:
             while projects and projects[-1][0] <= res:
-                heapq.heappush(taken, -projects.pop()[1])
-            if taken:
-                res -= heapq.heappop(taken)
+                heapq.heappush(projects_taken, -projects.pop()[1])
+            if len(projects_taken) > 0:
+                max_profit = -heapq.heappop(projects_taken)
+                res += max_profit
             else:
                 break
-            k -= 1
+            projects_count += 1
 
         return res
