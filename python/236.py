@@ -6,24 +6,26 @@ class TreeNode:
 
 
 class Solution:
+
     def __init__(self):
-        self.ans = None
+        self.res = None
 
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         self.find(root, p, q)
-        return self.ans
+        return self.res
 
     def find(self, node, p, q):
         if not node:
             return False
 
-        left, right = self.find(node.left, p, q), self.find(node.right, p, q)
-        mid = node == p or node == q
+        left_found = self.find(node.left, p, q)
+        right_found = self.find(node.right, p, q)
+        found = node in (p, q)
 
-        if mid + left + right >= 2:
-            self.ans = node
+        if found + left_found + right_found >= 2:
+            self.res = node
 
-        return mid or left or right
+        return found or left_found or right_found
 
 
 # https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65225/4-lines-C%2B%2BJavaPythonRuby
