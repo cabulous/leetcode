@@ -19,6 +19,12 @@ class Solution:
         return self.reachable(source)
 
     def reachable(self, node):
+        if node == self.destination and len(self.graph[node]) == 0:
+            return True
+
+        if len(self.graph[node]) == 0:
+            return False
+
         self.seen.add(node)
 
         for next_node in self.graph[node]:
@@ -29,4 +35,4 @@ class Solution:
 
         self.seen.discard(node)
 
-        return node == self.destination or len(self.graph[node]) != 0
+        return True

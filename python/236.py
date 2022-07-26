@@ -8,19 +8,24 @@ class TreeNode:
 class Solution:
 
     def __init__(self):
+        self.p = None
+        self.q = None
         self.res = None
 
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        self.find(root, p, q)
+        self.p = p
+        self.q = q
+        self.find(root)
+
         return self.res
 
-    def find(self, node, p, q):
-        if not node:
+    def find(self, node):
+        if node is None:
             return False
 
-        left_found = self.find(node.left, p, q)
-        right_found = self.find(node.right, p, q)
-        found = node in (p, q)
+        left_found = self.find(node.left)
+        right_found = self.find(node.right)
+        found = node in (self.p, self.q)
 
         if found + left_found + right_found >= 2:
             self.res = node
@@ -35,29 +40,3 @@ class Solution:
             return root
         left, right = [self.lowestCommonAncestor(kid, p, q) for kid in [root.left, root.right]]
         return root if left and right else left or right
-
-
-class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        stack = [root]
-        parent = {root: None}
-
-        while p not in parent or q not in parent:
-            node = stack.pop()
-            if node.left:
-                parent[node.left] = node
-                stack.append(node.left)
-            if node.right:
-                parent[node.right] = node
-                stack.append(node.right)
-
-        ancestors = set()
-
-        while p:
-            ancestors.add(p)
-            p = parent[p]
-
-        while q not in ancestors:
-            q = parent[q]
-
-        return q
