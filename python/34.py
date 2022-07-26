@@ -34,4 +34,5 @@ class Solution:
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         lo = bisect.bisect_left(nums, target)
-        return [lo, bisect.bisect(nums, target) - 1] if target in nums[lo:lo + 1] else [-1, -1]
+        hi = bisect.bisect_left(nums, target + 1) - 1
+        return [lo, hi] if lo <= hi else [-1, -1]
