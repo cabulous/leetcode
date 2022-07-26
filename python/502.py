@@ -7,7 +7,7 @@ class Solution:
         if w >= max(capital):
             return w + sum(heapq.nlargest(k, profits))
 
-        projects = sorted(list(zip(capital, profits)), key=lambda x: -x[0])
+        projects = sorted(zip(capital, profits), key=lambda x: -x[0])
         candidates = []
         taken_count = 0
         res = w
