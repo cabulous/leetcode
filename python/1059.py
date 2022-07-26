@@ -19,11 +19,8 @@ class Solution:
         return self.reachable(source)
 
     def reachable(self, node):
-        if node == self.destination and len(self.graph[node]) == 0:
-            return True
-
         if len(self.graph[node]) == 0:
-            return False
+            return node == self.destination
 
         self.seen.add(node)
 
