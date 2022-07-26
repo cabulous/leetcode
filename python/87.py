@@ -23,5 +23,4 @@ class Solution:
                 return True
 
         self.memo[s1, s2] = False
-
         return False
