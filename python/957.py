@@ -12,7 +12,13 @@ class Solution:
             prev = curr[:]
 
             n -= 1
-            curr = [0] + [prev[i - 1] ^ prev[i + 1] ^ 1 for i in range(1, 7)] + [0]
+
+            curr[0] = curr[-1] = 0
+            for i in range(1, 7):
+                if prev[i - 1] == prev[i + 1]:
+                    curr[i] = 1
+                else:
+                    curr[i] = 0
 
             if str(curr) in seen:
                 n %= seen[str(curr)] - n
