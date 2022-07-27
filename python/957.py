@@ -6,12 +6,13 @@ class Solution:
     def prisonAfterNDays(self, cells: List[int], n: int) -> List[int]:
         seen = {str(cells): n}
         curr = cells[:]
+        remaining = n
 
-        while n:
-            seen.setdefault(str(curr), n)
+        while remaining:
+            seen.setdefault(str(curr), remaining)
             prev = curr[:]
 
-            n -= 1
+            remaining -= 1
 
             curr[0] = curr[-1] = 0
             for i in range(1, 7):
@@ -21,6 +22,6 @@ class Solution:
                     curr[i] = 0
 
             if str(curr) in seen:
-                n %= seen[str(curr)] - n
+                remaining %= seen[str(curr)] - remaining
 
         return curr
