@@ -23,14 +23,14 @@ class Solution:
         if node is None:
             return False
 
-        left_found = self.find(node.left)
-        right_found = self.find(node.right)
+        found_left = self.find(node.left)
+        found_right = self.find(node.right)
         found = node in (self.p, self.q)
 
-        if found + left_found + right_found >= 2:
+        if found + found_left + found_right >= 2:
             self.res = node
 
-        return found or left_found or right_found
+        return found or found_left or found_right
 
 
 # https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65225/4-lines-C%2B%2BJavaPythonRuby
