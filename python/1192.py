@@ -16,7 +16,6 @@ class Solution:
             self.graph[v].append(u)
 
         self.depth = [-1] * n
-
         self.dfs(None, 0, 0)
 
         return self.res
