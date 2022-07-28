@@ -2,36 +2,42 @@ from typing import List
 from collections import defaultdict
 
 
-# https://leetcode.com/problems/critical-connections-in-a-network/discuss/410345/Python-(98-Time-100-Memory)-clean-solution-with-explanaions-for-confused-people-like-me/419605
+# https://leetcode.com/problems/critical-connections-in-a-network/discuss/601695/Cleanest-and-Easiest-Understand-Python-Solution-99-Time-100-Mem
 class Solution:
 
     def __init__(self):
-        self.rank_min = []
         self.graph = defaultdict(list)
+        self.depth = []
+        self.res = []
 
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        self.rank_min = [0] * n
-
         for u, v in connections:
             self.graph[u].append(v)
             self.graph[v].append(u)
 
-        return self.dfs(1, 0, -1)
+        self.depth = [-1] * n
 
-    def dfs(self, curr_rank, curr_node, prev_node):
-        self.rank_min[curr_node] = curr_rank
-        res = []
+        self.dfs(None, 0, 0)
+
+        return self.res
+
+    def dfs(self, prev_node, curr_node, curr_depth):
+        self.depth[curr_node] = curr_depth
+        min_depth = curr_depth
 
         for next_node in self.graph[curr_node]:
             if next_node == prev_node:
                 continue
 
-            if self.rank_min[next_node] == 0:
-                res += self.dfs(curr_rank + 1, next_node, curr_node)
+            next_depth = self.depth[next_node]
+            if next_depth == -1:
+                next_depth = self.dfs(curr_node, next_node, curr_depth + 1)
 
-            self.rank_min[curr_node] = min(self.rank_min[curr_node], self.rank_min[next_node])
+            if next_depth > curr_depth:
+                self.res.append([curr_node, next_node])
+            else:
+                min_depth = min(min_depth, next_depth)
 
-            if self.rank_min[next_node] >= curr_rank + 1:
-                res.append([curr_node, next_node])
+        self.depth[curr_node] = min_depth
 
-        return res
+        return min_depth
