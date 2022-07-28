@@ -13,7 +13,7 @@ class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         return self.serialize(subRoot) in self.serialize(root)
 
-    def serialize(self, root: Optional[TreeNode]):
+    def serialize(self, root: Optional[TreeNode]) -> str:
         return '^' + str(root.val) + '#' + self.serialize(root.left) + self.serialize(root.right) if root else '$'
 
 
@@ -26,7 +26,7 @@ class Solution:
             return False
         return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
-    def is_match(self, node_a, node_b):
+    def is_match(self, node_a: Optional[TreeNode], node_b: Optional[TreeNode]) -> bool:
         if not (node_a and node_b):
             return node_a is node_b
         return (
