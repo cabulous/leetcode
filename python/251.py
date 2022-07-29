@@ -10,8 +10,8 @@ class Vector2D:
 
     def _generator(self, vec: List[List[int]]):
         for row in vec:
-            for c in row:
-                yield c
+            for col in row:
+                yield col
 
     def next(self) -> int:
         res = self.next_val

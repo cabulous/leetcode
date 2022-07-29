@@ -9,9 +9,6 @@ class Solution:
         self.target = 0
 
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        if len(nums) == 0:
-            return [-1, -1]
-
         self.nums = nums
         self.target = target
 
