@@ -9,15 +9,14 @@ class Solution:
 
     def cutOffTree(self, forest: List[List[int]]) -> int:
         self.forest = forest
-
         self.forest.append([0] * len(self.forest[0]))
         for row in self.forest:
             row.append(0)
 
         trees = [
-            (height, i, j)
-            for i, row in enumerate(self.forest)
-            for j, height in enumerate(row)
+            (height, r, c)
+            for r, row in enumerate(self.forest)
+            for c, height in enumerate(row)
             if height > 1
         ]
 
@@ -33,13 +32,17 @@ class Solution:
 
         trees.sort()
 
-        return sum(self.distance(sr, sc, er, ec) for (_, sr, sc), (_, er, ec) in zip([(0, 0, 0)] + trees, trees))
+        return sum(
+            self.distance(start_row, start_col, end_row, end_col)
+            for (_, start_row, start_col), (_, end_row, end_col)
+            in zip([(0, 0, 0)] + trees, trees)
+        )
 
-    def distance(self, start_r, start_c, end_r, end_c):
-        now = [(start_r, start_c)]
+    def distance(self, start_row, start_col, end_row, end_col):
+        now = [(start_row, start_col)]
         soon = []
         expanded = set()
-        manhattan = abs(start_r - end_r) + abs(start_c - end_c)
+        curr_dist = abs(start_row - end_row) + abs(start_col - end_col)
         detours = 0
 
         while True:
@@ -47,12 +50,20 @@ class Solution:
                 now, soon = soon, []
                 detours += 1
 
-            r, c = now.pop()
-            if (r, c) == (end_r, end_c):
-                return manhattan + 2 * detours
+            curr_row, curr_col = now.pop()
+            if (curr_row, curr_col) == (end_row, end_col):
+                return curr_dist + 2 * detours
 
-            if (r, c) not in expanded:
-                expanded.add((r, c))
-                for nr, nc, closer in (r + 1, c, r < end_r), (r - 1, c, r > end_r), (r, c + 1, c < end_c), (r, c - 1, c > end_c):
-                    if self.forest[nr][nc] > 0:
-                        (now if closer else soon).append((nr, nc))
+            if (curr_row, curr_col) not in expanded:
+                expanded.add((curr_row, curr_col))
+
+                next_steps = [
+                    (curr_row + 1, curr_col, curr_row < end_row),
+                    (curr_row - 1, curr_col, curr_row > end_row),
+                    (curr_row, curr_col + 1, curr_col < end_col),
+                    (curr_row, curr_col - 1, curr_col > end_col),
+                ]
+
+                for next_row, next_col, closer in next_steps:
+                    if self.forest[next_row][next_col] > 0:
+                        (now if closer else soon).append((next_row, next_col))
