@@ -20,12 +20,15 @@ class Solution:
             if height > 1
         ]
 
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         queue = [(0, 0)]
         seen = set()
         for r, c in queue:
             if (r, c) not in seen and self.forest[r][c] > 0:
                 seen.add((r, c))
-                queue += (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)
+                for dr, dc in directions:
+                    nr, nc = r + dr, c + dc
+                    queue.append((nr, nc))
 
         if not all((r, c) in seen for (_, r, c) in trees):
             return -1
@@ -41,7 +44,7 @@ class Solution:
     def distance(self, start_row, start_col, end_row, end_col):
         now = [(start_row, start_col)]
         soon = []
-        expanded = set()
+        seen = set()
         curr_dist = abs(start_row - end_row) + abs(start_col - end_col)
         detours = 0
 
@@ -54,8 +57,8 @@ class Solution:
             if (curr_row, curr_col) == (end_row, end_col):
                 return curr_dist + 2 * detours
 
-            if (curr_row, curr_col) not in expanded:
-                expanded.add((curr_row, curr_col))
+            if (curr_row, curr_col) not in seen:
+                seen.add((curr_row, curr_col))
 
                 next_steps = [
                     (curr_row + 1, curr_col, curr_row < end_row),
