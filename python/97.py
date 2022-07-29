@@ -6,22 +6,21 @@ class Solution:
         if len(s1) + len(s2) != len(s3):
             return False
 
-        stack = deque([(0, 0)])
+        queue = deque([(0, 0)])
         seen = {(0, 0)}
 
-        while stack:
-            pt1, pt2 = stack.popleft()
-
+        while queue:
+            pt1, pt2 = queue.popleft()
             if pt1 + pt2 == len(s3):
                 return True
 
             if pt1 < len(s1) and s1[pt1] == s3[pt1 + pt2] and (pt1 + 1, pt2) not in seen:
                 seen.add((pt1 + 1, pt2))
-                stack.append((pt1 + 1, pt2))
+                queue.append((pt1 + 1, pt2))
 
             if pt2 < len(s2) and s2[pt2] == s3[pt1 + pt2] and (pt1, pt2 + 1) not in seen:
                 seen.add((pt1, pt2 + 1))
-                stack.append((pt1, pt2 + 1))
+                queue.append((pt1, pt2 + 1))
 
         return False
 
