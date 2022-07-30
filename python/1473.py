@@ -6,10 +6,11 @@ from typing import List
 class Solution:
     def minCost(self, houses: List[int], cost: List[List[int]], m: int, n: int, target: int) -> int:
         dp = {(0, 0): 0}
-        next_dp = {}
 
         for i, painted_color in enumerate(houses):
+            next_dp = {}
             available_colors = range(1, n + 1) if painted_color == 0 else [painted_color]
+
             for next_color in available_colors:
                 for (color, block), curr_cost in dp.items():
                     next_block = block + (color != next_color)
@@ -18,6 +19,7 @@ class Solution:
                             next_dp.get((next_color, next_block), math.inf),
                             curr_cost + (cost[i][next_color - 1] if next_color != painted_color else 0),
                         )
-            dp, next_dp = next_dp, {}
+
+            dp = next_dp
 
         return min([dp[c, b] for c, b in dp if b == target] or [-1])
