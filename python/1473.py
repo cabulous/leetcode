@@ -22,4 +22,4 @@ class Solution:
 
             dp = next_dp
 
-        return min([dp[c, b] for c, b in dp if b == target] or [-1])
+        return min([dp[color, block] for color, block in dp if block == target] or [-1])
