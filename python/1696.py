@@ -11,9 +11,12 @@ class Solution:
         for i in range(1, len(nums)):
             while queue and queue[0] < i - k:
                 queue.popleft()
+
             score[i] = score[queue[0]] + nums[i]
+
             while queue and score[queue[-1]] <= score[i]:
                 queue.pop()
+
             queue.append(i)
 
         return score[-1]
