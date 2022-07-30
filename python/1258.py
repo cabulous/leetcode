@@ -19,7 +19,7 @@ class Solution:
 
             words = curr_text.split()
             for i, word in enumerate(words):
-                if word in graph.keys():
+                if word in graph:
                     for new_word in graph[word]:
                         new_text = ' '.join(words[:i] + [new_word] + words[i + 1:])
                         if new_text not in res:
