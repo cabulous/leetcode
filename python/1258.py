@@ -5,10 +5,10 @@ from typing import List
 # https://leetcode.com/problems/synonymous-sentences/discuss/430534/Python-bfs-solution
 class Solution:
     def generateSentences(self, synonyms: List[List[str]], text: str) -> List[str]:
-        graph = defaultdict(list)
+        graph = defaultdict(set)
         for u, v in synonyms:
-            graph[u].append(v)
-            graph[v].append(u)
+            graph[u].add(v)
+            graph[v].add(u)
 
         queue = deque([text])
         res = set()
