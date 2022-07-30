@@ -11,7 +11,7 @@ class TreeNode:
 
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
-        if root is None:
+        if not root:
             return
 
         curr = root
@@ -33,7 +33,7 @@ class Solution:
         self.prev = None
 
     def flatten(self, root: Optional[TreeNode]) -> None:
-        if root is None:
+        if not root:
             return
 
         self.flatten(root.right)

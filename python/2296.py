@@ -11,10 +11,10 @@ class TextEditor:
 
     def deleteText(self, k: int) -> int:
         next_cursor = max(0, self.cursor - k)
-        char_count = min(k, self.cursor)
         self.s = self.s[:next_cursor] + self.s[self.cursor:]
+        res = self.cursor - next_cursor
         self.cursor = next_cursor
-        return char_count
+        return res
 
     def cursorLeft(self, k: int) -> str:
         self.cursor = max(0, self.cursor - k)
