@@ -4,29 +4,20 @@ from collections import Counter
 
 # https://leetcode.com/problems/word-subsets/discuss/175854/JavaC%2B%2BPython-Straight-Forward
 class Solution:
-    def wordSubsets(self, A: List[str], B: List[str]) -> List[str]:
-        c = Counter()
-        for b in B:
-            c |= Counter(b)
-        return [a for a in A if not c - Counter(a)]
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        count = Counter()
+        for w in words2:
+            count |= Counter(w)
+
+        return [w for w in words1 if not count - Counter(w)]
 
 
 class Solution:
-    def wordSubsets(self, A: List[str], B: List[str]) -> List[str]:
-        def count(word):
-            ans = [0] * 26
-            for letter in word:
-                ans[ord(letter) - ord('a')] += 1
-            return ans
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        count = Counter()
+        for w in words2:
+            next_count = Counter(w)
+            for i, ch in enumerate(next_count):
+                count[ch] = max(count[ch], next_count[ch])
 
-        b_max = [0] * 26
-        for b in B:
-            for i, c in enumerate(count(b)):
-                b_max[i] = max(b_max[i], c)
-
-        ans = []
-        for a in A:
-            if all(x >= y for x, y in zip(count(a), b_max)):
-                ans.append(a)
-
-        return ans
+        return [w for w in words1 if not count - Counter(w)]

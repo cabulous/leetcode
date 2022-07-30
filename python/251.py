@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Generator
 
 
 # https://leetcode.com/problems/flatten-2d-vector/discuss/168602/Python-iterator-Solution/934803
@@ -8,7 +8,7 @@ class Vector2D:
         self.gen = self._generator(vec)
         self.next_val = next(self.gen, None)
 
-    def _generator(self, vec: List[List[int]]):
+    def _generator(self, vec: List[List[int]]) -> Generator[None, int, None]:
         for row in vec:
             for col in row:
                 yield col
