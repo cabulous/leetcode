@@ -3,6 +3,7 @@ from typing import List
 
 # https://leetcode.com/problems/range-sum-query-mutable/discuss/75784/Python%3A-Well-commented-solution-using-Segment-Trees
 class Node:
+
     def __init__(self, start, end):
         self.start = start
         self.end = end
@@ -13,9 +14,9 @@ class Node:
 class NumArray:
 
     def __init__(self, nums: List[int]):
-        self.root = self.create_tree(nums, 0, len(nums) - 1)
+        self.root = self._create_tree(nums, 0, len(nums) - 1)
 
-    def create_tree(self, nums, left, right):
+    def _create_tree(self, nums, left, right):
         if left > right:
             return None
 
@@ -26,13 +27,16 @@ class NumArray:
 
         mid = left + (right - left) // 2
         node = Node(left, right)
-        node.left = self.create_tree(nums, left, mid)
-        node.right = self.create_tree(nums, mid + 1, right)
+        node.left = self._create_tree(nums, left, mid)
+        node.right = self._create_tree(nums, mid + 1, right)
         node.total = node.left.total + node.right.total
 
         return node
 
-    def update_val(self, node, index, val):
+    def update(self, index: int, val: int) -> None:
+        return self._update_val(self.root, index, val)
+
+    def _update_val(self, node, index, val):
         if node.start == node.end:
             node.total = val
             return
@@ -40,26 +44,24 @@ class NumArray:
         mid = node.start + (node.end - node.start) // 2
 
         if index <= mid:
-            self.update_val(node.left, index, val)
+            self._update_val(node.left, index, val)
         else:
-            self.update_val(node.right, index, val)
+            self._update_val(node.right, index, val)
 
         node.total = node.left.total + node.right.total
 
-    def update(self, index: int, val: int) -> None:
-        self.update_val(self.root, index, val)
+    def sumRange(self, left: int, right: int) -> int:
+        return self._range_sum(self.root, left, right)
 
-    def range_sum(self, node, left, right):
+    def _range_sum(self, node, left, right):
         if node.start == left and node.end == right:
             return node.total
 
         mid = node.start + (node.end - node.start) // 2
 
         if right <= mid:
-            return self.range_sum(node.left, left, right)
-        if left >= mid + 1:
-            return self.range_sum(node.right, left, right)
-        return self.range_sum(node.left, left, mid) + self.range_sum(node.right, mid + 1, right)
+            return self._range_sum(node.left, left, right)
+        if mid + 1 <= left:
+            return self._range_sum(node.right, left, right)
 
-    def sumRange(self, left: int, right: int) -> int:
-        return self.range_sum(self.root, left, right)
+        return self._range_sum(node.left, left, mid) + self._range_sum(node.right, mid + 1, right)
