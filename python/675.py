@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List
 
 
@@ -21,9 +22,10 @@ class Solution:
         ]
 
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        queue = [(0, 0)]
+        queue = deque([(0, 0)])
         seen = set()
-        for r, c in queue:
+        while queue:
+            r, c = queue.popleft()
             if (r, c) not in seen and self.forest[r][c] > 0:
                 seen.add((r, c))
                 for dr, dc in directions:
