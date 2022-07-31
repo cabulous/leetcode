@@ -11,6 +11,7 @@ class Node:
 
 
 class NumArray:
+
     def __init__(self, nums: List[int]):
         self.root = self.create_tree(nums, 0, len(nums) - 1)
 
