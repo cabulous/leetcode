@@ -44,19 +44,19 @@ class Solution:
         )
 
     def distance(self, start_row, start_col, end_row, end_col):
-        now = [(start_row, start_col)]
-        soon = []
+        now = deque([(start_row, start_col)])
+        soon = deque()
         seen = set()
-        curr_dist = abs(start_row - end_row) + abs(start_col - end_col)
         detours = 0
 
         while True:
             if not now:
-                now, soon = soon, []
+                now, soon = soon, deque()
                 detours += 1
 
-            curr_row, curr_col = now.pop()
+            curr_row, curr_col = now.popleft()
             if (curr_row, curr_col) == (end_row, end_col):
+                curr_dist = abs(start_row - end_row) + abs(start_col - end_col)
                 return curr_dist + 2 * detours
 
             if (curr_row, curr_col) not in seen:
