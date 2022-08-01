@@ -8,7 +8,8 @@ class Node:
         self.start = start
         self.end = end
         self.total = 0
-        self.left = self.right = None
+        self.left = None
+        self.right = None
 
 
 class NumArray:
@@ -34,7 +35,7 @@ class NumArray:
         return node
 
     def update(self, index: int, val: int) -> None:
-        return self._update_val(self.root, index, val)
+        self._update_val(self.root, index, val)
 
     def _update_val(self, node, index, val):
         if node.start == node.end:
