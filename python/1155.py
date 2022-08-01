@@ -5,8 +5,8 @@ MOD = 10 ** 9 + 7
 class Solution:
 
     def __init__(self):
-        self.memo = {}
         self.k = 0
+        self.memo = {}
 
     def numRollsToTarget(self, n: int, k: int, target: int) -> int:
         self.k = k
