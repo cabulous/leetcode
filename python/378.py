@@ -6,14 +6,13 @@ class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
         rows = len(matrix)
         cols = len(matrix[0])
-        queue = []
 
+        queue = []
         for r in range(min(rows, k)):
             heapq.heappush(queue, (matrix[r][0], r, 0))
 
         remain = k
         res = 0
-
         while remain > 0:
             res, r, c = heapq.heappop(queue)
             if c + 1 < cols:

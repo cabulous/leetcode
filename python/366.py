@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import List
 
 
@@ -8,19 +9,29 @@ class TreeNode:
         self.right = right
 
 
+# https://leetcode.com/problems/find-leaves-of-binary-tree/discuss/83815/Simple-Python-solution-using-dict
 class Solution:
+
     def __init__(self):
-        self.res = []
+        self.nodes = defaultdict(list)
 
     def findLeaves(self, root: TreeNode) -> List[List[int]]:
-        self.dfs(root)
-        return self.res
+        self.collect_leaves(root)
 
-    def dfs(self, node):
-        if not node:
-            return -1
-        height = max(self.dfs(node.left), self.dfs(node.right)) + 1
-        if height >= len(self.res):
-            self.res.append([])
-        self.res[height].append(node.val)
+        res = []
+        for height in range(1, len(self.nodes) + 1):
+            res.append(self.nodes[height])
+
+        return res
+
+    def collect_leaves(self, node):
+        if node is None:
+            return 0
+
+        left_height = self.collect_leaves(node.left)
+        right_height = self.collect_leaves(node.right)
+
+        height = max(left_height, right_height) + 1
+        self.nodes[height].append(node.val)
+
         return height
