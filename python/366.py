@@ -16,7 +16,7 @@ class Solution:
         self.nodes = defaultdict(list)
 
     def findLeaves(self, root: TreeNode) -> List[List[int]]:
-        self.collect_leaves(root)
+        self.collect_nodes(root)
 
         res = []
         for height in range(1, len(self.nodes) + 1):
@@ -24,14 +24,14 @@ class Solution:
 
         return res
 
-    def collect_leaves(self, node):
+    def collect_nodes(self, node):
         if node is None:
             return 0
 
-        left_height = self.collect_leaves(node.left)
-        right_height = self.collect_leaves(node.right)
+        left = self.collect_nodes(node.left)
+        right = self.collect_nodes(node.right)
 
-        height = max(left_height, right_height) + 1
+        height = max(left, right) + 1
         self.nodes[height].append(node.val)
 
         return height
