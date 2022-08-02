@@ -4,18 +4,20 @@ from typing import List
 
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        n = len(matrix)
-        heap = []
+        rows = len(matrix)
+        cols = len(matrix[0])
+        queue = []
 
-        for r in range(min(k, n)):
-            heapq.heappush(heap, (matrix[r][0], r, 0))
+        for r in range(min(rows, k)):
+            heapq.heappush(queue, (matrix[r][0], r, 0))
 
+        remain = k
         res = 0
 
-        while k > 0:
-            res, r, c = heapq.heappop(heap)
-            if c < n - 1:
-                heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))
-            k -= 1
+        while remain > 0:
+            res, r, c = heapq.heappop(queue)
+            if c + 1 < cols:
+                heapq.heappush(queue, (matrix[r][c + 1], r, c + 1))
+            remain -= 1
 
         return res
