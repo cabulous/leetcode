@@ -18,9 +18,12 @@ class Solution:
 
         while stack:
             node = stack.pop()
+
             if k - node.val in seen:
                 return True
+
             seen.add(node.val)
+
             if node.left:
                 stack.append(node.left)
             if node.right:
