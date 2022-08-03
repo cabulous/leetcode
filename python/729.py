@@ -1,30 +1,44 @@
+from typing import Optional
+
+
 class Node:
-    def __init__(self, start, end):
+
+    def __init__(self, start=0, end=0):
         self.start = start
         self.end = end
-        self.left = self.right = None
+        self.left = None
+        self.right = None
 
-    def insert(self, node):
-        if node.start >= self.end:
-            if not self.right:
-                self.right = node
+
+class Tree:
+
+    def __init__(self):
+        self.root = Node()
+
+    def insert(self, node: Node) -> bool:
+        return self._insert_node(node, self.root)
+
+    def _insert_node(self, node: Node, curr: Node) -> bool:
+        if node.start >= curr.end:
+            if curr.right is None:
+                curr.right = node
                 return True
-            return self.right.insert(node)
-        if node.end <= self.start:
-            if not self.left:
-                self.left = node
+            return self._insert_node(node, curr.right)
+
+        if node.end <= curr.start:
+            if curr.left is None:
+                curr.left = node
                 return True
-            return self.left.insert(node)
+            return self._insert_node(node, curr.left)
+
         return False
 
 
 class MyCalendar:
+
     def __init__(self):
-        self.root = None
+        self.root = Tree()
 
     def book(self, start: int, end: int) -> bool:
         node = Node(start, end)
-        if not self.root:
-            self.root = node
-            return True
         return self.root.insert(node)

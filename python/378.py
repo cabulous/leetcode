@@ -11,8 +11,8 @@ class Solution:
         for r in range(min(rows, k)):
             heapq.heappush(queue, (matrix[r][0], r, 0))
 
-        remain = k
         res = 0
+        remain = k
         while remain > 0:
             res, r, c = heapq.heappop(queue)
             if c + 1 < cols:
