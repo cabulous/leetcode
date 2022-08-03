@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class Node:
 
     def __init__(self, start=0, end=0):
@@ -18,18 +15,18 @@ class Tree:
     def insert(self, node: Node) -> bool:
         return self._insert_node(node, self.root)
 
-    def _insert_node(self, node: Node, curr: Node) -> bool:
-        if node.start >= curr.end:
-            if curr.right is None:
-                curr.right = node
+    def _insert_node(self, node: Node, curr_node: Node) -> bool:
+        if curr_node.end <= node.start:
+            if curr_node.right is None:
+                curr_node.right = node
                 return True
-            return self._insert_node(node, curr.right)
+            return self._insert_node(node, curr_node.right)
 
-        if node.end <= curr.start:
-            if curr.left is None:
-                curr.left = node
+        if node.end <= curr_node.start:
+            if curr_node.left is None:
+                curr_node.left = node
                 return True
-            return self._insert_node(node, curr.left)
+            return self._insert_node(node, curr_node.left)
 
         return False
 
@@ -40,5 +37,4 @@ class MyCalendar:
         self.root = Tree()
 
     def book(self, start: int, end: int) -> bool:
-        node = Node(start, end)
-        return self.root.insert(node)
+        return self.root.insert(Node(start, end))

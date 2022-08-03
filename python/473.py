@@ -13,7 +13,7 @@ class Solution:
             return False
 
         self.side_target, rem = divmod(sum(matchsticks), 4)
-        if rem != 0:
+        if rem > 0:
             return False
 
         self.sticks = sorted(matchsticks, reverse=True)
