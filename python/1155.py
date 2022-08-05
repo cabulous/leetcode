@@ -10,19 +10,19 @@ class Solution:
 
     def numRollsToTarget(self, n: int, k: int, target: int) -> int:
         self.k = k
-        return self.dp(n, target) % MOD
+        return self.helper(n, target)
 
-    def dp(self, dice_count, target):
+    def helper(self, dice_count, target):
         if dice_count == 0:
-            return 0 if target > 0 else 1
+            return 1 if target == 0 else 0
 
         if (dice_count, target) in self.memo:
             return self.memo[dice_count, target]
 
         res = 0
         for next_target in range(max(0, target - self.k), target):
-            res += self.dp(dice_count - 1, next_target)
+            res += self.helper(dice_count - 1, next_target)
 
         self.memo[dice_count, target] = res
 
-        return res
+        return res % MOD
