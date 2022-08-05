@@ -2,39 +2,38 @@ from typing import List
 from functools import lru_cache
 
 
-# Top-Down Dynamic Programming
+class Solution:
+
+    def __init__(self):
+        self.nums = []
+
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        self.nums = sorted(nums)
+        return self.helper(target)
+
+    @lru_cache(None)
+    def helper(self, target):
+        if target == 0:
+            return 1
+
+        res = 0
+        for num in self.nums:
+            if target < num:
+                return res
+            res += self.helper(target - num)
+
+        return res
+
+
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
+        dp = [1] + [0] * target
         nums.sort()
-
-        @lru_cache(maxsize=None)
-        def combs(remain):
-            if remain == 0:
-                return 1
-            res = 0
-            for num in nums:
-                if remain - num >= 0:
-                    res += combs(remain - num)
-                else:
-                    break
-            return res
-
-        return combs(target)
-
-
-# Bottom-Up Dynamic Programming
-class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
-        nums.sort()
-
-        dp = [0] * (target + 1)
-        dp[0] = 1
 
         for comb_sum in range(target + 1):
             for num in nums:
-                if comb_sum - num >= 0:
-                    dp[comb_sum] += dp[comb_sum - num]
-                else:
+                if comb_sum < num:
                     break
+                dp[comb_sum] += dp[comb_sum - num]
 
         return dp[target]
