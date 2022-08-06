@@ -30,10 +30,9 @@ class Solution:
         dp = [1] + [0] * target
         nums.sort()
 
-        for comb_sum in range(target + 1):
+        for comb_sum in range(1, target + 1):
             for num in nums:
-                if comb_sum < num:
-                    break
-                dp[comb_sum] += dp[comb_sum - num]
+                if comb_sum >= num:
+                    dp[comb_sum] += dp[comb_sum - num]
 
         return dp[target]
