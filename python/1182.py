@@ -10,7 +10,7 @@ class Solution:
             colors_idx_map[color].append(i)
 
         res = []
-        for i, (target, color) in enumerate(queries):
+        for target, color in queries:
             if color not in colors_idx_map:
                 res.append(-1)
                 continue
