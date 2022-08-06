@@ -32,7 +32,8 @@ class Solution:
 
         for comb_sum in range(1, target + 1):
             for num in nums:
-                if comb_sum >= num:
-                    dp[comb_sum] += dp[comb_sum - num]
+                if comb_sum < num:
+                    break
+                dp[comb_sum] += dp[comb_sum - num]
 
         return dp[target]
