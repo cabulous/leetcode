@@ -6,6 +6,7 @@ from typing import List
 class Solution:
     def largestTimeFromDigits(self, arr: List[int]) -> str:
         for perm in permutations(sorted(arr, reverse=True)):
-            if perm[0] * 10 + perm[1] < 24 and perm[2] < 6:
-                return f"{perm[0]}{perm[1]}:{perm[2]}{perm[3]}"
+            d1, d2, d3, d4 = perm
+            if d1 * 10 + d2 < 24 and d3 < 6:
+                return f'{d1}{d2}:{d3}{d4}'
         return ''
