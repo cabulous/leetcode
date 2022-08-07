@@ -6,8 +6,8 @@ from typing import List
 class Solution:
 
     def __init__(self):
-        self.graph = defaultdict(list)
         self.roads = set()
+        self.graph = defaultdict(list)
         self.res = 0
 
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
