@@ -16,13 +16,14 @@ class Solution:
             self.graph[u].append(v)
             self.graph[v].append(u)
 
-        self.dfs(-1, 0)
+        self.dfs(0, -1)
 
         return self.res
 
-    def dfs(self, prev_node, curr_node):
-        self.res += (prev_node, curr_node) in self.roads
+    def dfs(self, curr_node, prev_node):
+        if (prev_node, curr_node) in self.roads:
+            self.res += 1
+
         for next_node in self.graph[curr_node]:
-            if next_node == prev_node:
-                continue
-            self.dfs(curr_node, next_node)
+            if next_node != prev_node:
+                self.dfs(next_node, curr_node)
