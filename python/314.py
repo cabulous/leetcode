@@ -30,18 +30,16 @@ class Solution:
             return []
 
         cols = defaultdict(list)
+        queue = deque([(root, 0)])
         min_col = 0
         max_col = 0
-        queue = deque([(root, 0)])
 
         while queue:
             node, idx = queue.popleft()
             if node is not None:
                 cols[idx].append(node.val)
-
                 min_col = min(min_col, idx)
                 max_col = max(max_col, idx)
-
                 queue.append((node.left, idx - 1))
                 queue.append((node.right, idx + 1))
 

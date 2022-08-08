@@ -13,23 +13,3 @@ class Solution:
                 res += len(word)
 
         return res
-
-
-class Solution:
-    def countCharacters(self, words: List[str], chars: str) -> int:
-        good = []
-
-        for word in words:
-            pool = list(chars)
-            is_good = True
-
-            for ch in word:
-                if ch not in pool:
-                    is_good = False
-                    break
-                pool.remove(ch)
-
-            if is_good:
-                good.append(word)
-
-        return sum([len(word) for word in good])

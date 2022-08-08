@@ -14,6 +14,7 @@ class Solution:
             for j in range(1, k + 1):
                 dp[j] += dp[j - 1]
             for j in range(k, 0, -1):
-                dp[j] -= dp[j - i] if j >= i else 0
+                if j >= i:
+                    dp[j] -= dp[j - i]
 
         return dp[k] % MOD
