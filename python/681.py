@@ -3,16 +3,15 @@ from itertools import product
 
 class Solution:
     def nextClosestTime(self, time: str) -> str:
-        numbers = time.replace(':', '')
-        res = set()
+        nums = time.replace(':', '')
+        candidates = set()
 
-        for cand in product(numbers, repeat=4):
+        for cand in product(nums, repeat=4):
             d1, d2, d3, d4 = cand
-            if int(d1) * 10 + int(d2) < 24 and int(d3) < 6:
-                res.add(f'{d1}{d2}:{d3}{d4}')
+            if f'{d1}{d2}' < '24' and d3 < '6':
+                candidates.add(f'{d1}{d2}:{d3}{d4}')
 
-        res = list(res)
-        res.sort()
+        res = sorted(list(candidates))
         idx = res.index(time)
 
         return res[idx + 1] if idx + 1 < len(res) else res[0]
