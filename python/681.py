@@ -1,6 +1,23 @@
 from itertools import product
 
 
+class Solution:
+    def nextClosestTime(self, time: str) -> str:
+        numbers = time.replace(':', '')
+        res = set()
+
+        for cand in product(numbers, repeat=4):
+            d1, d2, d3, d4 = cand
+            if int(d1) * 10 + int(d2) < 24 and int(d3) < 6:
+                res.add(f'{d1}{d2}:{d3}{d4}')
+
+        res = list(res)
+        res.sort()
+        idx = res.index(time)
+
+        return res[idx + 1] if idx + 1 < len(res) else res[0]
+
+
 # https://leetcode.com/problems/next-closest-time/discuss/190816/Python-simple-20ms-solution
 class Solution:
     def nextClosestTime(self, time: str) -> str:
@@ -17,20 +34,3 @@ class Solution:
             return two_digit[hour_idx + 1] + ':' + two_digit[0]
 
         return two_digit[0] + ':' + two_digit[0]
-
-
-class Solution:
-    def nextClosestTime(self, time: str) -> str:
-        numbers = time.replace(':', '')
-        res = set()
-
-        for cand in product(numbers, repeat=4):
-            d1, d2, d3, d4 = cand
-            if int(d1) * 10 + int(d2) < 24 and int(d3) < 6:
-                res.add(f'{d1}{d2}:{d3}{d4}')
-
-        res = list(res)
-        res.sort()
-        idx = res.index(time)
-
-        return res[idx + 1] if idx + 1 < len(res) else res[0]
