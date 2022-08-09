@@ -13,7 +13,7 @@ class Solution:
         res = -1
 
         for pos, day in enumerate(on_days):
-            if right >= len(bulbs):
+            if right >= len(on_days):
                 return res
 
             max_day = max(on_days[left], on_days[right])
