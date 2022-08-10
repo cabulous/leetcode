@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 
 class TreeNode:
@@ -9,14 +9,16 @@ class TreeNode:
 
 
 class Solution:
-    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         return self.helper(nums, 0, len(nums) - 1)
 
     def helper(self, nums, left, right):
         if left > right:
             return None
+
         mid = left + (right - left) // 2
         node = TreeNode(nums[mid])
         node.left = self.helper(nums, left, mid - 1)
         node.right = self.helper(nums, mid + 1, right)
+
         return node
