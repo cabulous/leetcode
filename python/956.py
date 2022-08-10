@@ -12,8 +12,10 @@ class Solution:
             next_dp = dp.copy()
             for diff, height in dp.items():
                 next_dp[diff + next_height] = max(next_dp[diff + next_height], height)
-                next_dp[abs(diff - next_height)] = max(next_dp[abs(diff - next_height)],
-                                                       height + min(diff, next_height))
+                next_dp[abs(diff - next_height)] = max(
+                    next_dp[abs(diff - next_height)],
+                    height + min(diff, next_height),
+                )
             dp = next_dp
 
         return dp[0]
