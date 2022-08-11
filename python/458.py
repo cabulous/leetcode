@@ -1,6 +1,3 @@
-import math
-
-
 # https://leetcode.com/problems/poor-pigs/discuss/94266/Another-explanation-and-solution
 class Solution:
     def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:
