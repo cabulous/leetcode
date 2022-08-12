@@ -7,25 +7,20 @@ class TreeNode:
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        parent_val, p_val, q_val = root.val, p.val, q.val
-
-        if p_val < parent_val and q_val < parent_val:
+        if p.val < root.val and q.val < root.val:
             return self.lowestCommonAncestor(root.left, p, q)
-        if p_val > parent_val and q_val > parent_val:
+        if root.val < p.val and root.val < q.val:
             return self.lowestCommonAncestor(root.right, p, q)
-
         return root
 
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        p_val, q_val = p.val, q.val
         node = root
-
         while node:
-            if p_val < node.val and q_val < node.val:
+            if p.val < node.val and q.val < node.val:
                 node = node.left
-            elif p_val > node.val and q_val > node.val:
+            elif node.val < p.val and node.val < q.val:
                 node = node.right
             else:
                 return node
