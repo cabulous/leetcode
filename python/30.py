@@ -1,13 +1,13 @@
-from collections import Counter, defaultdict
+from collections import Counter
 from typing import List
 
 
 # https://leetcode.com/problems/substring-with-concatenation-of-all-words/discuss/13669/99ms-Python-O(kmn)-Solution
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        word_count = Counter(words)
         word_len = len(words[0])
         target_word_count = len(words)
+        word_count = Counter(words)
         res = []
 
         for i in range(word_len):

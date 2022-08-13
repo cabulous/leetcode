@@ -19,7 +19,7 @@ class Solution:
                 after = after.next
             curr = curr.next
 
-        after.next = None
         before.next = after_head.next
+        after.next = None
 
         return before_head.next
