@@ -7,8 +7,8 @@ from typing import List
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         graph = defaultdict(list)
-        for source, target, time in times:
-            graph[source].append((target, time))
+        for u, v, time in times:
+            graph[u].append((v, time))
 
         min_time = [math.inf] * (n + 1)
         min_time[0] = 0
