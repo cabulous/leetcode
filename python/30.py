@@ -11,13 +11,11 @@ class Solution:
         res = []
 
         for i in range(word_len):
-
             left = i
-            sub_counter = defaultdict(int)
+            sub_counter = Counter()
             count = 0
 
             for j in range(i, len(s) - word_len + 1, word_len):
-
                 word = s[j:j + word_len]
 
                 if word in word_counter:
@@ -32,7 +30,7 @@ class Solution:
 
                 else:
                     left = j + word_len
-                    sub_counter = defaultdict(int)
+                    sub_counter = Counter()
                     count = 0
 
         return res
