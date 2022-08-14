@@ -1,27 +1,34 @@
-from typing import List
 from collections import defaultdict
+from string import ascii_lowercase
+from typing import List
 
 
-# https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer/322524
 class Solution:
+
+    def __init__(self):
+        self.word_set = set()
+
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
-        if endWord not in wordList:
-            return []
+        self.word_set = set(wordList)
+        self.word_set.discard(beginWord)
 
-        word_set = set(wordList)
-        layer = {beginWord: [[beginWord]]}
-
-        while layer:
-            new_layer = defaultdict(list)
-            for word in layer:
+        level = {beginWord: [[beginWord]]}
+        while level:
+            next_level = defaultdict(list)
+            for word, paths in level.items():
                 if word == endWord:
-                    return layer[word]
-                for i in range(len(word)):
-                    for c in 'abcdefghijklmnopqrstuvwxyz':
-                        new_word = word[:i] + c + word[i + 1:]
-                        if new_word in word_set:
-                            new_layer[new_word] += [j + [new_word] for j in layer[word]]
-            word_set -= set(new_layer.keys())
-            layer = new_layer
+                    return paths
+                for nei in self.neighbors(word):
+                    for path in paths:
+                        next_level[nei].append(path + [nei])
+            self.word_set -= set(next_level.keys())
+            level = next_level
 
         return []
+
+    def neighbors(self, word):
+        for i in range(len(word)):
+            for ch in ascii_lowercase:
+                next_word = word[:i] + ch + word[i + 1:]
+                if next_word in self.word_set:
+                    yield next_word
