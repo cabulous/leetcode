@@ -10,9 +10,7 @@ class SparseVector:
 
     def dotProduct(self, vec: 'SparseVector') -> int:
         res = 0
-
         for i, num in self.non_zeros.items():
             if i in vec.non_zeros:
                 res += num * vec.non_zeros[i]
-
         return res

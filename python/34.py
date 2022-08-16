@@ -6,11 +6,12 @@ class Solution:
 
     def __init__(self):
         self.nums = []
-        self.target = 0
 
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if not nums:
+            return [-1, -1]
+
         self.nums = nums
-        self.target = target
 
         lo = self.search(target)
         hi = self.search(target + 1) - 1
