@@ -1,0 +1,25 @@
+from typing import List
+
+
+class Solution:
+    def numSubmat(self, mat: List[List[int]]) -> int:
+        rows = len(mat)
+        cols = len(mat[0])
+
+        for r in range(rows):
+            for c in range(1, cols):
+                if mat[r][c] == 1:
+                    mat[r][c] = mat[r][c - 1] + 1
+
+        res = 0
+        for r in range(rows):
+            for c in range(cols):
+                if mat[r][c] > 0:
+                    curr_row = r
+                    sub_width = mat[r][c]
+                    while curr_row < rows and mat[curr_row][c]:
+                        sub_width = min(sub_width, mat[curr_row][c])
+                        res += sub_width
+                        curr_row += 1
+
+        return res
