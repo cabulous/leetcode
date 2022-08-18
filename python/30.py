@@ -6,8 +6,8 @@ from typing import List
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
         word_len = len(words[0])
-        target_count = len(words)
         word_count = Counter(words)
+        target_count = len(words)
         res = []
 
         for i in range(word_len):

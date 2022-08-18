@@ -10,8 +10,7 @@ class Solution:
 
         res = 0
         removed = 0
-        target = len(arr) // 2
-        while removed < target:
+        while removed < len(arr) // 2:
             res += 1
             removed += freq.pop()
 
