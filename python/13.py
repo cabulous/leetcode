@@ -41,7 +41,7 @@ class Solution:
         res = 0
         i = 0
         while i < len(s):
-            if i < len(s) - 1 and s[i:i + 2] in values:
+            if i + 1 < len(s) and s[i:i + 2] in values:
                 res += values[s[i:i + 2]]
                 i += 2
             else:

@@ -4,9 +4,7 @@ from typing import List
 # https://leetcode.com/problems/find-peak-element/discuss/50259/My-clean-and-readable-python-solution
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
-        lo = 0
-        hi = len(nums) - 1
-
+        lo, hi = 0, len(nums) - 1
         while lo < hi:
             mi = lo + (hi - lo) // 2
             if nums[mi - 1] < nums[mi] > nums[mi + 1]:
