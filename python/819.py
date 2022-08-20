@@ -8,4 +8,5 @@ class Solution:
         ban = set(banned)
         words = re.findall(r'\w+', paragraph.lower())
         count = Counter(w for w in words if w not in ban)
-        return count.most_common()[0][0]
+        word, _ = count.most_common()[0]
+        return word
