@@ -1,24 +1,25 @@
 import heapq
+import math
 from typing import List
 
 
 # heap
 class Solution:
     def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
-        pq = []
-        stations.append([target, float('inf')])
-        tank = startFuel
+        max_heap = []
         prev_location = 0
+        tank = startFuel
+        stations.append([target, math.inf])
         res = 0
 
         for location, capacity in stations:
             tank -= location - prev_location
-            while pq and tank < 0:
-                tank += -heapq.heappop(pq)
+            while tank < 0 and max_heap:
+                tank += -heapq.heappop(max_heap)
                 res += 1
             if tank < 0:
                 return -1
-            heapq.heappush(pq, -capacity)
+            heapq.heappush(max_heap, -capacity)
             prev_location = location
 
         return res

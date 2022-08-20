@@ -9,7 +9,7 @@ class Solution:
         end = Counter()
 
         for num in nums:
-            if not left[num]:
+            if left[num] == 0:
                 continue
             left[num] -= 1
             if end[num - 1] > 0:
