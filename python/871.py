@@ -6,10 +6,11 @@ from typing import List
 # heap
 class Solution:
     def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
-        max_heap = []
-        prev_location = 0
-        tank = startFuel
         stations.append([target, math.inf])
+
+        max_heap = []
+        tank = startFuel
+        prev_location = 0
         res = 0
 
         for location, capacity in stations:

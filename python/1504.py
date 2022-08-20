@@ -15,11 +15,11 @@ class Solution:
         for r in range(rows):
             for c in range(cols):
                 if mat[r][c] > 0:
-                    sub_width = mat[r][c]
+                    width = mat[r][c]
                     curr_row = r
                     while curr_row < rows and mat[curr_row][c] > 0:
-                        sub_width = min(sub_width, mat[curr_row][c])
-                        res += sub_width
+                        width = min(width, mat[curr_row][c])
+                        res += width
                         curr_row += 1
 
         return res
