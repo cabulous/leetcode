@@ -7,7 +7,7 @@ class Solution:
 
     def __init__(self):
         self.graph = defaultdict(list)
-        self.depth = []
+        self.min_depth = []
         self.res = []
 
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
@@ -15,20 +15,20 @@ class Solution:
             self.graph[u].append(v)
             self.graph[v].append(u)
 
-        self.depth = [-1] * n
+        self.min_depth = [-1] * n
         self.dfs(-1, 0, 0)
 
         return self.res
 
     def dfs(self, prev_node, curr_node, curr_depth):
-        self.depth[curr_node] = curr_depth
+        self.min_depth[curr_node] = curr_depth
         min_depth = curr_depth
 
         for next_node in self.graph[curr_node]:
             if next_node == prev_node:
                 continue
 
-            next_depth = self.depth[next_node]
+            next_depth = self.min_depth[next_node]
             if next_depth == -1:
                 next_depth = self.dfs(curr_node, next_node, curr_depth + 1)
 
@@ -37,6 +37,6 @@ class Solution:
             else:
                 min_depth = min(min_depth, next_depth)
 
-        self.depth[curr_node] = min_depth
+        self.min_depth[curr_node] = min_depth
 
         return min_depth

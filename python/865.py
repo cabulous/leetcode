@@ -10,11 +10,11 @@ class Solution:
                 return Result(None, 0)
             left = dfs(node.left)
             right = dfs(node.right)
-            if left.depth > right.depth:
-                return Result(left.node, left.depth + 1)
-            elif left.depth < right.depth:
-                return Result(right.node, right.depth + 1)
+            if left.depth > right.min_depth:
+                return Result(left.node, left.min_depth + 1)
+            elif left.depth < right.min_depth:
+                return Result(right.node, right.min_depth + 1)
             else:
-                return Result(node, left.depth + 1)
+                return Result(node, left.min_depth + 1)
 
         return dfs(root).node
