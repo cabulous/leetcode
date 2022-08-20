@@ -26,7 +26,7 @@ class Solution:
         seen = set()
         while queue:
             r, c = queue.popleft()
-            if (r, c) not in seen and self.forest[r][c] > 0:
+            if self.forest[r][c] > 0 and (r, c) not in seen:
                 seen.add((r, c))
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
