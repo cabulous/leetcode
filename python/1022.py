@@ -14,14 +14,14 @@ class Solution:
         res = 0
 
         while stack:
-            node, curr_num = stack.pop()
-            next_num = curr_num << 1 | node.val
+            node, num = stack.pop()
+            num = num << 1 | node.val
             if node.left is None and node.right is None:
-                res += next_num
+                res += num
             if node.left:
-                stack.append((node.left, next_num))
+                stack.append((node.left, num))
             if node.right:
-                stack.append((node.right, next_num))
+                stack.append((node.right, num))
 
         return res
 
