@@ -6,33 +6,34 @@ class TreeNode:
 
 
 class Solution:
+
     def __init__(self):
-        self.max_val = 0
+        self.res = 0
 
     def longestConsecutive(self, root: TreeNode) -> int:
         self.longest_path(root)
-        return self.max_val
+        return self.res
 
     def longest_path(self, node):
-        if not node:
+        if node is None:
             return [0, 0]
 
         inr = dcr = 1
 
         if node.left:
-            left = self.longest_path(node.left)
+            left_inr, left_dcr = self.longest_path(node.left)
             if node.val == node.left.val - 1:
-                inr = left[0] + 1
+                inr = left_inr + 1
             elif node.val == node.left.val + 1:
-                dcr = left[1] + 1
+                dcr = left_dcr + 1
 
         if node.right:
-            right = self.longest_path(node.right)
+            right_inr, right_dcr = self.longest_path(node.right)
             if node.val == node.right.val - 1:
-                inr = max(inr, right[0] + 1)
+                inr = max(inr, right_inr + 1)
             elif node.val == node.right.val + 1:
-                dcr = max(dcr, right[1] + 1)
+                dcr = max(dcr, right_dcr + 1)
 
-        self.max_val = max(self.max_val, inr + dcr - 1)
+        self.res = max(self.res, inr + dcr - 1)
 
         return [inr, dcr]
