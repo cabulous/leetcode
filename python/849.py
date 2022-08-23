@@ -4,22 +4,23 @@ from typing import List
 
 class Solution:
     def maxDistToClosest(self, seats: List[int]) -> int:
-        n = len(seats)
-        left, right = [n] * n, [n] * n
+        seat_count = len(seats)
 
-        for i in range(n):
+        left = [seat_count] * seat_count
+        for i in range(seat_count):
             if seats[i] == 1:
                 left[i] = 0
             elif i > 0:
                 left[i] = left[i - 1] + 1
 
-        for i in reversed(range(n)):
+        right = [seat_count] * seat_count
+        for i in range(seat_count - 1, -1, -1):
             if seats[i] == 1:
                 right[i] = 0
-            elif i < n - 1:
+            elif i < seat_count - 1:
                 right[i] = right[i + 1] + 1
 
-        dist = [min(left[i], right[i]) for i, seat in enumerate(seats) if seat == 0]
+        dist = [min(left[i], right[i]) for i in range(seat_count) if seats[i] == 0]
 
         return max(dist)
 
