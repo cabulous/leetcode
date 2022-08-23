@@ -16,7 +16,7 @@ class Solution:
 
     def longest_path(self, node):
         if node is None:
-            return [0, 0]
+            return 0, 0
 
         inr = dcr = 1
 
@@ -36,4 +36,4 @@ class Solution:
 
         self.res = max(self.res, inr + dcr - 1)
 
-        return [inr, dcr]
+        return inr, dcr
