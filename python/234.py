@@ -9,49 +9,44 @@ class ListNode:
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         values = []
-        cur = head
-        while cur:
-            values.append(cur.val)
-            cur = cur.next
+        curr = head
+        while curr:
+            values.append(curr.val)
+            curr = curr.next
         return values == values[::-1]
 
 
 # Reverse Second Half In-place O(1) space
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
-        if not head:
-            return True
-
-        first_half_end = self.end_of_first_half(head)
-        second_half_start = self.reverse_list(first_half_end.next)
+        before_end = self.before_end(head)
+        after_head = self.reverse_list(before_end.next)
 
         res = True
-        first_position = head
-        second_position = second_half_start
+        ptr1 = head
+        ptr2 = after_head
 
-        while res and second_position:
-            if first_position.val != second_position.val:
+        while ptr1 and ptr2:
+            if ptr1.val != ptr2.val:
                 res = False
                 break
-            first_position = first_position.next
-            second_position = second_position.next
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next
 
-        first_half_end.next = self.reverse_list(second_half_start)
+        before_end.next = self.reverse_list(after_head)
+
         return res
 
-    def end_of_first_half(self, head):
-        slow = fast = head
+    def before_end(self, node):
+        slow = fast = node
         while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
         return slow
 
-    def reverse_list(self, head):
+    def reverse_list(self, node):
         prev = None
-        curr = head
+        curr = node
         while curr:
-            next_node = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next_node
+            curr.next, prev, curr = prev, curr, curr.next
         return prev
