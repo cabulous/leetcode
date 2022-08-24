@@ -9,4 +9,4 @@ class Solution:
         for num in sorted(arr):
             rank.setdefault(num, len(rank) + 1)
 
-        return list(map(rank.get, arr))
+        return [rank.get(num) for num in arr]
