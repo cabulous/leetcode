@@ -8,7 +8,7 @@ class Solution:
         cols = len(matrix[0])
 
         queue = []
-        for r in range(min(rows, k)):
+        for r in range(min(k, rows)):
             heapq.heappush(queue, (matrix[r][0], r, 0))
 
         res = 0
