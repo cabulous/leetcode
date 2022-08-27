@@ -18,7 +18,7 @@ class Solution:
         if node is None:
             return 0, 0
 
-        inr = dcr = 1
+        inr, dcr = 1, 1
 
         if node.left:
             left_inr, left_dcr = self.longest_path(node.left)
