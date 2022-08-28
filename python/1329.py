@@ -1,21 +1,21 @@
-from heapq import heappush, heappop
+import heapq
 from typing import List
 from collections import defaultdict
 
 
-# hashmap of heaps
 class Solution:
     def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
-        n, m = len(mat), len(mat[0])
-        h = defaultdict(list)
+        rows = len(mat)
+        cols = len(mat[0])
+        diagonal = defaultdict(list)
 
-        for i in range(n):
-            for j in range(m):
-                heappush(h[i - j], mat[i][j])
+        for r in range(rows):
+            for c in range(cols):
+                heapq.heappush(diagonal[r - c], mat[r][c])
 
-        for i in range(n):
-            for j in range(m):
-                mat[i][j] = heappop(h[i - j])
+        for r in range(rows):
+            for c in range(cols):
+                mat[r][c] = heapq.heappop(diagonal[r - c])
 
         return mat
 
