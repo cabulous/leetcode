@@ -18,7 +18,7 @@ class Solution:
 
         res = 0
         for num in self.nums:
-            if num > target:
+            if target - num < 0:
                 return res
             res += self.helper(target - num)
 

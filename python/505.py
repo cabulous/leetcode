@@ -7,7 +7,7 @@ class Solution:
     def shortestDistance(self, maze: List[List[int]], start: List[int], destination: List[int]) -> int:
         rows = len(maze)
         cols = len(maze[0])
-        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
         queue = [(0, start[0], start[1])]
         stopped = {(start[0], start[1]): 0}
