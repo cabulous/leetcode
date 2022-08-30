@@ -22,7 +22,7 @@ class Solution:
 
     def transpose(self, matrix):
         for i in range(len(matrix)):
-            for j in range(i, len(matrix)):
+            for j in range(i):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
     def reflect(self, matrix):
