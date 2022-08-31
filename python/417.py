@@ -2,74 +2,90 @@ from typing import List
 from collections import deque
 
 
-# dfs
 class Solution:
-    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
-        if not matrix or not matrix[0]:
-            return []
 
-        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-        max_row, max_col = len(matrix), len(matrix[0])
+    def __init__(self):
+        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        self.matrix = []
+        self.rows = 0
+        self.cols = 0
+
+    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+        self.matrix = matrix
+        self.rows = len(matrix)
+        self.cols = len(matrix[0])
+
         pacific_reachable = set()
         atlantic_reachable = set()
 
-        def dfs(row, col, reachable):
-            reachable.add((row, col))
-            for dx, dy in directions:
-                nr, nc = row + dx, col + dy
-                if nr < 0 or nr >= max_row or nc < 0 or nc >= max_col:
-                    continue
-                if (nr, nc) in reachable:
-                    continue
-                if matrix[nr][nc] < matrix[row][col]:
-                    continue
-                dfs(nr, nc, reachable)
+        for r in range(self.rows):
+            self.dfs(r, 0, pacific_reachable)
+            self.dfs(r, self.cols - 1, atlantic_reachable)
 
-        for i in range(max_row):
-            dfs(i, 0, pacific_reachable)
-            dfs(i, max_col - 1, atlantic_reachable)
-        for i in range(max_col):
-            dfs(0, i, pacific_reachable)
-            dfs(max_row - 1, i, atlantic_reachable)
+        for c in range(self.cols):
+            self.dfs(0, c, pacific_reachable)
+            self.dfs(self.rows - 1, c, atlantic_reachable)
 
         return list(pacific_reachable.intersection(atlantic_reachable))
 
+    def dfs(self, row, col, reachable):
+        reachable.add((row, col))
 
-# bfs
+        for dr, dc in self.directions:
+            nr, nc = row + dr, col + dc
+            if nr < 0 or self.rows <= nr or nc < 0 or self.cols <= nc:
+                continue
+            if (nr, nc) in reachable:
+                continue
+            if self.matrix[nr][nc] < self.matrix[row][col]:
+                continue
+            self.dfs(nr, nc, reachable)
+
+
 class Solution:
-    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
-        if not matrix or not matrix[0]:
-            return []
 
-        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-        max_row, max_col = len(matrix), len(matrix[0])
+    def __init__(self):
+        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        self.matrix = []
+        self.rows = 0
+        self.cols = 0
+
+    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+        self.matrix = matrix
+        self.rows = len(matrix)
+        self.cols = len(matrix[0])
+
         pacific_queue = deque()
         atlantic_queue = deque()
 
-        for i in range(max_row):
-            pacific_queue.append((i, 0))
-            atlantic_queue.append((i, max_col - 1))
-        for i in range(max_col):
-            pacific_queue.append((0, i))
-            atlantic_queue.append((max_row - 1, i))
+        for r in range(self.rows):
+            pacific_queue.append((r, 0))
+            atlantic_queue.append((r, self.cols - 1))
 
-        def bfs(queue):
-            reachable = set()
-            while queue:
-                row, col = queue.popleft()
-                reachable.add((row, col))
-                for dx, dy in directions:
-                    nr, nc = row + dx, col + dy
-                    if nr < 0 or nr >= max_row or nc < 0 or nc >= max_col:
-                        continue
-                    if (nr, nc) in reachable:
-                        continue
-                    if matrix[nr][nc] < matrix[row][col]:
-                        continue
-                    queue.append((nr, nc))
-            return reachable
+        for c in range(self.cols):
+            pacific_queue.append((0, c))
+            atlantic_queue.append((self.rows - 1, c))
 
-        pacific_reachable = bfs(pacific_queue)
-        atlantic_reachable = bfs(atlantic_queue)
+        pacific_reachable = self.bfs(pacific_queue)
+        atlantic_reachable = self.bfs(atlantic_queue)
 
         return list(pacific_reachable.intersection(atlantic_reachable))
+
+    def bfs(self, queue):
+        reachable = set()
+
+        while queue:
+            r, c = queue.popleft()
+            reachable.add((r, c))
+
+            for dr, dc in self.directions:
+                nr, nc = r + dr, c + dc
+                if nr < 0 or self.rows <= nr or nc < 0 or self.cols <= nc:
+                    continue
+                if (nr, nc) in reachable:
+                    continue
+                if self.matrix[nr][nc] < self.matrix[r][c]:
+                    continue
+                queue.append((nr, nc))
+
+        return reachable
