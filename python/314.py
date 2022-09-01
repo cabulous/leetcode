@@ -11,15 +11,19 @@ class TreeNode:
 
 class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if root is None:
+            return []
+
         cols = defaultdict(list)
         queue = deque([(root, 0)])
 
         while queue:
-            node, idx = queue.popleft()
-            if node is not None:
-                cols[idx].append(node.val)
-                queue.append((node.left, idx - 1))
-                queue.append((node.right, idx + 1))
+            node, col = queue.popleft()
+            cols[col].append(node.val)
+            if node.left:
+                queue.append((node.left, col - 1))
+            if node.right:
+                queue.append((node.right, col + 1))
 
         return [cols[i] for i in sorted(cols)]
 

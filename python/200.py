@@ -31,7 +31,7 @@ class Solution:
 
         self.seen.add((row, col))
 
-        if self.grid[row][col] != '1':
+        if self.grid[row][col] == '0':
             return
 
         self.helper(row + 1, col)
