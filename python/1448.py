@@ -1,3 +1,4 @@
+from collections import deque
 import math
 
 
@@ -11,17 +12,18 @@ class TreeNode:
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         res = 0
-        stack = [(root, -math.inf)]
 
-        while stack:
-            node, max_so_far = stack.pop()
+        queue = deque([(root, -math.inf)])
+        while queue:
+            node, max_so_far = queue.popleft()
             if node.val >= max_so_far:
                 res += 1
+
             max_so_far = max(max_so_far, node.val)
             if node.left:
-                stack.append((node.left, max_so_far))
+                queue.append((node.left, max_so_far))
             if node.right:
-                stack.append((node.right, max_so_far))
+                queue.append((node.right, max_so_far))
 
         return res
 
@@ -37,7 +39,9 @@ class Solution:
     def dfs(self, node, max_so_far):
         if node.val >= max_so_far:
             self.res += 1
+
         max_so_far = max(max_so_far, node.val)
+
         if node.left:
             self.dfs(node.left, max_so_far)
         if node.right:
