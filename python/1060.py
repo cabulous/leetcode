@@ -2,6 +2,7 @@ from typing import List
 
 
 class Solution:
+
     def __init__(self):
         self.nums = []
 
@@ -22,6 +23,7 @@ class Solution:
 
 
 class Solution:
+
     def __init__(self):
         self.nums = []
 
