@@ -21,7 +21,7 @@ class Solution:
                 continue
 
             if pos == right:
-                if max_day < res or res == -1:
+                if res == -1 or max_day < res:
                     res = max_day + 1
 
             left = pos
