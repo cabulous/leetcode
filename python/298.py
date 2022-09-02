@@ -29,7 +29,7 @@ class Solution:
 class Solution:
 
     def __init__(self):
-        self.res = 0
+        self.res = 1
 
     def longestConsecutive(self, root: Optional[TreeNode]) -> int:
         self.dfs(root)
@@ -39,16 +39,15 @@ class Solution:
         if node is None:
             return 0
 
-        inr = 1
-
         left = self.dfs(node.left)
         right = self.dfs(node.right)
 
+        count = 1
         if node.left and node.left.val == node.val + 1:
-            inr = max(inr, left + 1)
+            count = max(count, left + 1)
         if node.right and node.right.val == node.val + 1:
-            inr = max(inr, right + 1)
+            count = max(count, right + 1)
 
-        self.res = max(self.res, inr)
+        self.res = max(self.res, count)
 
-        return inr
+        return count
