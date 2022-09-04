@@ -27,7 +27,8 @@ class Solution:
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
         directions = [(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)]
-        rows, cols = len(board), len(board[0])
+        rows = len(board)
+        cols = len(board[0])
 
         for r in range(rows):
             for c in range(cols):
@@ -63,7 +64,10 @@ class Solution:
 
         for r in range(len(board)):
             for c in range(len(board[0])):
-                board[r][c] = int((r, c) in next_live_cells)
+                if (r, c) in next_live_cells:
+                    board[r][c] = 1
+                else:
+                    board[r][c] = 0
 
     def next_round(self, live_cells):
         count = Counter(
