@@ -76,5 +76,5 @@ class Solution:
         return {
             pair
             for pair in count
-            if count[pair] == 3 or count[pair] == 2 and pair in live_cells
+            if count[pair] == 3 or (count[pair] == 2 and pair in live_cells)
         }
