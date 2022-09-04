@@ -1,5 +1,5 @@
 from typing import List
-from collections import deque, OrderedDict
+from collections import deque, defaultdict
 
 
 class TreeNode:
@@ -23,11 +23,8 @@ class Solution:
 
         node_list.sort()
 
-        res = OrderedDict()
+        res = defaultdict(list)
         for col, _, val in node_list:
-            if col in res:
-                res[col].append(val)
-            else:
-                res[col] = [val]
+            res[col].append(val)
 
-        return res.values()
+        return [res[i] for i in sorted(res)]
