@@ -1,8 +1,7 @@
 from typing import List
-from collections import defaultdict
+from collections import deque, OrderedDict
 
 
-# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -10,21 +9,25 @@ class TreeNode:
         self.right = right
 
 
-# https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/discuss/231256/python-queue-%2B-hash-map
 class Solution:
     def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
-        g = defaultdict(list)
-        queue = [(root, 0)]
+        node_list = []
+
+        queue = deque([(root, 0, 0)])
         while queue:
-            new = []
-            d = defaultdict(list)
-            for node, order in queue:
-                d[order].append(node.val)
-                if node.left:
-                    new.append((node.left, order - 1))
-                if node.right:
-                    new.append((node.right, order + 1))
-            for order in d:
-                g[order].extend(sorted(d[order]))
-            queue = new
-        return [g[order] for order in sorted(g)]
+            node, row, col = queue.popleft()
+            if node:
+                node_list.append((col, row, node.val))
+                queue.append((node.left, row + 1, col - 1))
+                queue.append((node.right, row + 1, col + 1))
+
+        node_list.sort()
+
+        res = OrderedDict()
+        for col, _, val in node_list:
+            if col in res:
+                res[col].append(val)
+            else:
+                res[col] = [val]
+
+        return res.values()
