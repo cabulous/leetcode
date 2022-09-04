@@ -6,20 +6,20 @@ from typing import List
 # copy
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
-        neighbors = [(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)]
+        directions = [(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)]
         rows, cols = len(board), len(board[0])
         origin_board = copy.deepcopy(board)
 
         for row in range(rows):
             for col in range(cols):
-                live_neighbors = 0
-                for dr, dc in neighbors:
+                live = 0
+                for dr, dc in directions:
                     nr, nc = row + dr, col + dc
                     if 0 <= nr < rows and 0 <= nc < cols and origin_board[nr][nc] == 1:
-                        live_neighbors += 1
-                if origin_board[row][col] == 1 and (live_neighbors < 2 or 3 < live_neighbors):
+                        live += 1
+                if origin_board[row][col] == 1 and (live < 2 or 3 < live):
                     board[row][col] = 0
-                elif origin_board[row][col] == 0 and live_neighbors == 3:
+                elif origin_board[row][col] == 0 and live == 3:
                     board[row][col] = 1
 
 
