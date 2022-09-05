@@ -26,7 +26,7 @@ class Solution:
         right_sum, right_valid, right_max, right_min = self.traverse(node.right)
 
         if left_valid and right_valid and left_max < node.val < right_min:
-            total = left_sum + right_sum + node.val
+            total = node.val + left_sum + right_sum
             self.res = max(self.res, total)
             return total, True, max(right_max, node.val), min(left_min, node.val)
 
