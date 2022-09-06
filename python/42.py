@@ -5,21 +5,23 @@ from typing import List
 # two pointers
 class Solution:
     def trap(self, height: List[int]) -> int:
-        if not height or len(height) < 3:
+        if len(height) < 3:
             return 0
 
-        left, right = 0, len(height) - 1
-        left_max, right_max = height[0], height[-1]
+        left = 0
+        right = len(height) - 1
+        left_height_max = height[0]
+        right_height_max = height[-1]
         res = 0
 
         while left < right:
-            left_max = max(left_max, height[left])
-            right_max = max(right_max, height[right])
-            if left_max <= right_max:
-                res += left_max - height[left]
+            left_height_max = max(left_height_max, height[left])
+            right_height_max = max(right_height_max, height[right])
+            if left_height_max <= right_height_max:
+                res += left_height_max - height[left]
                 left += 1
             else:
-                res += right_max - height[right]
+                res += right_height_max - height[right]
                 right -= 1
 
         return res
@@ -28,23 +30,21 @@ class Solution:
 # dp
 class Solution:
     def trap(self, height: List[int]) -> int:
-        n = len(height)
-
-        if not height or n < 3:
+        if len(height) < 3:
             return 0
 
-        left_max = [0] * n
-        left_max[0] = height[0]
-        for i in range(1, n):
-            left_max[i] = max(left_max[i - 1], height[i])
+        left_height_max = [0] * len(height)
+        left_height_max[0] = height[0]
+        for i in range(1, len(height)):
+            left_height_max[i] = max(left_height_max[i - 1], height[i])
 
-        right_max = [0] * n
-        right_max[-1] = height[-1]
-        for i in reversed(range(1, n)):
-            right_max[i - 1] = max(right_max[i], height[i - 1])
+        right_height_max = [0] * len(height)
+        right_height_max[-1] = height[-1]
+        for i in range(len(height) - 2, -1, -1):
+            right_height_max[i] = max(right_height_max[i + 1], height[i])
 
         res = 0
-        for i in range(1, n):
-            res += min(left_max[i], right_max[i]) - height[i]
+        for i in range(1, len(height)):
+            res += min(left_height_max[i], right_height_max[i]) - height[i]
 
         return res
