@@ -10,7 +10,7 @@ class Solution:
         return root if self.contains_one(root) else None
 
     def contains_one(self, node):
-        if not node:
+        if node is None:
             return False
 
         left_contains_one = self.contains_one(node.left)
