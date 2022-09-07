@@ -17,10 +17,5 @@ class LRUCache:
         if key in self.cache:
             self.cache.move_to_end(key)
         self.cache[key] = value
-        if self.capacity < len(self.cache):
+        if len(self.cache) > self.capacity:
             self.cache.popitem(last=False)
-
-# Your LRUCache object will be instantiated and called as such:
-# obj = LRUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
