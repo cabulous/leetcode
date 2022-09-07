@@ -2,7 +2,6 @@ from typing import List
 
 
 # https://leetcode.com/problems/trapping-rain-water/discuss/17554/Share-my-one-pass-Python-solution-with-explaination
-# two pointers
 class Solution:
     def trap(self, height: List[int]) -> int:
         if len(height) < 3:
@@ -10,8 +9,8 @@ class Solution:
 
         left = 0
         right = len(height) - 1
-        left_height_max = height[0]
-        right_height_max = height[-1]
+        left_height_max = height[left]
+        right_height_max = height[right]
         res = 0
 
         while left < right:
@@ -27,7 +26,6 @@ class Solution:
         return res
 
 
-# dp
 class Solution:
     def trap(self, height: List[int]) -> int:
         if len(height) < 3:
