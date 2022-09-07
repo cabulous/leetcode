@@ -10,17 +10,17 @@ class Solution:
         rows, cols = len(board), len(board[0])
         origin_board = copy.deepcopy(board)
 
-        for row in range(rows):
-            for col in range(cols):
+        for r in range(rows):
+            for c in range(cols):
                 live = 0
                 for dr, dc in directions:
-                    nr, nc = row + dr, col + dc
-                    if 0 <= nr < rows and 0 <= nc < cols and origin_board[nr][nc] == 1:
-                        live += 1
-                if origin_board[row][col] == 1 and (live < 2 or 3 < live):
-                    board[row][col] = 0
-                elif origin_board[row][col] == 0 and live == 3:
-                    board[row][col] = 1
+                    nr, nc = r + dr, c + dc
+                    if 0 <= nr < rows and 0 <= nc < cols:
+                        live += origin_board[nr][nc]
+                if origin_board[r][c] == 1 and (live < 2 or 3 < live):
+                    board[r][c] = 0
+                elif origin_board[r][c] == 0 and live == 3:
+                    board[r][c] = 1
 
 
 # in-place
@@ -30,6 +30,9 @@ class Solution:
         rows = len(board)
         cols = len(board[0])
 
+        prev_live_now_die = -1
+        prev_die_now_live = 2
+
         for r in range(rows):
             for c in range(cols):
                 live = 0
@@ -38,15 +41,15 @@ class Solution:
                     if 0 <= nr < rows and 0 <= nc < cols and abs(board[nr][nc]) == 1:
                         live += 1
                 if board[r][c] == 1 and (live < 2 or 3 < live):
-                    board[r][c] = -1
+                    board[r][c] = prev_live_now_die
                 elif board[r][c] == 0 and live == 3:
-                    board[r][c] = 2
+                    board[r][c] = prev_die_now_live
 
         for r in range(rows):
             for c in range(cols):
-                if board[r][c] == -1:
+                if board[r][c] == prev_live_now_die:
                     board[r][c] = 0
-                elif board[r][c] == 2:
+                elif board[r][c] == prev_die_now_live:
                     board[r][c] = 1
 
 

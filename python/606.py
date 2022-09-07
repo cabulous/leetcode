@@ -10,7 +10,7 @@ class Solution:
         if t is None:
             return ''
         if t.left is None and t.right is None:
-            return str(t.val)
+            return f'{t.val}'
         if t.right is None:
             return f'{t.val}({self.tree2str(t.left)})'
         return f'{t.val}({self.tree2str(t.left)})({self.tree2str(t.right)})'
