@@ -4,14 +4,14 @@ from typing import List
 class Solution:
 
     def __init__(self):
-        self.k = 0
+        self.diff = 0
         self.res = []
 
     def numsSameConsecDiff(self, n: int, k: int) -> List[int]:
         if n == 1:
             return list(range(10))
 
-        self.k = k
+        self.diff = k
 
         for num in range(1, 10):
             self.dfs(n - 1, num)
@@ -24,7 +24,7 @@ class Solution:
             return
 
         tail_digit = num % 10
-        next_digits = {tail_digit - self.k, tail_digit + self.k}
+        next_digits = {tail_digit - self.diff, tail_digit + self.diff}
         for nd in next_digits:
             if 0 <= nd < 10:
                 self.dfs(n - 1, num * 10 + nd)

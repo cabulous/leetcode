@@ -1,6 +1,7 @@
 from typing import List
 
 
+# https://leetcode.com/problems/count-submatrices-with-all-ones/discuss/725108/Python-3-Dynamic-Programming
 class Solution:
     def numSubmat(self, mat: List[List[int]]) -> int:
         rows = len(mat)
