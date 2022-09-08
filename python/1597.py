@@ -31,7 +31,7 @@ class Solution:
         return left
 
     def parse_factor(self, tokens):
-        if tokens[0] == '(':
+        while len(tokens) > 0 and tokens[0] == '(':
             tokens.popleft()
             node = self.parse_expression(tokens)
             tokens.popleft()
