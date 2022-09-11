@@ -42,7 +42,7 @@ class Solution:
             right_height_max[i] = max(right_height_max[i + 1], height[i])
 
         res = 0
-        for i in range(1, len(height)):
+        for i in range(len(height)):
             res += min(left_height_max[i], right_height_max[i]) - height[i]
 
         return res
