@@ -11,7 +11,7 @@ class Solution:
             return sum(
                 sell - buy
                 for sell, buy in zip(prices[1:], prices[:-1])
-                if sell - buy > 0
+                if sell > buy
             )
 
         global_max = [[0] * len(prices) for _ in range(k + 1)]

@@ -9,15 +9,15 @@ class Solution:
         candidates = zip(efficiency, speed)
         candidates = sorted(candidates, key=lambda x: x[0], reverse=True)
 
-        speed_heap = []
+        speed_min_heap = []
         speed_sum = 0
-        perf = 0
+        res = 0
 
         for curr_efficiency, curr_speed in candidates:
-            if len(speed_heap) > k - 1:
-                speed_sum -= heapq.heappop(speed_heap)
-            heapq.heappush(speed_heap, curr_speed)
+            while len(speed_min_heap) > k - 1:
+                speed_sum -= heapq.heappop(speed_min_heap)
+            heapq.heappush(speed_min_heap, curr_speed)
             speed_sum += curr_speed
-            perf = max(perf, speed_sum * curr_efficiency)
+            res = max(res, speed_sum * curr_efficiency)
 
-        return perf % modulo
+        return res % modulo
