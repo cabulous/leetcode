@@ -8,7 +8,7 @@ class Solution:
         curr = 0
         res = 0
 
-        while queue and (queue[0] <= power or curr != 0):
+        while queue and (queue[0] <= power or curr > 0):
             if queue[0] <= power:
                 power -= queue.popleft()
                 curr += 1
