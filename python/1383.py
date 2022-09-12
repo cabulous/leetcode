@@ -6,8 +6,7 @@ class Solution:
     def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int) -> int:
         modulo = 10 ** 9 + 7
 
-        candidates = zip(efficiency, speed)
-        candidates = sorted(candidates, key=lambda x: x[0], reverse=True)
+        candidates = sorted(zip(efficiency, speed), key=lambda x: x[0], reverse=True)
 
         speed_min_heap = []
         speed_sum = 0
