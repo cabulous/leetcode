@@ -13,14 +13,14 @@ class Solution:
         prev_location = 0
         res = 0
 
-        for location, capacity in stations:
+        for location, fuel in stations:
             tank -= location - prev_location
             while tank < 0 and max_heap:
                 tank += -heapq.heappop(max_heap)
                 res += 1
             if tank < 0:
                 return -1
-            heapq.heappush(max_heap, -capacity)
+            heapq.heappush(max_heap, -fuel)
             prev_location = location
 
         return res
