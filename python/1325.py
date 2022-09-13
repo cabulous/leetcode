@@ -11,7 +11,7 @@ class TreeNode:
 class Solution:
     def removeLeafNodes(self, root: Optional[TreeNode], target: int) -> Optional[TreeNode]:
         if root is None:
-            return root
+            return None
 
         if root.left:
             root.left = self.removeLeafNodes(root.left, target)

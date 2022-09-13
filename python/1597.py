@@ -16,7 +16,7 @@ class Solution:
 
     def parse_expression(self, tokens: deque):
         left = self.parse_term(tokens)
-        while len(tokens) > 0 and tokens[0] in '+-':
+        while tokens and tokens[0] in '+-':
             op = tokens.popleft()
             right = self.parse_term(tokens)
             left = Node(op, left, right)
@@ -24,17 +24,16 @@ class Solution:
 
     def parse_term(self, tokens: deque):
         left = self.parse_factor(tokens)
-        while len(tokens) > 0 and tokens[0] in '*/':
+        while tokens and tokens[0] in '*/':
             op = tokens.popleft()
             right = self.parse_factor(tokens)
             left = Node(op, left, right)
         return left
 
     def parse_factor(self, tokens: deque):
-        while len(tokens) > 0 and tokens[0] == '(':
+        while tokens and tokens[0] == '(':
             tokens.popleft()
             node = self.parse_expression(tokens)
             tokens.popleft()
             return node
-        token = tokens.popleft()
-        return Node(token)
+        return Node(tokens.popleft())
