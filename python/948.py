@@ -12,7 +12,7 @@ class Solution:
             if queue[0] <= power:
                 power -= queue.popleft()
                 curr += 1
-            else:
+            elif curr > 0:
                 power += queue.pop()
                 curr -= 1
             res = max(res, curr)
