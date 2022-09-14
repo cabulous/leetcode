@@ -1,14 +1,42 @@
+from collections import deque
+
+
+# https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/discuss/648534/JavaC%2B%2BPython-At-most-one-odd-occurrence
 class Solution:
     def pseudoPalindromicPaths(self, root) -> int:
-        count = 0
-        stack = [(root, 0)]
-        while stack:
-            node, path = stack.pop()
-            if node:
-                path ^= (1 << node.val)
-                if not node.left and not node.right:
-                    count += 1 if path & (path - 1) == 0 else 0
-                else:
-                    stack.append((node.left, path))
-                    stack.append((node.right, path))
-        return count
+        return self.helper(root)
+
+    def helper(self, node, count=0):
+        if not node:
+            return 0
+
+        count ^= 1 << (node.val - 1)
+        res = self.helper(node.left, count) + self.helper(node.right, count)
+
+        if node.left is None and node.right is None:
+            if count & (count - 1) == 0:
+                res += 1
+
+        return res
+
+
+class Solution:
+    def pseudoPalindromicPaths(self, root) -> int:
+        if root is None:
+            return 0
+
+        res = 0
+        queue = deque([(root, 0)])
+
+        while queue:
+            node, count = queue.popleft()
+            count ^= 1 << (node.val - 1)
+            if node.left is None and node.right is None:
+                if count & (count - 1) == 0:
+                    res += 1
+            if node.left:
+                queue.append((node.left, count))
+            if node.right:
+                queue.append((node.right, count))
+
+        return res
