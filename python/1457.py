@@ -7,7 +7,7 @@ class Solution:
         return self.helper(root)
 
     def helper(self, node, count=0):
-        if not node:
+        if node is None:
             return 0
 
         count ^= 1 << (node.val - 1)
@@ -31,9 +31,11 @@ class Solution:
         while queue:
             node, count = queue.popleft()
             count ^= 1 << (node.val - 1)
+
             if node.left is None and node.right is None:
                 if count & (count - 1) == 0:
                     res += 1
+
             if node.left:
                 queue.append((node.left, count))
             if node.right:

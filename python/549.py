@@ -8,7 +8,7 @@ class TreeNode:
 class Solution:
 
     def __init__(self):
-        self.res = 0
+        self.res = 1
 
     def longestConsecutive(self, root: TreeNode) -> int:
         self.longest_path(root)
@@ -23,9 +23,9 @@ class Solution:
         if node.left:
             left_inr, left_dcr = self.longest_path(node.left)
             if node.val == node.left.val - 1:
-                inr = left_inr + 1
+                inr = max(inr, left_inr + 1)
             elif node.val == node.left.val + 1:
-                dcr = left_dcr + 1
+                dcr = max(dcr, left_dcr + 1)
 
         if node.right:
             right_inr, right_dcr = self.longest_path(node.right)
