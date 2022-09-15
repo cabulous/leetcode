@@ -13,7 +13,7 @@ class Solution:
         res = 0
 
         for curr_efficiency, curr_speed in candidates:
-            while len(speed_min_heap) > k - 1:
+            while len(speed_min_heap) >= k:
                 speed_sum -= heapq.heappop(speed_min_heap)
             heapq.heappush(speed_min_heap, curr_speed)
             speed_sum += curr_speed
