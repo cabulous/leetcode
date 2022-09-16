@@ -12,6 +12,6 @@ class Solution:
         for num in sorted(count):
             if count[num] > count[2 * num]:
                 return []
-            count[2 * num] -= count[num] // 2 if num == 0 else count[num]
+            count[2 * num] -= count[num] if num != 0 else count[num] // 2
 
         return list(count.elements())
