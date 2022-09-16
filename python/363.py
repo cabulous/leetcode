@@ -13,16 +13,16 @@ class Solution:
         for c1 in range(cols):
             col_sum = [0] * rows
             for c2 in range(c1, cols):
-                row_sum = 0
-                diff_list = [0]
+                total = 0
+                total_list = [0]
                 for r in range(rows):
                     col_sum[r] += matrix[r][c2]
-                    row_sum += col_sum[r]
-                    idx = bisect.bisect_left(diff_list, row_sum - k)
-                    if 0 <= idx < len(diff_list):
-                        res = max(res, row_sum - diff_list[idx])
+                    total += col_sum[r]
+                    idx = bisect.bisect_left(total_list, total - k)
+                    if 0 <= idx < len(total_list):
+                        res = max(res, total - total_list[idx])
                     if res == k:
                         return k
-                    bisect.insort(diff_list, row_sum)
+                    bisect.insort(total_list, total)
 
         return res
