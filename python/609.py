@@ -11,7 +11,7 @@ class Solution:
             data = line.split()
             root = data[0]
             for file in data[1:]:
-                name, _, content = file.partition('(')
+                name, content = file.split('(')
                 paths_by_content[content[:-1]].append(f'{root}/{name}')
 
         return [p for p in paths_by_content.values() if len(p) > 1]
