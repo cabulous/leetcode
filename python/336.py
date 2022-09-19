@@ -10,7 +10,7 @@ class Solution:
 
         for word_idx, word in enumerate(words):
             reversed_word = word[::-1]
-            if reversed_word in word_lookup and word_idx != word_lookup[reversed_word]:
+            if reversed_word in word_lookup and word_lookup[reversed_word] != word_idx:
                 res.append([word_idx, word_lookup[reversed_word]])
 
             for prefix in self.valid_prefixes(word):
