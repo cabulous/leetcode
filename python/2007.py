@@ -10,8 +10,8 @@ class Solution:
 
         count = Counter(changed)
         for num in sorted(count):
-            if count[num] > count[2 * num]:
+            if count[num] > count[num * 2]:
                 return []
-            count[2 * num] -= count[num] if num != 0 else count[num] // 2
+            count[num * 2] -= count[num] if num != 0 else count[num] // 2
 
         return list(count.elements())
