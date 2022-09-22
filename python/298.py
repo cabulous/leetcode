@@ -12,9 +12,9 @@ class TreeNode:
 # https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/discuss/74576/13-lines-of-Python-DFS-solution
 class Solution:
     def longestConsecutive(self, root: Optional[TreeNode]) -> int:
-        res = 0
-
+        res = 1
         queue = deque([(root, 1)])
+
         while queue:
             node, count = queue.popleft()
             res = max(res, count)
