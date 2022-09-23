@@ -15,8 +15,8 @@ class Solution:
                 live = 0
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
-                    if 0 <= nr < rows and 0 <= nc < cols:
-                        live += origin_board[nr][nc]
+                    if 0 <= nr < rows and 0 <= nc < cols and origin_board[nr][nc] == 1:
+                        live += 1
                 if origin_board[r][c] == 1 and (live < 2 or 3 < live):
                     board[r][c] = 0
                 elif origin_board[r][c] == 0 and live == 3:
@@ -73,7 +73,7 @@ class Solution:
                     board[r][c] = 0
 
     def next_round(self, live_cells):
-        count = Counter(
+        live_count = Counter(
             (nr, nc)
             for r, c in live_cells
             for nr in range(r - 1, r + 2)
@@ -82,6 +82,6 @@ class Solution:
         )
         return {
             pair
-            for pair in count
-            if count[pair] == 3 or (count[pair] == 2 and pair in live_cells)
+            for pair in live_count
+            if live_count[pair] == 3 or (live_count[pair] == 2 and pair in live_cells)
         }
