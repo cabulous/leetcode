@@ -73,7 +73,7 @@ class Solution:
                     board[r][c] = 0
 
     def next_round(self, live_cells):
-        live_count = Counter(
+        count = Counter(
             (nr, nc)
             for r, c in live_cells
             for nr in range(r - 1, r + 2)
@@ -82,6 +82,6 @@ class Solution:
         )
         return {
             pair
-            for pair in live_count
-            if live_count[pair] == 3 or (live_count[pair] == 2 and pair in live_cells)
+            for pair in count
+            if count[pair] == 3 or (count[pair] == 2 and pair in live_cells)
         }
