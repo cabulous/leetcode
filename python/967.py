@@ -18,8 +18,8 @@ class Solution:
 
         return self.res
 
-    def dfs(self, n, num):
-        if n == 0:
+    def dfs(self, remain, num):
+        if remain == 0:
             self.res.append(num)
             return
 
@@ -27,7 +27,7 @@ class Solution:
         next_digits = {tail_digit - self.diff, tail_digit + self.diff}
         for nd in next_digits:
             if 0 <= nd < 10:
-                self.dfs(n - 1, num * 10 + nd)
+                self.dfs(remain - 1, num * 10 + nd)
 
 
 class Solution:
@@ -36,7 +36,7 @@ class Solution:
             return list(range(10))
 
         queue = list(range(1, 10))
-        for _ in range(n - 1):
+        for _ in range(2, n + 1):
             next_queue = []
             for num in queue:
                 tail_digit = num % 10

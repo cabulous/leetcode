@@ -11,22 +11,26 @@ class TreeNode:
 
 # dfs
 class Solution:
-    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
-        res = []
-        self.dfs(root, targetSum, [], res)
-        return res
 
-    def dfs(self, node, remaining_sum, path, res):
-        if not node:
+    def __init__(self):
+        self.res = []
+
+    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
+        self.dfs(root, targetSum, [])
+        return self.res
+
+    def dfs(self, node, remain, path):
+        if node is None:
             return
 
         path.append(node.val)
+        remain -= node.val
 
-        if not node.left and not node.right and remaining_sum == node.val:
-            res.append(list(path))
+        if node.left is None and node.right is None and remain == 0:
+            self.res.append(path[:])
         else:
-            self.dfs(node.left, remaining_sum - node.val, path, res)
-            self.dfs(node.right, remaining_sum - node.val, path, res)
+            self.dfs(node.left, remain, path)
+            self.dfs(node.right, remain, path)
 
         path.pop()
 
@@ -35,19 +39,19 @@ class Solution:
 # bfs
 class Solution:
     def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
-        if not root:
+        if root is None:
             return []
 
         res = []
         queue = deque([(root, root.val, [root.val])])
 
         while queue:
-            node, cur_sum, path = queue.popleft()
-            if not node.left and not node.right and cur_sum == targetSum:
+            node, curr_sum, path = queue.popleft()
+            if node.left is None and node.right is None and curr_sum == targetSum:
                 res.append(path)
             if node.left:
-                queue.append((node.left, cur_sum + node.left.val, path + [node.left.val]))
+                queue.append((node.left, curr_sum + node.left.val, path + [node.left.val]))
             if node.right:
-                queue.append((node.right, cur_sum + node.right.val, path + [node.right.val]))
+                queue.append((node.right, curr_sum + node.right.val, path + [node.right.val]))
 
         return res
