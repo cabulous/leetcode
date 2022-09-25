@@ -2,6 +2,7 @@ from threading import Lock
 
 
 class Node:
+
     def __init__(self, value, next_node=None):
         self.value = value
         self.next = next_node
@@ -23,9 +24,9 @@ class MyCircularQueue:
             self.head = Node(value)
             self.tail = self.head
         else:
-            new_node = Node(value)
-            self.tail.next = new_node
-            self.tail = new_node
+            node = Node(value)
+            self.tail.next = node
+            self.tail = node
         self.count += 1
         return True
 
