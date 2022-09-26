@@ -1,24 +1,49 @@
-from collections import OrderedDict
+import math
 from typing import List
+
+
+# https://leetcode.com/problems/first-unique-number/discuss/601107/JavaPython-3-DoublyLinkedList-and-LinkedHashSetdict-O(n)-2-neat-codes-w-analysis.
+class Node:
+
+    def __init__(self, val):
+        self.val = val
+        self.prev = None
+        self.next = None
 
 
 class FirstUnique:
 
     def __init__(self, nums: List[int]):
-        self.queue = OrderedDict()
-        self.is_unique = {}
-        for num in nums:
-            self.add(num)
+        self.int_to_node = {}
+        self.head = Node(-math.inf)
+        self.tail = Node(math.inf)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        for n in nums:
+            self.add(n)
 
     def showFirstUnique(self) -> int:
-        if self.queue:
-            return next(iter(self.queue))
-        return -1
+        if self.head.next is self.tail:
+            return -1
+        return self.head.next.val
 
     def add(self, value: int) -> None:
-        if value not in self.is_unique:
-            self.is_unique[value] = True
-            self.queue[value] = None
-        elif self.is_unique[value]:
-            self.is_unique[value] = False
-            self.queue.pop(value)
+        if value in self.int_to_node:
+            self.remove(self.int_to_node[value])
+        else:
+            self.int_to_node[value] = Node(value)
+            self.move_to_end(self.int_to_node[value])
+
+    def remove(self, node):
+        if None in (node.prev, node.next):
+            return False
+        node.prev.next, node.next.prev = node.next, node.prev
+        node.next = node.prev = None
+        return True
+
+    def move_to_end(self, node):
+        if self.tail is None or self.tail.prev is None:
+            return False
+        node.next, node.prev = self.tail, self.tail.prev
+        self.tail.prev, node.prev.next = node, node
+        return True

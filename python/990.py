@@ -13,7 +13,7 @@ class Solution:
             if eq == '=':
                 self.union(x, y)
 
-        return not any(eq == '!' and self.find(x) == self.find(y) for x, eq, _, y in equations)
+        return not any(self.find(x) == self.find(y) for x, eq, _, y in equations if eq == '!')
 
     def find(self, x):
         if x != self.uf[x]:
