@@ -14,7 +14,7 @@ class Node:
 class FirstUnique:
 
     def __init__(self, nums: List[int]):
-        self.int_to_node = {}
+        self.val_to_node = {}
         self.head = Node(-math.inf)
         self.tail = Node(math.inf)
         self.head.next = self.tail
@@ -28,11 +28,11 @@ class FirstUnique:
         return self.head.next.val
 
     def add(self, value: int) -> None:
-        if value in self.int_to_node:
-            self.remove(self.int_to_node[value])
+        if value in self.val_to_node:
+            self.remove(self.val_to_node[value])
         else:
-            self.int_to_node[value] = Node(value)
-            self.move_to_end(self.int_to_node[value])
+            self.val_to_node[value] = Node(value)
+            self.move_to_end(self.val_to_node[value])
 
     def remove(self, node):
         if None in (node.prev, node.next):
@@ -42,7 +42,7 @@ class FirstUnique:
         return True
 
     def move_to_end(self, node):
-        if self.tail is None or self.tail.prev is None:
+        if self.tail.prev is None:
             return False
         node.next, node.prev = self.tail, self.tail.prev
         self.tail.prev, node.prev.next = node, node
