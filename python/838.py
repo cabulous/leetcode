@@ -3,24 +3,24 @@ class Solution:
     def pushDominoes(self, dominoes: str) -> str:
         dominoes = 'L' + dominoes + 'R'
         res = ''
-        i = 0
+        left = 0
 
-        for j in range(1, len(dominoes)):
-            if dominoes[j] == '.':
+        for right in range(1, len(dominoes)):
+            if dominoes[right] == '.':
                 continue
 
-            if i > 0:
-                res += dominoes[i]
+            if left > 0:
+                res += dominoes[left]
 
-            middle = j - i - 1
+            between = right - left - 1
 
-            if dominoes[i] == dominoes[j]:
-                res += dominoes[i] * middle
-            elif dominoes[i] == 'L' and dominoes[j] == 'R':
-                res += '.' * middle
+            if dominoes[left] == dominoes[right]:
+                res += dominoes[left] * between
+            elif dominoes[left] == 'L' and dominoes[right] == 'R':
+                res += '.' * between
             else:
-                res += 'R' * (middle // 2) + '.' * (middle % 2) + 'L' * (middle // 2)
+                res += 'R' * (between // 2) + '.' * (between % 2) + 'L' * (between // 2)
 
-            i = j
+            left = right
 
         return res
