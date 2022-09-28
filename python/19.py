@@ -11,7 +11,7 @@ class Solution:
         for _ in range(n):
             fast = fast.next
 
-        if not fast:
+        if fast is None:
             return head.next
 
         slow = head

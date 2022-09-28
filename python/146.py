@@ -17,8 +17,8 @@ class DoubleLinkedList:
 
     def remove(self, node: Node):
         node.prev.next, node.next.prev = node.next, node.prev
-        node.next = None
         node.prev = None
+        node.next = None
 
     def add(self, node: Node):
         self.tail.prev.next, self.tail.prev, node.prev, node.next = node, node, self.tail.prev, self.tail
