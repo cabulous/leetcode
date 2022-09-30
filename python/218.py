@@ -1,4 +1,5 @@
 import heapq
+import math
 from typing import List
 
 
@@ -10,15 +11,14 @@ class Solution:
         events.sort()
 
         res = [[0, 0]]
-        live = [(0, float('inf'))]
-
-        for start, negative_height, end in events:
+        live = [(0, math.inf)]
+        for start, neg_height, end in events:
             while live[0][1] <= start:
                 heapq.heappop(live)
-            if negative_height != 0:
-                heapq.heappush(live, (negative_height, end))
-            curr_height = -live[0][0]
-            if res[-1][1] != curr_height:
-                res.append([start, curr_height])
+            if neg_height != 0:
+                heapq.heappush(live, (neg_height, end))
+            cur_height = -live[0][0]
+            if res[-1][1] != cur_height:
+                res.append([start, cur_height])
 
         return res[1:]
