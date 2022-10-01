@@ -4,7 +4,8 @@ class Solution:
         two = {'10': 1, '11': 1, '12': 1, '13': 1, '14': 1, '15': 1, '16': 1, '17': 1, '18': 1, '19': 1, '20': 1,
                '21': 1, '22': 1, '23': 1, '24': 1, '25': 1, '26': 1}
 
-        pre, cur = 1, one.get(s[0], 0)
+        pre = 1
+        cur = one.get(s[0], 0)
 
         for i in range(1, len(s)):
             pre, cur = cur, one.get(s[i], 0) * cur + two.get(s[i - 1:i + 1], 0) * pre
@@ -12,28 +13,32 @@ class Solution:
         return cur
 
 
-# recursive
 class Solution:
+
     def __init__(self):
+        self.s = ''
         self.memo = {}
 
     def numDecodings(self, s: str) -> int:
-        if not s:
-            return 0
-        return self.helper(0, s)
+        self.s = s
+        return self.helper(0)
 
-    def helper(self, index, s):
-        if index == len(s):
+    def helper(self, curr_idx):
+        if curr_idx == len(self.s):
             return 1
-        if s[index] == '0':
+        if self.s[curr_idx] == '0':
             return 0
-        if index == len(s) - 1:
+        if curr_idx == len(self.s) - 1:
             return 1
-        if index in self.memo:
-            return self.memo[index]
-        self.memo[index] = self.helper(index + 1, s) + (
-            self.helper(index + 2, s) if int(s[index:index + 2]) <= 26 else 0)
-        return self.memo[index]
+        if curr_idx in self.memo:
+            return self.memo[curr_idx]
+
+        if int(self.s[curr_idx:curr_idx + 2]) <= 26:
+            self.memo[curr_idx] = self.helper(curr_idx + 1) + self.helper(curr_idx + 2)
+        else:
+            self.memo[curr_idx] = self.helper(curr_idx + 1)
+
+        return self.memo[curr_idx]
 
 
 # dp
