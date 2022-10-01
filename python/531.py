@@ -6,5 +6,8 @@ class Solution:
     def findLonelyPixel(self, picture: List[List[str]]) -> int:
         rows = [sum(col == 'B' for col in row) for row in picture]
         cols = [sum(row == 'B' for row in col) for col in zip(*picture)]
-        return sum(picture[r][c] == 'B' and rows[r] == 1 and cols[c] == 1 for r in range(len(picture)) for c in
-                   range(len(picture[r])))
+        return sum(
+            picture[r][c] == 'B' and rows[r] == 1 and cols[c] == 1
+            for r in range(len(picture))
+            for c in range(len(picture[r]))
+        )
