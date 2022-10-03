@@ -5,16 +5,16 @@ from typing import List
 class Solution:
     def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
         queue = deque(sorted(tokens))
-        curr = 0
+        curr_point = 0
         res = 0
 
-        while queue and (queue[0] <= power or curr > 0):
-            if queue[0] <= power:
+        while queue and (power >= queue[0] or curr_point > 0):
+            if power >= queue[0]:
                 power -= queue.popleft()
-                curr += 1
-            elif curr > 0:
+                curr_point += 1
+            elif curr_point > 0:
                 power += queue.pop()
-                curr -= 1
-            res = max(res, curr)
+                curr_point -= 1
+            res = max(res, curr_point)
 
         return res
