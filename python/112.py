@@ -1,26 +1,34 @@
-# recursion
+from collections import deque
+
+
 class Solution:
     def hasPathSum(self, root, sum: int) -> bool:
-        if not root:
+        if root is None:
             return False
+
         sum -= root.val
-        if not root.left and not root.right:
+
+        if root.left is None and root.right is None:
             return sum == 0
+
         return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
 
 
-# iteration
 class Solution:
     def hasPathSum(self, root, sum: int) -> bool:
-        if not root:
+        if root is None:
             return False
-        queue = [(root, sum - root.val), ]
+
+        queue = deque([(root, sum - root.val)])
+
         while queue:
-            node, cur_sum = queue.pop()
-            if not node.left and not node.right and cur_sum == 0:
+            node, remaining = queue.popleft()
+            if node.left is None and node.right is None and remaining == 0:
                 return True
+
             if node.left:
-                queue.append((node.left, cur_sum - node.left.val))
+                queue.append((node.left, remaining - node.left.val))
             if node.right:
-                queue.append((node.right, cur_sum - node.right.val))
+                queue.append((node.right, remaining - node.right.val))
+
         return False
