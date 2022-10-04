@@ -1,25 +1,33 @@
 from collections import deque
+from typing import Optional
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 class Solution:
-    def hasPathSum(self, root, sum: int) -> bool:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if root is None:
             return False
 
-        sum -= root.val
+        targetSum -= root.val
 
         if root.left is None and root.right is None:
-            return sum == 0
+            return targetSum == 0
 
-        return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
 
 
 class Solution:
-    def hasPathSum(self, root, sum: int) -> bool:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if root is None:
             return False
 
-        queue = deque([(root, sum - root.val)])
+        queue = deque([(root, targetSum - root.val)])
 
         while queue:
             node, remaining = queue.popleft()

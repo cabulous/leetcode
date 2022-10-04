@@ -17,8 +17,8 @@ class Solution:
                 heapq.heappop(live)
             if neg_height != 0:
                 heapq.heappush(live, (neg_height, end))
-            cur_height = -live[0][0]
-            if cur_height != res[-1][1]:
-                res.append([start, cur_height])
+            curr_height = -live[0][0]
+            if curr_height != res[-1][1]:
+                res.append([start, curr_height])
 
         return res[1:]
