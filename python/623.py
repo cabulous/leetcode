@@ -11,7 +11,7 @@ class TreeNode:
 # https://leetcode.com/problems/add-one-row-to-tree/discuss/104582/Short-Python-BFS
 class Solution:
     def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
-        sentinel = TreeNode(val, root)
+        sentinel = TreeNode(0, root)
         level = [sentinel]
 
         for _ in range(depth - 1):

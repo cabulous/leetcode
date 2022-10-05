@@ -22,9 +22,6 @@ class Solution:
 
 class Solution:
     def pseudoPalindromicPaths(self, root) -> int:
-        if root is None:
-            return 0
-
         res = 0
         queue = deque([(root, 0)])
 
