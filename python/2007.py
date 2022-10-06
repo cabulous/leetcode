@@ -10,7 +10,7 @@ class Solution:
 
         count = Counter(changed)
         for num in sorted(count):
-            if count[num] > count[num * 2]:
+            if count[num * 2] < count[num]:
                 return []
             count[num * 2] -= count[num] if num != 0 else count[num] // 2
 
