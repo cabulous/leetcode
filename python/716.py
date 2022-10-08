@@ -22,8 +22,8 @@ class MaxStack:
             self.soft_delete.remove(self.recency_stack.pop()[1])
 
     def pop(self) -> int:
-        val, id = self.recency_stack.pop()
-        self.soft_delete.add(id)
+        val, curr_id = self.recency_stack.pop()
+        self.soft_delete.add(curr_id)
         self._clean_up()
         return val
 
@@ -34,7 +34,7 @@ class MaxStack:
         return -self.max_heap[0][0]
 
     def popMax(self) -> int:
-        val, id = heapq.heappop(self.max_heap)
-        self.soft_delete.add(id)
+        neg_val, curr_id = heapq.heappop(self.max_heap)
+        self.soft_delete.add(curr_id)
         self._clean_up()
-        return -val
+        return -neg_val
