@@ -5,9 +5,9 @@ import heapq
 class MaxStack:
 
     def __init__(self):
-        self.soft_delete = set()
         self.max_heap = []
         self.recency_stack = []
+        self.soft_delete = set()
         self.next_id = 0
 
     def push(self, x: int) -> None:
