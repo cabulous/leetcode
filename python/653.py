@@ -1,3 +1,4 @@
+from collections import deque
 from typing import Optional
 
 
@@ -10,23 +11,22 @@ class TreeNode:
 
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
-        if not root:
+        if root is None:
             return False
 
+        queue = deque([root])
         seen = set()
-        stack = [root]
 
-        while stack:
-            node = stack.pop()
-
+        while queue:
+            node = queue.popleft()
             if k - node.val in seen:
                 return True
 
             seen.add(node.val)
 
             if node.left:
-                stack.append(node.left)
+                queue.append(node.left)
             if node.right:
-                stack.append(node.right)
+                queue.append(node.right)
 
         return False
