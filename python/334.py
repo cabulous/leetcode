@@ -1,32 +1,40 @@
+from typing import List
+
 import bisect
+import math
 
 
 # generalization
 class Solution:
-    def increasingTriplet(self, nums: [int]) -> bool:
-        def increasing_k_nums(k: int) -> bool:
-            if k == 0:
-                return True
-            inc = [float('inf')] * (k - 1)
-            for n in nums:
-                i = bisect.bisect_left(inc, n)
-                if i >= k - 1:
-                    return True
-                inc[i] = n
-            return False
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        return self.increasing_k_nums(nums, 3)
 
-        return increasing_k_nums(3)
+    def increasing_k_nums(self, nums, k):
+        if k == 0:
+            return True
+
+        inc = [math.inf] * (k - 1)
+
+        for num in nums:
+            idx = bisect.bisect_left(inc, num)
+            if idx >= k - 1:
+                return True
+            inc[idx] = num
+
+        return False
 
 
 class Solution:
-    def increasingTriplet(self, nums: [int]) -> bool:
-        first = float('inf')
-        second = float('inf')
-        for n in nums:
-            if n <= first:
-                first = n
-            elif n <= second:
-                second = n
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        first = math.inf
+        second = math.inf
+
+        for num in nums:
+            if num <= first:
+                first = num
+            elif num <= second:
+                second = num
             else:
                 return True
+
         return False
