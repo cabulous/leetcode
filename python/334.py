@@ -4,7 +4,6 @@ import bisect
 import math
 
 
-# generalization
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
         return self.increasing_k_nums(nums, 3)
@@ -17,7 +16,7 @@ class Solution:
 
         for num in nums:
             idx = bisect.bisect_left(inc, num)
-            if idx >= k - 1:
+            if idx == k - 1:
                 return True
             inc[idx] = num
 
