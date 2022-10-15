@@ -23,8 +23,8 @@ class Solution:
             return 0
 
         if self.s[curr_index] == last_char:
-            incr = 1 if last_char_count in (1, 9, 99) else 0
-            return incr + self.count(curr_index + 1, last_char, last_char_count + 1, quota)
+            inr = 1 if last_char_count in (1, 9, 99) else 0
+            return inr + self.count(curr_index + 1, last_char, last_char_count + 1, quota)
 
         keep_count = 1 + self.count(curr_index + 1, self.s[curr_index], 1, quota)
         del_count = self.count(curr_index + 1, last_char, last_char_count, quota - 1)
