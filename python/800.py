@@ -7,5 +7,5 @@ class Solution:
 
     def find_similar(self, color_section):
         num = int(color_section, 16)
-        similar = round(num / 17)
-        return hex(similar)[-1] * 2
+        res = round(num / 17)
+        return hex(res)[-1] * 2
