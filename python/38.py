@@ -3,20 +3,20 @@ import re
 
 class Solution:
     def countAndSay(self, n: int) -> str:
-        curr_string = '1'
+        curr_str = '1'
 
         for _ in range(n - 1):
-            next_string = ''
+            next_str = ''
             start = 0
             end = 0
-            while start < len(curr_string):
-                while end < len(curr_string) and curr_string[end] == curr_string[start]:
+            while start < len(curr_str):
+                while end < len(curr_str) and curr_str[start] == curr_str[end]:
                     end += 1
-                next_string += str(end - start) + curr_string[start]
+                next_str += str(end - start) + curr_str[start]
                 start = end
-            curr_string = next_string
+            curr_str = next_str
 
-        return curr_string
+        return curr_str
 
 
 class Solution:
