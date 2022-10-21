@@ -18,4 +18,4 @@ class Solution:
         if global_min[d][0] == float('inf'):
             return -1
 
-        return global_min[d][0]
+        return int(global_min[d][0])
