@@ -17,21 +17,22 @@ class Solution:
             char = s[right]
             window_counts[char] += 1
 
-            if char in t_counts and window_counts[char] == t_counts[char]:
+            if window_counts[char] == t_counts[char]:
                 formed += 1
 
             while left <= right and formed == required:
                 if right - left + 1 < res[0]:
                     res = right - left + 1, left, right
-                char = s[left]
-                window_counts[char] -= 1
-                if char in t_counts and window_counts[char] < t_counts[char]:
+                char_left = s[left]
+                window_counts[char_left] -= 1
+                if window_counts[char_left] < t_counts[char_left]:
                     formed -= 1
                 left += 1
 
             right += 1
 
-        if res[0] == float('inf'):
+        win_size, win_left, win_right = res
+        if win_size == float('inf'):
             return ''
 
-        return s[res[1]:res[2] + 1]
+        return s[win_left:win_right + 1]
