@@ -9,17 +9,18 @@ class Solution:
         return self.min_dist_1d(rows) + self.min_dist_1d(cols)
 
     def min_dist_1d(self, vec: List[int]) -> int:
-        i, j = -1, len(vec)
+        left = -1
+        right = len(vec)
         dist = left_dist = right_dist = 0
 
-        while i < j:
+        while left < right:
             if left_dist < right_dist:
                 dist += left_dist
-                i += 1
-                left_dist += vec[i]
+                left += 1
+                left_dist += vec[left]
             else:
                 dist += right_dist
-                j -= 1
-                right_dist += vec[j]
+                right -= 1
+                right_dist += vec[right]
 
         return dist

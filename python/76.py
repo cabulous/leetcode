@@ -14,10 +14,10 @@ class Solution:
         res = float('inf'), 0, 0
 
         while right < len(s):
-            char = s[right]
-            window_counts[char] += 1
+            char_right = s[right]
+            window_counts[char_right] += 1
 
-            if window_counts[char] == t_counts[char]:
+            if window_counts[char_right] == t_counts[char_right]:
                 formed += 1
 
             while left <= right and formed == required:
