@@ -3,14 +3,14 @@ from typing import List
 
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
-        res = ['']
-        best = 0
+        unique_chars = ['']
+        res = 0
 
         for word in arr:
-            for i in range(len(res)):
-                new_word = res[i] + word
+            for unique in unique_chars:
+                new_word = unique + word
                 if len(new_word) == len(set(new_word)):
-                    res.append(new_word)
-                    best = max(best, len(new_word))
+                    unique_chars.append(new_word)
+                    res = max(res, len(new_word))
 
-        return best
+        return res
