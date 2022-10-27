@@ -1,5 +1,6 @@
 from typing import List
 
+
 # https://leetcode.com/problems/continuous-subarray-sum/solution/1600289
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
