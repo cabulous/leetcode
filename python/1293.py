@@ -4,14 +4,17 @@ from collections import deque
 
 
 class Solution:
+
     def __init__(self):
         self.rows = 0
         self.cols = 0
 
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
-        self.rows, self.cols = len(grid), len(grid[0])
+        self.rows = len(grid)
+        self.cols = len(grid[0])
+
         state = (0, 0, k)
-        queue = [(self.manhattan_dist(0, 0), 0, state)]
+        queue = [(self.dist_to_target(0, 0), 0, state)]
         seen = set(state)
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
@@ -26,13 +29,13 @@ class Solution:
                     new_state = (nr, nc, new_quota)
                     if new_quota >= 0 and new_state not in seen:
                         seen.add(new_state)
-                        new_estimation = self.manhattan_dist(nr, nc) + steps + 1
+                        new_estimation = self.dist_to_target(nr, nc) + steps + 1
                         heapq.heappush(queue, (new_estimation, steps + 1, new_state))
 
         return -1
 
-    def manhattan_dist(self, row, col):
-        return self.rows - row - 1 + self.cols - col - 1
+    def dist_to_target(self, row, col):
+        return (self.rows - row - 1) + (self.cols - col - 1)
 
 
 class Solution:
