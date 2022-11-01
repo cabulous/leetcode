@@ -5,34 +5,36 @@ from collections import Counter
 # https://leetcode.com/problems/find-smallest-common-element-in-all-rows/discuss/390392/Python-Binary-Search
 class Solution:
     def smallestCommonElement(self, mat: List[List[int]]) -> int:
-        if not mat or not mat[0]:
-            return -1
-
         for target in mat[0]:
-            flag = True
+            found = True
             for row in mat[1:]:
                 if not self.binary_search(row, target):
-                    flag = False
+                    found = False
                     break
-            if flag:
+            if found:
                 return target
 
         return -1
 
     def binary_search(self, arr, target):
-        if arr and arr[0] > target:
+        if not arr:
             return False
-        if arr and arr[-1] < target:
+        if target < arr[0]:
             return False
-        lo, hi = 0, len(arr)
-        while lo <= hi:
+        if arr[-1] < target:
+            return False
+
+        lo = 0
+        hi = len(arr)
+        while lo < hi:
             mi = lo + (hi - lo) // 2
             if arr[mi] == target:
                 return True
             if arr[mi] < target:
                 lo = mi + 1
             else:
-                hi = mi - 1
+                hi = mi
+
         return False
 
 
@@ -40,11 +42,13 @@ class Solution:
 # https://leetcode.com/problems/find-smallest-common-element-in-all-rows/discuss/387092/JavaC%2B%2BPython-Brute-Force-Count
 class Solution:
     def smallestCommonElement(self, mat: List[List[int]]) -> int:
-        c = Counter()
-        n = len(mat)
+        count = Counter()
+        target_counts = len(mat)
+
         for row in mat:
-            for a in row:
-                c[a] += 1
-                if c[a] == n:
-                    return a
+            for num in row:
+                count[num] += 1
+                if count[num] == target_counts:
+                    return num
+
         return -1

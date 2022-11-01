@@ -13,14 +13,13 @@ class Solution:
         self.grid = grid
         self.rows = len(grid)
         self.cols = len(grid[0])
+        return list(map(self.helper, range(self.cols)))
 
-        return list(map(self.help, range(self.cols)))
-
-    def help(self, col):
+    def helper(self, col):
         curr_col = col
         for row in range(self.rows):
             next_col = curr_col + self.grid[row][curr_col]
-            if next_col < 0 or self.cols <= next_col or self.grid[row][next_col] != self.grid[row][curr_col]:
+            if next_col < 0 or self.cols <= next_col or self.grid[row][curr_col] != self.grid[row][next_col]:
                 return -1
             curr_col = next_col
         return curr_col
