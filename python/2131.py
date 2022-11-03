@@ -5,8 +5,8 @@ from typing import List
 class Solution:
     def longestPalindrome(self, words: List[str]) -> int:
         count = Counter(words)
-        res = 0
         central = False
+        res = 0
 
         for word, word_count in count.items():
             if word == word[::-1]:

@@ -9,5 +9,3 @@ class Solution:
         next_node = node.next
         node.val = next_node.val
         node.next = next_node.next
-        next_node.next = None
-        del next_node
