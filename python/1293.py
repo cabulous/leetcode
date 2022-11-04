@@ -13,7 +13,7 @@ class Solution:
         self.cols = len(grid[0])
 
         state = (0, 0, k)
-        seen = set(state)
+        seen = {state}
         queue = [(self.dist_to_target(0, 0), 0, state)]
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 

@@ -17,7 +17,6 @@ class Solution:
     def count(self, curr_idx, last_char, last_char_count, quota):
         if quota < 0:
             return float('inf')
-
         if self.s_len <= curr_idx:
             return 0
 

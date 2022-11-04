@@ -9,7 +9,7 @@ class Solution:
         res = 0
 
         for word, word_count in count.items():
-            if word == word[::-1]:
+            if word[0] == word[1]:
                 if word_count % 2 == 0:
                     res += word_count
                 else:
