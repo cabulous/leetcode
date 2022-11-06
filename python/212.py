@@ -38,7 +38,6 @@ class Solution:
             self.res.append(word_match)
 
         self.board[row][col] = '#'
-
         for dr, dc in self.directions:
             nr, nc = row + dr, col + dc
             if nr < 0 or self.rows <= nr or nc < 0 or self.cols <= nc:
@@ -46,7 +45,6 @@ class Solution:
             if not self.board[nr][nc] in curr_node:
                 continue
             self.backtrack(nr, nc, curr_node)
-
         self.board[row][col] = letter
 
         if not curr_node:

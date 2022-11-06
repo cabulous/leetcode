@@ -19,7 +19,9 @@ class Solution:
         curr_col = col
         for row in range(self.rows):
             next_col = curr_col + self.grid[row][curr_col]
-            if next_col < 0 or self.cols <= next_col or self.grid[row][curr_col] != self.grid[row][next_col]:
+            if next_col < 0 or self.cols <= next_col:
+                return -1
+            if self.grid[row][curr_col] != self.grid[row][next_col]:
                 return -1
             curr_col = next_col
         return curr_col
