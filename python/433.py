@@ -15,7 +15,7 @@ class Solution:
             for ch in 'ACGT':
                 for i in range(len(mutation)):
                     next_mutation = mutation[:i] + ch + mutation[i + 1:]
-                    if next_mutation not in seen and next_mutation in bank:
+                    if next_mutation in bank and next_mutation not in seen:
                         seen.add(next_mutation)
                         queue.append((next_mutation, steps + 1))
 
