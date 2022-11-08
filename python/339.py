@@ -31,14 +31,14 @@ class NestedInteger:
         :rtype void
         """
 
-    def getInteger(self):
+    def getInteger(self) -> int:
         """
         @return the single integer that this NestedInteger holds, if it holds a single integer
         Return None if this NestedInteger holds a nested list
         :rtype int
         """
 
-    def getList(self):
+    def getList(self) -> List[NestedInteger]:
         """
         @return the nested list that this NestedInteger holds, if it holds a nested list
         Return None if this NestedInteger holds a single integer
@@ -46,33 +46,15 @@ class NestedInteger:
         """
 
 
-# dfs
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        def dfs(nested_list, depth):
-            total = 0
-            for nested in nested_list:
-                if nested.isInteger():
-                    total += nested.getInteger() * depth
-                else:
-                    total += dfs(nested.getList(), depth + 1)
-            return total
+        return self.dfs(nestedList, 1)
 
-        return dfs(nestedList, 1)
-
-
-# bfs
-class Solution:
-    def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        queue = deque(nestedList)
-        depth = 1
-        total = 0
-        while queue:
-            for i in range(len(queue)):
-                nested = queue.pop()
-                if nested.isInteger():
-                    total += nested.getInteger() * depth
-                else:
-                    queue.extendleft(nested.getList())
-            depth += 1
-        return total
+    def dfs(self, nested_list: List[NestedInteger], depth):
+        res = 0
+        for nested in nested_list:
+            if nested.isInteger():
+                res += nested.getInteger() * depth
+            else:
+                res += self.dfs(nested.getList(), depth + 1)
+        return res
