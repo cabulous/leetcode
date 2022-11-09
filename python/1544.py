@@ -2,7 +2,7 @@ class Solution:
     def makeGood(self, s: str) -> str:
         stack = []
 
-        for ch in list(s):
+        for ch in s:
             if stack and self.is_bad(ch, stack[-1]):
                 stack.pop()
             else:
