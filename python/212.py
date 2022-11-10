@@ -42,7 +42,7 @@ class Solution:
             nr, nc = row + dr, col + dc
             if nr < 0 or self.rows <= nr or nc < 0 or self.cols <= nc:
                 continue
-            if not self.board[nr][nc] in curr_node:
+            if self.board[nr][nc] not in curr_node:
                 continue
             self.backtrack(nr, nc, curr_node)
         self.board[row][col] = letter

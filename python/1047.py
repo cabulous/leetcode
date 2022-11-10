@@ -1,9 +1,9 @@
 class Solution:
     def removeDuplicates(self, s: str) -> str:
         stack = ['#']
-        for c in s:
-            if stack[-1] == c:
+        for ch in s:
+            if stack[-1] == ch:
                 stack.pop()
             else:
-                stack.append(c)
+                stack.append(ch)
         return ''.join(stack[1:])
