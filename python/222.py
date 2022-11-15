@@ -18,50 +18,35 @@ class Solution:
         if not root:
             return 0
 
-        d = self.compute_depth(root)
-        if d == 0:
+        depth = self.compute_depth(root)
+        if depth == 0:
             return 1
 
-        left, right = 0, 2 ** d - 1
+        left, right = 0, 2 ** depth - 1
         while left <= right:
-            pivot = left + (right - left) // 2
-            if self.exists(pivot, d, root):
-                left = pivot + 1
+            mid = left + (right - left) // 2
+            if self.exists(mid, depth, root):
+                left = mid + 1
             else:
-                right = pivot - 1
+                right = mid - 1
 
-        return (2 ** d - 1) + left
+        return (2 ** depth - 1) + left
 
     def compute_depth(self, node):
-        d = 0
+        res = 0
         while node.left:
             node = node.left
-            d += 1
-        return d
+            res += 1
+        return res
 
-    def exists(self, idx, d, node):
-        left, right = 0, 2 ** d - 1
-        for _ in range(d):
-            pivot = left + (right - left) // 2
-            if idx <= pivot:
+    def exists(self, idx, depth, node):
+        left, right = 0, 2 ** depth - 1
+        for _ in range(depth):
+            mid = left + (right - left) // 2
+            if idx <= mid:
                 node = node.left
-                right = pivot
+                right = mid
             else:
                 node = node.right
-                left = pivot + 1
+                left = mid + 1
         return node is not None
-
-
-class Solution:
-    def countNodes(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-
-        level = [root]
-        counts = 0
-
-        while level:
-            counts += len(level)
-            level = [kid for node in level for kid in (node.left, node.right) if kid]
-
-        return counts
