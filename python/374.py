@@ -4,7 +4,8 @@ def guess(num: int) -> int:
 
 class Solution:
     def guessNumber(self, n: int) -> int:
-        lo, hi = 1, n
+        lo = 1
+        hi = n
 
         while lo <= hi:
             mi = lo + (hi - lo) // 2

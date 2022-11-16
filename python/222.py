@@ -19,10 +19,9 @@ class Solution:
             return 0
 
         depth = self.compute_depth(root)
-        if depth == 0:
-            return 1
 
-        left, right = 0, 2 ** depth - 1
+        left = 0
+        right = 2 ** depth - 1
         while left <= right:
             mid = left + (right - left) // 2
             if self.exists(mid, depth, root):
@@ -40,7 +39,8 @@ class Solution:
         return res
 
     def exists(self, idx, depth, node):
-        left, right = 0, 2 ** depth - 1
+        left = 0
+        right = 2 ** depth - 1
         for _ in range(depth):
             mid = left + (right - left) // 2
             if idx <= mid:
