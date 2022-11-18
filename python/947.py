@@ -26,7 +26,7 @@ class Solution:
     def dfs(self, x, y):
         if (x, y) not in self.visited:
             self.visited.add((x, y))
-            for next_y in self.graph_x[x]:
-                self.dfs(x, next_y)
             for next_x in self.graph_y[y]:
                 self.dfs(next_x, y)
+            for next_y in self.graph_x[x]:
+                self.dfs(x, next_y)
