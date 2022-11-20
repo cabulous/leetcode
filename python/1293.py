@@ -24,12 +24,12 @@ class Solution:
             for dr, dc in directions:
                 nr, nc = row + dr, col + dc
                 if 0 <= nr < self.rows and 0 <= nc < self.cols:
-                    new_quota = quota - grid[nr][nc]
-                    new_state = (nr, nc, new_quota)
-                    if new_quota >= 0 and new_state not in seen:
-                        seen.add(new_state)
-                        new_min_dist = self.dist_to_target(nr, nc) + steps + 1
-                        heapq.heappush(queue, (new_min_dist, steps + 1, new_state))
+                    next_quota = quota - grid[nr][nc]
+                    next_state = (nr, nc, next_quota)
+                    if next_quota >= 0 and next_state not in seen:
+                        seen.add(next_state)
+                        next_min_dist = self.dist_to_target(nr, nc) + steps + 1
+                        heapq.heappush(queue, (next_min_dist, steps + 1, next_state))
 
         return -1
 
