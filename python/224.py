@@ -23,7 +23,7 @@ class Solution:
                 sign = 1
                 num = 0
             elif ch == ')':
-                last_num = (stack.pop() + num * sign) + stack.pop()
+                last_num = (stack.pop() + num * sign) * stack.pop()
                 stack[-1] += last_num
                 sign = 1
                 num = 0
