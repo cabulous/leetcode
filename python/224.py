@@ -1,29 +1,31 @@
-# https://leetcode.com/problems/basic-calculator/discuss/62344/Easy-18-lines-C%2B%2B-16-lines-Python
+# https://leetcode.com/problems/basic-calculator/solutions/2831471/python3-stack-approach-with-detailed-explanations-o-n/
 class Solution:
     def calculate(self, s: str) -> int:
-        signs = [1, 1]
-        i = 0
-        total = 0
+        num = 0
+        sign = 1
+        stack = [0]
 
-        while i < len(s):
-            c = s[i]
-
-            if c.isdigit():
-                start = i
-                while i < len(s) and s[i].isdigit():
-                    i += 1
-                total += signs.pop() * int(s[start:i])
+        for ch in s:
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+            elif ch == ' ':
                 continue
+            elif ch == '+':
+                stack[-1] += num * sign
+                sign = 1
+                num = 0
+            elif ch == '-':
+                stack[-1] += num * sign
+                sign = -1
+                num = 0
+            elif ch == '(':
+                stack.extend([sign, 0])
+                sign = 1
+                num = 0
+            elif ch == ')':
+                last_num = (stack.pop() + num * sign) + stack.pop()
+                stack[-1] += last_num
+                sign = 1
+                num = 0
 
-            if c in '+-(':
-                if c == '-':
-                    sign = -1
-                else:
-                    sign = 1
-                signs.append(signs[-1] * sign)
-            elif c == ')':
-                signs.pop()
-
-            i += 1
-
-        return total
+        return stack[-1] + num * sign
