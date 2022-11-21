@@ -23,7 +23,9 @@ class Solution:
                 sign = 1
                 num = 0
             elif ch == ')':
-                last_num = (stack.pop() + num * sign) * stack.pop()
+                total = stack.pop()
+                prev_sign = stack.pop()
+                last_num = (total + num * sign) * prev_sign
                 stack[-1] += last_num
                 sign = 1
                 num = 0
