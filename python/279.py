@@ -1,20 +1,21 @@
 import math
 
 
+# four-square theorem and three-square theorem
 # n=4^k(8m+7)
 class Solution:
     def numSquares(self, n: int) -> int:
-        while n & 3 == 0:
-            n >>= 2
+        while n % 4 == 0:
+            n //= 4
 
-        if n & 7 == 7:
+        if n % 8 == 7:
             return 4
 
         if self.is_square(n):
             return 1
 
-        for i in range(1, int(math.sqrt(n)) + 1):
-            if self.is_square(n - i ** 2):
+        for base in range(1, int(math.sqrt(n)) + 1):
+            if self.is_square(n - base ** 2):
                 return 2
 
         return 3
