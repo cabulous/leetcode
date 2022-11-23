@@ -1,22 +1,22 @@
+from collections import defaultdict
+
+
 class Solution:
     def isValidSudoku(self, board: [[str]]) -> bool:
-        if not board or not board[0]:
-            return False
+        rows = [defaultdict(int) for _ in range(9)]
+        cols = [defaultdict(int) for _ in range(9)]
+        boxes = [defaultdict(int) for _ in range(9)]
 
-        rows = [{} for _ in range(9)]
-        cols = [{} for _ in range(9)]
-        boxes = [{} for _ in range(9)]
-
-        for i in range(9):
-            for j in range(9):
-                num = board[i][j]
+        for r in range(9):
+            for c in range(9):
+                num = board[r][c]
                 if num != '.':
                     num = int(num)
-                    box_idx = (i // 3) * 3 + j // 3
-                    rows[i][num] = rows[i].get(num, 0) + 1
-                    cols[j][num] = cols[j].get(num, 0) + 1
-                    boxes[box_idx][num] = boxes[box_idx].get(num, 0) + 1
-                    if rows[i][num] > 1 or cols[j][num] > 1 or boxes[box_idx][num] > 1:
+                    box_idx = (r // 3) * 3 + c // 3
+                    boxes[box_idx][num] += 1
+                    rows[r][num] += 1
+                    cols[c][num] += 1
+                    if rows[r][num] > 1 or cols[c][num] > 1 or boxes[box_idx][num] > 1:
                         return False
 
         return True
