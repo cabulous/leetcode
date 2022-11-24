@@ -9,10 +9,8 @@ class Solution:
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     def exist(self, board: List[List[str]], word: str) -> bool:
-        if not board or not board[0]:
-            return False
-
-        self.rows, self.cols = len(board), len(board[0])
+        self.rows = len(board)
+        self.cols = len(board[0])
         self.board = board
 
         for r in range(self.rows):
@@ -26,20 +24,20 @@ class Solution:
         if len(suffix) == 0:
             return True
 
-        if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
+        if row < 0 or self.rows <= row or col < 0 or self.cols <= col:
             return False
 
         if self.board[row][col] != suffix[0]:
             return False
 
-        resolved = False
+        found = False
         self.board[row][col] = '#'
 
         for dr, dc in self.directions:
-            resolved = self.backtrack(row + dr, col + dc, suffix[1:])
-            if resolved:
+            found = self.backtrack(row + dr, col + dc, suffix[1:])
+            if found:
                 break
 
         self.board[row][col] = suffix[0]
 
-        return resolved
+        return found
