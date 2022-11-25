@@ -5,7 +5,6 @@ MOD = 10 ** 9 + 7
 
 class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:
-
         stack = []
         dp = [0] * len(arr)
 
