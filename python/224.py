@@ -6,10 +6,10 @@ class Solution:
         stack = [0]
 
         for ch in s:
-            if ch.isdigit():
-                num = num * 10 + int(ch)
-            elif ch == ' ':
+            if ch == ' ':
                 continue
+            elif ch.isdigit():
+                num = num * 10 + int(ch)
             elif ch == '+':
                 stack[-1] += num * sign
                 sign = 1
@@ -23,9 +23,9 @@ class Solution:
                 sign = 1
                 num = 0
             elif ch == ')':
-                prev_total = stack.pop()
+                total = stack.pop()
                 prev_sign = stack.pop()
-                stack[-1] += (num * sign + prev_total) * prev_sign
+                stack[-1] += (num * sign + total) * prev_sign
                 sign = 1
                 num = 0
 

@@ -29,15 +29,16 @@ class Solution:
 
         return self.res
 
-    def backtrack(self, row, col, parent):
+    def backtrack(self, row, col, parent_node):
         letter = self.board[row][col]
-        curr_node = parent[letter]
+        curr_node = parent_node[letter]
 
         word_match = curr_node.pop(self.WORD_KEY, False)
         if word_match:
             self.res.append(word_match)
 
         self.board[row][col] = '#'
+
         for dr, dc in self.directions:
             nr, nc = row + dr, col + dc
             if nr < 0 or self.rows <= nr or nc < 0 or self.cols <= nc:
@@ -45,7 +46,8 @@ class Solution:
             if self.board[nr][nc] not in curr_node:
                 continue
             self.backtrack(nr, nc, curr_node)
+
         self.board[row][col] = letter
 
         if not curr_node:
-            parent.pop(letter)
+            parent_node.pop(letter)
