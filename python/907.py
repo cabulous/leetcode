@@ -9,7 +9,7 @@ class Solution:
         dp = [0] * len(arr)
 
         for curr in range(len(arr)):
-            while stack and arr[curr] <= arr[stack[-1]]:
+            while stack and arr[stack[-1]] >= arr[curr]:
                 stack.pop()
             if stack:
                 prev = stack[-1]
