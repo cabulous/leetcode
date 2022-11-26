@@ -10,7 +10,8 @@ class Solution:
 
         for start, end, profit in jobs:
             i = bisect.bisect(dp, [start + 1]) - 1
-            if dp[i][1] + profit > dp[-1][1]:
-                dp.append([end, dp[i][1] + profit])
+            next_profit = dp[i][1] + profit
+            if next_profit > dp[-1][1]:
+                dp.append([end, next_profit])
 
         return dp[-1][1]
