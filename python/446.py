@@ -7,12 +7,12 @@ class Solution:
     def numberOfArithmeticSlices(self, nums: List[int]) -> int:
         n = len(nums)
         dp = [Counter() for _ in range(n)]
-        ans = 0
+        res = 0
 
         for i in range(n):
             for j in range(i):
                 diff = nums[i] - nums[j]
                 dp[i][diff] += dp[j][diff] + 1
-            ans += sum(dp[i].values())
+            res += sum(dp[i].values())
 
-        return ans - (n - 1) * n // 2
+        return res - (n - 1) * n // 2
