@@ -10,8 +10,8 @@ class Solution:
 
         for start, end, curr_profit in jobs:
             i = bisect.bisect_right(dp, [start + 1]) - 1
-            total_so_far = dp[i][1] + curr_profit
-            if total_so_far > dp[-1][1]:
-                dp.append([end, total_so_far])
+            total = dp[i][1] + curr_profit
+            if total > dp[-1][1]:
+                dp.append([end, total])
 
         return dp[-1][1]
