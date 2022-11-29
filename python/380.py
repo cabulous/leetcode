@@ -2,24 +2,30 @@ from random import choice
 
 
 class RandomizedSet:
+
     def __init__(self):
-        self.dict = {}
+        self.lookup = {}
         self.list = []
 
     def insert(self, val: int) -> bool:
-        if val in self.dict:
+        if val in self.lookup:
             return False
-        self.dict[val] = len(self.list)
+        self.lookup[val] = len(self.list)
         self.list.append(val)
         return True
 
     def remove(self, val: int) -> bool:
-        if val not in self.dict:
+        if val not in self.lookup:
             return False
-        last_elem, idx = self.list[-1], self.dict[val]
-        self.list[idx], self.dict[last_elem] = last_elem, idx
+
+        last_elm = self.list[-1]
+        idx = self.lookup[val]
+        self.list[idx] = last_elm
+        self.lookup[last_elm] = idx
+
         self.list.pop()
-        self.dict.pop(val, None)
+        self.lookup.pop(val)
+
         return True
 
     def getRandom(self) -> int:
