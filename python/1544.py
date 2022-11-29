@@ -3,7 +3,7 @@ class Solution:
         stack = []
 
         for ch in s:
-            if stack and self.is_bad(ch, stack[-1]):
+            if stack and self.is_bad(stack[-1], ch):
                 stack.pop()
             else:
                 stack.append(ch)
