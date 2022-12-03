@@ -3,10 +3,10 @@ from collections import Counter
 
 class Solution:
     def frequencySort(self, s: str) -> str:
-        counts = Counter(s)
-        str_builder = []
+        count = Counter(s)
+        res = []
 
-        for letter, freq in counts.most_common():
-            str_builder.append(letter * freq)
+        for ch, freq in count.most_common():
+            res.append(ch * freq)
 
-        return ''.join(str_builder)
+        return ''.join(res)
