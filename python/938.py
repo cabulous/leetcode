@@ -16,10 +16,10 @@ class Solution:
         if node is None:
             return 0
 
-        left = self.helper(node.left, low, high)
-        right = self.helper(node.right, low, high)
+        left_sum = self.helper(node.left, low, high)
+        right_sum = self.helper(node.right, low, high)
 
         if low <= node.val <= high:
-            return left + right + node.val
+            return left_sum + node.val + right_sum
 
-        return left + right
+        return left_sum + right_sum
