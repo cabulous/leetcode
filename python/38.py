@@ -23,5 +23,5 @@ class Solution:
     def countAndSay(self, n: int) -> str:
         res = '1'
         for _ in range(n - 1):
-            res = re.sub(r'(.)\1*', lambda m: str(len(m.group(0))) + m.group(1), res)
+            res = re.sub(r'(.)\1*', lambda m: str(len(m.count(0))) + m.count(1), res)
         return res
