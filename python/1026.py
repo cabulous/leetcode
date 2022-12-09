@@ -10,18 +10,16 @@ class TreeNode:
 
 class Solution:
     def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
         return self.helper(root, root.val, root.val)
 
-    def helper(self, node, cur_max, cur_min):
-        if not node:
-            return cur_max - cur_min
+    def helper(self, node, curr_max, curr_min):
+        if node is None:
+            return curr_max - curr_min
 
-        cur_max = max(cur_max, node.val)
-        cur_min = min(cur_min, node.val)
+        next_max = max(curr_max, node.val)
+        next_min = min(curr_min, node.val)
 
-        left_diff = self.helper(node.left, cur_max, cur_min)
-        right_diff = self.helper(node.right, cur_max, cur_min)
+        left_diff = self.helper(node.left, next_max, next_min)
+        right_diff = self.helper(node.right, next_max, next_min)
 
         return max(left_diff, right_diff)
