@@ -19,7 +19,7 @@ class UnionFind:
                     self.root[i] = root_x
             self.count -= 1
 
-    def connected(self, x, y):
+    def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
     def union_count(self):
@@ -30,6 +30,6 @@ class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         uf = UnionFind(n)
         for x, y in edges:
-            if not uf.connected(x, y):
+            if not uf.is_connected(x, y):
                 uf.union(x, y)
         return uf.union_count()
