@@ -18,14 +18,13 @@ class Solution:
 
         total = self.tree_sum(root)
         res = 0
-
         for sub_total in self.all_sums:
             res = max(res, sub_total * (total - sub_total))
 
         return res % mod
 
     def tree_sum(self, node):
-        if not node:
+        if node is None:
             return 0
 
         left_sum = self.tree_sum(node.left)
