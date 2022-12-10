@@ -9,23 +9,28 @@ class TreeNode:
 
 
 class Solution:
+
+    def __init__(self):
+        self.all_sums = []
+
     def maxProduct(self, root: Optional[TreeNode]) -> int:
         mod = 10 ** 9 + 7
-        all_sums = []
 
-        def tree_sum(sub_root):
-            if not sub_root:
-                return 0
-            left_sum = tree_sum(sub_root.left)
-            right_sum = tree_sum(sub_root.right)
-            total_sum = left_sum + sub_root.val + right_sum
-            all_sums.append(total_sum)
-            return total_sum
-
-        total = tree_sum(root)
+        total = self.tree_sum(root)
         res = 0
 
-        for s in all_sums:
-            res = max(res, s * (total - s))
+        for sub_total in self.all_sums:
+            res = max(res, sub_total * (total - sub_total))
 
         return res % mod
+
+    def tree_sum(self, node):
+        if not node:
+            return 0
+
+        left_sum = self.tree_sum(node.left)
+        right_sum = self.tree_sum(node.right)
+        total = left_sum + node.val + right_sum
+        self.all_sums.append(total)
+
+        return total
