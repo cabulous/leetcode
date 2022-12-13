@@ -16,7 +16,7 @@ class UnionFind:
         root_x = self.find(x)
         root_y = self.find(y)
         if root_x != root_y:
-            self.root[root_y] = root_x
+            self.root[root_x] = root_y
             self.count -= 1
 
     def union_count(self):
