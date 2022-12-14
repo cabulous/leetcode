@@ -4,28 +4,27 @@ from typing import List
 class Solution:
 
     def __init__(self):
+        self.nums = []
         self.memo = {}
 
     def rob(self, nums: List[int]) -> int:
-        return self.rob_from(0, nums)
+        self.nums = nums
+        return self.helper(0)
 
-    def rob_from(self, i, nums):
-        if i >= len(nums):
+    def helper(self, idx):
+        if len(self.nums) <= idx:
             return 0
 
-        if i in self.memo:
-            return self.memo[i]
+        if idx in self.memo:
+            return self.memo[idx]
 
-        self.memo[i] = max(self.rob_from(i + 1, nums), self.rob_from(i + 2, nums) + nums[i])
+        self.memo[idx] = max(self.helper(idx + 1), self.helper(idx + 2) + self.nums[idx])
 
-        return self.memo[i]
+        return self.memo[idx]
 
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
-
         prev2, prev1 = 0, nums[0]
 
         for num in nums[1:]:

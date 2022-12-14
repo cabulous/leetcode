@@ -18,7 +18,7 @@ class Solution:
         for col in range(self.cols):
             res = min(res, self.helper(0, col))
 
-        return int(res)
+        return res
 
     @lru_cache(None)
     def helper(self, row, col):

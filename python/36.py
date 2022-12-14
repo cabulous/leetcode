@@ -1,11 +1,11 @@
-from collections import defaultdict
+from collections import Counter
 
 
 class Solution:
     def isValidSudoku(self, board: [[str]]) -> bool:
-        rows = [defaultdict(int) for _ in range(9)]
-        cols = [defaultdict(int) for _ in range(9)]
-        boxs = [defaultdict(int) for _ in range(9)]
+        rows = [Counter() for _ in range(9)]
+        cols = [Counter() for _ in range(9)]
+        boxs = [Counter() for _ in range(9)]
 
         for r, row in enumerate(board):
             for c, val in enumerate(row):
