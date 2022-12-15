@@ -17,7 +17,7 @@ class Solution:
 
         while queue:
             cost, worker_idx, taken = heapq.heappop(queue)
-            if worker_idx == len(self.workers):
+            if worker_idx == len(workers):
                 return cost
             if (worker_idx, taken) in seen:
                 continue
