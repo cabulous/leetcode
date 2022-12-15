@@ -5,15 +5,12 @@ from typing import List
 class Solution:
 
     def __init__(self):
+        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        self.lookup = defaultdict(set)
         self.word = ''
         self.word_len = 0
-        self.lookup = defaultdict(set)
-        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     def exist(self, board: List[List[str]], word: str) -> bool:
-        self.word = word
-        self.word_len = len(word)
-
         char_count = Counter(word)
 
         for r in range(len(board)):
@@ -29,10 +26,12 @@ class Solution:
             if len(self.lookup[ch]) < count:
                 return False
 
+        self.word = word
+        self.word_len = len(word)
         if len(self.lookup[word[-1]]) < len(self.lookup[word[0]]):
-            self.word = self.word[::-1]
+            self.word = word[::-1]
 
-        for (r, c) in list(self.lookup[self.word[0]]):
+        for r, c in list(self.lookup[self.word[0]]):
             self.lookup[self.word[0]].remove((r, c))
             if self.dfs(r, c, 1):
                 return True
