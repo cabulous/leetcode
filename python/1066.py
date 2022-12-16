@@ -16,17 +16,17 @@ class Solution:
         seen = set()
 
         while queue:
-            cost, worker_idx, taken = heapq.heappop(queue)
+            cost, worker_idx, bike_taken = heapq.heappop(queue)
             if worker_idx == len(workers):
                 return cost
-            if (worker_idx, taken) in seen:
+            if (worker_idx, bike_taken) in seen:
                 continue
-            seen.add((worker_idx, taken))
+            seen.add((worker_idx, bike_taken))
             for bike_idx in range(len(bikes)):
-                if taken & (1 << bike_idx) == 0:
+                if bike_taken & (1 << bike_idx) == 0:
                     next_cost = cost + self.manhattan_dist(worker_idx, bike_idx)
-                    next_taken = taken | (1 << bike_idx)
-                    heapq.heappush(queue, (next_cost, worker_idx + 1, next_taken))
+                    next_bike_taken = bike_taken | (1 << bike_idx)
+                    heapq.heappush(queue, (next_cost, worker_idx + 1, next_bike_taken))
 
         return -1
 

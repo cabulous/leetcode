@@ -23,15 +23,15 @@ class Solution:
             return False
 
         for ch, count in char_count.items():
-            if len(self.lookup[ch]) < count:
+            if count > len(self.lookup[ch]):
                 return False
 
         self.word = word
         self.word_len = len(word)
-        if len(self.lookup[word[-1]]) < len(self.lookup[word[0]]):
-            self.word = word[::-1]
+        if len(self.lookup[self.word[0]]) < len(self.lookup[self.word[-1]]):
+            self.word = self.word[::-1]
 
-        for r, c in list(self.lookup[self.word[0]]):
+        for r, c in self.lookup[self.word[0]]:
             self.lookup[self.word[0]].remove((r, c))
             if self.dfs(r, c, 1):
                 return True
