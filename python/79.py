@@ -28,18 +28,15 @@ class Solution:
 
         self.word = word
         self.word_len = len(word)
-        if len(self.lookup[self.word[0]]) < len(self.lookup[self.word[-1]]):
-            self.word = self.word[::-1]
-
-        for r, c in self.lookup[self.word[0]]:
-            self.lookup[self.word[0]].remove((r, c))
-            if self.dfs(r, c, 1):
+        for r, c in self.lookup[word[0]]:
+            self.lookup[word[0]].remove((r, c))
+            if self.backtrack(r, c, 1):
                 return True
-            self.lookup[self.word[0]].add((r, c))
+            self.lookup[word[0]].add((r, c))
 
         return False
 
-    def dfs(self, row, col, word_idx):
+    def backtrack(self, row, col, word_idx):
         if word_idx == self.word_len:
             return True
 
@@ -49,7 +46,7 @@ class Solution:
             nr, nc = row + dr, col + dc
             if (nr, nc) in self.lookup[ch]:
                 self.lookup[ch].remove((nr, nc))
-                if self.dfs(nr, nc, word_idx + 1):
+                if self.backtrack(nr, nc, word_idx + 1):
                     return True
                 self.lookup[ch].add((nr, nc))
 
