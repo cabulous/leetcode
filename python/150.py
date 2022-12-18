@@ -20,4 +20,4 @@ class Solution:
             else:
                 stack.append(int(token))
 
-        return stack.pop()
+        return stack[-1]
