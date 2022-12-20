@@ -8,7 +8,6 @@ class Solution:
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         self.lookup = defaultdict(set)
         self.word = ''
-        self.word_len = 0
 
     def exist(self, board: List[List[str]], word: str) -> bool:
         char_count = Counter(word)
@@ -23,11 +22,10 @@ class Solution:
             return False
 
         for ch, count in char_count.items():
-            if count > len(self.lookup[ch]):
+            if len(self.lookup[ch]) < count:
                 return False
 
         self.word = word
-        self.word_len = len(word)
         for r, c in self.lookup[word[0]]:
             self.lookup[word[0]].remove((r, c))
             if self.backtrack(r, c, 1):
@@ -37,7 +35,7 @@ class Solution:
         return False
 
     def backtrack(self, row, col, word_idx):
-        if word_idx == self.word_len:
+        if word_idx == len(self.word):
             return True
 
         ch = self.word[word_idx]
@@ -56,10 +54,10 @@ class Solution:
 class Solution:
 
     def __init__(self):
+        self.directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+        self.board = []
         self.rows = 0
         self.cols = 0
-        self.board = []
-        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     def exist(self, board: List[List[str]], word: str) -> bool:
         self.board = board
@@ -68,12 +66,12 @@ class Solution:
 
         for r in range(self.rows):
             for c in range(self.cols):
-                if self.is_matched(r, c, word):
+                if self.backtrack(r, c, word):
                     return True
 
         return False
 
-    def is_matched(self, row, col, chars):
+    def backtrack(self, row, col, chars):
         if len(chars) == 0:
             return True
 
@@ -87,7 +85,7 @@ class Solution:
         self.board[row][col] = '#'
 
         for dr, dc in self.directions:
-            found = self.is_matched(row + dr, col + dc, chars[1:])
+            found = self.backtrack(row + dr, col + dc, chars[1:])
             if found:
                 break
 
