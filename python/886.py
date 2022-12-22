@@ -58,6 +58,7 @@ class Solution:
     def bfs(self, source):
         queue = deque([source])
         self.color[source] = 0
+
         while queue:
             node = queue.popleft()
             for nei in self.graph[node]:
@@ -66,4 +67,5 @@ class Solution:
                 if self.color[nei] == -1:
                     self.color[nei] = 1 - self.color[node]
                     queue.append(nei)
+
         return True

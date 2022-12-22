@@ -2,30 +2,37 @@ from typing import List
 from collections import defaultdict
 
 
+# https://leetcode.com/problems/sum-of-distances-in-tree/solutions/130583/c-java-python-pre-order-and-post-order-dfs-o-n/
 class Solution:
+
+    def __init__(self):
+        self.tree = defaultdict(set)
+        self.n = 0
+        self.count = []
+        self.res = []
+
     def sumOfDistancesInTree(self, n: int, edges: List[List[int]]) -> List[int]:
-        graph = defaultdict(set)
+        self.n = n
+        self.count = [1] * n
+        self.res = [0] * n
         for u, v in edges:
-            graph[u].add(v)
-            graph[v].add(u)
+            self.tree[u].add(v)
+            self.tree[v].add(u)
 
-        count = [1] * n
-        ans = [0] * n
+        self.dfs(0, -1)
+        self.dfs2(0, -1)
 
-        def dfs(node=0, parent=None):
-            for child in graph[node]:
-                if child != parent:
-                    dfs(child, node)
-                    count[node] += count[child]
-                    ans[node] += ans[child] + count[child]
+        return self.res
 
-        def dfs2(node=0, parent=None):
-            for child in graph[node]:
-                if child != parent:
-                    ans[child] = ans[node] - count[child] + (n - count[child])
-                    dfs2(child, node)
+    def dfs(self, curr, prev):
+        for node in self.tree[curr]:
+            if node != prev:
+                self.dfs(node, curr)
+                self.count[curr] += self.count[node]
+                self.res[curr] += self.res[node] + self.count[node]
 
-        dfs()
-        dfs2()
-
-        return ans
+    def dfs2(self, curr, prev):
+        for node in self.tree[curr]:
+            if node != prev:
+                self.res[node] = self.res[curr] - self.count[node] + (self.n - self.count[node])
+                self.dfs2(node, curr)
