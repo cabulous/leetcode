@@ -5,13 +5,11 @@ class Solution:
         if n <= 2:
             return n
 
-        f_prev, f_curr = 1, 2
+        f_prev = 1
+        f_curr = 2
         p_curr = 1
 
-        for k in range(3, n + 1):
-            tmp = f_curr
-            f_curr = (f_curr + f_prev + 2 * p_curr) % mod
-            p_curr = (p_curr + f_prev) % mod
-            f_prev = tmp
+        for _ in range(3, n + 1):
+            f_prev, f_curr, p_curr = f_curr, f_curr + f_prev + 2 * p_curr, p_curr + f_prev
 
-        return f_curr
+        return f_curr % mod
