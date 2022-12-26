@@ -4,9 +4,11 @@ from typing import List
 # https://leetcode.com/problems/jump-game/discuss/20907/1-6-lines-O(n)-time-O(1)-space
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        max_index = 0
-        for i, n in enumerate(nums):
-            if i > max_index:
+        max_idx = 0
+
+        for i, dist in enumerate(nums):
+            if max_idx < i:
                 return False
-            max_index = max(max_index, i + n)
+            max_idx = max(max_idx, i + dist)
+
         return True
