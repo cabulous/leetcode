@@ -9,12 +9,12 @@ class BinaryMatrix(object):
 class Solution:
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
         rows, cols = binaryMatrix.dimensions()
-        cur_row, cur_col = 0, cols - 1
+        curr_row, curr_col = 0, cols - 1
 
-        while cur_row < rows and cur_col >= 0:
-            if binaryMatrix.get(cur_row, cur_col) == 0:
-                cur_row += 1
+        while curr_row < rows and 0 <= curr_col:
+            if binaryMatrix.get(curr_row, curr_col) == 0:
+                curr_row += 1
             else:
-                cur_col -= 1
+                curr_col -= 1
 
-        return cur_col + 1 if cur_col != cols - 1 else -1
+        return curr_col + 1 if curr_col != cols - 1 else -1

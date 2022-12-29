@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        sold = float('-inf')
+        sold = 0
         held = float('-inf')
         reset = 0
 
