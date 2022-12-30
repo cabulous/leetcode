@@ -16,6 +16,5 @@ class Solution:
         if node == len(self.graph) - 1:
             self.res.append(path)
             return
-
         for next_node in self.graph[node]:
             self.dfs(next_node, path + [next_node])
