@@ -4,11 +4,11 @@ from typing import List
 class Solution:
 
     def __init__(self):
+        self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        self.visited_mark = -2
         self.grid = []
         self.rows = 0
         self.cols = 0
-        self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-        self.visited_mark = -2
         self.res = 0
 
     def uniquePathsIII(self, grid: List[List[int]]) -> int:
@@ -18,7 +18,6 @@ class Solution:
 
         start_row, start_col = 0, 0
         empty_cells = 0
-
         for r in range(self.rows):
             for c in range(self.cols):
                 if grid[r][c] == 1:
