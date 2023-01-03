@@ -55,6 +55,7 @@ class Solution:
 
     def __init__(self):
         self.directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+        self.visited_mark = '#'
         self.board = []
         self.rows = 0
         self.cols = 0
@@ -82,7 +83,7 @@ class Solution:
             return False
 
         found = False
-        self.board[row][col] = '#'
+        self.board[row][col] = self.visited_mark
 
         for dr, dc in self.directions:
             found = self.backtrack(row + dr, col + dc, chars[1:])
