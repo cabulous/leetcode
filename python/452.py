@@ -3,17 +3,14 @@ from typing import List
 
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        if not points:
-            return 0
+        sorted_points = sorted(points, key=lambda x: x[1])
 
-        points.sort(key=lambda x: x[1])
+        prev_end = sorted_points[0][1]
+        res = 1
 
-        prev_end = points[0][1]
-        arrow_count = 1
-
-        for start, end in points[1:]:
+        for start, end in sorted_points[1:]:
             if prev_end < start:
-                arrow_count += 1
                 prev_end = end
+                res += 1
 
-        return arrow_count
+        return res

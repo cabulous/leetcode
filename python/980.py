@@ -4,7 +4,7 @@ from typing import List
 class Solution:
 
     def __init__(self):
-        self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         self.visited_mark = -2
         self.grid = []
         self.rows = 0
