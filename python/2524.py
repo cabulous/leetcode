@@ -28,17 +28,14 @@ class Solution:
             if freq[right_num] > 0:
                 curr -= self.mod_pow(right_num, freq[right_num])
             curr += self.mod_pow(right_num, freq[right_num] + 1)
-            curr %= MOD
 
+            curr %= MOD
             res = max(res, curr)
 
             freq[left_num] -= 1
-            if freq[left_num] == 0:
-                del freq[left_num]
             freq[right_num] += 1
 
         return res
 
-    @lru_cache(None)
-    def mod_pow(self, a, b):
-        return pow(a, b, MOD)
+    def mod_pow(self, num, count):
+        return pow(num, count, MOD)
