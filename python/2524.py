@@ -15,9 +15,9 @@ class Solution:
 
         res = curr
 
-        for i in range(1, len(nums) - k + 1):
-            left_num = nums[i - 1]
-            right_num = nums[i + k - 1]
+        for i in range(len(nums) - k):
+            left_num = nums[i]
+            right_num = nums[i + k]
             if left_num == right_num:
                 continue
 
