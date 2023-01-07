@@ -37,6 +37,7 @@ class Solution:
 
 
 class Solution:
+
     def __init__(self):
         self.graph = defaultdict(list)
         self.color = []
