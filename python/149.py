@@ -5,15 +5,14 @@ from typing import List
 # https://leetcode.com/problems/max-points-on-a-line/discuss/47108/Python-68-ms-code/264385
 class Solution:
     def maxPoints(self, points: List[List[int]]) -> int:
-        point_count = len(points)
         res = 0
 
-        for i in range(point_count):
+        for i in range(len(points)):
             slopes = defaultdict(lambda: 1)
             same = 0
             x1, y1 = points[i]
 
-            for j in range(i + 1, point_count):
+            for j in range(i + 1, len(points)):
                 x2, y2 = points[j]
                 dx, dy = x1 - x2, y1 - y2
 
