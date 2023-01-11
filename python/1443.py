@@ -7,7 +7,6 @@ class Solution:
     def __init__(self):
         self.has_apple = []
         self.graph = defaultdict(list)
-        self.res = []
 
     def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
         self.has_apple = hasApple
