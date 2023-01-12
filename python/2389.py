@@ -10,6 +10,7 @@ class Solution:
 
         prefix_sum = prefix_sum[1:]
         res = []
+
         for query in queries:
             idx = bisect.bisect_right(prefix_sum, query)
             res.append(idx)

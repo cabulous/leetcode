@@ -10,9 +10,11 @@ class Solution:
 
     def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
         self.has_apple = hasApple
+
         for u, v in edges:
             self.graph[u].append(v)
             self.graph[v].append(u)
+
         return max(0, self.dfs(0, -1) - 2)
 
     def dfs(self, curr, prev):
@@ -22,7 +24,7 @@ class Solution:
             if node != prev:
                 res += self.dfs(node, curr)
 
-        if res or self.has_apple[curr]:
-            return res + 2
+        if res != 0 or self.has_apple[curr]:
+            res += 2
 
         return res
