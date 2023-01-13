@@ -24,9 +24,9 @@ class Solution:
         max1 = 0
         max2 = 0
 
-        for node in self.graph[curr]:
-            next_max = self.dfs(node)
-            if self.s[node] != self.s[curr]:
+        for next_node in self.graph[curr]:
+            next_max = self.dfs(next_node)
+            if self.s[next_node] != self.s[curr]:
                 if next_max > max1:
                     max1, max2 = next_max, max1
                 elif next_max > max2:
