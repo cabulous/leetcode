@@ -5,8 +5,8 @@ from typing import List
 class Solution:
 
     def __init__(self):
+        self.labels = ''
         self.graph = defaultdict(list)
-        self.labels = []
         self.res = []
 
     def countSubTrees(self, n: int, edges: List[List[int]], labels: str) -> List[int]:
@@ -24,9 +24,9 @@ class Solution:
     def dfs(self, curr, prev):
         count = Counter()
 
-        for node in self.graph[curr]:
-            if node != prev:
-                count += self.dfs(node, curr)
+        for next_node in self.graph[curr]:
+            if next_node != prev:
+                count += self.dfs(next_node, curr)
 
         count[self.labels[curr]] += 1
         self.res[curr] = count[self.labels[curr]]
