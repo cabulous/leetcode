@@ -40,11 +40,11 @@ class Solution:
                     if vals[next_node] <= val:
                         uf.union(node, next_node)
 
-            count = Counter()
+            group = Counter()
             for node in lookup[val]:
-                count[uf.find(node)] += 1
+                group[uf.find(node)] += 1
 
-            for root, _ in count.items():
-                res += math.comb(count[root], 2)
+            for count in group.values():
+                res += math.comb(count, 2)
 
         return res
