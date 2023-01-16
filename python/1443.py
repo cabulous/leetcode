@@ -2,6 +2,7 @@ from collections import defaultdict
 from typing import List
 
 
+# https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/solutions/3033301/python3-dfs-explained/
 class Solution:
 
     def __init__(self):
