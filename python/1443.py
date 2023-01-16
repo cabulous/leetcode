@@ -20,9 +20,9 @@ class Solution:
     def dfs(self, curr, prev):
         res = 0
 
-        for node in self.graph[curr]:
-            if node != prev:
-                res += self.dfs(node, curr)
+        for next_node in self.graph[curr]:
+            if next_node != prev:
+                res += self.dfs(next_node, curr)
 
         if res != 0 or self.has_apple[curr]:
             res += 2
