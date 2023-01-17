@@ -8,7 +8,6 @@ class Solution:
         for i in range(len(prefix_sum)):
             flip_to_zero = prefix_sum[i]
             flip_to_one = (len(s) - i) - (prefix_sum[-1] - prefix_sum[i])
-            curr = flip_to_zero + flip_to_one
-            res = min(res, curr)
+            res = min(res, flip_to_zero + flip_to_one)
 
         return res
