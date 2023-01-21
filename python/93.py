@@ -2,10 +2,15 @@ from typing import List
 
 
 class Solution:
+
+    def __init__(self):
+        self.s = ''
+        self.res = []
+
     def restoreIpAddresses(self, s: str) -> List[str]:
-        res = []
-        self.solve(res, '', 0, s, 0)
-        return res
+        self.s = s
+        self.solve('', 0, 0)
+        return self.res
 
     def is_valid(self, s):
         if len(s) > 3 or len(s) == 0:
@@ -16,13 +21,13 @@ class Solution:
             return False
         return True
 
-    def solve(self, res, output, index, s, dots):
+    def solve(self, curr, index, dots):
         if dots == 3:
-            if self.is_valid(s[index:]):
-                res.append(output + s[index:])
+            if self.is_valid(self.s[index:]):
+                self.res.append(curr + self.s[index:])
             return
 
-        for i in range(index, min(index + 3, len(s))):
-            if self.is_valid(s[index:i + 1]):
-                next_output = output + s[index:i + 1] + '.'
-                self.solve(res, next_output, i + 1, s, dots + 1)
+        for i in range(index, min(index + 3, len(self.s))):
+            if self.is_valid(self.s[index:i + 1]):
+                next_output = curr + self.s[index:i + 1] + '.'
+                self.solve(next_output, i + 1, dots + 1)
