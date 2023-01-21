@@ -12,15 +12,6 @@ class Solution:
         self.solve('', 0, 0)
         return self.res
 
-    def is_valid(self, s):
-        if len(s) > 3 or len(s) == 0:
-            return False
-        if len(s) > 1 and s[0] == '0':
-            return False
-        if int(s) > 255:
-            return False
-        return True
-
     def solve(self, curr, index, dots):
         if dots == 3:
             if self.is_valid(self.s[index:]):
@@ -29,5 +20,13 @@ class Solution:
 
         for i in range(index, min(index + 3, len(self.s))):
             if self.is_valid(self.s[index:i + 1]):
-                next_output = curr + self.s[index:i + 1] + '.'
-                self.solve(next_output, i + 1, dots + 1)
+                self.solve(curr + self.s[index:i + 1] + '.', i + 1, dots + 1)
+
+    def is_valid(self, s):
+        if len(s) > 3 or len(s) == 0:
+            return False
+        if len(s) > 1 and s[0] == '0':
+            return False
+        if int(s) > 255:
+            return False
+        return True
