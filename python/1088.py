@@ -15,9 +15,13 @@ class Solution:
         if num != num_rotated:
             self.res += 1
 
-        for d, d_rotated in self.rotate180:
-            if d == num == 0:
+        for digit, digit_rotated in self.rotate180:
+            if digit == num == 0:
                 continue
-            if num * 10 + d > self.num_max:
+            if num * 10 + digit > self.num_max:
                 break
-            self.dfs(num * 10 + d, d_rotated * unit_rotated + num_rotated, unit_rotated * 10)
+            self.dfs(
+                num * 10 + digit,
+                digit_rotated * unit_rotated + num_rotated,
+                unit_rotated * 10
+            )
