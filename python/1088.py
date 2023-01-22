@@ -23,5 +23,5 @@ class Solution:
             self.dfs(
                 num * 10 + digit,
                 digit_rotated * unit_rotated + num_rotated,
-                unit_rotated * 10
+                unit_rotated * 10,
             )
