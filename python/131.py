@@ -5,26 +5,23 @@ from typing import List
 class Solution:
 
     def __init__(self):
+        self.s = ''
         self.res = []
 
     def partition(self, s: str) -> List[List[str]]:
-        if not s:
-            return []
-
-        self.helper(s, [])
+        self.s = s
+        self.backtrack(0, [])
         return self.res
 
-    def helper(self, remain, curr_list):
-        if not remain:
-            self.res.append(curr_list[:])
+    def backtrack(self, index, curr):
+        if index == len(self.s):
+            self.res.append(curr)
             return
 
-        for end_index in range(1, len(remain) + 1):
-            word = remain[:end_index]
+        for end in range(index, len(self.s)):
+            word = self.s[index:end + 1]
             if self.is_palindrome(word):
-                curr_list.append(word)
-                self.helper(remain[end_index:], curr_list)
-                curr_list.pop()
+                self.backtrack(end + 1, curr + [word])
 
-    def is_palindrome(self, string):
-        return string == string[::-1]
+    def is_palindrome(self, s):
+        return s == s[::-1]
