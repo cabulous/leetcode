@@ -16,8 +16,8 @@ class Solution:
             cols.reverse()
 
         dist = [-1] * (rows_count ** 2 + 1)
-        queue = deque([1])
         dist[1] = 0
+        queue = deque([1])
 
         while queue:
             curr = queue.popleft()
