@@ -7,7 +7,6 @@ class Solution:
             return -1
 
         trust_count = [0] * (n + 1)
-
         for a, b in trust:
             trust_count[a] -= 1
             trust_count[b] += 1
