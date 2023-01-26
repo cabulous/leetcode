@@ -25,7 +25,7 @@ class Solution:
                 self.backtrack(end + 1, curr + piece + '.', dots + 1)
 
     def is_valid(self, piece):
-        if len(piece) == 0 or 3 < len(piece):
+        if len(piece) == 0 or len(piece) > 3:
             return False
         if len(piece) > 1 and piece[0] == '0':
             return False
