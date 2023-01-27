@@ -19,12 +19,10 @@ class Solution:
         for end in range(1, len(word)):
             prefix = word[:end]
             suffix = word[end:]
-            if prefix in self.words and suffix in self.words:
-                self.memo[word] = True
-                return True
-            if prefix in self.words and self.dfs(suffix):
-                self.memo[word] = True
-                return True
+            if prefix in self.words:
+                if suffix in self.words or self.dfs(suffix):
+                    self.memo[word] = True
+                    return True
 
         self.memo[word] = False
         return False
