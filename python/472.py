@@ -10,19 +10,18 @@ class Solution:
 
     def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
         self.words = set(words)
-        return [word for word in self.words if self.dfs(word)]
+        return [word for word in words if self.dfs(word)]
 
     def dfs(self, word):
         if word in self.memo:
             return self.memo[word]
 
-        for end_index in range(1, len(word)):
-            prefix, suffix = word[:end_index], word[end_index:]
-
+        for end in range(1, len(word)):
+            prefix = word[:end]
+            suffix = word[end:]
             if prefix in self.words and suffix in self.words:
                 self.memo[word] = True
                 return True
-
             if prefix in self.words and self.dfs(suffix):
                 self.memo[word] = True
                 return True
