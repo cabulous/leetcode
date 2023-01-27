@@ -13,14 +13,14 @@ class Solution:
         min_cost = [[float('inf')] * (k + 2) for _ in range(n)]
 
         while queue:
-            cost, node, steps = heapq.heappop(queue)
+            cost, node, step = heapq.heappop(queue)
             if node == dst:
                 return cost
-            if steps > k:
+            if step > k:
                 continue
             for next_node, price in graph[node]:
                 next_cost = cost + price
-                next_step = steps + 1
+                next_step = step + 1
                 if next_cost < min_cost[next_node][next_step]:
                     min_cost[next_node][next_step] = next_cost
                     heapq.heappush(queue, (next_cost, next_node, next_step))
