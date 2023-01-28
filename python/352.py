@@ -9,11 +9,11 @@ class SummaryRanges:
         self.intervals = []
         self.seen = set()
 
-    def addNum(self, val: int) -> None:
-        if val in self.seen:
+    def addNum(self, value: int) -> None:
+        if value in self.seen:
             return
-        self.seen.add(val)
-        heapq.heappush(self.intervals, [val, val])
+        self.seen.add(value)
+        heapq.heappush(self.intervals, [value, value])
 
     def _clean_up(self):
         res = []
