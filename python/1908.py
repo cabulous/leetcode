@@ -12,6 +12,7 @@ class Solution:
             return self.memo[key]
 
         if remaining == 0:
+            self.memo[key] = False
             return False
 
         for i in range(len(piles_state)):
