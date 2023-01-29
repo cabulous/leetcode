@@ -8,10 +8,11 @@ class Node:
         self.key = key
         self.val = val
         self.freq = 1
-        self.prev = self.next = None
+        self.prev = None
+        self.next = None
 
 
-class DLinkedList:
+class DoubleLinkedList:
 
     def __init__(self):
         self._sentinel = Node()
@@ -46,7 +47,7 @@ class LFUCache:
         self._size = 0
         self._capacity = capacity
         self._node = dict()
-        self._freq = defaultdict(DLinkedList)
+        self._freq = defaultdict(DoubleLinkedList)
         self._min_freq = 0
 
     def _update(self, node=None):
@@ -54,10 +55,10 @@ class LFUCache:
             return
         freq = node.freq
         self._freq[freq].pop(node)
-        if self._min_freq == freq and len(self._freq[freq]) == 0:
+        if self._min_freq == freq and not self._freq[freq]:
             self._min_freq += 1
         node.freq += 1
-        self._freq[node.val_to_freq].append(node)
+        self._freq[node.freq].append(node)
 
     def get(self, key: int) -> int:
         if key not in self._node:
