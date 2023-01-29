@@ -22,7 +22,7 @@ class DoubleLinkedList:
     def __len__(self):
         return self._size
 
-    def append(self, node=None):
+    def prepend(self, node=None):
         if node is None:
             return
         node.next = self._sentinel.next
@@ -46,7 +46,7 @@ class LFUCache:
     def __init__(self, capacity: int):
         self._size = 0
         self._capacity = capacity
-        self._node = dict()
+        self._node = {}
         self._freq = defaultdict(DoubleLinkedList)
         self._min_freq = 0
 
@@ -58,7 +58,7 @@ class LFUCache:
         if self._min_freq == freq and not self._freq[freq]:
             self._min_freq += 1
         node.freq += 1
-        self._freq[node.freq].append(node)
+        self._freq[node.freq].prepend(node)
 
     def get(self, key: int) -> int:
         if key not in self._node:
@@ -83,5 +83,5 @@ class LFUCache:
             node = Node(key, value)
             self._size += 1
             self._node[key] = node
-            self._freq[1].append(node)
+            self._freq[1].prepend(node)
             self._min_freq = 1
