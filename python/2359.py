@@ -11,10 +11,10 @@ class Solution:
         self.edges = edges
 
         dist1 = [-1] * len(edges)
-        self.dfs(node1, dist1, 0)
+        self._calc_dist(dist1, node1, 0)
 
         dist2 = [-1] * len(edges)
-        self.dfs(node2, dist2, 0)
+        self._calc_dist(dist2, node2, 0)
 
         min_dist = float('inf')
         res = -1
@@ -25,7 +25,7 @@ class Solution:
 
         return res
 
-    def dfs(self, node, dist, steps):
+    def _calc_dist(self, dist, node, steps):
         while node != -1 and dist[node] == -1:
             dist[node] = steps
             steps += 1
