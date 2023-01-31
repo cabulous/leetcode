@@ -18,8 +18,8 @@ class Solution:
                 return cost
             if step > k:
                 continue
-            for next_node, price in graph[node]:
-                next_cost = cost + price
+            for next_node, delta_cost in graph[node]:
+                next_cost = cost + delta_cost
                 next_step = step + 1
                 if next_cost < min_cost[next_node][next_step]:
                     min_cost[next_node][next_step] = next_cost
