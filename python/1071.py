@@ -16,13 +16,3 @@ class Solution:
             return self.gcdOfStrings(str1[len(str2):], str2)
 
         return ''
-
-
-class Solution:
-    def gcdOfStrings(self, str1: str, str2: str) -> str:
-        gcd = math.gcd(len(str1), len(str2))
-
-        if str1[:gcd] * (len(str2) // gcd) == str2 and str2[:gcd] * (len(str1) // gcd) == str1:
-            return str1[:gcd]
-
-        return ''

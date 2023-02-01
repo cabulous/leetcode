@@ -20,13 +20,13 @@ class Solution:
 
         return self.res
 
-    def dfs(self, curr):
+    def dfs(self, curr_node):
         max1 = 0
         max2 = 0
 
-        for next_node in self.graph[curr]:
+        for next_node in self.graph[curr_node]:
             next_max = self.dfs(next_node)
-            if self.s[next_node] != self.s[curr]:
+            if self.s[next_node] != self.s[curr_node]:
                 if next_max > max1:
                     max1, max2 = next_max, max1
                 elif next_max > max2:
