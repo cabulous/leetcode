@@ -1,24 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def isAlienSorted(self, words: List[str], order: str) -> bool:
-        m = {c: i for i, c in enumerate(order)}
-
-        for i in range(len(words) - 1):
-            for j in range(len(words[i])):
-                if j >= len(words[i + 1]):
-                    return False
-                if words[i][j] != words[i + 1][j]:
-                    if m[words[i][j]] >= m[words[i + 1][j]]:
-                        return False
-                    break
-
-        return True
-
-
-class Solution:
-    def isAlienSorted(self, words: List[str], order: str) -> bool:
-        m = {c: i for i, c in enumerate(order)}
-        words = [[m[c] for c in w] for w in words]
-        return all(w1 <= w2 for w1, w2 in zip(words, words[1:]))
+    def isAlienSorted(self, words: list[str], order: str) -> bool:
+        lookup = {ch: idx for idx, ch in enumerate(order)}
+        words_idx = [[lookup[ch] for ch in w] for w in words]
+        return all(idx1 <= idx2 for idx1, idx2 in zip(words_idx, words_idx[1:]))

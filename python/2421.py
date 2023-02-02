@@ -38,7 +38,7 @@ class Solution:
             for node in lookup[val]:
                 for next_node in graph[node]:
                     if vals[next_node] <= val:
-                        uf.union(node, next_node)
+                        uf.union(next_node, node)
 
             group = Counter()
             for node in lookup[val]:
