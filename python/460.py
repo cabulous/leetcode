@@ -63,7 +63,7 @@ class LFUCache:
 
     def get(self, key: int) -> int:
         if key not in self._node:
-            return - 1
+            return -1
         node = self._node[key]
         self._update(node)
         return node.val
