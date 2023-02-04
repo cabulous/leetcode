@@ -4,7 +4,8 @@ from collections import Counter
 # https://leetcode.com/problems/permutation-in-string/discuss/175592/Python-8-lines-Sliding-Window
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        count1, count2 = Counter(s1), Counter(s2[:len(s1)])
+        count1 = Counter(s1)
+        count2 = Counter(s2[:len(s1)])
         win_size = len(s1)
 
         for right in range(len(s1), len(s2)):
