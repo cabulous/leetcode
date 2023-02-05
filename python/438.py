@@ -8,21 +8,25 @@ class Solution:
         if len(s) < len(p):
             return []
 
-        s_count = Counter(s[:len(p) - 1])
+        win_count = Counter(s[:len(p)])
         p_count = Counter(p)
-        left = 0
+
+        win_size = len(p)
         res = []
 
-        for right in range(len(p) - 1, len(s)):
-            s_count[s[right]] += 1
+        for right in range(len(p), len(s)):
+            left = right - win_size
 
-            if s_count == p_count:
+            if win_count == p_count:
                 res.append(left)
 
-            s_count[s[left]] -= 1
-            if s_count[s[left]] == 0:
-                del s_count[s[left]]
+            win_count[s[right]] += 1
 
-            left += 1
+            win_count[s[left]] -= 1
+            if win_count[s[left]] == 0:
+                del win_count[s[left]]
+
+        if win_count == p_count:
+            res.append(len(s) - win_size)
 
         return res
