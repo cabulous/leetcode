@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
 
     def __init__(self):
@@ -8,20 +5,20 @@ class Solution:
         self.curr = []
         self.res = set()
 
-    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+    def findSubsequences(self, nums: list[int]) -> list[list[int]]:
         self.nums = nums
         self.backtrack(0)
         return list(self.res)
 
-    def backtrack(self, index):
-        if index == len(self.nums):
+    def backtrack(self, idx):
+        if idx == len(self.nums):
             if len(self.curr) >= 2:
                 self.res.add(tuple(self.curr))
             return
 
-        if not self.curr or self.curr[-1] <= self.nums[index]:
-            self.curr.append(self.nums[index])
-            self.backtrack(index + 1)
+        if not self.curr or self.curr[-1] <= self.nums[idx]:
+            self.curr.append(self.nums[idx])
+            self.backtrack(idx + 1)
             self.curr.pop()
 
-        self.backtrack(index + 1)
+        self.backtrack(idx + 1)
