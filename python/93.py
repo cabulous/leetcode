@@ -1,26 +1,23 @@
-from typing import List
-
-
 class Solution:
 
     def __init__(self):
         self.s = ''
         self.res = []
 
-    def restoreIpAddresses(self, s: str) -> List[str]:
+    def restoreIpAddresses(self, s: str) -> list[str]:
         self.s = s
         self.backtrack(0, [], 0)
         return self.res
 
-    def backtrack(self, index, curr, dots):
+    def backtrack(self, idx, curr, dots):
         if dots == 3:
-            remain = self.s[index:]
-            if self.is_valid(remain):
-                self.res.append(''.join(curr + [remain]))
+            piece = self.s[idx:]
+            if self.is_valid(piece):
+                self.res.append(''.join(curr + [piece]))
             return
 
-        for end in range(index, min(index + 3, len(self.s))):
-            piece = self.s[index:end + 1]
+        for end in range(idx, min(idx + 3, len(self.s))):
+            piece = self.s[idx:end + 1]
             if self.is_valid(piece):
                 self.backtrack(end + 1, curr + [piece + '.'], dots + 1)
 
