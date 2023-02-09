@@ -18,6 +18,6 @@ class Solution:
             count2[s2[left]] -= 1
 
             if count2[s2[left]] == 0:
-                del count2[s2[left]]
+                count2.pop(s2[left])
 
         return count1 == count2
