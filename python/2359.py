@@ -1,13 +1,10 @@
-from typing import List
-
-
 # https://leetcode.com/problems/find-closest-node-to-given-two-nodes/solutions/3095880/easy-solution-fully-explained-two-dfs-c-python3-commented/
 class Solution:
 
     def __init__(self):
         self.edges = []
 
-    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+    def closestMeetingNode(self, edges: list[int], node1: int, node2: int) -> int:
         self.edges = edges
 
         dist1 = [-1] * len(edges)
@@ -25,8 +22,8 @@ class Solution:
 
         return res
 
-    def _calc_dist(self, dist, node, steps):
+    def _calc_dist(self, dist, node, step):
         while node != -1 and dist[node] == -1:
-            dist[node] = steps
-            steps += 1
+            dist[node] = step
+            step += 1
             node = self.edges[node]
