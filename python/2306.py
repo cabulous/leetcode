@@ -7,7 +7,7 @@ class Solution:
         res = 0
         for i in range(25):
             for j in range(i + 1, 26):
-                num_of_mutual = len(initial_group[i] & initial_group[j])
-                res += 2 * (len(initial_group[i]) - num_of_mutual) * (len(initial_group[j]) - num_of_mutual)
+                mutual = len(initial_group[i] & initial_group[j])
+                res += 2 * (len(initial_group[i]) - mutual) * (len(initial_group[j]) - mutual)
 
         return res
