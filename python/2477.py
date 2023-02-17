@@ -16,6 +16,7 @@ class Solution:
 
         self.seats = seats
         self.dfs(0, -1)
+
         return self.res
 
     def dfs(self, node, prev_node):
