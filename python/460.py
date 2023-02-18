@@ -25,10 +25,10 @@ class DoubleLinkedList:
     def prepend(self, node=None):
         if node is None:
             return
-        node.next = self._sentinel.next
         node.prev = self._sentinel
-        node.next.prev = node
+        node.next = self._sentinel.next
         node.prev.next = node
+        node.next.prev = node
         self._size += 1
 
     def pop(self, node=None):
