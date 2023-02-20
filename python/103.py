@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 
 
 class TreeNode:
@@ -9,20 +9,20 @@ class TreeNode:
 
 
 class Solution:
-    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if root is None:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> list[list[int]]:
+        if not root:
             return []
 
-        res = []
         level = [root]
-        left_to_right = True
+        is_left_to_right = True
+        res = []
+
         while level:
-            curr = [node.val for node in level]
-            res.append(curr)
-            left_to_right = not left_to_right
-            if left_to_right:
-                level = [kid for node in reversed(level) for kid in [node.left, node.right] if kid]
+            res.append([node.val for node in level])
+            is_left_to_right = not is_left_to_right
+            if is_left_to_right:
+                level = [kid for node in reversed(level) for kid in (node.left, node.right) if kid]
             else:
-                level = [kid for node in reversed(level) for kid in [node.right, node.left] if kid]
+                level = [kid for node in reversed(level) for kid in (node.right, node.left) if kid]
 
         return res
