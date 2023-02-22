@@ -14,10 +14,11 @@ class Solution:
 
 class Solution:
     def numberOfWays(self, numPeople: int) -> int:
+        mod = 10 ** 9 + 7
+
         res = 1
         for i in range(1, numPeople // 2 + 1):
             res *= (numPeople - i + 1)
             res //= i
 
-        mod = 10 ** 9 + 7
         return res // (numPeople // 2 + 1) % mod
