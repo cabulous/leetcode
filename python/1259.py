@@ -1,6 +1,8 @@
+# https://leetcode.com/problems/handshakes-that-dont-cross/solutions/430539/java-c-python-dp-and-o-n/
 class Solution:
     def numberOfWays(self, numPeople: int) -> int:
         mod = 10 ** 9 + 7
+
         dp = [0] * (numPeople // 2 + 1)
         dp[0] = 1
 
