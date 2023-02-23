@@ -15,10 +15,9 @@ class Solution:
         while taken_count < k:
             while projects and projects[-1][0] <= res:
                 heapq.heappush(candidates, -projects.pop()[1])
-            if len(candidates) == 0:
+            if not candidates:
                 return res
-            max_profit = -heapq.heappop(candidates)
-            res += max_profit
+            res += -heapq.heappop(candidates)
             taken_count += 1
 
         return res
