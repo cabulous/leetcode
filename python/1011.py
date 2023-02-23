@@ -10,6 +10,7 @@ class Solution:
 
         left = max(weights)
         right = sum(weights)
+
         while left < right:
             mid = left + (right - left) // 2
             if self.feasible(mid):
@@ -20,8 +21,8 @@ class Solution:
         return left
 
     def feasible(self, max_weight):
-        days_needed = 1
         curr_load = 0
+        days_needed = 1
 
         for weight in self.weights:
             curr_load += weight
