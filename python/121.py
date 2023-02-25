@@ -1,10 +1,9 @@
-import math
 from typing import List
 
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        price_min = math.inf
+        price_min = float('inf')
         res = 0
 
         for price in prices:
