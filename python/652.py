@@ -19,18 +19,18 @@ class Solution:
         self.encode(root)
         return self.res
 
-    def encode(self, root):
-        if not root:
+    def encode(self, node):
+        if not node:
             return ''
 
-        left = self.encode(root.left)
-        right = self.encode(root.right)
-        curr = str(root.val)
+        left = self.encode(node.left)
+        right = self.encode(node.right)
+        curr = str(node.val)
 
         encoded = f'{curr}#{left}#{right}'
         self.count[encoded] += 1
 
         if self.count[encoded] == 2:
-            self.res.append(root)
+            self.res.append(node)
 
         return encoded
