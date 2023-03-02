@@ -7,8 +7,8 @@ class Solution:
             return nums
 
         mid = len(nums) // 2
-        left = self.merge_sort(nums[mid:])
-        right = self.merge_sort(nums[:mid])
+        left = self.merge_sort(nums[:mid])
+        right = self.merge_sort(nums[mid:])
 
         return self.merge(left, right)
 
