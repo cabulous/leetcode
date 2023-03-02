@@ -27,7 +27,7 @@ class Solution:
                 if res[node] == -1:
                     res[node] = step
                 for next_node, next_color in graph[node]:
-                    if (next_node, next_color) not in visited and next_color != color:
+                    if next_color != color and (next_node, next_color) not in visited:
                         visited.add((next_node, next_color))
                         queue.append((next_node, next_color))
             step += 1
