@@ -5,16 +5,16 @@ class Solution:
         left = -1
         res = 0
 
-        for i in range(len(nums)):
-            if minK <= nums[i] <= maxK:
-                if nums[i] == minK:
-                    last_min_idx = i
-                if nums[i] == maxK:
-                    last_max_idx = i
+        for idx, val in enumerate(nums):
+            if minK <= val <= maxK:
+                if val == minK:
+                    last_min_idx = idx
+                if val == maxK:
+                    last_max_idx = idx
                 res += max(0, min(last_min_idx, last_max_idx) - left)
             else:
                 last_min_idx = -1
                 last_max_idx = -1
-                left = i
+                left = idx
 
         return res

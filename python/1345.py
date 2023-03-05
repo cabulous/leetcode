@@ -1,38 +1,36 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 # bfs
 class Solution:
     def minJumps(self, arr: [int]) -> int:
-        n = len(arr)
-
-        if n <= 1:
-            return 0
-
         graph = defaultdict(list)
-        for i in range(n):
-            graph[arr[i]].append(i)
+        for idx, val in enumerate(arr):
+            graph[val].append(idx)
 
-        cur = [0]
+        queue = deque([0])
         visited = {0}
         step = 0
+        target = len(arr) - 1
 
-        while cur:
-            nxt = []
-            for node in cur:
-                if node == n - 1:
+        while queue:
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node == target:
                     return step
+
                 for next_node in graph[arr[node]]:
                     if next_node not in visited:
                         visited.add(next_node)
-                        nxt.append(next_node)
+                        queue.append(next_node)
                 graph[arr[node]].clear()
-                for next_node in [node - 1, node + 1]:
-                    if 0 <= next_node < n and next_node not in visited:
+
+                for next_node in (node - 1, node + 1):
+                    if 0 <= next_node < len(arr) and next_node not in visited:
                         visited.add(next_node)
-                        nxt.append(next_node)
+                        queue.append(next_node)
+
             step += 1
-            cur = nxt
 
         return -1
 
@@ -40,39 +38,40 @@ class Solution:
 # bidirectional bfs
 class Solution:
     def minJumps(self, arr: [int]) -> int:
-        n = len(arr)
-
-        if n <= 1:
+        if len(arr) <= 1:
             return 0
 
         graph = defaultdict(list)
-        for i in range(n):
-            graph[arr[i]].append(i)
+        for idx, val in enumerate(arr):
+            graph[val].append(idx)
 
-        cur = [0]
-        other = [n - 1]
-        visited = {0, n - 1}
+        curr = deque([0])
+        other = deque([len(arr) - 1])
+        visited = {0, len(arr) - 1}
         step = 0
 
-        while cur:
-            if len(cur) > len(other):
-                cur, other = other, cur
-            nxt = []
-            for node in cur:
+        while curr:
+            if len(curr) > len(other):
+                curr, other = other, curr
+
+            for _ in range(len(curr)):
+                node = curr.popleft()
+
                 for next_node in graph[arr[node]]:
                     if next_node in other:
                         return step + 1
                     if next_node not in visited:
                         visited.add(next_node)
-                        nxt.append(next_node)
+                        curr.append(next_node)
                 graph[arr[node]].clear()
-                for next_node in [node - 1, node + 1]:
+
+                for next_node in (node - 1, node + 1):
                     if next_node in other:
                         return step + 1
-                    if 0 <= next_node < n and next_node not in visited:
+                    if 0 <= next_node < len(arr) and next_node not in visited:
                         visited.add(next_node)
-                        nxt.append(next_node)
+                        curr.append(next_node)
+
             step += 1
-            cur = nxt
 
         return -1
