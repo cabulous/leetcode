@@ -8,8 +8,8 @@ class Solution:
             count = 0
 
             while read_idx < len(chars) and chars[read_idx] == ch:
-                read_idx += 1
                 count += 1
+                read_idx += 1
 
             chars[write_idx] = ch
             write_idx += 1

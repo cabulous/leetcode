@@ -16,15 +16,15 @@ class Solution:
 
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
         self.inorder(root)
-        return int(self.res)
+        return self.res
 
     def inorder(self, node):
-        if node is None:
+        if not node:
             return
 
         self.inorder(node.left)
 
-        if self.prev is not None:
+        if self.prev:
             self.res = min(self.res, node.val - self.prev.val)
         self.prev = node
 
