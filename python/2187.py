@@ -5,7 +5,8 @@ class Solution:
 
         while left < right:
             mid = left + (right - left) // 2
-            if sum(mid // t for t in time) < totalTrips:
+            trips_needed = sum(mid // t for t in time)
+            if trips_needed < totalTrips:
                 left = mid + 1
             else:
                 right = mid
