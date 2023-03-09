@@ -9,8 +9,8 @@ class Solution:
 
         while left < right:
             mid = left + (right - left) // 2
-            hour_spent = sum(math.ceil(p / mid) for p in piles)
-            if hour_spent <= h:
+            hour_needed = sum(math.ceil(p / mid) for p in piles)
+            if hour_needed <= h:
                 right = mid
             else:
                 left = mid + 1

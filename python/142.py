@@ -38,11 +38,10 @@ class Solution:
         if intersect is None:
             return None
 
-        pointer1 = head
-        pointer2 = intersect
+        pt1 = head
+        pt2 = intersect
+        while pt1 != pt2:
+            pt1 = pt1.next
+            pt2 = pt2.next
 
-        while pointer1 != pointer2:
-            pointer1 = pointer1.next
-            pointer2 = pointer2.next
-
-        return pointer1
+        return pt1
