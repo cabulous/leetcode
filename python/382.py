@@ -11,11 +11,12 @@ class ListNode:
 class Solution:
 
     def __init__(self, head: Optional[ListNode]):
-        self.range = []
-        while head:
-            self.range.append(head.val)
-            head = head.next
+        self.vals = []
+        curr = head
+        while curr:
+            self.vals.append(curr.val)
+            curr = curr.next
 
     def getRandom(self) -> int:
-        pick = int(random.random() * len(self.range))
-        return self.range[pick]
+        pick = int(random.random() * len(self.vals))
+        return self.vals[pick]
