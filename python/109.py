@@ -43,8 +43,8 @@ class Solution:
         return node
 
     def list_to_values(self, head):
-        vals = []
+        res = []
         while head:
-            vals.append(head.val)
+            res.append(head.val)
             head = head.next
-        return vals
+        return res

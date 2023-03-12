@@ -1,5 +1,5 @@
-from queue import PriorityQueue
-from typing import List
+import heapq
+from typing import Optional
 
 
 class ListNode:
@@ -8,22 +8,21 @@ class ListNode:
         self.next = next
 
 
-# https://leetcode.com/problems/merge-k-sorted-lists/discuss/10511/10-line-python-solution-with-priority-queue
 class Solution:
-    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-        queue = PriorityQueue(maxsize=len(lists))
-        for i, first_node in enumerate(lists):
-            if first_node:
-                queue.put((first_node.val, i, first_node))
+    def mergeKLists(self, lists: list[Optional[ListNode]]) -> Optional[ListNode]:
+        queue = []
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(queue, (node.val, i, node))
 
         sentinel = ListNode()
         curr = sentinel
 
-        while queue.qsize() > 0:
-            _, index, node = queue.get()
+        while queue:
+            _, idx, node = heapq.heappop(queue)
             curr.next = node
             curr = curr.next
             if node.next:
-                queue.put((node.next.val, index, node.next))
+                heapq.heappush(queue, (node.next.val, idx, node.next))
 
         return sentinel.next
