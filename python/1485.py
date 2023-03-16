@@ -23,20 +23,20 @@ class Solution:
         self.memo = {}
 
     def copyRandomBinaryTree(self, root: 'Optional[Node]') -> 'Optional[NodeCopy]':
-        return self.dfs(root)
+        return self.clone(root)
 
-    def dfs(self, node):
+    def clone(self, node):
         if not node:
             return None
 
         if node in self.memo:
             return self.memo[node]
 
-        copy_node = NodeCopy(node.val)
-        self.memo[node] = copy_node
+        clone_node = NodeCopy(node.val)
+        self.memo[node] = clone_node
 
-        copy_node.left = self.dfs(node.left)
-        copy_node.right = self.dfs(node.right)
-        copy_node.random = self.dfs(node.random)
+        clone_node.left = self.clone(node.left)
+        clone_node.right = self.clone(node.right)
+        clone_node.random = self.clone(node.random)
 
-        return copy_node
+        return clone_node

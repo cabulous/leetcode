@@ -9,24 +9,27 @@ class TreeNode:
 
 
 class Solution:
+
     def __init__(self):
         self.postorder = []
-        self.idx_map = {}
+        self.lookup = {}
 
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
         self.postorder = postorder
-        self.idx_map = {val: idx for idx, val in enumerate(inorder)}
+        for i, val in enumerate(inorder):
+            self.lookup[val] = i
+
         return self.helper(0, len(inorder) - 1)
 
-    def helper(self, left_idx, right_idx):
-        if left_idx > right_idx:
+    def helper(self, left, right):
+        if left > right:
             return None
 
         val = self.postorder.pop()
         node = TreeNode(val)
-        idx = self.idx_map[val]
+        idx = self.lookup[val]
 
-        node.right = self.helper(idx + 1, right_idx)
-        node.left = self.helper(left_idx, idx - 1)
+        node.right = self.helper(idx + 1, right)
+        node.left = self.helper(left, idx - 1)
 
         return node

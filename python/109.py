@@ -23,7 +23,7 @@ class Solution:
         if not head:
             return None
 
-        self.vals = self.list_to_values(head)
+        self.vals = self.list_to_vals(head)
 
         return self.convert(0, len(self.vals) - 1)
 
@@ -42,7 +42,7 @@ class Solution:
 
         return node
 
-    def list_to_values(self, head):
+    def list_to_vals(self, head):
         res = []
         while head:
             res.append(head.val)
