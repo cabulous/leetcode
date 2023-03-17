@@ -1,29 +1,30 @@
 class Trie:
+
     def __init__(self):
+        self.root = {}
         self.WORD_END = '#'
-        self.trie = {}
 
     def insert(self, word: str) -> None:
-        t = self.trie
-        for w in word:
-            if w not in t:
-                t[w] = {}
-            t = t[w]
-        t[self.WORD_END] = self.WORD_END
+        node = self.root
+        for ch in word:
+            if ch not in node:
+                node[ch] = {}
+            node = node[ch]
+        node[self.WORD_END] = word
 
-    def search_prefix(self, prefix: str):
-        t = self.trie
-        for w in prefix:
-            if w not in t:
+    def search_prefix(self, prefix):
+        node = self.root
+        for ch in prefix:
+            if ch not in node:
                 return None
-            t = t[w]
-        return t
+            node = node[ch]
+        return node
 
     def search(self, word: str) -> bool:
-        t = self.search_prefix(word)
-        if not t:
+        node = self.search_prefix(word)
+        if not node:
             return False
-        return self.WORD_END in t
+        return self.WORD_END in node
 
     def startsWith(self, prefix: str) -> bool:
         return self.search_prefix(prefix) is not None
