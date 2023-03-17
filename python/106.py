@@ -27,8 +27,11 @@ class Solution:
 
         val = self.postorder.pop()
         node = TreeNode(val)
-        idx = self.lookup[val]
 
+        if left == right:
+            return node
+
+        idx = self.lookup[val]
         node.right = self.helper(idx + 1, right)
         node.left = self.helper(left, idx - 1)
 

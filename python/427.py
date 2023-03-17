@@ -11,7 +11,7 @@ class Node:
 class Solution:
 
     def __init__(self):
-        self.grid = []
+        self.grid = [[]]
 
     def construct(self, grid: list[list[int]]) -> 'Node':
         self.grid = grid
