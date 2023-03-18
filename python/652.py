@@ -23,9 +23,9 @@ class Solution:
         if not node:
             return ''
 
+        curr = str(node.val)
         left = self.encode(node.left)
         right = self.encode(node.right)
-        curr = str(node.val)
 
         encoded = f'{curr}#{left}#{right}'
         self.count[encoded] += 1
