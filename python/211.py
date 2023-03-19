@@ -5,7 +5,7 @@ from collections import defaultdict, deque
 class TrieNode:
 
     def __init__(self):
-        self.children = defaultdict(TrieNode)
+        self.next = defaultdict(TrieNode)
         self.is_word = False
 
 
@@ -16,20 +16,22 @@ class WordDictionary:
 
     def addWord(self, word: str) -> None:
         node = self.root
-        for c in word:
-            node = node.children[c]
+        for ch in word:
+            node = node.next[ch]
         node.is_word = True
 
     def search(self, word: str) -> bool:
-        stack = deque([(self.root, 0)])
-        while stack:
-            node, index = stack.popleft()
-            if index == len(word):
+        queue = deque([(self.root, 0)])
+        while queue:
+            node, idx = queue.popleft()
+            if idx == len(word):
                 if node.is_word:
                     return True
-            elif word[index] == '.':
-                for kid in node.children:
-                    stack.append((node.children[kid], index + 1))
-            elif word[index] in node.children:
-                stack.append((node.children[word[index]], index + 1))
+            else:
+                ch = word[idx]
+                if ch == '.':
+                    for kid in node.next:
+                        queue.append((node.next[kid], idx + 1))
+                elif ch in node.next:
+                    queue.append((node.next[ch], idx + 1))
         return False
