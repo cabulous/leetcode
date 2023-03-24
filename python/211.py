@@ -30,8 +30,8 @@ class WordDictionary:
             else:
                 ch = word[idx]
                 if ch == '.':
-                    for kid in node.next:
-                        queue.append((node.next[kid], idx + 1))
+                    for next_ch in node.next:
+                        queue.append((node.next[next_ch], idx + 1))
                 elif ch in node.next:
                     queue.append((node.next[ch], idx + 1))
         return False
