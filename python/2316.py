@@ -28,8 +28,8 @@ class Solution:
         curr_size = group_sizes[0]
         res = 0
 
-        for next_size in group_sizes[1:]:
-            res += curr_size * next_size
-            curr_size += next_size
+        for size in group_sizes[1:]:
+            res += curr_size * size
+            curr_size += size
 
         return res
