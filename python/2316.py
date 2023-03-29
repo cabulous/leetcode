@@ -25,11 +25,11 @@ class Solution:
             uf.union(u, v)
 
         group_sizes = list(Counter(uf.find(i) for i in range(n)).values())
-        curr_size = group_sizes[0]
+        curr = group_sizes[0]
         res = 0
 
         for size in group_sizes[1:]:
-            res += curr_size * size
-            curr_size += size
+            res += curr * size
+            curr += size
 
         return res
