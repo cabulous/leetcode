@@ -18,7 +18,7 @@ class Solution:
 
         for r in range(self.rows - 1, -1, -1):
             for c in range(self.cols - 1, -1, -1):
-                self.pre_sum[r][c] = self.pre_sum[r + 1][c] + self.pre_sum[r][c - 1] - self.pre_sum[r + 1][c + 1] + (
+                self.pre_sum[r][c] = self.pre_sum[r + 1][c] + self.pre_sum[r][c + 1] - self.pre_sum[r + 1][c + 1] + (
                         pizza[r][c] == 'A')
 
         return self.dp(0, 0, k - 1)
