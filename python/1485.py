@@ -26,7 +26,7 @@ class Solution:
         return self.clone(root)
 
     def clone(self, node):
-        if not node:
+        if node is None:
             return None
 
         if node in self.memo:
