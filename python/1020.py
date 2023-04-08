@@ -1,7 +1,7 @@
 import copy
 
-WATER = 1
-LAND = 0
+WATER = 0
+LAND = 1
 
 
 class Solution:
@@ -11,7 +11,7 @@ class Solution:
         self.rows = 0
         self.cols = 0
 
-    def closedIsland(self, grid: list[list[int]]) -> int:
+    def numEnclaves(self, grid: list[list[int]]) -> int:
         self.grid = copy.deepcopy(grid)
         self.rows = len(grid)
         self.cols = len(grid[0])
@@ -22,14 +22,7 @@ class Solution:
                 if on_edge and self.grid[r][c] == LAND:
                     self.dfs(r, c)
 
-        res = 0
-        for r in range(self.rows):
-            for c in range(self.cols):
-                if self.grid[r][c] == LAND:
-                    self.dfs(r, c)
-                    res += 1
-
-        return res
+        return sum(sum(row) for row in self.grid)
 
     def dfs(self, row, col):
         if 0 <= row < self.rows and 0 <= col < self.cols and self.grid[row][col] == LAND:
