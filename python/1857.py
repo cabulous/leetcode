@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 
+# https://leetcode.com/problems/largest-color-value-in-a-directed-graph/solutions/1198908/python-shortest-code-and-fast/?orderBy=most_votes
 class Solution:
     def largestPathValue(self, colors: str, edges: list[list[int]]) -> int:
         in_degree = [0] * len(colors)
