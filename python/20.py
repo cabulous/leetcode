@@ -8,10 +8,10 @@ class Solution:
             if ch in valid_parentheses:
                 if not stack:
                     return False
-                if stack[-1] != valid_parentheses[ch]:
+                prev = stack.pop()
+                if valid_parentheses[ch] != prev:
                     return False
-                stack.pop()
             else:
                 stack.append(ch)
 
-        return len(stack) == 0
+        return not stack
