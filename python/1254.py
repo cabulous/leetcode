@@ -1,7 +1,7 @@
 import copy
 
-WATER = 1
 LAND = 0
+WATER = 1
 
 
 class Solution:
