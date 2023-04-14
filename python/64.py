@@ -3,9 +3,9 @@ import copy
 
 class Solution:
     def minPathSum(self, grid: list[list[int]]) -> int:
+        dp = copy.deepcopy(grid)
         rows = len(grid)
         cols = len(grid[0])
-        dp = copy.deepcopy(grid)
 
         for r in range(1, rows):
             dp[r][0] += dp[r - 1][0]

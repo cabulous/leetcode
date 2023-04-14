@@ -22,4 +22,7 @@ class Solution:
                 if in_degree[next_node] == 0:
                     zero_in_degree.append(next_node)
 
-        return -1 if sum(in_degree) > 0 else max(max(node) for node in counts)
+        if sum(in_degree) > 0:
+            return -1
+
+        return max(max(node) for node in counts)
