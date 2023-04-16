@@ -9,7 +9,7 @@ class Solution:
             graph[u].append(v)
             graph[v].append(u)
 
-        dist = [[(len(targetPath))] * n for _ in range(len(targetPath))]
+        dist = [[len(targetPath)] * n for _ in range(len(targetPath))]
         prev = [[0] * n for _ in range(len(targetPath))]
 
         for node in range(n):
