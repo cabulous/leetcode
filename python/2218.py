@@ -17,9 +17,9 @@ class Solution:
         if remain == 0:
             return 0
 
-        curr = 0
         res = self.dp(pile_idx + 1, remain)
 
+        curr = 0
         coin_count = min(remain, len(self.piles[pile_idx]))
         for coin_idx in range(coin_count):
             curr += self.piles[pile_idx][coin_idx]

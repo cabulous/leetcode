@@ -29,7 +29,7 @@ class Solution:
                 min_dist = dist[-1][node]
                 res[0] = node
         for i in range(len(targetPath) - 1, 0, -1):
-            next_node = prev[i][res[-1]]
-            res.append(next_node)
+            prev_node = prev[i][res[-1]]
+            res.append(prev_node)
 
         return res[::-1]
