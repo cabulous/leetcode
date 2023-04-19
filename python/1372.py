@@ -11,18 +11,18 @@ class TreeNode:
 # https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/solutions/531867/java-python-dfs-solution/?orderBy=most_votes
 class Solution:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        _, _, res = self.dfs(root)
+        __, __, res = self.dfs(root)
         return res
 
     def dfs(self, node):
         if not node:
             return -1, -1, -1
 
-        left_left, left_right, left_res = self.dfs(node.left)
-        right_left, right_right, right_res = self.dfs(node.right)
+        __, left_node_right, left_res = self.dfs(node.left)
+        right_node_left, __, right_res = self.dfs(node.right)
 
         return [
-            left_right + 1,
-            right_left + 1,
-            max(left_right + 1, right_left + 1, left_res, right_res),
+            left_node_right + 1,
+            right_node_left + 1,
+            max(left_node_right + 1, right_node_left + 1, left_res, right_res),
         ]

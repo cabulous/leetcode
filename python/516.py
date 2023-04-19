@@ -32,5 +32,5 @@ class Solution:
         if left == right:
             return 1
         if self.s[left] == self.s[right]:
-            return 2 + self.dp(left + 1, right - 1)
+            return self.dp(left + 1, right - 1) + 2
         return max(self.dp(left + 1, right), self.dp(left, right - 1))
