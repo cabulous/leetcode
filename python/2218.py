@@ -19,10 +19,10 @@ class Solution:
 
         res = self.dp(pile_idx + 1, remain)
 
-        total = 0
+        curr = 0
         coin_count = min(remain, len(self.piles[pile_idx]))
         for coin_idx in range(coin_count):
-            total += self.piles[pile_idx][coin_idx]
-            res = max(res, total + self.dp(pile_idx + 1, remain - 1 - coin_idx))
+            curr += self.piles[pile_idx][coin_idx]
+            res = max(res, curr + self.dp(pile_idx + 1, remain - 1 - coin_idx))
 
         return res

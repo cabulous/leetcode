@@ -21,8 +21,8 @@ class Solution:
         __, left_node_right, left_res = self.dfs(node.left)
         right_node_left, __, right_res = self.dfs(node.right)
 
-        return [
+        return (
             left_node_right + 1,
             right_node_left + 1,
             max(left_node_right + 1, right_node_left + 1, left_res, right_res),
-        ]
+        )
