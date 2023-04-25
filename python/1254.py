@@ -16,11 +16,7 @@ class Solution:
         self.rows = len(grid)
         self.cols = len(grid[0])
 
-        for r in range(self.rows):
-            for c in range(self.cols):
-                on_edge = r in (0, self.rows - 1) or c in (0, self.cols - 1)
-                if on_edge and self.grid[r][c] == LAND:
-                    self.dfs(r, c)
+        self.fill_water_on_edge()
 
         res = 0
         for r in range(self.rows):
@@ -30,6 +26,13 @@ class Solution:
                     res += 1
 
         return res
+
+    def fill_water_on_edge(self):
+        for r in range(self.rows):
+            for c in range(self.cols):
+                on_edge = r in (0, self.rows - 1) or c in (0, self.cols - 1)
+                if on_edge and self.grid[r][c] == LAND:
+                    self.dfs(r, c)
 
     def dfs(self, row, col):
         if 0 <= row < self.rows and 0 <= col < self.cols and self.grid[row][col] == LAND:

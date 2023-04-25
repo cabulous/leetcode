@@ -31,5 +31,4 @@ class Solution:
             res %= MOD
 
         self.memo[start_idx] = res
-
         return res
