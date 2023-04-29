@@ -18,9 +18,8 @@ class UnionFind:
 class Solution:
     def distanceLimitedPathsExist(self, n: int, edgeList: list[list[int]], queries: list[list[int]]) -> list[bool]:
         uf = UnionFind(n)
-        sorted_queries = sorted((max_dist, p, q, i) for i, (p, q, max_dist) in enumerate(queries))
         sorted_edges = sorted((dist, u, v) for u, v, dist in edgeList)
-
+        sorted_queries = sorted((max_dist, p, q, i) for i, (p, q, max_dist) in enumerate(queries))
 
         res = [False] * len(sorted_queries)
         i = 0
