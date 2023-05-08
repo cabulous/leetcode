@@ -1,42 +1,42 @@
 class SparseMatrix:
 
-    def __init__(self, matrix):
-        self.values, self.row_index, self.col_index = self.compress_matrix(matrix)
+    def __init__(self, matrix: list[list[int]]):
+        self.values, self.row_index, self.col_index = self.compress(matrix)
 
-    def compress_matrix(self, matrix) -> tuple[list[int], list[int], list[int]]:
+    def compress(self, matrix: list[list[int]]) -> tuple[list[int], list[int], list[int]]:
         raise NotImplementedError('Implement it in the subclass')
 
 
 class RowWiseSparseMatrix(SparseMatrix):
-    def compress_matrix(self, matrix):
+    def compress(self, matrix: list[list[int]]) -> tuple[list[int], list[int], list[int]]:
         values = []
-        row_index = [0]
-        col_index = []
+        row_idx = [0]
+        col_idx = []
 
         for r in range(len(matrix)):
             for c in range(len(matrix[0])):
                 if matrix[r][c] != 0:
                     values.append(matrix[r][c])
-                    col_index.append(c)
-            row_index.append(len(values))
+                    col_idx.append(c)
+            row_idx.append(len(values))
 
-        return values, row_index, col_index
+        return values, row_idx, col_idx
 
 
 class ColWiseSparseMatrix(SparseMatrix):
-    def compress_matrix(self, matrix):
+    def compress(self, matrix: list[list[int]]) -> tuple[list[int], list[int], list[int]]:
         values = []
-        row_index = []
-        col_index = [0]
+        row_idx = []
+        col_idx = [0]
 
         for c in range(len(matrix[0])):
             for r in range(len(matrix)):
                 if matrix[r][c] != 0:
                     values.append(matrix[r][c])
-                    row_index.append(r)
-            col_index.append(len(values))
+                    row_idx.append(r)
+            col_idx.append(len(values))
 
-        return values, row_index, col_index
+        return values, row_idx, col_idx
 
 
 class Solution:

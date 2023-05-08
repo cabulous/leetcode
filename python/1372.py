@@ -24,5 +24,5 @@ class Solution:
         return (
             left_node_right + 1,
             right_node_left + 1,
-            max(left_node_right + 1, right_node_left + 1, left_res, right_res),
+            max(left_res, right_res, left_node_right + 1, right_node_left + 1),
         )
