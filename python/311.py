@@ -1,57 +1,57 @@
-from typing import List
-
-
 class SparseMatrix:
 
-    def __init__(self, matrix, col_wise):
-        self.values, self.row_index, self.col_index = self.compress_matrix(matrix, col_wise)
+    def __init__(self, matrix):
+        self.values, self.row_index, self.col_index = self.compress_matrix(matrix)
 
-    def compress_matrix(self, matrix, col_wise):
-        return self.compress_col_wise(matrix) if col_wise else self.compress_row_wise(matrix)
+    def compress_matrix(self, matrix) -> tuple[list[int], list[int], list[int]]:
+        raise NotImplementedError('Implement it in the subclass')
 
-    def compress_row_wise(self, matrix):
+
+class RowWiseSparseMatrix(SparseMatrix):
+    def compress_matrix(self, matrix):
         values = []
         row_index = [0]
         col_index = []
 
-        for row in range(len(matrix)):
-            for col in range(len(matrix[0])):
-                if matrix[row][col]:
-                    values.append(matrix[row][col])
-                    col_index.append(col)
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                if matrix[r][c] != 0:
+                    values.append(matrix[r][c])
+                    col_index.append(c)
             row_index.append(len(values))
 
         return values, row_index, col_index
 
-    def compress_col_wise(self, matrix):
+
+class ColWiseSparseMatrix(SparseMatrix):
+    def compress_matrix(self, matrix):
         values = []
         row_index = []
         col_index = [0]
 
-        for col in range(len(matrix[0])):
-            for row in range(len(matrix)):
-                if matrix[row][col]:
-                    values.append(matrix[row][col])
-                    row_index.append(row)
+        for c in range(len(matrix[0])):
+            for r in range(len(matrix)):
+                if matrix[r][c] != 0:
+                    values.append(matrix[r][c])
+                    row_index.append(r)
             col_index.append(len(values))
 
         return values, row_index, col_index
 
 
 class Solution:
-    def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:
-        matrix1 = SparseMatrix(mat1, False)
-        matrix2 = SparseMatrix(mat2, True)
-
+    def multiply(self, mat1: list[list[int]], mat2: list[list[int]]) -> list[list[int]]:
+        matrix1 = RowWiseSparseMatrix(mat1)
+        matrix2 = ColWiseSparseMatrix(mat2)
         res = [[0] * len(mat2[0]) for _ in range(len(mat1))]
 
-        for row in range(len(res)):
-            for col in range(len(res[0])):
-                mat1_row_start = matrix1.row_index[row]
-                mat1_row_end = matrix1.row_index[row + 1]
+        for r in range(len(res)):
+            for c in range(len(res[0])):
+                mat1_row_start = matrix1.row_index[r]
+                mat1_row_end = matrix1.row_index[r + 1]
 
-                mat2_col_start = matrix2.col_index[col]
-                mat2_col_end = matrix2.col_index[col + 1]
+                mat2_col_start = matrix2.col_index[c]
+                mat2_col_end = matrix2.col_index[c + 1]
 
                 while mat1_row_start < mat1_row_end and mat2_col_start < mat2_col_end:
                     if matrix1.col_index[mat1_row_start] < matrix2.row_index[mat2_col_start]:
@@ -59,7 +59,7 @@ class Solution:
                     elif matrix1.col_index[mat1_row_start] > matrix2.row_index[mat2_col_start]:
                         mat2_col_start += 1
                     else:
-                        res[row][col] += matrix1.values[mat1_row_start] * matrix2.values[mat2_col_start]
+                        res[r][c] += matrix1.values[mat1_row_start] * matrix2.values[mat2_col_start]
                         mat1_row_start += 1
                         mat2_col_start += 1
 
