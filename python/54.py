@@ -26,9 +26,3 @@ class Solution:
             right -= 1
 
         return res
-
-
-# https://leetcode.com/problems/spiral-matrix/discuss/20571/1-liner-in-Python-%2B-Ruby
-class Solution:
-    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
-        return matrix and [*matrix.pop(0)] + self.spiralOrder([*zip(*matrix)][::-1])
