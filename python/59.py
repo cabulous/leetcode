@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def generateMatrix(self, n: int) -> List[List[int]]:
+    def generateMatrix(self, n: int) -> list[list[int]]:
         res = [[0] * n for _ in range(n)]
 
         row = 0
