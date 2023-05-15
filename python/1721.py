@@ -11,10 +11,9 @@ class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         kth_node = head
         k -= 1
-
         while k > 0:
-            k -= 1
             kth_node = kth_node.next
+            k -= 1
 
         last_kth_node = head
         tail = kth_node

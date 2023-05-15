@@ -1,6 +1,3 @@
-from typing import List
-
-
 # https://leetcode.com/problems/similar-string-groups/discuss/132317/Simple-Java-8-Python-Union-Find
 class UnionFind:
 
@@ -20,7 +17,7 @@ class UnionFind:
 
 
 class Solution:
-    def numSimilarGroups(self, strs: List[str]) -> int:
+    def numSimilarGroups(self, strs: list[str]) -> int:
         uf = UnionFind(len(strs))
 
         for i in range(len(strs)):
