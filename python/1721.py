@@ -9,17 +9,17 @@ class ListNode:
 
 class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        kth_node = head
+        curr = head
         k -= 1
         while k > 0:
-            kth_node = kth_node.next
+            curr = curr.next
             k -= 1
 
+        kth_node = curr
         last_kth_node = head
-        tail = kth_node
-        while tail.next:
+        while curr.next:
             last_kth_node = last_kth_node.next
-            tail = tail.next
+            curr = curr.next
 
         kth_node.val, last_kth_node.val = last_kth_node.val, kth_node.val
 

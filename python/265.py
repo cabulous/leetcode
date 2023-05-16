@@ -24,13 +24,12 @@ class Solution:
         if idx == len(self.costs) - 1:
             return cost
 
-        next_cost = float('inf')
+        best = float('inf')
         for next_color in self.colors:
-            if next_color == color:
-                continue
-            next_cost = min(next_cost, self.dfs(idx + 1, next_color))
+            if next_color != color:
+                best = min(best, self.dfs(idx + 1, next_color))
 
-        return cost + next_cost
+        return best + cost
 
 
 class Solution:
@@ -41,9 +40,8 @@ class Solution:
             for color in range(len(dp[0])):
                 best = float('inf')
                 for prev_color in range(len(dp[0])):
-                    if prev_color == color:
-                        continue
-                    best = min(best, dp[house - 1][prev_color])
+                    if prev_color != color:
+                        best = min(best, dp[house - 1][prev_color])
                 dp[house][color] += best
 
         return min(dp[-1])
