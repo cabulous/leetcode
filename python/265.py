@@ -19,15 +19,15 @@ class Solution:
         return res
 
     @lru_cache(None)
-    def dfs(self, idx, color):
-        cost = self.costs[idx][color]
-        if idx == len(self.costs) - 1:
+    def dfs(self, house, color):
+        cost = self.costs[house][color]
+        if house == len(self.costs) - 1:
             return cost
 
         best = float('inf')
         for next_color in self.colors:
             if next_color != color:
-                best = min(best, self.dfs(idx + 1, next_color))
+                best = min(best, self.dfs(house + 1, next_color))
 
         return best + cost
 
