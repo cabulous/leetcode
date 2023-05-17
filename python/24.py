@@ -9,11 +9,12 @@ class ListNode:
 
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        sentinel = ListNode(0, head)
+        sentinel = ListNode(next=head)
         prev = sentinel
 
         while head and head.next:
-            first, second = head, head.next
+            first = head
+            second = head.next
             prev.next = second
             first.next, second.next = second.next, first
 
@@ -28,7 +29,8 @@ class Solution:
         if head is None or head.next is None:
             return head
 
-        first, second = head, head.next
+        first = head
+        second = head.next
         first.next, second.next = self.swapPairs(second.next), first
 
         return second
