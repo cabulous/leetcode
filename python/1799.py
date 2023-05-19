@@ -20,11 +20,11 @@ class Solution:
         res = 0
         for i in range(len(self.nums)):
             for j in range(i + 1, len(self.nums)):
-                next_mask = (1 << i) + (1 << j)
-                if not mask & next_mask:
+                curr_mask = (1 << i) + (1 << j)
+                if not mask & curr_mask:
                     res = max(
                         res,
-                        idx * math.gcd(self.nums[i], self.nums[j]) + self.dfs(idx + 1, mask + next_mask),
+                        idx * math.gcd(self.nums[i], self.nums[j]) + self.dfs(idx + 1, mask + curr_mask),
                     )
 
         return res
