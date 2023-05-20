@@ -4,15 +4,12 @@ from collections import defaultdict, deque
 # https://leetcode.com/problems/evaluate-division/discuss/88275/Python-fast-BFS-solution-with-detailed-explantion
 class Solution:
     def calcEquation(self, equations: list[list[str]], values: list[float], queries: list[list[str]]) -> list[float]:
-        graph = self.build_graph(equations, values)
-        return [self.find_path(graph, q) for q in queries]
-
-    def build_graph(self, equations, values):
         graph = defaultdict(list)
         for (u, v), val in zip(equations, values):
             graph[u].append((v, val))
             graph[v].append((u, 1 / val))
-        return graph
+
+        return [self.find_path(graph, q) for q in queries]
 
     def find_path(self, graph, query):
         source, target = query
@@ -21,7 +18,6 @@ class Solution:
 
         queue = deque([(source, 1.0)])
         visited = {source}
-
         while queue:
             node, val = queue.popleft()
             if node == target:

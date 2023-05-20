@@ -29,7 +29,7 @@ class Solution:
             if next_color != color:
                 best = min(best, self.dfs(house + 1, next_color))
 
-        return best + cost
+        return cost + best
 
 
 class Solution:

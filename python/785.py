@@ -6,7 +6,7 @@ class Solution:
 
     def __init__(self):
         self.memo = {}
-        self.graph = {}
+        self.graph = []
 
     def isBipartite(self, graph: List[List[int]]) -> bool:
         self.graph = graph
