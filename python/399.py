@@ -1,40 +1,34 @@
 from collections import defaultdict, deque
-from typing import List
 
 
 # https://leetcode.com/problems/evaluate-division/discuss/88275/Python-fast-BFS-solution-with-detailed-explantion
 class Solution:
-
-    def __init__(self):
-        self.graph = defaultdict(list)
-
-    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        self.build_graph(equations, values)
-        return [self.find_path(q) for q in queries]
+    def calcEquation(self, equations: list[list[str]], values: list[float], queries: list[list[str]]) -> list[float]:
+        graph = self.build_graph(equations, values)
+        return [self.find_path(graph, q) for q in queries]
 
     def build_graph(self, equations, values):
-        for [source, target], value in zip(equations, values):
-            self.graph[source].append((target, value))
-            self.graph[target].append((source, 1 / value))
+        graph = defaultdict(list)
+        for (u, v), val in zip(equations, values):
+            graph[u].append((v, val))
+            graph[v].append((u, 1 / val))
+        return graph
 
-    def find_path(self, query):
+    def find_path(self, graph, query):
         source, target = query
-
-        if source not in self.graph or target not in self.graph:
+        if source not in graph or target not in graph:
             return -1.0
 
         queue = deque([(source, 1.0)])
         visited = {source}
 
         while queue:
-            node, value = queue.popleft()
-
+            node, val = queue.popleft()
             if node == target:
-                return value
-
-            for next_node, next_value in self.graph[node]:
+                return val
+            for next_node, next_val in graph[node]:
                 if next_node not in visited:
                     visited.add(next_node)
-                    queue.append((next_node, value * next_value))
+                    queue.append((next_node, val * next_val))
 
         return -1.0
