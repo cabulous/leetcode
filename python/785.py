@@ -18,4 +18,8 @@ class Solution:
 
         self.memo[node] = color
 
-        return all(self.can_bipartite(next_node, -color) for next_node in self.graph[node])
+        for next_node in self.graph[node]:
+            if not self.can_bipartite(next_node, -color):
+                return False
+
+        return True
