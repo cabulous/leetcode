@@ -1,16 +1,20 @@
 class Solution:
     def new21Game(self, n: int, k: int, maxPts: int) -> float:
-        if k == 0 or n >= k + maxPts:
+        pivot = n
+        least = k
+        max_gain = maxPts
+
+        if least == 0 or pivot >= least + max_gain:
             return 1.0
 
-        dp = [1.0] + [0.0] * n
-        total = 1.0
+        dp = [1.0] + [0.0] * pivot
+        probability = 1.0
 
-        for point in range(1, n + 1):
-            dp[point] = total / maxPts
-            if point < k:
-                total += dp[point]
-            if point - maxPts >= 0:
-                total -= dp[point - maxPts]
+        for point in range(1, pivot + 1):
+            dp[point] = probability / max_gain
+            if point < least:
+                probability += dp[point]
+            if point - max_gain >= 0:
+                probability -= dp[point - max_gain]
 
-        return sum(dp[k:])
+        return sum(dp[least:])
