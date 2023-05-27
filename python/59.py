@@ -10,9 +10,9 @@ class Solution:
         for num in range(1, n * n + 1):
             res[row][col] = num
 
-            next_row = (row + dr) % n
-            next_col = (col + dc) % n
-            if res[next_row][next_col] != 0:
+            nr = (row + dr) % n
+            nc = (col + dc) % n
+            if res[nr][nc] != 0:
                 dr, dc = dc, -dr
 
             row += dr
