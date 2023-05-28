@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/stone-game-iii/solutions/564260/java-c-python-dp-o-1-space/
 class Solution:
     def stoneGameIII(self, stoneValue: list[int]) -> str:
         dp = [0] * 3
