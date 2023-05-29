@@ -5,7 +5,7 @@ class Solution:
         for i in range(len(questions) - 1, -1, -1):
             points, skip = questions[i]
             dp[i] = max(
-                points + dp[min(len(questions), i + 1 + skip)],
+                points + dp[min(len(questions), i + skip + 1)],
                 dp[i + 1],
             )
 
