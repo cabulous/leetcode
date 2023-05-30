@@ -10,6 +10,6 @@ class Solution:
         for i in range(1, high + 1):
             dp[i] = (dp[i - zero] + dp[i - one]) % MOD
 
-        res = sum(dp[i] for i in range(low, high + 1))
+        res = sum(dp[i] for i in range(low, high + 1)) % MOD
 
-        return res % MOD
+        return res

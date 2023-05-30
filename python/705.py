@@ -40,8 +40,8 @@ class BinarySearchTree:
             node.right = self.binary_insert(node.right, val)
         return node
 
-    def remove(self, val: int) -> Optional[TreeNode]:
-        return self.binary_remove(self.root, val)
+    def remove(self, val: int):
+        self.binary_remove(self.root, val)
 
     def binary_remove(self, node: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if node is None:
@@ -102,11 +102,11 @@ class MyHashSet:
 
     def add(self, key: int) -> None:
         idx = self.hash(key)
-        return self.data[idx].insert(key)
+        self.data[idx].insert(key)
 
     def remove(self, key: int) -> None:
         idx = self.hash(key)
-        return self.data[idx].remove(key)
+        self.data[idx].remove(key)
 
     def contains(self, key: int) -> bool:
         idx = self.hash(key)
