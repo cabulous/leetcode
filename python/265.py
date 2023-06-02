@@ -36,10 +36,10 @@ class Solution:
     def minCostII(self, costs: list[list[int]]) -> int:
         dp = copy.deepcopy(costs)
 
-        for house in range(1, len(dp)):
-            for color in range(len(dp[0])):
+        for house in range(1, len(costs)):
+            for color in range(len(costs[0])):
                 best = float('inf')
-                for prev_color in range(len(dp[0])):
+                for prev_color in range(len(costs[0])):
                     if prev_color != color:
                         best = min(best, dp[house - 1][prev_color])
                 dp[house][color] += best

@@ -1,9 +1,6 @@
-from typing import List
-
-
 # https://leetcode.com/problems/minimum-cost-to-cut-a-stick/discuss/781074/JavaC%2B%2BPython-Merge-Stones
 class Solution:
-    def minCost(self, n: int, cuts: List[int]) -> int:
+    def minCost(self, n: int, cuts: list[int]) -> int:
         cuts = sorted(cuts + [0, n])
 
         dp = [[0] * len(cuts) for _ in range(len(cuts))]
