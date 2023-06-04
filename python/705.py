@@ -27,9 +27,9 @@ class BinarySearchTree:
         return self.binary_search(node.right, val)
 
     def add(self, val: int):
-        return self.binary_add(self.root, val)
+        self.binary_add(self.root, val)
 
-    def binary_add(self, node: Optional[TreeNode], val: int):
+    def binary_add(self, node: Optional[TreeNode], val: int) -> TreeNode:
         if node is None:
             return TreeNode(val)
         if val == node.val:
@@ -46,7 +46,6 @@ class BinarySearchTree:
     def binary_remove(self, node: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if node is None:
             return None
-
         if val < node.val:
             node.left = self.binary_remove(node.left, val)
         elif val > node.val:
@@ -60,7 +59,6 @@ class BinarySearchTree:
             else:
                 node.val = self.predecessor(node)
                 node.left = self.binary_remove(node.left, node.val)
-
         return node
 
     def successor(self, node: TreeNode) -> int:
@@ -97,17 +95,17 @@ class MyHashSet:
         self.key_range = 769
         self.data = [Bucket() for _ in range(self.key_range)]
 
-    def _hash(self, key: int) -> int:
+    def _hash_key(self, key: int) -> int:
         return key % self.key_range
 
     def add(self, key: int) -> None:
-        idx = self._hash(key)
+        idx = self._hash_key(key)
         self.data[idx].add(key)
 
     def remove(self, key: int) -> None:
-        idx = self._hash(key)
+        idx = self._hash_key(key)
         self.data[idx].remove(key)
 
     def contains(self, key: int) -> bool:
-        idx = self._hash(key)
+        idx = self._hash_key(key)
         return self.data[idx].contains(key)
