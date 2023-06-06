@@ -1,6 +1,3 @@
-from typing import List
-
-
 # https://leetcode.com/problems/is-graph-bipartite/discuss/115543/Easy-Python-Solution/800016
 class Solution:
 
@@ -8,7 +5,7 @@ class Solution:
         self.memo = {}
         self.graph = []
 
-    def isBipartite(self, graph: List[List[int]]) -> bool:
+    def isBipartite(self, graph: list[list[int]]) -> bool:
         self.graph = graph
         return all(node in self.memo or self.can_bipartite(node, 1) for node in range(len(graph)))
 
