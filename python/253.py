@@ -1,9 +1,8 @@
 import heapq
-from typing import List
 
 
 class Solution:
-    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+    def minMeetingRooms(self, intervals: list[list[int]]) -> int:
         meetings = sorted(intervals, key=lambda x: x[0])
 
         used_rooms = []
