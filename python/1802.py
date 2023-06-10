@@ -21,9 +21,15 @@ class Solution:
 
         return left + 1
 
-    def calc_sum(self, a):
-        b = max(0, a - self.peak_idx)
-        res = (a + b) * (a - b + 1) // 2
-        b = max(0, a - (self.count - 1 - self.peak_idx))
-        res += (a + b) * (a - b + 1) // 2
-        return res - a
+    def calc_sum(self, peak):
+        res = 0
+
+        left = max(0, peak - self.peak_idx)
+        left_sum = (peak + left) * (peak - left + 1) // 2
+        res += left_sum
+
+        right = max(0, peak - (self.count - 1 - self.peak_idx))
+        right_sum = (peak + right) * (peak - right + 1) // 2
+        res += right_sum
+
+        return res - peak
