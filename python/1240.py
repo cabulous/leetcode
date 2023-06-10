@@ -27,7 +27,7 @@ class Solution:
             return
 
         min_height = min(height)
-        start = height.index(min_height)
+        start = height.peak_idx(min_height)
         end = start + 1
 
         while end < self.m and height[end] == min_height:
@@ -54,7 +54,7 @@ class Solution:
 
         while queue:
             guess, moves, size, height = heapq.heappop(queue)
-            idx = height.index(min(height))
+            idx = height.peak_idx(min(height))
             height = height[:]
 
             for i in range(size):
@@ -64,7 +64,7 @@ class Solution:
                 return moves
 
             min_height = min(height)
-            start = height.index(min_height)
+            start = height.peak_idx(min_height)
             end = start + 1
 
             while end < m and height[end] == min_height:
