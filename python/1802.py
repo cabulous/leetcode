@@ -2,12 +2,12 @@
 class Solution:
 
     def __init__(self):
-        self.count = 0
         self.peak_idx = 0
+        self.max_idx = 0
 
     def maxValue(self, n: int, index: int, maxSum: int) -> int:
-        self.count = n
         self.peak_idx = index
+        self.max_idx = n
 
         maxSum -= n
         left = 0
@@ -28,7 +28,7 @@ class Solution:
         left_sum = (peak + left) * (peak - left + 1) // 2
         res += left_sum
 
-        right = max(0, peak - (self.count - 1 - self.peak_idx))
+        right = max(0, peak - (self.max_idx - 1 - self.peak_idx))
         right_sum = (peak + right) * (peak - right + 1) // 2
         res += right_sum
 
