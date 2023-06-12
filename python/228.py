@@ -1,9 +1,6 @@
-from typing import List
-
-
 # https://leetcode.com/problems/summary-ranges/discuss/63193/6-lines-in-Python
 class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
+    def summaryRanges(self, nums: list[int]) -> list[str]:
         if not nums:
             return []
 
