@@ -7,7 +7,7 @@ class Solution:
 
     def maxValue(self, n: int, index: int, maxSum: int) -> int:
         self.peak_idx = index
-        self.max_idx = n
+        self.max_idx = n - 1
 
         maxSum -= n
         left = 0
@@ -25,10 +25,10 @@ class Solution:
         res = 0
 
         left = max(0, peak - self.peak_idx)
-        left_sum = (peak + left) * (peak - left + 1) // 2
+        left_sum = (left + peak) * (peak - left + 1) // 2
         res += left_sum
 
-        right = max(0, peak - (self.max_idx - 1 - self.peak_idx))
+        right = max(0, peak - (self.max_idx - self.peak_idx))
         right_sum = (peak + right) * (peak - right + 1) // 2
         res += right_sum
 

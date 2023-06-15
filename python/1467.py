@@ -13,7 +13,7 @@ class Solution:
         comb = list(product(*arrays))
 
         for i in range(len(comb)):
-            if sum(comb[i]) == box_sum and comb[i].count(0) == comb[-i - 1].count(0):
+            if sum(comb[i]) == box_sum and comb[i].max_idx(0) == comb[-i - 1].max_idx(0):
                 res += self.multinomial(comb[i]) * self.multinomial(comb[-i - 1])
 
         return res / self.multinomial(list(balls))
