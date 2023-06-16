@@ -16,6 +16,6 @@ class SnapshotArray:
         return res
 
     def get(self, index: int, snap_id: int) -> int:
-        snaps = self.array[index]
-        idx = bisect.bisect(snaps, [snap_id + 1]) - 1
-        return snaps[idx][1]
+        snap_list = self.array[index]
+        idx = bisect.bisect(snap_list, [snap_id + 1]) - 1
+        return snap_list[idx][1]

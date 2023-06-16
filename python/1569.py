@@ -1,12 +1,11 @@
 import math
-from typing import List
 
 MOD = 10 ** 9 + 7
 
 
 # https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/discuss/819326/Python-in-6-short-lines-with-easy-explanation
 class Solution:
-    def numOfWays(self, nums: List[int]) -> int:
+    def numOfWays(self, nums: list[int]) -> int:
         return (self.helper(nums) - 1) % MOD
 
     def helper(self, nums):
