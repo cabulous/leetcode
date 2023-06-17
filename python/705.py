@@ -95,17 +95,17 @@ class MyHashSet:
         self.key_range = 769
         self.data = [Bucket() for _ in range(self.key_range)]
 
-    def _hash_key(self, key: int) -> int:
+    def _hash(self, key: int) -> int:
         return key % self.key_range
 
     def add(self, key: int) -> None:
-        idx = self._hash_key(key)
+        idx = self._hash(key)
         self.data[idx].add(key)
 
     def remove(self, key: int) -> None:
-        idx = self._hash_key(key)
+        idx = self._hash(key)
         self.data[idx].remove(key)
 
     def contains(self, key: int) -> bool:
-        idx = self._hash_key(key)
+        idx = self._hash(key)
         return self.data[idx].contains(key)
