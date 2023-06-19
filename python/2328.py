@@ -16,7 +16,7 @@ class Solution:
         self.rows = len(grid)
         self.cols = len(grid[0])
 
-        res = (self.rows * self.cols) % MOD
+        res = self.rows * self.cols
         for r in range(self.rows):
             for c in range(self.cols):
                 res += self.dp(r, c)

@@ -11,15 +11,15 @@ class TreeNode:
 class Solution:
 
     def __init__(self):
-        self.array = []
+        self.arr = []
 
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
         self.inorder(root)
-        return min(b - a for a, b in zip(self.array, self.array[1:]))
+        return min(b - a for a, b in zip(self.arr, self.arr[1:]))
 
     def inorder(self, node):
         if node.left:
             self.inorder(node.left)
-        self.array.append(node.val)
+        self.arr.append(node.val)
         if node.right:
             self.inorder(node.right)
