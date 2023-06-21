@@ -2,14 +2,14 @@ class Solution:
     def getAverages(self, nums: list[int], k: int) -> list[int]:
         res = [-1] * len(nums)
 
-        curr = 0
         left = 0
-        diameter = 2 * k + 1
+        curr = 0
+        win_size = k * 2 + 1
 
         for right in range(len(nums)):
             curr += nums[right]
-            if right - left + 1 >= diameter:
-                res[left + k] = curr // diameter
+            if right - left + 1 >= win_size:
+                res[left + k] = curr // win_size
                 curr -= nums[left]
                 left += 1
 
