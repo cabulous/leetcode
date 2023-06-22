@@ -24,4 +24,4 @@ class Solution:
         return res
 
     def get_cost(self, target):
-        return sum(abs(num - target) * cost for num, cost in zip(self.nums, self.cost))
+        return sum(abs(num - target) * c for num, c in zip(self.nums, self.cost))

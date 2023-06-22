@@ -26,5 +26,5 @@ class Solution:
 
         return min(
             self.dp(arr1_idx + 1, self.arr1[arr1_idx]) if self.arr1[arr1_idx] > prev_max else float('inf'),
-            self.dp(arr1_idx + 1, self.arr2[arr2_idx]) + 1 if arr2_idx < len(self.arr2) else float('inf'),
+            1 + self.dp(arr1_idx + 1, self.arr2[arr2_idx]) if arr2_idx < len(self.arr2) else float('inf'),
         )

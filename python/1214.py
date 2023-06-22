@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 
 
 class TreeNode:
@@ -10,15 +10,15 @@ class TreeNode:
 
 class Solution:
     def twoSumBSTs(self, root1: Optional[TreeNode], root2: Optional[TreeNode], target: int) -> bool:
-        array1 = self.tree_to_array(root1)
-        array2 = self.tree_to_array(root2)
+        arr1 = self.tree_to_array(root1)
+        arr2 = self.tree_to_array(root2)
 
-        for num in array1:
+        for num in arr1:
             complement = target - num
-            if complement in array2:
+            if complement in arr2:
                 return True
 
         return False
 
-    def tree_to_array(self, node: Optional[TreeNode]) -> List[int]:
+    def tree_to_array(self, node):
         return [node.val] + self.tree_to_array(node.left) + self.tree_to_array(node.right) if node else []
