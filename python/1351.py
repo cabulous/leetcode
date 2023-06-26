@@ -6,6 +6,7 @@ class Solution:
         r = 0
         c = cols - 1
         res = 0
+
         while r < rows and c >= 0:
             if grid[r][c] < 0:
                 res += rows - r
