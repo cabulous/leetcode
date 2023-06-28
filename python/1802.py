@@ -25,7 +25,7 @@ class Solution:
         res = 0
 
         left = max(0, peak - self.peak_idx)
-        left_sum = (left + peak) * (peak - left + 1) // 2
+        left_sum = (peak + left) * (peak - left + 1) // 2
         res += left_sum
 
         right = max(0, peak - (self.max_idx - self.peak_idx))
