@@ -38,14 +38,14 @@ class Solution:
                             visited.add((nr, nc, keys))
                             next_queue.append((nr, nc, keys))
                     elif self.is_key(nr, nc):
-                        next_keys = list(keys)
-                        next_keys[self.hash_key(nr, nc)] = 1
-                        next_keys = tuple(next_keys)
-                        if next_keys == all_keys:
+                        nk = list(keys)
+                        nk[self.hash_key(nr, nc)] = 1
+                        nk = tuple(nk)
+                        if nk == all_keys:
                             return res + 1
-                        if (nr, nc, next_keys) not in visited:
-                            visited.add((nr, nc, next_keys))
-                            next_queue.append((nr, nc, next_keys))
+                        if (nr, nc, nk) not in visited:
+                            visited.add((nr, nc, nk))
+                            next_queue.append((nr, nc, nk))
                     elif self.is_lock(nr, nc):
                         if self.has_key_for_lock(nr, nc, keys) and (nr, nc, keys) not in visited:
                             visited.add((nr, nc, keys))
