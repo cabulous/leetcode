@@ -21,21 +21,21 @@ class Solution:
         while idx < len(net_profit) and net_profit[idx] == 0:
             idx += 1
 
-        if idx + 1 >= len(net_profit):
+        if idx == len(net_profit):
             return count
 
         for i in range(idx + 1, len(net_profit)):
             if net_profit[i] + net_profit[idx] == 0:
                 net_profit[i] += net_profit[idx]
-                trans_count_min = self.backtrack(net_profit, idx + 1, count + 1)
+                res = self.backtrack(net_profit, idx + 1, count + 1)
                 net_profit[i] -= net_profit[idx]
-                return trans_count_min
+                return res
 
-        trans_count_min = float('inf')
+        res = float('inf')
         for i in range(idx + 1, len(net_profit)):
             if net_profit[i] * net_profit[idx] < 0:
                 net_profit[i] += net_profit[idx]
-                trans_count_min = min(trans_count_min, self.backtrack(net_profit, idx + 1, count + 1))
+                res = min(res, self.backtrack(net_profit, idx + 1, count + 1))
                 net_profit[i] -= net_profit[idx]
 
-        return trans_count_min
+        return res
