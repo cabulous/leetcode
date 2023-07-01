@@ -22,7 +22,7 @@ class Solution:
         curr_mask = mask
         while curr_mask > 0:
             sum1 = self.sum_cookies(curr_mask)
-            sum2 = self.unfairness(k - 1, mask ^ curr_mask)
+            sum2 = self.unfairness(k - 1, curr_mask ^ mask)
             res = min(res, max(sum1, sum2))
             curr_mask = (curr_mask - 1) & mask
 
