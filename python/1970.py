@@ -27,12 +27,13 @@ class Solution:
         self.cols = col
 
         uf = UnionFind(row * col + 2)
+
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         grid = [[1] * col for _ in range(row)]
-        cells = [(r - 1, c - 1) for r, c in cells]
+        zero_index_cells = [(r - 1, c - 1) for r, c in cells]
 
-        for i in range(len(cells) - 1, -1, -1):
-            r, c = cells[i]
+        for i in range(len(zero_index_cells) - 1, -1, -1):
+            r, c = zero_index_cells[i]
             grid[r][c] = 0
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
