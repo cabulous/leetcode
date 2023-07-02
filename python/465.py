@@ -1,10 +1,9 @@
 from collections import Counter
-from typing import List
 
 
 # https://leetcode.com/problems/optimal-account-balancing/discuss/95363/Easy-backtracking-%2B-greedy-solution-with-explanation-(Python-Accepted)
 class Solution:
-    def minTransfers(self, transactions: List[List[int]]) -> int:
+    def minTransfers(self, transactions: list[list[int]]) -> int:
         count = Counter()
         for source, target, amount in transactions:
             count[source] -= amount

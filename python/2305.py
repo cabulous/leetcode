@@ -27,12 +27,7 @@ class Solution:
             curr_mask = (curr_mask - 1) & mask
 
         self.dp[k][mask] = res
-
-        return res
+        return self.dp[k][mask]
 
     def sum_cookies(self, mask):
-        res = 0
-        for i in range(len(self.cookies)):
-            if mask & (1 << i):
-                res += self.cookies[i]
-        return res
+        return sum(self.cookies[i] for i in range(len(self.cookies)) if mask & (1 << i) != 0)
