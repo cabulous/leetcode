@@ -27,7 +27,6 @@ class Solution:
         self.cols = col
 
         uf = UnionFind(row * col + 2)
-
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         grid = [[1] * col for _ in range(row)]
         zero_index_cells = [(r - 1, c - 1) for r, c in cells]
