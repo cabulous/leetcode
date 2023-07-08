@@ -4,11 +4,11 @@ class Solution:
 
         left = 0
         curr = 0
-        win_size = k * 2 + 1
+        win_size = 2 * k + 1
 
         for right in range(len(nums)):
             curr += nums[right]
-            if right - left + 1 >= win_size:
+            if right - left + 1 == win_size:
                 res[left + k] = curr // win_size
                 curr -= nums[left]
                 left += 1
