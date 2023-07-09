@@ -8,7 +8,6 @@ class Solution:
             for j in range(i + 1, len(chars)):
                 ch1 = chars[i]
                 ch2 = chars[j]
-
                 meet_ch1 = meet_ch2 = False
 
                 diff = 0
@@ -28,7 +27,6 @@ class Solution:
                         diff_last_ch2 = diff
                     else:
                         continue
-
                     if meet_ch1 and meet_ch2:
                         res = max(res, diff_max - diff, diff - diff_min)
 
