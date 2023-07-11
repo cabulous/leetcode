@@ -1,22 +1,23 @@
 from collections import deque
 
 
-# recursion
+# bfs
 class Solution:
     def minDepth(self, root) -> int:
         if not root:
             return 0
 
-        children = [root.left, root.right]
-        if not any(children):
-            return 1
+        queue = deque([(root, 1)])
+        while queue:
+            node, depth = queue.popleft()
+            children = [node.left, node.right]
+            if not any(children):
+                return depth
+            for kid in children:
+                if kid:
+                    queue.append((kid, depth + 1))
 
-        res = float('inf')
-        for kid in children:
-            if kid:
-                res = min(res, self.minDepth(kid))
-
-        return res + 1
+        return -1
 
 
 # dfs
@@ -40,21 +41,19 @@ class Solution:
         return res
 
 
-# bfs
+# recursion
 class Solution:
     def minDepth(self, root) -> int:
         if not root:
             return 0
 
-        queue = deque([(root, 1)])
+        children = [root.left, root.right]
+        if not any(children):
+            return 1
 
-        while queue:
-            node, depth = queue.popleft()
-            children = [node.left, node.right]
-            if not any(children):
-                return depth
-            for kid in children:
-                if kid:
-                    queue.append((kid, depth + 1))
+        res = float('inf')
+        for kid in children:
+            if kid:
+                res = min(res, self.minDepth(kid))
 
-        return -1
+        return res + 1
