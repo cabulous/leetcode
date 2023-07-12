@@ -17,13 +17,13 @@ class Solution:
         self.connect(None, root)
 
         queue = [target.val]
-        seen = {target.val}
+        visited = {target.val}
         for _ in range(k):
             next_queue = []
             for val in queue:
                 for next_val in self.graph[val]:
-                    if next_val not in seen:
-                        seen.add(next_val)
+                    if next_val not in visited:
+                        visited.add(next_val)
                         next_queue.append(next_val)
             queue = next_queue
 
