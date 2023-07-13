@@ -21,8 +21,8 @@ class Solution:
         res = 1 if city == self.dest else 0
 
         for next_city in range(len(self.locations)):
-            if city != next_city:
-                fuel_needed = abs(self.locations[city] - self.locations[next_city])
+            if next_city != city:
+                fuel_needed = abs(self.locations[next_city] - self.locations[city])
                 if fuel_needed <= fuel:
                     res += self.helper(next_city, fuel - fuel_needed)
                     res %= self.MOD
@@ -41,8 +41,8 @@ class Solution:
         for f in range(fuel + 1):
             for city in range(len(locations)):
                 for next_city in range(len(locations)):
-                    if city != next_city:
-                        fuel_needed = abs(locations[city] - locations[next_city])
+                    if next_city != city:
+                        fuel_needed = abs(locations[next_city] - locations[city])
                         if fuel_needed <= f:
                             dp[city][f] += dp[next_city][f - fuel_needed]
                             dp[city][f] %= MOD
