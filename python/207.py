@@ -9,11 +9,12 @@ class Solution:
             graph[s].append(t)
             in_degree[t] += 1
 
-        zero_degrees = [i for i in range(numCourses) if in_degree[i] == 0]
-        for node in zero_degrees:
+        zero_degree = [i for i in range(numCourses) if in_degree[i] == 0]
+
+        for node in zero_degree:
             for next_node in graph[node]:
                 in_degree[next_node] -= 1
                 if in_degree[next_node] == 0:
-                    zero_degrees.append(next_node)
+                    zero_degree.append(next_node)
 
-        return len(zero_degrees) == numCourses
+        return len(zero_degree) == numCourses
