@@ -18,6 +18,7 @@ class Solution:
 
         queue = [target.val]
         visited = {target.val}
+
         for _ in range(k):
             next_queue = []
             for val in queue:
