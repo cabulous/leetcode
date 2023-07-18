@@ -27,7 +27,7 @@ class DoubleLinkedList:
         self.remove(node)
         self.add(node)
 
-    def remove_head(self):
+    def remove_head(self) -> Node:
         node = self.head.next
         self.remove(node)
         return node
