@@ -30,4 +30,4 @@ class Solution:
         return self.dp[k][mask]
 
     def sum_cookies(self, mask):
-        return sum(self.cookies[i] for i in range(len(self.cookies)) if mask & (1 << i) != 0)
+        return sum(self.cookies[i] for i in range(len(self.cookies)) if mask & (1 << i) > 0)
