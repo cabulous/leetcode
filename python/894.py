@@ -24,7 +24,7 @@ class Solution:
             return self.memo[n]
 
         if n == 1:
-            self.memo[n] = [TreeNode(0)]
+            self.memo[n] = [TreeNode()]
             return self.memo[n]
 
         res = []
@@ -36,4 +36,4 @@ class Solution:
                     res.append(TreeNode(0, left_node, right_node))
 
         self.memo[n] = res
-        return self.memo[n]
+        return res
