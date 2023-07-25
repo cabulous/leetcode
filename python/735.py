@@ -10,8 +10,7 @@ class Solution:
                     stack.pop()
                 if stack and stack[-1] == abs(size):
                     stack.pop()
-                else:
-                    if not stack or stack[-1] < 0:
-                        stack.append(size)
+                elif not stack or stack[-1] < 0:
+                    stack.append(size)
 
         return stack
