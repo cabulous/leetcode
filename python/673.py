@@ -9,10 +9,10 @@ class Solution:
         for i in range(1, len(nums)):
             for j in range(i):
                 if nums[j] < nums[i]:
-                    if dp[j] + 1 > dp[i]:
+                    if dp[i] < dp[j] + 1:
                         dp[i] = dp[j] + 1
                         counts[i] = counts[j]
-                    elif dp[j] + 1 == dp[i]:
+                    elif dp[i] == dp[j] + 1:
                         counts[i] += counts[j]
 
         max_length = max(dp)
