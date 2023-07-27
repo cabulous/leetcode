@@ -20,8 +20,8 @@ class Solution:
             if time == hour:
                 return mid
             if time < hour:
-                res = mid
                 right = mid - 1
+                res = mid
             else:
                 left = mid + 1
 
