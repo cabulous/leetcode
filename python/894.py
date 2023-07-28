@@ -36,4 +36,4 @@ class Solution:
                     res.append(TreeNode(0, left_node, right_node))
 
         self.memo[n] = res
-        return res
+        return self.memo[n]
