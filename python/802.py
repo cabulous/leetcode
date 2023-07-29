@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/find-eventual-safe-states/solutions/816985/python-easy-solution-graph-coloring-98-69/
 
+NOT_VISIT = 0
 VISITING = 1
 VISITED = 2
 
@@ -12,7 +13,7 @@ class Solution:
 
     def eventualSafeNodes(self, graph: list[list[int]]) -> list[int]:
         self.graph = graph
-        self.state = [0] * len(graph)
+        self.state = [NOT_VISIT] * len(graph)
 
         for node in range(len(graph)):
             self.cycle(node)
