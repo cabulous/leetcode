@@ -8,28 +8,29 @@ class Solution:
 
     def __init__(self):
         self.graph = []
-        self.visited = []
+        self.state = []
 
     def eventualSafeNodes(self, graph: list[list[int]]) -> list[int]:
         self.graph = graph
-        self.visited = [0] * len(graph)
+        self.state = [0] * len(graph)
 
         for node in range(len(graph)):
             self.cycle(node)
 
-        return [i for i in range(len(graph)) if self.visited[i] == VISITED]
+        return [node for node in range(len(graph)) if self.state[node] == VISITED]
 
     def cycle(self, node):
-        if self.visited[node] == VISITING:
+        if self.state[node] == VISITING:
             return True
-        if self.visited[node] == VISITED:
+        if self.state[node] == VISITED:
             return False
 
-        self.visited[node] = VISITING
+        self.state[node] = VISITING
 
         for next_node in self.graph[node]:
             if self.cycle(next_node):
                 return True
 
-        self.visited[node] = VISITED
+        self.state[node] = VISITED
+
         return False
