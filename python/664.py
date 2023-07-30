@@ -21,11 +21,10 @@ class Solution:
 
         res = self.cost(s[:-1]) + 1
 
-        char = s[-1]
+        char_to_insert = s[-1]
         for i, ch in enumerate(s[:-1]):
-            if ch == char:
+            if ch == char_to_insert:
                 res = min(res, self.cost(s[:i + 1]) + self.cost(s[i + 1:-1]))
 
         self.memo[s] = res
-
         return self.memo[s]
