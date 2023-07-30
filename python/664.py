@@ -10,22 +10,22 @@ class Solution:
 
     def strangePrinter(self, s: str) -> int:
         s = re.sub(r'(.)\1*', r'\1', s)
-        return self.solve(s)
+        return self.cost(s)
 
-    def solve(self, s):
+    def cost(self, s):
         if len(s) == 0:
             return 0
 
         if s in self.memo:
             return self.memo[s]
 
-        cost = self.solve(s[:-1]) + 1
-        char_to_insert = s[-1]
+        res = self.cost(s[:-1]) + 1
 
+        char = s[-1]
         for i, ch in enumerate(s[:-1]):
-            if ch == char_to_insert:
-                cost = min(cost, self.solve(s[:i + 1]) + self.solve(s[i + 1:-1]))
+            if ch == char:
+                res = min(res, self.cost(s[:i + 1]) + self.cost(s[i + 1:-1]))
 
-        self.memo[s] = cost
+        self.memo[s] = res
 
-        return cost
+        return self.memo[s]
