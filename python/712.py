@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/solutions/3840553/100-dp-video-decoding-approach-to-minimum-ascii-delete-sum/
 class Solution:
     def minimumDeleteSum(self, s1: str, s2: str) -> int:
         if len(s1) > len(s2):
