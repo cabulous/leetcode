@@ -3,10 +3,10 @@ class Solution:
     def minimumCosts(self, regular: list[int], express: list[int], expressCost: int) -> list[int]:
         dpr = 0
         dpe = expressCost
-        res = [0] * len(regular)
+        res = []
 
-        for i in range(1, len(regular) + 1):
-            dpr, dpe = min(dpr, dpe) + regular[i - 1], min(dpr + expressCost, dpe) + express[i - 1]
-            res[i - 1] = min(dpr, dpe)
+        for i in range(len(regular)):
+            dpr, dpe = min(dpr, dpe) + regular[i], min(dpr + expressCost, dpe) + express[i]
+            res.append(min(dpr, dpe))
 
         return res
