@@ -4,7 +4,7 @@ from typing import List
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/discuss/8063/Python-solution/284974
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        if len(digits) == 0:
+        if not digits:
             return []
 
         letters = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',
