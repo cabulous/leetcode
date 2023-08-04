@@ -13,7 +13,7 @@ class Solution:
         return self.cost(s)
 
     def cost(self, s):
-        if len(s) == 0:
+        if not s:
             return 0
 
         if s in self.memo:
