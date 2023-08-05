@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 
 
 class TreeNode:
@@ -9,23 +9,23 @@ class TreeNode:
 
 
 class Solution:
-    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
-        return self.helper(1, n) if n else []
+    def generateTrees(self, n: int) -> list[Optional[TreeNode]]:
+        return self.helper(1, n)
 
     def helper(self, start, end):
         if start > end:
             return [None]
 
-        all_trees = []
+        res = []
 
         for mid in range(start, end + 1):
             left_trees = self.helper(start, mid - 1)
-            right_tress = self.helper(mid + 1, end)
+            right_trees = self.helper(mid + 1, end)
             for left in left_trees:
-                for right in right_tress:
-                    cur = TreeNode(mid)
-                    cur.left = left
-                    cur.right = right
-                    all_trees.append(cur)
+                for right in right_trees:
+                    curr = TreeNode(mid)
+                    curr.left = left
+                    curr.right = right
+                    res.append(curr)
 
-        return all_trees
+        return res
