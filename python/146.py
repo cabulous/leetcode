@@ -16,12 +16,12 @@ class DoubleLinkedList:
         self.tail.prev = self.head
 
     def add(self, node: Node):
-        self.tail.prev.next, self.tail.prev, node.next, node.prev = node, node, self.tail, self.tail.prev
+        self.tail.prev.next, self.tail.prev, node.prev, node.next = node, node, self.tail.prev, self.tail
 
     def remove(self, node: Node):
         node.prev.next, node.next.prev = node.next, node.prev
-        node.next = None
         node.prev = None
+        node.next = None
 
     def move_to_tail(self, node: Node):
         self.remove(node)
