@@ -15,4 +15,4 @@ class Solution:
                 else:
                     dp[i][j] = dp[i - 1][j - 1] * i + dp[i][j - 1] * (i - k)
 
-        return dp[n][goal] % MOD
+        return dp[-1][-1] % MOD

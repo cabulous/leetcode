@@ -17,7 +17,6 @@ class Solution:
             return [None]
 
         res = []
-
         for mid in range(start, end + 1):
             left_trees = self.helper(start, mid - 1)
             right_trees = self.helper(mid + 1, end)
