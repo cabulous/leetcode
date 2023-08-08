@@ -15,5 +15,5 @@ class Solution:
                     elif lengths[i] == lengths[j] + 1:
                         counts[i] += counts[j]
 
-        max_length = max(lengths)
-        return sum(count for length, count in zip(lengths, counts) if length == max_length)
+        max_len = max(lengths)
+        return sum(count for length, count in zip(lengths, counts) if length == max_len)
