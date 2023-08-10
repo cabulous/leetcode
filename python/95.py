@@ -22,9 +22,7 @@ class Solution:
             right_trees = self.helper(mid + 1, end)
             for left in left_trees:
                 for right in right_trees:
-                    curr = TreeNode(mid)
-                    curr.left = left
-                    curr.right = right
+                    curr = TreeNode(mid, left, right)
                     res.append(curr)
 
         return res

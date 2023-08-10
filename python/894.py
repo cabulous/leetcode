@@ -28,12 +28,12 @@ class Solution:
             return self.memo[n]
 
         res = []
-        for i in range(1, n - 1, 2):
-            left = self.helper(i)
-            right = self.helper(n - i - 1)
-            for left_node in left:
-                for right_node in right:
-                    res.append(TreeNode(0, left_node, right_node))
+        for cnt in range(1, n - 1, 2):
+            left_trees = self.helper(cnt)
+            right_trees = self.helper(n - cnt - 1)
+            for left in left_trees:
+                for right in right_trees:
+                    res.append(TreeNode(0, left, right))
 
         self.memo[n] = res
         return self.memo[n]

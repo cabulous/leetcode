@@ -1,10 +1,8 @@
-from typing import List
-
-
 # https://leetcode.com/problems/search-in-rotated-sorted-array-ii/discuss/28195/Python-easy-to-understand-solution-(with-comments)./27190
 class Solution:
-    def search(self, nums: List[int], target: int) -> bool:
-        left, right = 0, len(nums) - 1
+    def search(self, nums: list[int], target: int) -> bool:
+        left = 0
+        right = len(nums) - 1
 
         while left <= right:
             mid = left + (right - left) // 2
