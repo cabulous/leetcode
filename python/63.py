@@ -1,12 +1,5 @@
-from typing import List
-
-
-# https://leetcode.com/problems/unique-paths-ii/discuss/23410/Python-different-solutions-(O(m*n)-O(n)-in-place).
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if not any(obstacleGrid):
-            return 0
-
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
         if obstacleGrid[0][0] == 1:
             return 0
 
