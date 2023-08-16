@@ -7,8 +7,8 @@ class Solution:
         queue = deque()
         res = []
 
-        for i, num in enumerate(nums):
-            while queue and nums[queue[-1]] < num:
+        for i in range(len(nums)):
+            while queue and nums[queue[-1]] < nums[i]:
                 queue.pop()
             queue.append(i)
             if queue[0] == i - k:
