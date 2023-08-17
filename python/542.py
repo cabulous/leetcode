@@ -1,27 +1,29 @@
-from typing import List
+import copy
 from collections import deque
 
 
 class Solution:
-    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        max_row, max_col = len(mat), len(mat[0])
+    def updateMatrix(self, mat: list[list[int]]) -> list[list[int]]:
+        rows = len(mat)
+        cols = len(mat[0])
+        directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
         visited = set()
         queue = deque()
-        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        res = copy.deepcopy(mat)
 
-        for i in range(max_row):
-            for j in range(max_col):
-                if mat[i][j] == 0:
-                    visited.add((i, j))
-                    queue.append((i, j))
+        for r in range(rows):
+            for c in range(cols):
+                if res[r][c] == 0:
+                    visited.add((r, c))
+                    queue.append((r, c))
 
         while queue:
             r, c = queue.popleft()
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
-                if 0 <= nr < max_row and 0 <= nc < max_col and (nr, nc) not in visited:
-                    mat[nr][nc] = mat[r][c] + 1
+                if 0 <= nr < rows and 0 <= nc < cols and (nr, nc) not in visited:
                     visited.add((nr, nc))
+                    res[nr][nc] = res[r][c] + 1
                     queue.append((nr, nc))
 
-        return mat
+        return res
