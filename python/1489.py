@@ -39,17 +39,17 @@ class Solution:
 
         return [critical, pseudo_critical]
 
-    def get_weight(self, idx_to_exclude, idx_to_include):
+    def get_weight(self, exclude, include):
         uf = UnionFind(self.n)
         res = 0
 
-        if idx_to_include != -1:
-            u, v, w, __ = self.edges[idx_to_include]
+        if include != -1:
+            u, v, w, __ = self.edges[include]
             res += w
             uf.union(u, v)
 
         for i in range(len(self.edges)):
-            if i == idx_to_exclude:
+            if i == exclude:
                 continue
             u, v, w, __ = self.edges[i]
             if uf.find(u) == uf.find(v):
