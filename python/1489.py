@@ -27,14 +27,14 @@ class Solution:
         self.edges = [(u, v, w, i) for i, (u, v, w) in enumerate(edges)]
         self.edges.sort(key=lambda x: x[2])
 
-        mst_wt = self.get_weight(-1, -1)
+        weight = self.get_weight(-1, -1)
 
         critical = []
         pseudo_critical = []
         for i in range(len(self.edges)):
-            if mst_wt < self.get_weight(i, -1):
+            if weight < self.get_weight(i, -1):
                 critical.append(self.edges[i][3])
-            elif mst_wt == self.get_weight(-1, i):
+            elif weight == self.get_weight(-1, i):
                 pseudo_critical.append(self.edges[i][3])
 
         return [critical, pseudo_critical]
