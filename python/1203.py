@@ -4,16 +4,16 @@ from collections import defaultdict
 # https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/solutions/402401/python-use-topologically-sorted-items-and-groups-to-get-the-desired-order/
 class Solution:
     def sortItems(self, n: int, m: int, group: list[int], beforeItems: list[list[int]]) -> list[int]:
-        group_num = m
+        group_count = m
         for node in range(len(group)):
             if group[node] == -1:
-                group[node] = group_num
-                group_num += 1
+                group[node] = group_count
+                group_count += 1
 
         graph_items = [[] for _ in range(n)]
         in_degree_items = [0] * n
-        graph_groups = [[] for _ in range(group_num)]
-        in_degree_groups = [0] * group_num
+        graph_groups = [[] for _ in range(group_count)]
+        in_degree_groups = [0] * group_count
         for node in range(n):
             for prev_node in beforeItems[node]:
                 graph_items[prev_node].append(node)

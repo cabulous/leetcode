@@ -31,10 +31,11 @@ class Solution:
         pseudo_critical = []
         base = self.get_weight(-1, -1)
         for i in range(len(self.edges)):
+            __, __, __, idx = self.edges[i]
             if base < self.get_weight(i, -1):
-                critical.append(self.edges[i][3])
+                critical.append(idx)
             elif base == self.get_weight(-1, i):
-                pseudo_critical.append(self.edges[i][3])
+                pseudo_critical.append(idx)
 
         return [critical, pseudo_critical]
 
