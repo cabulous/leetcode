@@ -4,8 +4,8 @@ import heapq
 
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        count = Counter(s)
-        max_heap = [(-cnt, char) for char, cnt in count.items()]
+        counter = Counter(s)
+        max_heap = [(-count, char) for char, count in counter.items()]
         heapq.heapify(max_heap)
 
         prev = ()
@@ -13,13 +13,13 @@ class Solution:
         while max_heap or prev:
             if prev and not max_heap:
                 return ''
-            neg_cnt, char = heapq.heappop(max_heap)
+            neg_count, char = heapq.heappop(max_heap)
             res.append(char)
-            neg_cnt += 1
+            neg_count += 1
             if prev:
                 heapq.heappush(max_heap, prev)
                 prev = ()
-            if neg_cnt != 0:
-                prev = (neg_cnt, char)
+            if neg_count != 0:
+                prev = (neg_count, char)
 
         return ''.join(res)
