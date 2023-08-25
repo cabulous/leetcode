@@ -29,8 +29,8 @@ class Solution:
 
         dp = [True] * (len(s2) + 1)
 
-        for pt2 in range(1, len(s2) + 1):
-            dp[pt2] = dp[pt2 - 1] and s2[pt2 - 1] == s3[pt2 - 1]
+        for pt2 in range(len(s2)):
+            dp[pt2 + 1] = dp[pt2] and s2[pt2] == s3[pt2]
 
         for pt1 in range(1, len(s1) + 1):
             dp[0] = dp[0] and s1[pt1 - 1] == s3[pt1 - 1]
