@@ -14,8 +14,8 @@ class Solution:
             if prev and not max_heap:
                 return ''
             neg_count, char = heapq.heappop(max_heap)
-            res.append(char)
             neg_count += 1
+            res.append(char)
             if prev:
                 heapq.heappush(max_heap, prev)
                 prev = ()
