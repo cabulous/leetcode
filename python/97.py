@@ -28,7 +28,6 @@ class Solution:
             return False
 
         dp = [True] * (len(s2) + 1)
-
         for pt2 in range(len(s2)):
             dp[pt2 + 1] = dp[pt2] and s2[pt2] == s3[pt2]
 
