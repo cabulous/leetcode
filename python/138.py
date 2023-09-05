@@ -34,7 +34,7 @@ class Solution:
 class Solution:
 
     def __init__(self):
-        self.visited = {}
+        self.memo = {}
 
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         old_node = head
@@ -51,7 +51,8 @@ class Solution:
     def get_clone(self, node):
         if node is None:
             return None
-        if node in self.visited:
-            return self.visited[node]
-        self.visited[node] = Node(node.val)
-        return self.visited[node]
+        if node in self.memo:
+            return self.memo[node]
+        clone = Node(node.val)
+        self.memo[node] = clone
+        return self.memo[node]
