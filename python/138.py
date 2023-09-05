@@ -1,4 +1,6 @@
-# Definition for a Node.
+from typing import Optional
+
+
 class Node:
     def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
         self.val = int(x)
@@ -12,7 +14,7 @@ class Solution:
     def __init__(self):
         self.memo = {}
 
-    def copyRandomList(self, head: 'Node') -> 'Node':
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if head is None:
             return None
 
@@ -30,26 +32,26 @@ class Solution:
 
 # Iterative
 class Solution:
+
     def __init__(self):
         self.visited = {}
 
-    def get_cloned_node(self, node):
-        if not node:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        old_node = head
+        new_node = self.get_clone(head)
+
+        while old_node:
+            new_node.next = self.get_clone(old_node.next)
+            new_node.random = self.get_clone(old_node.random)
+            old_node = old_node.next
+            new_node = new_node.next
+
+        return self.get_clone(head)
+
+    def get_clone(self, node):
+        if node is None:
             return None
         if node in self.visited:
             return self.visited[node]
         self.visited[node] = Node(node.val)
         return self.visited[node]
-
-    def copyRandomList(self, head: 'Node') -> 'Node':
-        if not head:
-            return None
-        old_node = head
-        new_node = Node(head.val)
-        self.visited[old_node] = new_node
-        while old_node:
-            new_node.next = self.get_cloned_node(old_node.next)
-            new_node.random = self.get_cloned_node(old_node.random)
-            old_node = old_node.next
-            new_node = new_node.next
-        return self.visited[head]
