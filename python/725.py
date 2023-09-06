@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 
 
 class ListNode:
@@ -8,25 +8,26 @@ class ListNode:
 
 
 class Solution:
-    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
-        cur = head
-        n = 0
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> list[Optional[ListNode]]:
+        total_len = 0
+        curr = head
+        while curr:
+            total_len += 1
+            curr = curr.next
 
-        for n in range(1001):
-            if not cur:
-                break
-            cur = cur.next
-
-        width, remainder = divmod(n, k)
-        ans = []
-        cur = head
+        res = [None] * k
+        size, remain = divmod(total_len, k)
+        curr = head
+        prev = None
 
         for i in range(k):
-            head = write = ListNode()
-            for j in range(width + (i < remainder)):
-                write.next = write = ListNode(cur.val)
-                if cur:
-                    cur = cur.next
-            ans.append(head.next)
+            res[i] = curr
+            curr_size = size + (1 if remain > 0 else 0)
+            for j in range(curr_size):
+                prev, curr = curr, curr.next
+            if prev:
+                prev.next = None
+            if remain > 0:
+                remain -= 1
 
-        return ans
+        return res

@@ -32,14 +32,14 @@ class Solution:
         base = self.get_weight(-1, -1)
         for i in range(len(self.edges)):
             __, __, __, idx = self.edges[i]
-            if base < self.get_weight(i, -1):
+            if base < self.get_weight(-1, i):
                 critical.append(idx)
-            elif base == self.get_weight(-1, i):
+            elif base == self.get_weight(i, -1):
                 pseudo_critical.append(idx)
 
         return [critical, pseudo_critical]
 
-    def get_weight(self, exclude, include):
+    def get_weight(self, include, exclude):
         uf = UnionFind(self.n)
         res = 0
 

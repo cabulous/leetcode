@@ -27,7 +27,7 @@ class Solution:
         clone.next = self.copyRandomList(head.next)
         clone.random = self.copyRandomList(head.random)
 
-        return clone
+        return self.memo[head]
 
 
 # Iterative
@@ -37,14 +37,14 @@ class Solution:
         self.memo = {}
 
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        old_node = head
-        new_node = self.get_clone(head)
+        curr = head
+        clone = self.get_clone(head)
 
-        while old_node:
-            new_node.next = self.get_clone(old_node.next)
-            new_node.random = self.get_clone(old_node.random)
-            old_node = old_node.next
-            new_node = new_node.next
+        while curr:
+            clone.next = self.get_clone(curr.next)
+            clone.random = self.get_clone(curr.random)
+            curr = curr.next
+            clone = clone.next
 
         return self.get_clone(head)
 
@@ -53,6 +53,5 @@ class Solution:
             return None
         if node in self.memo:
             return self.memo[node]
-        clone = Node(node.val)
-        self.memo[node] = clone
+        self.memo[node] = Node(node.val)
         return self.memo[node]
