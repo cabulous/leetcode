@@ -15,13 +15,13 @@ class Solution:
             total_len += 1
             curr = curr.next
 
-        res = [None] * k
         size, remain = divmod(total_len, k)
+        parts = [None] * k
         curr = head
         prev = None
 
         for i in range(k):
-            res[i] = curr
+            parts[i] = curr
             curr_size = size + (1 if remain > 0 else 0)
             for j in range(curr_size):
                 prev, curr = curr, curr.next
@@ -30,4 +30,4 @@ class Solution:
             if remain > 0:
                 remain -= 1
 
-        return res
+        return parts

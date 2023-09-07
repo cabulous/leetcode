@@ -10,20 +10,20 @@ class Solution:
                 group[node] = group_count
                 group_count += 1
 
-        graph_items = [[] for _ in range(n)]
-        in_degree_items = [0] * n
-        graph_groups = [[] for _ in range(group_count)]
-        in_degree_groups = [0] * group_count
+        item_graph = [[] for _ in range(n)]
+        item_in_degree = [0] * n
+        group_graph = [[] for _ in range(group_count)]
+        group_in_degree = [0] * group_count
         for node in range(n):
             for prev_node in beforeItems[node]:
-                graph_items[prev_node].append(node)
-                in_degree_items[node] += 1
+                item_graph[prev_node].append(node)
+                item_in_degree[node] += 1
                 if group[prev_node] != group[node]:
-                    graph_groups[group[prev_node]].append(group[node])
-                    in_degree_groups[group[node]] += 1
+                    group_graph[group[prev_node]].append(group[node])
+                    group_in_degree[group[node]] += 1
 
-        item_order = self.get_top_order(graph_items, in_degree_items)
-        group_order = self.get_top_order(graph_groups, in_degree_groups)
+        item_order = self.get_top_order(item_graph, item_in_degree)
+        group_order = self.get_top_order(group_graph, group_in_degree)
         if not item_order or not group_order:
             return []
 

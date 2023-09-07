@@ -10,7 +10,7 @@ class Solution:
         if left == right:
             return head
 
-        sentinel = ListNode(0, head)
+        sentinel = ListNode(next=head)
         tail = sentinel
         for _ in range(left - 1):
             tail = tail.next
