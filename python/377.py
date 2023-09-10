@@ -32,9 +32,9 @@ class Solution:
         nums.sort()
 
         for comb_sum in range(1, target + 1):
-            for num in nums:
-                if comb_sum - num < 0:
+            for n in nums:
+                if comb_sum - n < 0:
                     break
-                dp[comb_sum] += dp[comb_sum - num]
+                dp[comb_sum] += dp[comb_sum - n]
 
         return dp[-1]
