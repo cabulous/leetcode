@@ -17,8 +17,8 @@ class Solution:
 
         size, remain = divmod(total_len, k)
         parts = [None] * k
-        curr = head
         prev = None
+        curr = head
 
         for i in range(k):
             parts[i] = curr
@@ -27,7 +27,7 @@ class Solution:
                 prev, curr = curr, curr.next
             if prev:
                 prev.next = None
-            if remain > 0:
+            if remain:
                 remain -= 1
 
         return parts
