@@ -4,6 +4,6 @@ class Solution:
         res = 0
         for start, end in sorted(pairs, key=lambda x: x[1]):
             if prev_end < start:
-                prev_end = end
                 res += 1
+                prev_end = end
         return res

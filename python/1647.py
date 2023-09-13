@@ -4,7 +4,7 @@ from collections import Counter
 class Solution:
     def minDeletions(self, s: str) -> int:
         count = Counter(s)
-        all_freq = sorted(list(count.values()), reverse=True)
+        all_freq = sorted(count.values(), reverse=True)
         max_freq = len(s)
         res = 0
 
