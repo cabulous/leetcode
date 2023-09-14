@@ -29,12 +29,9 @@ class Solution:
 class Solution:
     def combinationSum4(self, nums: list[int], target: int) -> int:
         dp = [1] + [0] * target
-        nums.sort()
-
         for comb_sum in range(1, target + 1):
-            for n in nums:
-                if comb_sum - n < 0:
-                    break
-                dp[comb_sum] += dp[comb_sum - n]
-
+            for num in sorted(nums):
+                if comb_sum - num < 0:
+                    continue
+                dp[comb_sum] += dp[comb_sum - num]
         return dp[-1]
