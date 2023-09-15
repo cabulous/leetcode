@@ -19,9 +19,9 @@ class Solution:
             res += curr_min_dist
 
             for next_node in range(len(points)):
-                curr_dist = self.get_dist(points[curr_node], points[next_node])
-                if not visited[next_node] and curr_dist < min_dist[next_node]:
-                    min_dist[next_node] = curr_dist
+                next_dist = self.get_dist(points[curr_node], points[next_node])
+                if not visited[next_node] and next_dist < min_dist[next_node]:
+                    min_dist[next_node] = next_dist
 
         return res
 
