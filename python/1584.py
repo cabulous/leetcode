@@ -14,9 +14,9 @@ class Solution:
                     curr_min_dist = min_dist[node]
                     curr_node = node
 
+            visited[curr_node] = True
             used += 1
             res += curr_min_dist
-            visited[curr_node] = True
 
             for next_node in range(len(points)):
                 curr_dist = self.get_dist(points[curr_node], points[next_node])
