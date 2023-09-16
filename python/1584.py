@@ -1,3 +1,6 @@
+import heapq
+
+
 class Solution:
     def minCostConnectPoints(self, points: list[list[int]]) -> int:
         visited = [False] * len(points)
@@ -19,13 +22,12 @@ class Solution:
             res += curr_min_dist
 
             for next_node in range(len(points)):
-                next_dist = self.get_dist(points[curr_node], points[next_node])
-                if not visited[next_node] and next_dist < min_dist[next_node]:
+                if visited[next_node]:
+                    continue
+                x1, y1 = points[curr_node]
+                x2, y2 = points[next_node]
+                next_dist = abs(x1 - x2) + abs(y1 - y2)
+                if next_dist < min_dist[next_node]:
                     min_dist[next_node] = next_dist
 
         return res
-
-    def get_dist(self, p1, p2):
-        x1, y1 = p1
-        x2, y2 = p2
-        return abs(x1 - x2) + abs(y1 - y2)
