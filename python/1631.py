@@ -9,12 +9,11 @@ class Solution:
         cols = len(heights[0])
         dist_min = [[float('inf')] * cols for _ in range(rows)]
         queue = [(0, 0, 0)]
-        target = (rows - 1, cols - 1)
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
         while queue:
             dist, row, col = heapq.heappop(queue)
-            if (row, col) == target:
+            if (row, col) == (rows - 1, cols - 1):
                 return dist
             if dist > dist_min[row][col]:
                 continue

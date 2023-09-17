@@ -16,12 +16,12 @@ class Solution:
                 if visited == all_visited:
                     return steps
                 for next_node in graph[node]:
-                    next_state = visited | masks[next_node]
-                    if next_state == all_visited:
+                    next_visited = visited | masks[next_node]
+                    if next_visited == all_visited:
                         return steps + 1
-                    if next_state not in visited_state[next_node]:
-                        visited_state[next_node].add(next_state)
-                        queue.append((next_node, next_state))
+                    if next_visited not in visited_state[next_node]:
+                        visited_state[next_node].add(next_visited)
+                        queue.append((next_node, next_visited))
             steps += 1
 
         return -1
