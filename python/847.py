@@ -1,15 +1,13 @@
 from collections import deque
-from typing import List
 
 
 # https://leetcode.com/problems/shortest-path-visiting-all-nodes/discuss/178744/Python-BFS-solution-with-optimization.-Beats-100
 class Solution:
-    def shortestPathLength(self, graph: List[List[int]]) -> int:
-        node_count = len(graph)
-        masks = [1 << i for i in range(node_count)]
-        all_visited = (1 << node_count) - 1
-        visited_state = [{masks[i]} for i in range(node_count)]
-        queue = deque([(i, masks[i]) for i in range(node_count)])
+    def shortestPathLength(self, graph: list[list[int]]) -> int:
+        masks = [1 << i for i in range(len(graph))]
+        visited_state = [{masks[i]} for i in range(len(graph))]
+        all_visited = (1 << len(graph)) - 1
+        queue = deque([(i, masks[i]) for i in range(len(graph))])
         steps = 0
 
         while queue:
@@ -18,12 +16,12 @@ class Solution:
                 if visited == all_visited:
                     return steps
                 for next_node in graph[node]:
-                    new_visited = visited | masks[next_node]
-                    if new_visited == all_visited:
+                    next_state = visited | masks[next_node]
+                    if next_state == all_visited:
                         return steps + 1
-                    if new_visited not in visited_state[next_node]:
-                        visited_state[next_node].add(new_visited)
-                        queue.append((next_node, new_visited))
+                    if next_state not in visited_state[next_node]:
+                        visited_state[next_node].add(next_state)
+                        queue.append((next_node, next_state))
             steps += 1
 
         return -1
