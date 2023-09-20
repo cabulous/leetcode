@@ -24,7 +24,6 @@ class Solution:
                     continue
                 x2, y2 = points[next_node]
                 next_dist = abs(x1 - x2) + abs(y1 - y2)
-                if next_dist < min_dist[next_node]:
-                    min_dist[next_node] = next_dist
+                min_dist[next_node] = min(min_dist[next_node], next_dist)
 
         return res
