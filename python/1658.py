@@ -12,4 +12,4 @@ class Solution:
             if curr == x:
                 res = min(res, len(nums) - (right - left + 1))
 
-        return res if res < float('inf') else -1
+        return res if res != float('inf') else -1
