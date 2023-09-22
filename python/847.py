@@ -11,6 +11,7 @@ class Solution:
         res = 0
 
         while queue:
+            next_queue = deque()
             for __ in range(len(queue)):
                 node, visited = queue.popleft()
                 if visited == all_visited:
@@ -21,7 +22,8 @@ class Solution:
                         return res + 1
                     if next_visited not in visited_state[next_node]:
                         visited_state[next_node].add(next_visited)
-                        queue.append((next_node, next_visited))
+                        next_queue.append((next_node, next_visited))
+            queue = next_queue
             res += 1
 
         return -1
