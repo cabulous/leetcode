@@ -4,7 +4,7 @@ class Solution:
         res = [poured] + [0] * query_row
 
         for row in range(1, query_row + 1):
-            for i in reversed(range(row + 1)):
-                res[i] = max(res[i] - 1, 0) / 2 + max(res[i - 1] - 1, 0) / 2
+            for i in range(row, -1, -1):
+                res[i] = max(0, res[i] - 1) / 2 + max(0, res[i - 1] - 1) / 2
 
-        return min(res[query_glass], 1)
+        return min(1, res[query_glass])

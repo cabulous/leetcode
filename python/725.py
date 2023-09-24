@@ -22,8 +22,8 @@ class Solution:
 
         for i in range(k):
             parts[i] = curr
-            curr_size = size + (1 if remain > 0 else 0)
-            for j in range(curr_size):
+            curr_size = size + (1 if remain else 0)
+            for __ in range(curr_size):
                 prev, curr = curr, curr.next
             if prev:
                 prev.next = None
