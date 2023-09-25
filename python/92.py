@@ -12,12 +12,12 @@ class Solution:
 
         sentinel = ListNode(next=head)
         tail = sentinel
-        for _ in range(left - 1):
+        for __ in range(left - 1):
             tail = tail.next
 
         prev = tail
         curr = tail.next
-        for _ in range(right - left + 1):
+        for __ in range(right - left + 1):
             curr.next, prev, curr = prev, curr, curr.next
 
         tail.next.next = curr
