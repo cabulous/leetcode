@@ -1,26 +1,3 @@
-from collections import Counter
-
-
-class Solution:
-    def removeDuplicateLetters(self, s: str) -> str:
-        if not s:
-            return ''
-
-        count = Counter(s)
-        min_index = 0
-
-        for i, ch in enumerate(s):
-            if ch < s[min_index]:
-                min_index = i
-            count[ch] -= 1
-            if count[ch] == 0:
-                break
-
-        remaining = s[min_index:].replace(s[min_index], '')
-
-        return s[min_index] + self.removeDuplicateLetters(remaining)
-
-
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
         stack = []
