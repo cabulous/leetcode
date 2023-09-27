@@ -31,7 +31,6 @@ class Solution:
         dp = [1] + [0] * target
         for comb_sum in range(1, target + 1):
             for num in sorted(nums):
-                if comb_sum - num < 0:
-                    continue
-                dp[comb_sum] += dp[comb_sum - num]
+                if comb_sum - num >= 0:
+                    dp[comb_sum] += dp[comb_sum - num]
         return dp[-1]

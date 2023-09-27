@@ -1,17 +1,17 @@
-# backward
 class Solution:
-    def decodeAtIndex(self, S: str, K: int) -> str:
+    def decodeAtIndex(self, s: str, k: int) -> str:
         size = 0
-        for c in S:
-            if c.isdigit():
-                size *= int(c)
+        for ch in s:
+            if ch.isdigit():
+                size *= int(ch)
             else:
                 size += 1
-        for c in reversed(S):
-            K %= size
-            if K == 0 and c.isalpha():
-                return c
-            if c.isdigit():
-                size /= int(c)
+
+        for ch in reversed(s):
+            k %= size
+            if k == 0 and ch.isalpha():
+                return ch
+            if ch.isdigit():
+                size //= int(ch)
             else:
                 size -= 1
