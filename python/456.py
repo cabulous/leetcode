@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def find132pattern(self, nums: List[int]) -> bool:
+    def find132pattern(self, nums: list[int]) -> bool:
         if len(nums) < 3:
             return False
 
