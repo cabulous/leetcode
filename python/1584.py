@@ -20,10 +20,9 @@ class Solution:
 
             x1, y1 = points[curr_node]
             for next_node in range(len(points)):
-                if visited[next_node]:
-                    continue
-                x2, y2 = points[next_node]
-                next_dist = abs(x1 - x2) + abs(y1 - y2)
-                min_dist[next_node] = min(min_dist[next_node], next_dist)
+                if not visited[next_node]:
+                    x2, y2 = points[next_node]
+                    next_dist = abs(x1 - x2) + abs(y1 - y2)
+                    min_dist[next_node] = min(min_dist[next_node], next_dist)
 
         return res
